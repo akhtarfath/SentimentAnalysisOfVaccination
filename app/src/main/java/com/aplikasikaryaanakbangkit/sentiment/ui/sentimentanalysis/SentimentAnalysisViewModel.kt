@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class SentimentAnalysisViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is Sentiment Analysis page"
     }
     val text: LiveData<String> = _text
 }

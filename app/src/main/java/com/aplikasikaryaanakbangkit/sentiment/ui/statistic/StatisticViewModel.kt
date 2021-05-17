@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class StatisticViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is Statistic page"
     }
     val text: LiveData<String> = _text
 }
