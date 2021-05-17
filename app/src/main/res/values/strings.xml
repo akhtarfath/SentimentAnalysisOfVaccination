@@ -11,4 +11,9 @@
     <string name="content">Content</string>
     <string name="source">Source</string>
     <string name="open_in_browser">Open in Browser</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_statistic">Statistic</string>
+    <string name="title_sentiment_analysis">Sentiment Analysis</string>
+    <string name="title_news">News</string>
 </resources>
