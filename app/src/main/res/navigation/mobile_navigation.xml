@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_statistic"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.statistic.StatisticFragment"
+        android:label="@string/title_statistic"
+        tools:layout="@layout/fragment_statistic" />
+
+    <fragment
+        android:id="@+id/navigation_sentiment_analysis"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.sentimentanalysis.SentimentAnalysisFragment"
+        android:label="@string/title_sentiment_analysis"
+        tools:layout="@layout/fragment_sentiment_analysis" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+</navigation>
