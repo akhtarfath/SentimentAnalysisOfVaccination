@@ -7,9 +7,9 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class AppExecutors @VisibleForTesting constructor(
-    private val diskIO: Executor,
-    private val networkIO: Executor,
-    private val mainThread: Executor
+    private val _diskIO: Executor,
+    private val _networkIO: Executor,
+    private val _mainThread: Executor
 ) {
 
     companion object {
@@ -22,17 +22,17 @@ class AppExecutors @VisibleForTesting constructor(
         MainThreadExecutor()
     )
 
-    fun diskIO(): Executor = diskIO
+    fun diskIO(): Executor = _diskIO
 
-    fun networkIO(): Executor = networkIO
+    fun networkIO(): Executor = _networkIO
 
-    fun mainThread(): Executor = mainThread
+    fun mainThread(): Executor = _mainThread
 
     private class MainThreadExecutor : Executor {
-        private val mainThreadHandler = Handler(Looper.getMainLooper())
+        private val _mainThreadHandler = Handler(Looper.getMainLooper())
 
         override fun execute(command: Runnable) {
-            mainThreadHandler.post(command)
+            _mainThreadHandler.post(command)
         }
     }
 }
