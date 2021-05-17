@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.MiniItemBinding
-import com.aplikasikaryaanakbangkit.sentiment.ui.detail.DetailNewsActivity
+import com.aplikasikaryaanakbangkit.sentiment.ui.newsdetail.DetailNewsActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
