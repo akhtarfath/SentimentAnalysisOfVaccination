@@ -4,16 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailNewsActivity">
+    tools:context=".ui.newsdetail.DetailNewsActivity">
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <include android:id="@+id/detail_content" layout="@layout/content_detail_news" />
+
+        <include
+            android:id="@+id/detail_content"
+            layout="@layout/content_detail_news" />
     </androidx.core.widget.NestedScrollView>
 
-    <include android:id="@+id/loading" layout="@layout/loading" />
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
