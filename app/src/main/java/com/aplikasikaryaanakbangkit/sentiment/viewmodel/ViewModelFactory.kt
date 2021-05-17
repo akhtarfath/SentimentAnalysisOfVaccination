@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.aplikasikaryaanakbangkit.sentiment.data.source.NewsRepository
 import com.aplikasikaryaanakbangkit.sentiment.di.Injection
-import com.aplikasikaryaanakbangkit.sentiment.ui.detail.DetailNewsViewModel
 import com.aplikasikaryaanakbangkit.sentiment.ui.news.NewsViewModel
+import com.aplikasikaryaanakbangkit.sentiment.ui.newsdetail.DetailNewsViewModel
 
-class ViewModelFactory private constructor(private val mNewsRepository: NewsRepository) :
+class ViewModelFactory private constructor(private val _mNewsRepository: NewsRepository) :
     ViewModelProvider.NewInstanceFactory() {
 
     companion object {
@@ -27,10 +27,10 @@ class ViewModelFactory private constructor(private val mNewsRepository: NewsRepo
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
-                NewsViewModel(mNewsRepository) as T
+                NewsViewModel(_mNewsRepository) as T
             }
             modelClass.isAssignableFrom(DetailNewsViewModel::class.java) -> {
-                DetailNewsViewModel(mNewsRepository) as T
+                DetailNewsViewModel(_mNewsRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
