@@ -13,25 +13,25 @@ import com.aplikasikaryaanakbangkit.sentiment.vo.Status
 
 class NewsActivity : AppCompatActivity() {
 
-    private lateinit var newsViewModel: NewsViewModel
-    private lateinit var newsBinding: ActivityNewsBinding
+    private lateinit var _newsViewModel: NewsViewModel
+    private lateinit var _newsBinding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        newsBinding = ActivityNewsBinding.inflate(layoutInflater)
-        setContentView(newsBinding.root)
+        _newsBinding = ActivityNewsBinding.inflate(layoutInflater)
+        setContentView(_newsBinding.root)
         supportActionBar?.hide()
 
         val factory = ViewModelFactory.getInstance(this)
-        newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+        _newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         val newsCovidAdapter = NewsCovidAdapter()
         val newsVaccineAdapter = NewsVaccineAdapter()
 
         loading(true)
 
-        newsViewModel.getDataCovidHeadlines().observe(this, { newsCovid ->
+        _newsViewModel.getDataCovidHeadlines().observe(this, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
                     Status.LOADING -> loading(true)
@@ -47,13 +47,13 @@ class NewsActivity : AppCompatActivity() {
                 }
             }
         })
-        with(newsBinding.newsActivityHorizontal.rvHorizontal) {
+        with(_newsBinding.newsActivityHorizontal.rvHorizontal) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = newsCovidAdapter
         }
 
-        newsViewModel.getDataVaccineNews().observe(this, { newsVaccine ->
+        _newsViewModel.getDataVaccineNews().observe(this, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
                     Status.LOADING -> loading(true)
@@ -69,7 +69,7 @@ class NewsActivity : AppCompatActivity() {
                 }
             }
         })
-        with(newsBinding.newsActivityVertical.rvVertical) {
+        with(_newsBinding.newsActivityVertical.rvVertical) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             adapter = newsVaccineAdapter
@@ -77,7 +77,7 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun loading(state: Boolean) {
-        if (state) newsBinding.progressBar.visibility = View.VISIBLE
-        else newsBinding.progressBar.visibility = View.GONE
+        if (state) _newsBinding.progressBar.visibility = View.VISIBLE
+        else _newsBinding.progressBar.visibility = View.GONE
     }
 }

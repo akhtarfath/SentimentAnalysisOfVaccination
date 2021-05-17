@@ -9,7 +9,7 @@ import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleCo
 import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.vo.Resource
 
-class DetailNewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
+class DetailNewsViewModel(private val _newsRepository: NewsRepository) : ViewModel() {
 
     val url = MutableLiveData<String>()
 
@@ -19,12 +19,12 @@ class DetailNewsViewModel(private val newsRepository: NewsRepository) : ViewMode
 
     var getDataDetailCovidHeadlines: LiveData<Resource<ArticleCovidEntity>> =
         Transformations.switchMap(url) { mUrl ->
-            newsRepository.getCovidHeadlinesByUrl(mUrl)
+            _newsRepository.getCovidHeadlinesByUrl(mUrl)
         }
 
 
     var getDataDetailVaccineNews: LiveData<Resource<ArticleVaccinesEntity>> =
         Transformations.switchMap(url) { mUrl ->
-            newsRepository.getVaccineNewsByUrl(mUrl)
+            _newsRepository.getVaccineNewsByUrl(mUrl)
         }
 }

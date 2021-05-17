@@ -47,10 +47,10 @@ class NewsVaccineAdapter :
         }
     }
 
-    class NewsViewHolder(private val binding: MiniItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class NewsViewHolder(private val _binding: MiniItemBinding) :
+        RecyclerView.ViewHolder(_binding.root) {
         fun bind(article: ArticleVaccinesEntity) {
-            with(binding) {
+            with(_binding) {
                 tvItemTitle.text = article.title
                 tvItemAuthor.text = article.author
                 tvItemDescription.text = article.description

@@ -24,7 +24,7 @@ class AppExecutors @VisibleForTesting constructor(
 
     fun diskIO(): Executor = diskIO
 
-    fun netwowrkIO(): Executor = networkIO
+    fun networkIO(): Executor = networkIO
 
     fun mainThread(): Executor = mainThread
 

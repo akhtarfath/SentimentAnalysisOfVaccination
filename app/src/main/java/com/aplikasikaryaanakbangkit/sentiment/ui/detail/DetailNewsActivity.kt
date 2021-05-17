@@ -23,29 +23,29 @@ class DetailNewsActivity : AppCompatActivity() {
         const val EXTRA_SHOW = "extra_show"
     }
 
-    private lateinit var detailContentBinding: ContentDetailNewsBinding
-    private lateinit var activityDetailNewsBinding: ActivityDetailNewsBinding
-    private lateinit var viewModel: DetailNewsViewModel
-    private var url by Delegates.notNull<String>()
+    private lateinit var _detailContentBinding: ContentDetailNewsBinding
+    private lateinit var _activityDetailNewsBinding: ActivityDetailNewsBinding
+    private lateinit var _viewModel: DetailNewsViewModel
+    private var _url by Delegates.notNull<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityDetailNewsBinding = ActivityDetailNewsBinding.inflate(layoutInflater)
-        detailContentBinding = activityDetailNewsBinding.detailContent
-        setContentView(activityDetailNewsBinding.root)
+        _activityDetailNewsBinding = ActivityDetailNewsBinding.inflate(layoutInflater)
+        _detailContentBinding = _activityDetailNewsBinding.detailContent
+        setContentView(_activityDetailNewsBinding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[DetailNewsViewModel::class.java]
+        _viewModel = ViewModelProvider(this, factory)[DetailNewsViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
             loading(true)
-            url = extras.getString(EXTRA_SHOW).toString()
-            viewModel.setSelectedDetailNews(url)
+            _url = extras.getString(EXTRA_SHOW).toString()
+            _viewModel.setSelectedDetailNews(_url)
 
-            viewModel.getDataDetailCovidHeadlines.observe(this, { news ->
+            _viewModel.getDataDetailCovidHeadlines.observe(this, { news ->
                 if (news != null) {
                     when (news.status) {
                         Status.LOADING -> loading(true)
@@ -62,7 +62,7 @@ class DetailNewsActivity : AppCompatActivity() {
                 }
             })
 
-            viewModel.getDataDetailVaccineNews.observe(this, { news ->
+            _viewModel.getDataDetailVaccineNews.observe(this, { news ->
                 if (news != null) {
                     when (news.status) {
                         Status.LOADING -> loading(true)
@@ -82,7 +82,7 @@ class DetailNewsActivity : AppCompatActivity() {
     }
 
     private fun setNewsVaccine(data: ArticleVaccinesEntity) {
-        with(detailContentBinding) {
+        with(_detailContentBinding) {
             title.text = data.title
             author.text = data.author
             publishedAt.text = data.publishedAt
@@ -108,7 +108,7 @@ class DetailNewsActivity : AppCompatActivity() {
     }
 
     private fun setNewsCovid(covidNews: ArticleCovidEntity) {
-        with(detailContentBinding) {
+        with(_detailContentBinding) {
             title.text = covidNews.title
             author.text = covidNews.author
             publishedAt.text = covidNews.publishedAt
@@ -134,8 +134,8 @@ class DetailNewsActivity : AppCompatActivity() {
     }
 
     private fun loading(state: Boolean) {
-        if (state) activityDetailNewsBinding.loading.progressBar.visibility = View.VISIBLE
-        else activityDetailNewsBinding.loading.progressBar.visibility = View.GONE
+        if (state) _activityDetailNewsBinding.loading.progressBar.visibility = View.VISIBLE
+        else _activityDetailNewsBinding.loading.progressBar.visibility = View.GONE
     }
 
 }

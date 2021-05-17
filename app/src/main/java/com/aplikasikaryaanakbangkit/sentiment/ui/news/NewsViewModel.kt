@@ -8,11 +8,11 @@ import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleCo
 import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.vo.Resource
 
-class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
+class NewsViewModel(private val _newsRepository: NewsRepository) : ViewModel() {
 
     fun getDataCovidHeadlines(): LiveData<Resource<PagedList<ArticleCovidEntity>>> =
-        newsRepository.getCovidHeadlines()
+        _newsRepository.getCovidHeadlines()
 
     fun getDataVaccineNews(): LiveData<Resource<PagedList<ArticleVaccinesEntity>>> =
-        newsRepository.getVaccineNews()
+        _newsRepository.getVaccineNews()
 }

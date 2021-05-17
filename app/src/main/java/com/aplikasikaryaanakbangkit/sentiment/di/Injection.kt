@@ -14,6 +14,7 @@ object Injection {
         val remoteDataSource = RemoteDataSource.getInstance(NewsService.create())
         val localDataSource = LocalDataSource.getInstance(database.newsDao())
         val appExecutors = AppExecutors()
+
         return NewsRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
     }
 }
