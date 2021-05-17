@@ -14,6 +14,6 @@
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_statistic">Statistic</string>
-    <string name="title_sentiment_analysis">Sentiment Analysis</string>
+    <string name="title_sentiment_analysis">Sentiment A.</string>
     <string name="title_news">News</string>
 </resources>
