@@ -16,15 +16,17 @@
         android:theme="@style/Theme.SentimentAnalysisOfVaccination"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.splashscreen.SplashScreenActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.splashscreen.SplashScreenActivity" />
         <activity android:name=".ui.newsdetail.DetailNewsActivity" />
+        <activity android:name=".ui.newsdetail.DetailVaccineNewsActivity" />
     </application>
 
 </manifest>
