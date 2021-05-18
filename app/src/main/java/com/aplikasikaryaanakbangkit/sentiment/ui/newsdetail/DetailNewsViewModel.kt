@@ -18,13 +18,12 @@ class DetailNewsViewModel(private val _newsRepository: NewsRepository) : ViewMod
     }
 
     var getDataDetailCovidHeadlines: LiveData<Resource<ArticleCovidEntity>> =
-        Transformations.switchMap(url) { mUrl ->
-            _newsRepository.getCovidHeadlinesByUrl(mUrl)
-        }
-
+            Transformations.switchMap(url) { mUrl ->
+                _newsRepository.getCovidHeadlinesByUrl(mUrl)
+            }
 
     var getDataDetailVaccineNews: LiveData<Resource<ArticleVaccinesEntity>> =
-        Transformations.switchMap(url) { mUrl ->
-            _newsRepository.getVaccineNewsByUrl(mUrl)
-        }
+            Transformations.switchMap(url) { mUrl ->
+                _newsRepository.getVaccineNewsByUrl(mUrl)
+            }
 }

@@ -13,7 +13,7 @@ interface NewsService {
     @GET("top-headlines?q=covid&country=id&apiKey=3b0fc47a38bc48a9bfe8cff5dbcfd67c")
     fun getCovidHeadlines(): Call<NewsResponse>
 
-    @GET("everything?q=vaksin&apiKey=3b0fc47a38bc48a9bfe8cff5dbcfd67c")
+    @GET("everything?q=vaksinasi&apiKey=3b0fc47a38bc48a9bfe8cff5dbcfd67c")
     fun getVaccineNews(): Call<NewsResponse>
 
     companion object {
@@ -21,15 +21,15 @@ interface NewsService {
 
         fun create(): NewsService {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build()
+                    .addInterceptor(loggingInterceptor)
+                    .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build()
 
             return retrofit.create(NewsService::class.java)
         }

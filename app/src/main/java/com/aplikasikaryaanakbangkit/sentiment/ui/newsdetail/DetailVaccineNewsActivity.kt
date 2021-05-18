@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.aplikasikaryaanakbangkit.sentiment.R
-import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.ActivityDetailNewsBinding
 import com.aplikasikaryaanakbangkit.sentiment.databinding.ContentDetailNewsBinding
 import com.aplikasikaryaanakbangkit.sentiment.viewmodel.ViewModelFactory
@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlin.properties.Delegates
 
-class DetailNewsActivity : AppCompatActivity() {
+class DetailVaccineNewsActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_SHOW = "extra_show"
     }
@@ -42,13 +42,13 @@ class DetailNewsActivity : AppCompatActivity() {
             _url = extras.getString(EXTRA_SHOW).toString()
             _viewModel.setSelectedDetailNews(_url)
 
-            _viewModel.getDataDetailCovidHeadlines.observe(this, { news ->
+            _viewModel.getDataDetailVaccineNews.observe(this, { news ->
                 if (news != null) {
                     when (news.status) {
                         Status.LOADING -> loading(true)
                         Status.SUCCESS -> if (news.data != null) {
                             loading(false)
-                            setNewsCovid(news.data)
+                            setNewsVaccine(news.data)
                         }
                         Status.ERROR -> {
                             loading(false)
@@ -61,15 +61,15 @@ class DetailNewsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setNewsCovid(covidNews: ArticleCovidEntity) {
+    private fun setNewsVaccine(data: ArticleVaccinesEntity) {
         with(_detailContentBinding) {
-            title.text = covidNews.title
-            author.text = covidNews.author
-            publishedAt.text = covidNews.publishedAt
-            content.text = covidNews.content
+            title.text = data.title
+            author.text = data.author
+            publishedAt.text = data.publishedAt
+            content.text = data.content
 
-            Glide.with(this@DetailNewsActivity)
-                    .load(covidNews.urlToImage)
+            Glide.with(this@DetailVaccineNewsActivity)
+                    .load(data.urlToImage)
                     .apply(
                             RequestOptions.placeholderOf(R.drawable.ic_loading)
                                     .error(R.drawable.ic_error)
