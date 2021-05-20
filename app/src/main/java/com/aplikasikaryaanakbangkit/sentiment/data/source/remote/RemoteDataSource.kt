@@ -17,53 +17,53 @@ class RemoteDataSource private constructor(private val newsService: NewsService)
         private var instance: RemoteDataSource? = null
 
         fun getInstance(helper: NewsService): RemoteDataSource =
-                instance ?: synchronized(this) {
-                    instance ?: RemoteDataSource(helper).apply { instance = this }
-                }
+            instance ?: synchronized(this) {
+                instance ?: RemoteDataSource(helper).apply { instance = this }
+            }
     }
 
     fun getresultCovidHeadlines(): LiveData<ApiResponse<List<ArticlesItemResponse>>> {
         val resultCovidHeadlines = MutableLiveData<ApiResponse<List<ArticlesItemResponse>>>()
         NewsService.create()
-                .getCovidHeadlines()
-                .enqueue(object : Callback<NewsResponse> {
-                    override fun onResponse(
-                            call: Call<NewsResponse>,
-                            response: Response<NewsResponse>
-                    ) {
-                        resultCovidHeadlines.postValue(
-                                response.body()?.let { ApiResponse.success(it.articles) })
-                    }
+            .getCovidHeadlines()
+            .enqueue(object : Callback<NewsResponse> {
+                override fun onResponse(
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
+                ) {
+                    resultCovidHeadlines.postValue(
+                        response.body()?.let { ApiResponse.success(it.articles) })
+                }
 
-                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultCovidHeadlines))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                    ApiResponse.error(t.message.toString(), mutableListOf(resultCovidHeadlines))
+                    Log.e("RemoteDataSource", t.message.toString())
+                }
 
-                })
+            })
         return resultCovidHeadlines
     }
 
     fun getresultVaccineNews(): LiveData<ApiResponse<List<ArticlesItemResponse>>> {
         val resultVaccineNews = MutableLiveData<ApiResponse<List<ArticlesItemResponse>>>()
         NewsService.create()
-                .getVaccineNews()
-                .enqueue(object : Callback<NewsResponse> {
-                    override fun onResponse(
-                            call: Call<NewsResponse>,
-                            response: Response<NewsResponse>
-                    ) {
+            .getVaccineNews()
+            .enqueue(object : Callback<NewsResponse> {
+                override fun onResponse(
+                    call: Call<NewsResponse>,
+                    response: Response<NewsResponse>
+                ) {
 
-                        resultVaccineNews.postValue(
-                                response.body()?.let { ApiResponse.success(it.articles) })
+                    resultVaccineNews.postValue(
+                        response.body()?.let { ApiResponse.success(it.articles) })
 
-                    }
+                }
 
-                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultVaccineNews))
-                    }
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                    ApiResponse.error(t.message.toString(), mutableListOf(resultVaccineNews))
+                }
 
-                })
+            })
         return resultVaccineNews
     }
 }

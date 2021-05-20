@@ -24,9 +24,9 @@ class NewsFragment : Fragment() {
     private val _binding get() = _fragmentNewsBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _fragmentNewsBinding = FragmentNewsBinding.inflate(inflater, container, false)
 
@@ -56,19 +56,19 @@ class NewsFragment : Fragment() {
                     Status.ERROR -> {
                         false.loading()
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }
         })
         with(_fragmentNewsBinding?.newsActivityHorizontal?.rvHorizontal) {
             val layoutManagerHorizontal =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            this?.setLayoutManager(layoutManagerHorizontal)
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            this?.layoutManager = layoutManagerHorizontal
             this?.setHasFixedSize(true)
             this?.adapter = newsCovidAdapter
         }
@@ -84,19 +84,18 @@ class NewsFragment : Fragment() {
                     Status.ERROR -> {
                         false.loading()
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }
         })
         with(_fragmentNewsBinding?.newsActivityVertical?.rvVertical) {
-
             val layoutManagerVertical = LinearLayoutManager(context)
-            this?.setLayoutManager(layoutManagerVertical)
+            this?.layoutManager = layoutManagerVertical
             this?.setHasFixedSize(true)
             this?.adapter = newsVaccineAdapter
         }

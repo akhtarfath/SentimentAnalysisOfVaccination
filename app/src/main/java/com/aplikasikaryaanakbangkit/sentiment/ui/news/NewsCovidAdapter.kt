@@ -14,20 +14,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 class NewsCovidAdapter :
-        PagedListAdapter<ArticleCovidEntity, NewsCovidAdapter.NewsViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<ArticleCovidEntity, NewsCovidAdapter.NewsViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleCovidEntity>() {
             override fun areItemsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem.url == newItem.url
             }
 
             override fun areContentsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem == newItem
             }
@@ -36,7 +36,7 @@ class NewsCovidAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val miniItemBinding =
-                MiniItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MiniItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(miniItemBinding)
     }
 
@@ -48,7 +48,7 @@ class NewsCovidAdapter :
     }
 
     class NewsViewHolder(private val binding: MiniItemHorizontalBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(article: ArticleCovidEntity) {
             with(binding) {
                 tvItemTitle.text = article.title
@@ -58,12 +58,12 @@ class NewsCovidAdapter :
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                        .load(article.urlToImage)
-                        .apply(
-                                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error)
-                        )
-                        .into(imageNews)
+                    .load(article.urlToImage)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(imageNews)
             }
         }
     }

@@ -14,9 +14,9 @@ import com.aplikasikaryaanakbangkit.sentiment.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.vo.Resource
 
 class NewsRepository private constructor(
-        private val remoteDataSource: RemoteDataSource,
-        private val localDataSource: LocalDataSource,
-        private val appExecutors: AppExecutors
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
 ) : NewsDataSource {
 
     companion object {
@@ -24,50 +24,50 @@ class NewsRepository private constructor(
         private var instance: NewsRepository? = null
 
         fun getInstance(
-                remoteData: RemoteDataSource,
-                localData: LocalDataSource,
-                appExecutors: AppExecutors
+            remoteData: RemoteDataSource,
+            localData: LocalDataSource,
+            appExecutors: AppExecutors
         ): NewsRepository =
-                instance ?: synchronized(this) {
-                    instance
-                            ?: NewsRepository(remoteData, localData, appExecutors).apply { instance = this }
-                }
+            instance ?: synchronized(this) {
+                instance
+                    ?: NewsRepository(remoteData, localData, appExecutors).apply { instance = this }
+            }
     }
 
     override fun getCovidHeadlines(): LiveData<Resource<PagedList<ArticleCovidEntity>>> {
         return object :
-                NetworkBoundResource<PagedList<ArticleCovidEntity>, List<ArticlesItemResponse>>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<PagedList<ArticleCovidEntity>, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
 
             override fun loadFromDB(): LiveData<PagedList<ArticleCovidEntity>> {
                 val config = PagedList.Config.Builder()
-                        .setEnablePlaceholders(false)
-                        .setInitialLoadSizeHint(4)
-                        .setPageSize(4)
-                        .build()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
                 val data: DataSource.Factory<Int, ArticleCovidEntity> =
-                        localDataSource.getCovidArticles()
+                    localDataSource.getCovidArticles()
                 return LivePagedListBuilder(data, config).build()
             }
 
             override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean =
-                    data == null || data.isEmpty()
+                data == null || data.isEmpty()
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
-                    remoteDataSource.getresultCovidHeadlines()
+                remoteDataSource.getresultCovidHeadlines()
 
             public override fun saveCallResult(data: List<ArticlesItemResponse>) {
                 val articleList = ArrayList<ArticleCovidEntity>()
                 for (response in data) {
                     val articles = ArticleCovidEntity(
-                            response.url,
-                            response.author,
-                            response.urlToImage,
-                            response.description,
-                            response.title,
-                            response.publishedAt,
-                            response.content
+                        response.url,
+                        response.author,
+                        response.urlToImage,
+                        response.description,
+                        response.title,
+                        response.publishedAt,
+                        response.content
                     )
                     articleList.add(articles)
                 }
@@ -78,38 +78,38 @@ class NewsRepository private constructor(
 
     override fun getVaccineNews(): LiveData<Resource<PagedList<ArticleVaccinesEntity>>> {
         return object :
-                NetworkBoundResource<PagedList<ArticleVaccinesEntity>, List<ArticlesItemResponse>>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<PagedList<ArticleVaccinesEntity>, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
 
             override fun loadFromDB(): LiveData<PagedList<ArticleVaccinesEntity>> {
                 val config = PagedList.Config.Builder()
-                        .setEnablePlaceholders(false)
-                        .setInitialLoadSizeHint(4)
-                        .setPageSize(4)
-                        .build()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
                 val data: DataSource.Factory<Int, ArticleVaccinesEntity> =
-                        localDataSource.getVaccineArticles()
+                    localDataSource.getVaccineArticles()
                 return LivePagedListBuilder(data, config).build()
             }
 
             override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean =
-                    data == null || data.isEmpty()
+                data == null || data.isEmpty()
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
-                    remoteDataSource.getresultVaccineNews()
+                remoteDataSource.getresultVaccineNews()
 
             public override fun saveCallResult(data: List<ArticlesItemResponse>) {
                 val articleList = ArrayList<ArticleVaccinesEntity>()
                 for (response in data) {
                     val articles = ArticleVaccinesEntity(
-                            response.url,
-                            response.author,
-                            response.urlToImage,
-                            response.description,
-                            response.title,
-                            response.publishedAt,
-                            response.content
+                        response.url,
+                        response.author,
+                        response.urlToImage,
+                        response.description,
+                        response.title,
+                        response.publishedAt,
+                        response.content
                     )
                     articleList.add(articles)
                 }
@@ -121,27 +121,27 @@ class NewsRepository private constructor(
 
     override fun getCovidHeadlinesByUrl(url: String): LiveData<Resource<ArticleCovidEntity>> {
         return object :
-                NetworkBoundResource<ArticleCovidEntity, List<ArticlesItemResponse>>(appExecutors) {
+            NetworkBoundResource<ArticleCovidEntity, List<ArticlesItemResponse>>(appExecutors) {
             override fun loadFromDB(): LiveData<ArticleCovidEntity> =
-                    localDataSource.getCovidArticleByUrl(url)
+                localDataSource.getCovidArticleByUrl(url)
 
             override fun shouldFetch(data: ArticleCovidEntity?): Boolean = data == null
 
             override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
-                    remoteDataSource.getresultCovidHeadlines()
+                remoteDataSource.getresultCovidHeadlines()
 
             override fun saveCallResult(data: List<ArticlesItemResponse>) {
                 lateinit var article: ArticleCovidEntity
                 for (response in data) {
                     if (response.url == url) {
                         article = ArticleCovidEntity(
-                                response.url,
-                                response.author,
-                                response.urlToImage,
-                                response.description,
-                                response.title,
-                                response.publishedAt,
-                                response.content
+                            response.url,
+                            response.author,
+                            response.urlToImage,
+                            response.description,
+                            response.title,
+                            response.publishedAt,
+                            response.content
                         )
                     }
                 }
@@ -153,29 +153,29 @@ class NewsRepository private constructor(
 
     override fun getVaccineNewsByUrl(url: String): LiveData<Resource<ArticleVaccinesEntity>> {
         return object :
-                NetworkBoundResource<ArticleVaccinesEntity, List<ArticlesItemResponse>>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<ArticleVaccinesEntity, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
             override fun loadFromDB(): LiveData<ArticleVaccinesEntity> =
-                    localDataSource.getVaccineArticleByUrl(url)
+                localDataSource.getVaccineArticleByUrl(url)
 
             override fun shouldFetch(data: ArticleVaccinesEntity?): Boolean = data == null
 
             override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
-                    remoteDataSource.getresultVaccineNews()
+                remoteDataSource.getresultVaccineNews()
 
             override fun saveCallResult(data: List<ArticlesItemResponse>) {
                 lateinit var article: ArticleVaccinesEntity
                 for (response in data) {
                     if (response.url == url) {
                         article = ArticleVaccinesEntity(
-                                response.url,
-                                response.author,
-                                response.urlToImage,
-                                response.description,
-                                response.title,
-                                response.publishedAt,
-                                response.content
+                            response.url,
+                            response.author,
+                            response.urlToImage,
+                            response.description,
+                            response.title,
+                            response.publishedAt,
+                            response.content
                         )
                     }
                 }

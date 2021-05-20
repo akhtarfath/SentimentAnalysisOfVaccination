@@ -53,7 +53,7 @@ class DetailVaccineNewsActivity : AppCompatActivity() {
                         Status.ERROR -> {
                             loading(false)
                             Toast.makeText(this, getString(R.string.error_msg), Toast.LENGTH_SHORT)
-                                    .show()
+                                .show()
                         }
                     }
                 }
@@ -69,12 +69,12 @@ class DetailVaccineNewsActivity : AppCompatActivity() {
             content.text = data.content
 
             Glide.with(this@DetailVaccineNewsActivity)
-                    .load(data.urlToImage)
-                    .apply(
-                            RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                    .error(R.drawable.ic_error)
-                    )
-                    .into(imageNews)
+                .load(data.urlToImage)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(imageNews)
         }
     }
 

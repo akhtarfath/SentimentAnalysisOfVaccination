@@ -53,7 +53,7 @@ class DetailNewsActivity : AppCompatActivity() {
                         Status.ERROR -> {
                             loading(false)
                             Toast.makeText(this, getString(R.string.error_msg), Toast.LENGTH_SHORT)
-                                    .show()
+                                .show()
                         }
                     }
                 }
@@ -69,12 +69,12 @@ class DetailNewsActivity : AppCompatActivity() {
             content.text = covidNews.content
 
             Glide.with(this@DetailNewsActivity)
-                    .load(covidNews.urlToImage)
-                    .apply(
-                            RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                    .error(R.drawable.ic_error)
-                    )
-                    .into(imageNews)
+                .load(covidNews.urlToImage)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(imageNews)
         }
     }
 

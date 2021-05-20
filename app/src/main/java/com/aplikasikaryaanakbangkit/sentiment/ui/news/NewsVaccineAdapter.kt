@@ -14,20 +14,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 class NewsVaccineAdapter :
-        PagedListAdapter<ArticleVaccinesEntity, NewsVaccineAdapter.NewsViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<ArticleVaccinesEntity, NewsVaccineAdapter.NewsViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleVaccinesEntity>() {
             override fun areItemsTheSame(
-                    oldItem: ArticleVaccinesEntity,
-                    newItem: ArticleVaccinesEntity
+                oldItem: ArticleVaccinesEntity,
+                newItem: ArticleVaccinesEntity
             ): Boolean {
                 return oldItem.url == newItem.url
             }
 
             override fun areContentsTheSame(
-                    oldItem: ArticleVaccinesEntity,
-                    newItem: ArticleVaccinesEntity
+                oldItem: ArticleVaccinesEntity,
+                newItem: ArticleVaccinesEntity
             ): Boolean {
                 return oldItem == newItem
             }
@@ -36,7 +36,7 @@ class NewsVaccineAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val miniItemBinding =
-                MiniItemVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MiniItemVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(miniItemBinding)
     }
 
@@ -48,7 +48,7 @@ class NewsVaccineAdapter :
     }
 
     class NewsViewHolder(private val _binding: MiniItemVerticalBinding) :
-            RecyclerView.ViewHolder(_binding.root) {
+        RecyclerView.ViewHolder(_binding.root) {
         fun bind(article: ArticleVaccinesEntity) {
             with(_binding) {
                 tvItemTitle.text = article.title
@@ -60,12 +60,12 @@ class NewsVaccineAdapter :
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                        .load(article.urlToImage)
-                        .apply(
-                                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error)
-                        )
-                        .into(imageNews)
+                    .load(article.urlToImage)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(imageNews)
             }
         }
     }

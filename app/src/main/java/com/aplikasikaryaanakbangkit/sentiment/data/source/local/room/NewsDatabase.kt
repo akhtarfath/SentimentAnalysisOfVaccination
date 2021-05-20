@@ -8,9 +8,9 @@ import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleCo
 import com.aplikasikaryaanakbangkit.sentiment.data.source.local.entity.ArticleVaccinesEntity
 
 @Database(
-        entities = [ArticleCovidEntity::class, ArticleVaccinesEntity::class],
-        version = 1,
-        exportSchema = false
+    entities = [ArticleCovidEntity::class, ArticleVaccinesEntity::class],
+    version = 1,
+    exportSchema = false
 )
 abstract class NewsDatabase : RoomDatabase() {
     abstract fun newsDao(): NewsDao
@@ -21,14 +21,14 @@ abstract class NewsDatabase : RoomDatabase() {
         private var INSTANCE: NewsDatabase? = null
 
         fun getInstance(context: Context): NewsDatabase =
-                INSTANCE ?: synchronized(this) {
-                    Room.databaseBuilder(
-                            context.applicationContext,
-                            NewsDatabase::class.java,
-                            "newsDatabase.db"
-                    ).build().apply {
-                        INSTANCE = this
-                    }
+            INSTANCE ?: synchronized(this) {
+                Room.databaseBuilder(
+                    context.applicationContext,
+                    NewsDatabase::class.java,
+                    "newsDatabase.db"
+                ).build().apply {
+                    INSTANCE = this
                 }
+            }
     }
 }
