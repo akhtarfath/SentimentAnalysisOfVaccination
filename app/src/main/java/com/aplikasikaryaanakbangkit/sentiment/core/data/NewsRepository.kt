@@ -1,0 +1,189 @@
+package com.aplikasikaryaanakbangkit.sentiment.core.data
+
+import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
+import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
+
+class NewsRepository private constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
+) : NewsDataSource {
+
+    companion object {
+        @Volatile
+        private var instance: NewsRepository? = null
+
+        fun getInstance(
+            remoteData: RemoteDataSource,
+            localData: LocalDataSource,
+            appExecutors: AppExecutors
+        ): NewsRepository =
+            instance ?: synchronized(this) {
+                instance
+                    ?: NewsRepository(remoteData, localData, appExecutors).apply { instance = this }
+            }
+    }
+
+    override fun getCovidHeadlines(): LiveData<Resource<PagedList<ArticleCovidEntity>>> {
+        return object :
+            NetworkBoundResource<PagedList<ArticleCovidEntity>, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
+
+            override fun loadFromDB(): LiveData<PagedList<ArticleCovidEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
+
+                val data: DataSource.Factory<Int, ArticleCovidEntity> =
+                    localDataSource.getCovidArticles()
+
+                return LivePagedListBuilder(data, config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean =
+                data == null || data.isEmpty()
+
+            public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
+                remoteDataSource.getResultCovidHeadlines()
+
+            public override fun saveCallResult(data: List<ArticlesItemResponse>) {
+                val articleList = ArrayList<ArticleCovidEntity>()
+                for (response in data) {
+                    val articles = ArticleCovidEntity(
+                        response.url,
+                        response.author,
+                        response.urlToImage,
+                        response.description,
+                        response.title,
+                        response.publishedAt,
+                        response.content
+                    )
+                    articleList.add(articles)
+                }
+                localDataSource.insertCovidArticles(articleList)
+            }
+        }.asLiveData()
+    }
+
+    override fun getVaccineNews(): LiveData<Resource<PagedList<ArticleVaccinesEntity>>> {
+        return object :
+            NetworkBoundResource<PagedList<ArticleVaccinesEntity>, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
+
+            override fun loadFromDB(): LiveData<PagedList<ArticleVaccinesEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
+                val data: DataSource.Factory<Int, ArticleVaccinesEntity> =
+                    localDataSource.getVaccineArticles()
+                return LivePagedListBuilder(data, config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean =
+                data == null || data.isEmpty()
+
+            public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
+                remoteDataSource.getResultVaccineNews()
+
+            public override fun saveCallResult(data: List<ArticlesItemResponse>) {
+                val articleList = ArrayList<ArticleVaccinesEntity>()
+                for (response in data) {
+                    val articles = ArticleVaccinesEntity(
+                        response.url,
+                        response.author,
+                        response.urlToImage,
+                        response.description,
+                        response.title,
+                        response.publishedAt,
+                        response.content
+                    )
+                    articleList.add(articles)
+                }
+
+                localDataSource.insertVaccineArticles(articleList)
+            }
+        }.asLiveData()
+    }
+
+    override fun getCovidHeadlinesByUrl(url: String): LiveData<Resource<ArticleCovidEntity>> {
+        return object :
+            NetworkBoundResource<ArticleCovidEntity, List<ArticlesItemResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<ArticleCovidEntity> =
+                localDataSource.getCovidArticleByUrl(url)
+
+            override fun shouldFetch(data: ArticleCovidEntity?): Boolean = data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
+                remoteDataSource.getResultCovidHeadlines()
+
+            override fun saveCallResult(data: List<ArticlesItemResponse>) {
+                lateinit var article: ArticleCovidEntity
+                for (response in data) {
+                    if (response.url == url) {
+                        article = ArticleCovidEntity(
+                            response.url,
+                            response.author,
+                            response.urlToImage,
+                            response.description,
+                            response.title,
+                            response.publishedAt,
+                            response.content
+                        )
+                    }
+                }
+                localDataSource.insertCovidArticles(listOf(article))
+            }
+
+        }.asLiveData()
+    }
+
+    override fun getVaccineNewsByUrl(url: String): LiveData<Resource<ArticleVaccinesEntity>> {
+        return object :
+            NetworkBoundResource<ArticleVaccinesEntity, List<ArticlesItemResponse>>(
+                appExecutors
+            ) {
+            override fun loadFromDB(): LiveData<ArticleVaccinesEntity> =
+                localDataSource.getVaccineArticleByUrl(url)
+
+            override fun shouldFetch(data: ArticleVaccinesEntity?): Boolean = data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
+                remoteDataSource.getResultVaccineNews()
+
+            override fun saveCallResult(data: List<ArticlesItemResponse>) {
+                lateinit var article: ArticleVaccinesEntity
+                for (response in data) {
+                    if (response.url == url) {
+                        article = ArticleVaccinesEntity(
+                            response.url,
+                            response.author,
+                            response.urlToImage,
+                            response.description,
+                            response.title,
+                            response.publishedAt,
+                            response.content
+                        )
+                    }
+                }
+                localDataSource.insertVaccineArticles(listOf(article))
+            }
+
+        }.asLiveData()
+    }
+}
