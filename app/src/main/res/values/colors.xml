@@ -24,4 +24,6 @@
     <color name="google_red">#e4a3a3</color>
     <color name="google_green">#9ac1ba</color>
     <color name="google_yellow">#f1d4a0</color>
+
+    <color name="light_red">#FFE1DB</color>
 </resources>

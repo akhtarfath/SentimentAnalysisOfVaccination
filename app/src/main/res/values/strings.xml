@@ -44,4 +44,26 @@
     <string name="death">Death</string>
     <string name="local_conditions">Indonesia Condition\'s</string>
     <string name="protokol_kesehatan">Protokol Kesehatan</string>
+    <string name="developer_name">Developer\'s Name</string>
+    <string name="percentase_sentiment_example">72,2%</string>
+    <string name="positive_sentiment">Positive</string>
+    <string name="neutral_sentiment">Neutral</string>
+    <string name="negative_sentiment">Negative</string>
+    <string name="sentiment_text1">Seberapa banyak</string>
+    <string name="sentiment_text2">masyarakat</string>
+    <string name="sentiment_text3">Percaya Vaksin?</string>
+    <string name="apa_kata_mereka">Apa Kata Mereka?</string>
+    <string name="nama_user_twitter">Nama</string>
+    <string name="username_twitter">\@username</string>
+    <string name="dot">-</string>
+    <string name="long_date_example">2d</string>
+    <string name="tweet_post">Ini adalah isi dari post tweet pengguna</string>
+    <string name="satu">1</string>
+    <string name="application_name">Application Name</string>
+    <string name="about_apps">About Apps</string>
+    <string name="developers">Developers</string>
+    <string name="icon_reply">icon reply</string>
+    <string name="icon_retweet">icon retweet</string>
+    <string name="icon_favorite">icon favorite</string>
+    <string name="icon_share">icon share</string>
 </resources>
