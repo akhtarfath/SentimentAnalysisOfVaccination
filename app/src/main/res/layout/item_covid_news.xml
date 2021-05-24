@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/headline_text"
+        style="@style/TitleText"
+        android:paddingHorizontal="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/headlines_news"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/headline_text_see_all"
+        style="@style/ContentTitleText"
+        android:paddingTop="3dp"
+        android:paddingHorizontal="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/headlines_news_see_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/ScrollViewHorizontal"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/headline_text">
+
+        <include
+            android:id="@+id/news_activity_horizontal"
+            layout="@layout/rv_horizontal"
+            android:visibility="visible" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/latest_text"
+        style="@style/TitleText"
+        android:paddingHorizontal="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:text="@string/latest_news"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScrollViewHorizontal" />
+
+    <TextView
+        android:id="@+id/latest_text_see_all"
+        style="@style/ContentTitleText"
+        android:paddingHorizontal="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:text="@string/headlines_news_see_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScrollViewHorizontal" />
+
+    <ScrollView
+        android:id="@+id/ScrollViewVertical"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/latest_text">
+
+        <include
+            android:id="@+id/news_activity_vertical"
+            layout="@layout/rv_vertical"
+            android:visibility="visible" />
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

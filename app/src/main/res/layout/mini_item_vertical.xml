@@ -1,64 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginBottom="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cv_item"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-    android:padding="10dp">
+        android:paddingBottom="10dp">
 
-        <ImageView
-            android:id="@+id/image_news"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="10dp"
-            android:contentDescription="@string/image_news"
-            android:src="@color/primaryLightColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/image_news"
+                style="@style/NewsImage"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:contentDescription="@string/image_news"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_item_title"
+            style="@style/SubTitleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="2"
+            android:paddingHorizontal="10dp"
             android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_news"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:ignore="MissingConstraints"
             tools:text="@string/title" />
 
         <TextView
             android:id="@+id/tv_item_author"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            style="@style/ContentTitleText"
             android:gravity="start"
             android:textSize="12sp"
+            android:paddingHorizontal="10dp"
             app:layout_constraintStart_toStartOf="@+id/tv_item_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
             tools:text="@string/author" />
 
         <TextView
             android:id="@+id/tv_publishedAt"
-            android:layout_width="200dp"
+            style="@style/ContentTitleText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:gravity="start"
+            android:gravity="center|end"
+            android:paddingHorizontal="10dp"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_author"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
+            tools:ignore="RtlCompat"
             tools:text="@string/publishDate" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
