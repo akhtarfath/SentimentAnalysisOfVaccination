@@ -1,19 +1,47 @@
 <resources>
     <string name="app_name">Sentiment Analysis of Vaccination</string>
+    <string name="image_description">Image</string>
+    <string name="text_primary">Sample of title text</string>
+    <string name="text_subtitle">Sample of subtitle text</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_map">Maps</string>
+    <string name="menu_favorite">Favorite</string>
+
+    <string name="title_activity_detail_home">DetailHomeActivity</string>
+    <string name="no_data">Empty data</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+
+    <!--  mine  -->
     <string name="image_news">image news</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
     <string name="description">Description</string>
     <string name="error_msg">Error</string>
     <string name="headlines_news">Headlines News</string>
-    <string name="vaccine_news">Vaccine News</string>
+    <string name="latest_news">Latest News</string>
     <string name="publishDate">Publish Date</string>
     <string name="content">Content</string>
     <string name="source">Source</string>
     <string name="open_in_browser">Open in Browser</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_statistic">Statistic</string>
     <string name="title_sentiment_analysis">Sentiment A.</string>
     <string name="title_news">News</string>
+    <string name="title_vaccination">Vaccination</string>
+    <string name="title_team">About Us</string>
+    <string name="headlines_news_see_all">see all</string>
+    <string name="world_conditions">World Condition\'s</string>
+    <string name="share_world_condition">Share World Condition</string>
+    <string name="number_of_case">Number of Case</string>
+    <string name="number_of_cure">Number of Cure</string>
+    <string name="number_of_death">Number of Death</string>
+    <string name="positive">Positive</string>
+    <string name="recovered">Recovered</string>
+    <string name="death">Death</string>
+    <string name="local_conditions">Indonesia Condition\'s</string>
+    <string name="protokol_kesehatan">Protokol Kesehatan</string>
 </resources>

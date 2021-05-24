@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="light_blue_navy_200">#C6E2F6</color>
+    <color name="light_blue_navy_500">#A4BBCC</color>
+    <color name="light_blue_navy_700">#91A5B3</color>
+
+    <color name="blue_navy_200">#4368D5</color>
+    <color name="blue_navy_500">#3858B5</color>
+    <color name="blue_navy_700">#2A438C</color>
+
+    <color name="cyan_200">#80CED7</color>
+    <color name="cyan_500">#6CADB5</color>
+    <color name="cyan_700">#5A9097</color>
+
+    <color name="orange_200">#FF8C5B</color>
+    <color name="orange_500">#D6764D</color>
+    <color name="orange_700">#A65B3B</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cream">#F7F1E6</color>
+    <color name="silver">#C4C4C4</color>
 
-    <color name="primaryColor">#c4e0a4</color>
-    <color name="primaryLightColor">#f7ffd6</color>
-    <color name="primaryDarkColor">#93ae75</color>
-    <color name="secondaryColor">#bbdefb</color>
-    <color name="secondaryLightColor">#eeffff</color>
-    <color name="secondaryDarkColor">#8aacc8</color>
-    <color name="primaryTextColor">#000000</color>
-    <color name="secondaryTextColor">#000000</color>
-
-    <color name="textBackground">#BC5C6973</color>
+    <color name="google_red">#e4a3a3</color>
+    <color name="google_green">#9ac1ba</color>
+    <color name="google_yellow">#f1d4a0</color>
 </resources>
