@@ -7,18 +7,23 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_statistic"
-        android:icon="@drawable/ic_pie_chart"
-        android:title="@string/title_statistic" />
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/ic_news"
+        android:title="@string/title_news" />
 
     <item
         android:id="@+id/navigation_sentiment_analysis"
-        android:icon="@drawable/ic_imagination"
+        android:icon="@drawable/ic_tweet"
         android:title="@string/title_sentiment_analysis" />
 
     <item
-        android:id="@+id/navigation_news"
-        android:icon="@drawable/ic_newspaper"
-        android:title="@string/title_news" />
+        android:id="@+id/navigation_statistic_vaccination"
+        android:icon="@drawable/ic_shield"
+        android:title="@string/title_vaccination" />
+
+    <item
+        android:id="@+id/navigation_team"
+        android:icon="@drawable/ic_paper_plane"
+        android:title="@string/title_team" />
 
 </menu>
