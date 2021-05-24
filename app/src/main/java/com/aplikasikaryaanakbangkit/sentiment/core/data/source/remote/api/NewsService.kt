@@ -1,5 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
+import com.aplikasikaryaanakbangkit.sentiment.BuildConfig
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.NewsResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,10 +11,10 @@ import retrofit2.http.GET
 
 interface NewsService {
 
-    @GET("top-headlines?q=covid&country=id&apiKey=3b0fc47a38bc48a9bfe8cff5dbcfd67c")
+    @GET("top-headlines?q=covid&country=id&category=health&apiKey=${BuildConfig.NEWS_API_KEY}")
     fun getCovidHeadlines(): Call<NewsResponse>
 
-    @GET("everything?q=vaksinasi&apiKey=3b0fc47a38bc48a9bfe8cff5dbcfd67c")
+    @GET("everything?q=vaksinasi&apiKey=${BuildConfig.NEWS_API_KEY}")
     fun getVaccineNews(): Call<NewsResponse>
 
     companion object {
