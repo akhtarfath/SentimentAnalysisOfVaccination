@@ -3,11 +3,11 @@ package com.aplikasikaryaanakbangkit.sentiment.team
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
 
-class TeamViewModel : ViewModel() {
+class TeamViewModel(
+    _repository: SentimentRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Statistic page"
-    }
-    val text: LiveData<String> = _text
+    val getDataTeams = _repository.getAllTeams()
 }

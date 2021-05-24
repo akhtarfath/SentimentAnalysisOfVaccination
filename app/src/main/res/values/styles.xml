@@ -9,7 +9,7 @@
     <style name="BottomNavigationBar" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="android:paddingHorizontal">13dp</item>
         <item name="itemIconSize">20dp</item>
-        <item name="android:itemIconDisabledAlpha"></item>
+        <item name="android:itemIconDisabledAlpha">?android:attr/disabledAlpha</item>
         <item name="itemRippleColor">@color/light_blue_navy_200</item>
         <item name="labelVisibilityMode">unlabeled</item>
     </style>

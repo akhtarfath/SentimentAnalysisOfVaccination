@@ -30,9 +30,9 @@ class SentimentAnalysisFragment : Fragment() {
             FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
         val root: View = _binding.root
 
-        val textView: TextView = _binding.textNotifications
+        //val textView: TextView = _binding.textNotifications
         _sentimentAnalysisViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
+            //textView.text = it
         })
         return root
     }

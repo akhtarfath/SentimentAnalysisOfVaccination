@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.aplikasikaryaanakbangkit.sentiment.R
+import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
 
 class TeamFragment : Fragment() {
@@ -29,9 +32,28 @@ class TeamFragment : Fragment() {
         _fragmentTeamBinding = FragmentTeamBinding.inflate(inflater, container, false)
         val root: View = _binding.root
 
-        val textView: TextView = _binding.textDashboard
-        _teamViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
+        val teamAdapter = TeamAdapter()
+
+        _teamViewModel.getDataTeams.observe(viewLifecycleOwner, { teams ->
+            if (teams != null) {
+                when (teams.status) {
+                    Status.LOADING -> true.loading()
+                    Status.SUCCESS -> {
+                        false.loading()
+                        teamAdapter.setTeams(teams.data)
+                    }
+                    Status.ERROR -> {
+                        false.loading()
+                        _binding.viewError.viewError.visibility = View.VISIBLE
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+            }
         })
         return root
     }
@@ -39,5 +61,13 @@ class TeamFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _fragmentTeamBinding = null
+    }
+
+    private fun Boolean.loading() {
+        if (this) {
+            _fragmentTeamBinding?.progressBar?.visibility ?: View.VISIBLE
+        } else {
+            _fragmentTeamBinding?.progressBar?.visibility ?: View.GONE
+        }
     }
 }

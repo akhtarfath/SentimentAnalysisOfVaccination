@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.Ap
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.CovidStatisticResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.NewsResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 import org.json.JSONException
 import retrofit2.Call
@@ -88,6 +89,27 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         handler.postDelayed({
             try {
                 val dataArray = jsonHelper.loadData()
+                if (dataArray.isNotEmpty()) {
+                    ApiResponse.success(dataArray)
+                } else {
+                    ApiResponse.empty("empty", mutableListOf(resultData))
+                }
+            } catch (e: JSONException) {
+                ApiResponse.error(e.toString(), mutableListOf(resultData))
+            }
+        }, 2000)
+
+        return resultData
+    }
+
+    fun getAllTeams(): LiveData<ApiResponse<List<TeamsResponse>>> {
+        val resultData = MutableLiveData<ApiResponse<List<TeamsResponse>>>()
+
+        //get data from local json
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            try {
+                val dataArray = jsonHelper.loadDataTeams()
                 if (dataArray.isNotEmpty()) {
                     ApiResponse.success(dataArray)
                 } else {

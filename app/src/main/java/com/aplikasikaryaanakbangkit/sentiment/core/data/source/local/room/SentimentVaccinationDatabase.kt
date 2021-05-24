@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
 
 @Database(
     entities = [
         ArticleCovidEntity::class,
         ArticleVaccinesEntity::class,
+        TeamsEntity::class
     ],
     version = 1,
     exportSchema = false

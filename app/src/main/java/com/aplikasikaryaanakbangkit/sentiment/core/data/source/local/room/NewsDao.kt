@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
 
 @Dao
 interface NewsDao {
@@ -29,4 +30,10 @@ interface NewsDao {
 
     @Query("SELECT * FROM articleVaccine WHERE url = :url")
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity>
+
+    @Query("SELECT * FROM teams")
+    fun getAllTeams(): LiveData<List<TeamsEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTeams(teams: List<TeamsEntity>)
 }

@@ -1,10 +1,10 @@
 package com.aplikasikaryaanakbangkit.sentiment.news
 
 import androidx.lifecycle.ViewModel
-import com.aplikasikaryaanakbangkit.sentiment.core.data.NewsRepository
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
 
 class NewsViewModel(
-    _newsRepository: NewsRepository
+    _newsRepository: SentimentRepository
 ) : ViewModel() {
 
     val newsHeadline = _newsRepository.getCovidHeadlines()

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.NewsDao
 
 class LocalDataSource private constructor(
@@ -38,4 +39,8 @@ class LocalDataSource private constructor(
 
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity> =
         newsDao.getVaccineArticleByUrl(url)
+
+    fun getAllTeams(): LiveData<List<TeamsEntity>> = newsDao.getAllTeams()
+
+    fun insertTeams(teams: List<TeamsEntity>) = newsDao.insertTeams(teams)
 }

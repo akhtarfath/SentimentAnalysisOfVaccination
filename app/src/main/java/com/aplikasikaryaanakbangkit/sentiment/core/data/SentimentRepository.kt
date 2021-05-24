@@ -7,30 +7,32 @@ import androidx.paging.PagedList
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
-class NewsRepository private constructor(
+class SentimentRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) : NewsDataSource {
+) : SentimentDataSource {
 
     companion object {
         @Volatile
-        private var instance: NewsRepository? = null
+        private var instance: SentimentRepository? = null
 
         fun getInstance(
             remoteData: RemoteDataSource,
             localData: LocalDataSource,
             appExecutors: AppExecutors
-        ): NewsRepository =
+        ): SentimentRepository =
             instance ?: synchronized(this) {
                 instance
-                    ?: NewsRepository(remoteData, localData, appExecutors).apply { instance = this }
+                    ?: SentimentRepository(remoteData, localData, appExecutors).apply { instance = this }
             }
     }
 
@@ -183,6 +185,36 @@ class NewsRepository private constructor(
                 }
                 localDataSource.insertVaccineArticles(listOf(article))
             }
+
+        }.asLiveData()
+    }
+
+    override fun getAllTeams(): LiveData<Resource<List<TeamsEntity>>> {
+        return object :
+            NetworkBoundResource<List<TeamsEntity>, List<TeamsResponse>>(
+                appExecutors
+            ) {
+            override fun loadFromDB(): LiveData<List<TeamsEntity>> =
+                localDataSource.getAllTeams()
+
+            override fun createCall(): LiveData<ApiResponse<List<TeamsResponse>>> =
+                remoteDataSource.getAllTeams()
+
+            override fun saveCallResult(data: List<TeamsResponse>) {
+                val teamsList = ArrayList<TeamsEntity>()
+                for (response in data) {
+                        val teams = TeamsEntity(
+                            response.id,
+                            response.name,
+                            response.urlPicture
+                        )
+                    teamsList.add(teams)
+                }
+                localDataSource.insertTeams(teamsList)
+            }
+
+            override fun shouldFetch(data: List<TeamsEntity>?): Boolean =
+                data == null
 
         }.asLiveData()
     }
