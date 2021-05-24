@@ -19,8 +19,6 @@ import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var _newsViewModel: NewsViewModel
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -45,13 +43,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadNews(factory: ViewModelFactory) {
-        _newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+        val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         val newsCovidAdapter = NewsCovidAdapter()
         val newsVaccineAdapter = NewsVaccineAdapter()
 
         true.loading()
-        _newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
+        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
                     Status.LOADING -> true.loading()
@@ -82,7 +80,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        _newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
+        newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
                     Status.LOADING -> true.loading()
