@@ -6,13 +6,12 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSo
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SentimentVaccinationDatabase
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
-import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 
 object Injection {
 
     fun newsRepository(context: Context): NewsRepository {
         val database = SentimentVaccinationDatabase.getInstance(context)
-        val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
+        val remoteDataSource = RemoteDataSource.getInstance()
         val localDataSource =
             LocalDataSource.getInstance(database.newsDao())
 
