@@ -11,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cv_item"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp">
@@ -27,7 +28,7 @@
                 style="@style/NewsImage"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="190dp"
                 android:contentDescription="@string/image_news"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +54,15 @@
 
         <TextView
             android:id="@+id/tv_item_author"
+            style="@style/ContentTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            style="@style/ContentTitleText"
             android:gravity="start"
-            android:textSize="12sp"
+            android:visibility="gone"
             android:paddingHorizontal="10dp"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/tv_item_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_publishedAt"
             tools:text="@string/author" />
 
         <TextView

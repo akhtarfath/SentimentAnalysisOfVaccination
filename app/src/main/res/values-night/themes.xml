@@ -9,11 +9,9 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/cyan_200</item>
         <item name="colorSecondaryVariant">@color/cyan_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">
-            ?attr/colorPrimaryVariant
-        </item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -23,6 +21,5 @@
     </style>
 
     <style name="Theme.SentimentAnalysisOfVaccinationApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.SentimentAnalysisOfVaccinationApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:justificationMode="inter_word"
-        android:lineHeight="15dp"
+        android:lineHeight="25dp"
         style="@style/TitleText"
         android:text="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,28 +22,28 @@
 
     <TextView
         android:id="@+id/author"
+        style="@style/SubTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        style="@style/SubTitleText"
         android:text="@string/author"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/publishedAt" />
 
     <TextView
         android:id="@+id/publishedAt"
+        style="@style/SubTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SubTitleText"
         android:text="@string/publishDate"
-        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +56,8 @@
             android:layout_height="200dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
-            android:contentDescription="@string/image_news" />
+            android:contentDescription="@string/image_news"
+            android:scaleType="fitXY" />
 
     </androidx.cardview.widget.CardView>
 
@@ -69,8 +69,10 @@
         style="@style/ContentTitleText"
         android:text="@string/content"
         android:layout_marginTop="15dp"
+        android:lineHeight="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/author" />
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        tools:targetApi="p" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

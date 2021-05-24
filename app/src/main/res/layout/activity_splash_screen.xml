@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.417"
-        app:lottie_rawRes="@raw/animation_covid_stay_safe" />
+        app:lottie_rawRes="@raw/animation_covid_stay_safe"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
