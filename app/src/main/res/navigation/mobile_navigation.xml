@@ -7,26 +7,32 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.home.HomeFragment"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_statistic"
-        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.statistic.StatisticFragment"
-        android:label="@string/title_statistic"
-        tools:layout="@layout/fragment_statistic" />
+        android:id="@+id/navigation_news"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_sentiment_analysis"
-        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.sentimentanalysis.SentimentAnalysisFragment"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisFragment"
         android:label="@string/title_sentiment_analysis"
         tools:layout="@layout/fragment_sentiment_analysis" />
 
     <fragment
-        android:id="@+id/navigation_news"
-        android:name="com.aplikasikaryaanakbangkit.sentiment.ui.news.NewsFragment"
-        android:label="@string/title_news"
-        tools:layout="@layout/fragment_news" />
+        android:id="@+id/navigation_statistic_vaccination"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.vaccination.VaccinationFragment"
+        android:label="@string/title_vaccination"
+        tools:layout="@layout/fragment_vaccination" />
+
+    <fragment
+        android:id="@+id/navigation_team"
+        android:name="com.aplikasikaryaanakbangkit.sentiment.team.TeamFragment"
+        android:label="@string/title_team"
+        tools:layout="@layout/fragment_team" />
 
 </navigation>
