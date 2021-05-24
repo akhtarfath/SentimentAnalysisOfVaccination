@@ -13,6 +13,10 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.ActivityDetailNewsBind
 import com.aplikasikaryaanakbangkit.sentiment.databinding.ContentDetailNewsBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 import kotlin.properties.Delegates
 
 class DetailVaccineNewsActivity : AppCompatActivity() {
@@ -65,9 +69,36 @@ class DetailVaccineNewsActivity : AppCompatActivity() {
 
     private fun setNewsVaccine(data: ArticleVaccinesEntity) {
         with(_detailContentBinding) {
+
+            val datePublishedAt = LocalDateTime
+                // Represent a date with time-of-day but lacking offset-from-UTC or time zone.
+                // As such, this does *not* represent a moment, is *not* a point on the timeline.
+                .parse(
+                    data.publishedAt,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                )
+                // Parse an input string in standard ISO 8601 format. Returns a `LocalDateTime` object.
+                .toLocalDate()
+                // Extract the date-only portion without the time-of-day.
+                // Still no time zone or offset-from-UTC. Returns a `LocalDate` object.
+                .format(
+                    // Generate text representing the value of that `LocalDate` object.
+                    DateTimeFormatter
+                        // Define a pattern to use in generating text.
+                        .ofLocalizedDate(FormatStyle.FULL)
+                        // Automatically localize, specifying how long/abbreviated…
+                        .withLocale(
+                            Locale(
+                                "in",
+                                "ID",
+                                "ID"
+                            )
+                        ) // … and what human language and cultural norms to use in localizing.
+                )
+
             title.text = data.title
             author.text = data.author
-            publishedAt.text = data.publishedAt
+            publishedAt.text = datePublishedAt
             content.text = data.content
 
             Glide.with(this@DetailVaccineNewsActivity)
@@ -85,4 +116,8 @@ class DetailVaccineNewsActivity : AppCompatActivity() {
         else _activityDetailNewsBinding.progressBar.visibility = View.GONE
     }
 
+    override fun onNavigateUp(): Boolean {
+        super.onBackPressed()
+        return true
+    }
 }
