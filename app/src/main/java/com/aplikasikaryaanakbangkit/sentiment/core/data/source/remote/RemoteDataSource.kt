@@ -8,22 +8,19 @@ import androidx.lifecycle.MutableLiveData
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.CovidStatisticResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.NewsResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
-import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
+class RemoteDataSource private constructor() {
     companion object {
         @Volatile
         private var instance: RemoteDataSource? = null
 
-        fun getInstance(helper: JsonHelper): RemoteDataSource =
+        fun getInstance(): RemoteDataSource =
             instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(helper)
+                instance ?: RemoteDataSource()
             }
     }
 
@@ -78,27 +75,6 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         }, 1500)
 
         return resultVaccineNews
-    }
-
-    fun getAllTourism(): LiveData<ApiResponse<List<CovidStatisticResponse>>> {
-        val resultData = MutableLiveData<ApiResponse<List<CovidStatisticResponse>>>()
-
-        //get data from local json
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            try {
-                val dataArray = jsonHelper.loadData()
-                if (dataArray.isNotEmpty()) {
-                    ApiResponse.success(dataArray)
-                } else {
-                    ApiResponse.empty("empty", mutableListOf(resultData))
-                }
-            } catch (e: JSONException) {
-                ApiResponse.error(e.toString(), mutableListOf(resultData))
-            }
-        }, 2000)
-
-        return resultData
     }
 }
 
