@@ -6,11 +6,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.TweetService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.CovidStatisticResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.NewsResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 import org.json.JSONException
 import retrofit2.Call
@@ -121,6 +119,33 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         }, 2000)
 
         return resultData
+    }
+
+    fun getAllTweet(): LiveData<ApiResponse<List<TweetResponse>>>{
+        val resultTweet = MutableLiveData<ApiResponse<List<TweetResponse>>>()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            TweetService.create()
+                    .getAllTweet()
+                    .enqueue(object : Callback<ListTweetResponse> {
+                        override fun onResponse(
+                                call: Call<ListTweetResponse>,
+                                response: Response<ListTweetResponse>
+                        ) {
+                            resultTweet.postValue(
+                                    response.body()?.let { ApiResponse.success(it.articles) })
+                        }
+
+                        override fun onFailure(call: Call<ListTweetResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
+
+                    })
+        }, 1500)
+
+        return resultTweet
     }
 }
 

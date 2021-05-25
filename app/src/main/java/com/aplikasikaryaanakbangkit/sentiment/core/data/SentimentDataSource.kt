@@ -5,6 +5,7 @@ import androidx.paging.PagedList
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
 interface SentimentDataSource {
@@ -14,4 +15,6 @@ interface SentimentDataSource {
     fun getVaccineNewsByUrl(url: String): LiveData<Resource<ArticleVaccinesEntity>>
 
     fun getAllTeams(): LiveData<Resource<PagedList<TeamsEntity>>>
+
+    fun getAllTweet(): LiveData<Resource<PagedList<TweetEntity>>>
 }

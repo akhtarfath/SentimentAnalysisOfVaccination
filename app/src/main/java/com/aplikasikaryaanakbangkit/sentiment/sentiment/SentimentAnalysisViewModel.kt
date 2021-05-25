@@ -1,13 +1,11 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
 
-class SentimentAnalysisViewModel : ViewModel() {
+class SentimentAnalysisViewModel(
+        _repository: SentimentRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Sentiment Analysis page"
-    }
-    val text: LiveData<String> = _text
+    val allTweets = _repository.getAllTweet()
 }

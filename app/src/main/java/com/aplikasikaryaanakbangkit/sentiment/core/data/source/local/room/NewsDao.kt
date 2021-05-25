@@ -9,6 +9,7 @@ import androidx.room.Query
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 
 @Dao
 interface NewsDao {
@@ -36,4 +37,10 @@ interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTeams(teams: List<TeamsEntity>)
+
+    @Query("SELECT * FROM tweet")
+    fun getAllTweet(): DataSource.Factory<Int, TweetEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTweets(tweet: List<TweetEntity>)
 }

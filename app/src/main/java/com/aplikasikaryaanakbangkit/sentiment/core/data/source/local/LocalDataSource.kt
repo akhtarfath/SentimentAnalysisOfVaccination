@@ -5,6 +5,7 @@ import androidx.paging.DataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.NewsDao
 
 class LocalDataSource private constructor(
@@ -43,4 +44,8 @@ class LocalDataSource private constructor(
     fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = newsDao.getAllTeams()
 
     fun insertTeams(teams: List<TeamsEntity>) = newsDao.insertTeams(teams)
+
+    fun getAllTweet(): DataSource.Factory<Int, TweetEntity> = newsDao.getAllTweet()
+
+    fun insertTweet(tweet: List<TweetEntity>) = newsDao.insertTweets(tweet)
 }
