@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-
+    android:paddingTop="25dp"
+    android:paddingBottom="60dp"
     tools:context=".team.TeamFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -14,7 +13,6 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@color/silver"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,20 +23,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/application_name"
-        android:textStyle="bold"
-        android:textSize="21sp"
-
+        style="@style/TitleText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_circle" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/about_app_cv"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="15dp"
         android:elevation="1dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/application_name_tv"
@@ -50,35 +46,34 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:text="@string/about_apps"
-            android:textSize="15sp"
+            style="@style/SubTitleText"
             android:textAlignment="center" />
+
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/developers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="25dp"
         android:text="@string/developers"
-        android:textSize="20sp"
-
+        style="@style/SubTitleText"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_app_cv" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/developers"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/developers">
 
         <include
             android:id="@+id/layout_rv_developers_name"
             layout="@layout/rv_developers_name" />
+
     </androidx.core.widget.NestedScrollView>
 
     <com.airbnb.lottie.LottieAnimationView
@@ -89,6 +84,7 @@
         app:lottie_loop="true"
         app:lottie_repeatMode="restart"
         android:elevation="1dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

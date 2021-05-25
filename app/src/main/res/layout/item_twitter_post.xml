@@ -2,26 +2,28 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
+    android:layout_marginVertical="7dp"
+    android:layout_marginHorizontal="10dp"
     android:elevation="10dp"
-
     app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/twitter_photo"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:src="@color/silver"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,11 +31,9 @@
             android:id="@+id/name_user_twitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ContentTitleText"
             android:layout_marginStart="10dp"
             android:text="@string/nama_user_twitter"
-            android:textSize="13sp"
-            android:textStyle="bold"
-
             app:layout_constraintStart_toEndOf="@+id/twitter_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,10 +41,9 @@
             android:id="@+id/username_twitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            style="@style/ContentTitleText"
+            android:layout_marginStart="7dp"
             android:text="@string/username_twitter"
-            android:textSize="13sp"
-
             app:layout_constraintStart_toEndOf="@+id/name_user_twitter"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,9 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            style="@style/ContentTitleText"
             android:text="@string/dot"
             android:textSize="13sp"
-
             app:layout_constraintStart_toEndOf="@+id/username_twitter"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,80 +62,95 @@
             android:id="@+id/date_twitter_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ContentTitleText"
+            android:layout_marginStart="5dp"
             android:text="@string/long_date_example"
-
             app:layout_constraintStart_toEndOf="@+id/dot"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/twitter_post"
-            android:layout_width="250dp"
+            android:layout_width="240dp"
+            style="@style/ContentTitleText"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:lineHeight="23dp"
             android:text="@string/tweet_post"
             android:textSize="15sp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/twitter_photo"
-            app:layout_constraintTop_toBottomOf="@+id/name_user_twitter" />
+            app:layout_constraintTop_toBottomOf="@+id/name_user_twitter"
+            tools:targetApi="p" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/twitter_photo"
             app:layout_constraintTop_toBottomOf="@+id/twitter_post">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_reply"
-                android:contentDescription="@string/icon_reply"/>
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginVertical="10dp"
+                android:contentDescription="@string/icon_reply"
+                android:src="@drawable/ic_message_circle"
+                app:tint="@color/dark" />
+
             <TextView
                 android:id="@+id/reply_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/satu" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="25dp"
+                android:contentDescription="@string/icon_retweet"
                 android:src="@drawable/ic_retweet"
-                android:contentDescription="@string/icon_retweet"/>
+                app:tint="@color/dark" />
+
             <TextView
                 android:id="@+id/retweet_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/satu" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_favorite_border"
-                android:contentDescription="@string/icon_favorite"/>
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="25dp"
+                android:contentDescription="@string/icon_favorite"
+                android:src="@drawable/ic_heart" />
+
             <TextView
                 android:id="@+id/favorite_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/satu" />
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_share"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="25dp"
                 android:contentDescription="@string/icon_share"
-                />
+                android:src="@drawable/ic_share2" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
