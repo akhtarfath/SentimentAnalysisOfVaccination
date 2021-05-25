@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplikasikaryaanakbangkit.sentiment.R
+import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
 
@@ -26,11 +28,19 @@ class TeamFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _teamViewModel =
-            ViewModelProvider(this).get(TeamViewModel::class.java)
 
         _fragmentTeamBinding = FragmentTeamBinding.inflate(inflater, container, false)
-        val root: View = _binding.root
+
+        return _binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity?)?.supportActionBar?.hide()
+
+        val factory = ViewModelFactory.getInstance(requireContext())
+        _teamViewModel = ViewModelProvider(this, factory)[TeamViewModel::class.java]
 
         val teamAdapter = TeamAdapter()
 
@@ -46,16 +56,24 @@ class TeamFragment : Fragment() {
                         false.loading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
         })
-        return root
+
+        _fragmentTeamBinding?.layoutRvDevelopersName?.let {
+            with(it.rvDeveloperName) {
+                val layoutManagerVertical = LinearLayoutManager(context)
+                this.layoutManager = layoutManagerVertical
+                this.setHasFixedSize(true)
+                this.adapter = teamAdapter
+            }
+        }
     }
 
     override fun onDestroyView() {

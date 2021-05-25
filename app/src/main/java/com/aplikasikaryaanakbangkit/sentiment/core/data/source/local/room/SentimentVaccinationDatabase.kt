@@ -14,7 +14,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.Team
         ArticleVaccinesEntity::class,
         TeamsEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class SentimentVaccinationDatabase : RoomDatabase() {

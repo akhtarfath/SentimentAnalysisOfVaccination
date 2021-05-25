@@ -31,7 +31,6 @@ class TeamAdapter : RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     override fun getItemCount(): Int = listTeams.size
 
-
     class TeamViewHolder(private val binding: ItemDeveloperNameBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(team: TeamsEntity) {

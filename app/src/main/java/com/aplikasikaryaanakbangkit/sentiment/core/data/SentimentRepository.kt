@@ -197,6 +197,9 @@ class SentimentRepository private constructor(
             override fun loadFromDB(): LiveData<List<TeamsEntity>> =
                 localDataSource.getAllTeams()
 
+            override fun shouldFetch(data: List<TeamsEntity>?): Boolean =
+                    data == null || data.isEmpty()
+
             override fun createCall(): LiveData<ApiResponse<List<TeamsResponse>>> =
                 remoteDataSource.getAllTeams()
 
@@ -212,10 +215,6 @@ class SentimentRepository private constructor(
                 }
                 localDataSource.insertTeams(teamsList)
             }
-
-            override fun shouldFetch(data: List<TeamsEntity>?): Boolean =
-                data == null
-
         }.asLiveData()
     }
 }
