@@ -7,13 +7,13 @@ import androidx.paging.PagedList
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.DataItemTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
@@ -230,36 +230,39 @@ class SentimentRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getAllTweet(): LiveData<Resource<PagedList<TweetEntity>>> {
+    override fun getAllTweet(): LiveData<Resource<PagedList<DataItemTweetEntity>>> {
         return object :
-                NetworkBoundResource<PagedList<TweetEntity>, List<TweetResponse>>(
+                NetworkBoundResource<PagedList<DataItemTweetEntity>, List<DataItemTweetResponse>>(
                         appExecutors
                 ) {
 
-            override fun loadFromDB(): LiveData<PagedList<TweetEntity>> {
+            override fun loadFromDB(): LiveData<PagedList<DataItemTweetEntity>> {
                 val config = PagedList.Config.Builder()
                         .setEnablePlaceholders(false)
                         .setInitialLoadSizeHint(4)
                         .setPageSize(4)
                         .build()
 
-                val data: DataSource.Factory<Int, TweetEntity> =
+                val data: DataSource.Factory<Int, DataItemTweetEntity> =
                         localDataSource.getAllTweet()
 
                 return LivePagedListBuilder(data, config).build()
             }
 
-            override fun shouldFetch(data: PagedList<TweetEntity>?): Boolean =
+            override fun shouldFetch(data: PagedList<DataItemTweetEntity>?): Boolean =
                     data == null || data.isEmpty()
 
-            public override fun createCall(): LiveData<ApiResponse<List<TweetResponse>>> =
+            public override fun createCall(): LiveData<ApiResponse<List<DataItemTweetResponse>>> =
                     remoteDataSource.getAllTweet()
 
-            public override fun saveCallResult(data: List<TweetResponse>) {
-                val tweetList = ArrayList<TweetEntity>()
+            public override fun saveCallResult(data: List<DataItemTweetResponse>) {
+                val tweetList = ArrayList<DataItemTweetEntity>()
                 for (response in data) {
-                    val tweets = TweetEntity(
-                            response.id
+                    val tweets = DataItemTweetEntity(
+                            response.id.toString(),
+                            response.createdAt.toString(),
+                            response.text.toString(),
+                            response.authorId.toString()
                     )
                     tweetList.add(tweets)
                 }

@@ -6,22 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 
 @Database(
     entities = [
         ArticleCovidEntity::class,
         ArticleVaccinesEntity::class,
         TeamsEntity::class,
-        TweetEntity::class
+        DataItemTweetEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class SentimentVaccinationDatabase : RoomDatabase() {
 
-    abstract fun newsDao(): NewsDao
+    abstract fun newsDao(): SentimentDao
 
     companion object {
 

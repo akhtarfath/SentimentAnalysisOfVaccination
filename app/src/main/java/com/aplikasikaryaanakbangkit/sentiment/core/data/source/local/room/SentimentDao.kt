@@ -8,11 +8,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 
 @Dao
-interface NewsDao {
+interface SentimentDao {
 
     @Query("SELECT * FROM articleCovid ORDER BY publishedAt DESC")
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity>
@@ -38,9 +38,11 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTeams(teams: List<TeamsEntity>)
 
-    @Query("SELECT * FROM tweet")
-    fun getAllTweet(): DataSource.Factory<Int, TweetEntity>
+    @Query("SELECT * FROM tweetPost")
+    fun getAllTweet(): DataSource.Factory<Int, DataItemTweetEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTweets(tweet: List<TweetEntity>)
+    fun insertTweets(tweet: List<DataItemTweetEntity>)
+
+
 }

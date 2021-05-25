@@ -4,48 +4,48 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.NewsDao
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SentimentDao
 
 class LocalDataSource private constructor(
-    private val newsDao: NewsDao
+    private val sentimentDao: SentimentDao
 ) {
 
     companion object {
         private var instance: LocalDataSource? = null
 
         fun getInstance(
-            newsDao: NewsDao
+                sentimentDao: SentimentDao
         ): LocalDataSource =
             instance ?: synchronized(this) {
-                instance ?: LocalDataSource(newsDao)
+                instance ?: LocalDataSource(sentimentDao)
             }
     }
 
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity> =
-        newsDao.getCovidArticles()
+        sentimentDao.getCovidArticles()
 
     fun insertCovidArticles(article: List<ArticleCovidEntity>) =
-        newsDao.insertCovidArticles(article)
+        sentimentDao.insertCovidArticles(article)
 
     fun getCovidArticleByUrl(url: String): LiveData<ArticleCovidEntity> =
-        newsDao.getCovidArticleByUrl(url)
+        sentimentDao.getCovidArticleByUrl(url)
 
     fun getVaccineArticles(): DataSource.Factory<Int, ArticleVaccinesEntity> =
-        newsDao.getVaccineArticles()
+        sentimentDao.getVaccineArticles()
 
     fun insertVaccineArticles(article: List<ArticleVaccinesEntity>) =
-        newsDao.insertVaccineArticles(article)
+        sentimentDao.insertVaccineArticles(article)
 
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity> =
-        newsDao.getVaccineArticleByUrl(url)
+        sentimentDao.getVaccineArticleByUrl(url)
 
-    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = newsDao.getAllTeams()
+    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = sentimentDao.getAllTeams()
 
-    fun insertTeams(teams: List<TeamsEntity>) = newsDao.insertTeams(teams)
+    fun insertTeams(teams: List<TeamsEntity>) = sentimentDao.insertTeams(teams)
 
-    fun getAllTweet(): DataSource.Factory<Int, TweetEntity> = newsDao.getAllTweet()
+    fun getAllTweet(): DataSource.Factory<Int, DataItemTweetEntity> = sentimentDao.getAllTweet()
 
-    fun insertTweet(tweet: List<TweetEntity>) = newsDao.insertTweets(tweet)
+    fun insertTweet(tweet: List<DataItemTweetEntity>) = sentimentDao.insertTweets(tweet)
 }
