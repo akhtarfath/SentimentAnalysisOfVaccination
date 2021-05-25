@@ -11,24 +11,24 @@ data class ArticlesItemResponse(
     val publishedAt: String,
 
     @field:SerializedName("author")
-    val author: String,
+    val author: String?,
 
     @field:SerializedName("urlToImage")
-    val urlToImage: String,
+    val urlToImage: String?,
 
     @field:SerializedName("description")
-    val description: String,
+    val description: String?,
 
     @field:SerializedName("source")
     val sourceResponse: SourceResponse,
 
     @field:SerializedName("title")
-    val title: String,
+    val title: String?,
 
     @field:SerializedName("url")
     val url: String,
 
     @field:SerializedName("content")
-    val content: String
+    val content: String?
 
 ) : Parcelable

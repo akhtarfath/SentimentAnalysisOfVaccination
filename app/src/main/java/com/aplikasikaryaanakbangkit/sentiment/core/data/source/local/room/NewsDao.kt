@@ -14,7 +14,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.Twee
 @Dao
 interface NewsDao {
 
-    @Query("SELECT * FROM articleCovid")
+    @Query("SELECT * FROM articleCovid ORDER BY publishedAt DESC")
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -23,7 +23,7 @@ interface NewsDao {
     @Query("SELECT * FROM articleCovid WHERE url = :url")
     fun getCovidArticleByUrl(url: String): LiveData<ArticleCovidEntity>
 
-    @Query("SELECT * FROM articleVaccine")
+    @Query("SELECT * FROM articleVaccine ORDER BY publishedAt DESC")
     fun getVaccineArticles(): DataSource.Factory<Int, ArticleVaccinesEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

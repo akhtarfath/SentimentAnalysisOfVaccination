@@ -16,7 +16,6 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {
 
-    private lateinit var _newsViewModel: NewsViewModel
     private var _fragmentNewsBinding: FragmentNewsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -39,13 +38,13 @@ class NewsFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         val factory = ViewModelFactory.getInstance(requireContext())
-        _newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+        val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         val newsCovidAdapter = NewsCovidAdapter()
         val newsVaccineAdapter = NewsVaccineAdapter()
 
         true.loading()
-        _newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
+        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
                     Status.LOADING -> true.loading()
@@ -76,7 +75,7 @@ class NewsFragment : Fragment() {
             }
         }
 
-        _newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
+        newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
                     Status.LOADING -> true.loading()

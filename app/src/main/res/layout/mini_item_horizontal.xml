@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/newsHeadlineItem"
-        android:layout_width="235dp"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
         android:paddingBottom="13dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,12 +24,14 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="2dp"
             app:cardMaxElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/image_news"
                 style="@style/NewsImage"
+                android:layout_height="190dp"
                 android:contentDescription="@string/image_news"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"

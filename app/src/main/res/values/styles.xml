@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.SentimentAnalysisOfVaccinationApp">
-        <!-- set the height of Action Bar . -->
-        <item name="actionBarSize">43dip</item>
+    <style name="DetailTheme" parent="Theme.SentimentAnalysisOfVaccinationApp">
+        <item name="actionBarSize">47dip</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_round_arrow_back</item>
     </style>
     <!--  Bottom Nav  -->
     <style name="BottomNavigationBar" parent="Widget.MaterialComponents.BottomNavigationView">
