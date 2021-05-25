@@ -50,7 +50,7 @@ class TeamFragment : Fragment() {
                     Status.LOADING -> true.loading()
                     Status.SUCCESS -> {
                         false.loading()
-                        teamAdapter.setTeams(teams.data)
+                        teamAdapter.submitList(teams.data)
                     }
                     Status.ERROR -> {
                         false.loading()

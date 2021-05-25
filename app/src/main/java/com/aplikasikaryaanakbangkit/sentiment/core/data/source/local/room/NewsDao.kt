@@ -32,7 +32,7 @@ interface NewsDao {
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity>
 
     @Query("SELECT * FROM teams")
-    fun getAllTeams(): LiveData<List<TeamsEntity>>
+    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTeams(teams: List<TeamsEntity>)

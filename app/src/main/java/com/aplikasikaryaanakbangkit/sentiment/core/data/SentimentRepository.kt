@@ -189,15 +189,25 @@ class SentimentRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getAllTeams(): LiveData<Resource<List<TeamsEntity>>> {
+    override fun getAllTeams(): LiveData<Resource<PagedList<TeamsEntity>>> {
         return object :
-            NetworkBoundResource<List<TeamsEntity>, List<TeamsResponse>>(
+            NetworkBoundResource<PagedList<TeamsEntity>, List<TeamsResponse>>(
                 appExecutors
             ) {
-            override fun loadFromDB(): LiveData<List<TeamsEntity>> =
-                localDataSource.getAllTeams()
+            override fun loadFromDB(): LiveData<PagedList<TeamsEntity>> {
+                val config = PagedList.Config.Builder()
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(6)
+                        .setPageSize(6)
+                        .build()
 
-            override fun shouldFetch(data: List<TeamsEntity>?): Boolean =
+                val data: DataSource.Factory<Int, TeamsEntity> =
+                        localDataSource.getAllTeams()
+
+                return LivePagedListBuilder(data, config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<TeamsEntity>?): Boolean =
                     data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<TeamsResponse>>> =

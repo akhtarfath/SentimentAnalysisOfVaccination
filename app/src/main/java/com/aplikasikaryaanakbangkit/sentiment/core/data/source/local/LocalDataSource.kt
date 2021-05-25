@@ -40,7 +40,7 @@ class LocalDataSource private constructor(
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity> =
         newsDao.getVaccineArticleByUrl(url)
 
-    fun getAllTeams(): LiveData<List<TeamsEntity>> = newsDao.getAllTeams()
+    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = newsDao.getAllTeams()
 
     fun insertTeams(teams: List<TeamsEntity>) = newsDao.insertTeams(teams)
 }

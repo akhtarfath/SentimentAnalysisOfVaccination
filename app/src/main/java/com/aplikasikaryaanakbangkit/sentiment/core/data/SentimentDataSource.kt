@@ -13,5 +13,5 @@ interface SentimentDataSource {
     fun getCovidHeadlinesByUrl(url: String): LiveData<Resource<ArticleCovidEntity>>
     fun getVaccineNewsByUrl(url: String): LiveData<Resource<ArticleVaccinesEntity>>
 
-    fun getAllTeams(): LiveData<Resource<List<TeamsEntity>>>
+    fun getAllTeams(): LiveData<Resource<PagedList<TeamsEntity>>>
 }
