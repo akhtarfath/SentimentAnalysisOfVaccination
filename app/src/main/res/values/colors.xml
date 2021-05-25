@@ -16,6 +16,7 @@
     <color name="orange_500">#D6764D</color>
     <color name="orange_700">#A65B3B</color>
 
+    <color name="dark">#333</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cream">#F7F1E6</color>
