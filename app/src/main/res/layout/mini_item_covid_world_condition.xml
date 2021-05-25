@@ -18,11 +18,11 @@
     <ImageView
         android:id="@+id/worldConditionShare"
         style="@style/ContentTitleText"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:contentDescription="@string/share_world_condition"
         android:paddingTop="3dp"
-        android:src="@drawable/ic_share"
+        android:src="@drawable/ic_share2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

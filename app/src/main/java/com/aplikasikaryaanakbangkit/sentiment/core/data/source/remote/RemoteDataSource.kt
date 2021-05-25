@@ -78,28 +78,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         return resultVaccineNews
     }
-
-    fun getAllTourism(): LiveData<ApiResponse<List<CovidStatisticResponse>>> {
-        val resultData = MutableLiveData<ApiResponse<List<CovidStatisticResponse>>>()
-
-        //get data from local json
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            try {
-                val dataArray = jsonHelper.loadData()
-                if (dataArray.isNotEmpty()) {
-                    ApiResponse.success(dataArray)
-                } else {
-                    ApiResponse.empty("empty", mutableListOf(resultData))
-                }
-            } catch (e: JSONException) {
-                ApiResponse.error(e.toString(), mutableListOf(resultData))
-            }
-        }, 2000)
-
-        return resultData
-    }
-
+    
     fun getAllTeams(): LiveData<ApiResponse<List<TeamsResponse>>> {
         val resultData = MutableLiveData<ApiResponse<List<TeamsResponse>>>()
 
