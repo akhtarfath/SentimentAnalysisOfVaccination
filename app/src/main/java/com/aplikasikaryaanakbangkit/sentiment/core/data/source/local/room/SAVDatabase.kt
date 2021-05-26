@@ -17,20 +17,20 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
     version = 1,
     exportSchema = false
 )
-abstract class SentimentVaccinationDatabase : RoomDatabase() {
+abstract class SAVDatabase : RoomDatabase() {
 
     abstract fun sentimentDao(): SentimentDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: SentimentVaccinationDatabase? = null
+        private var INSTANCE: SAVDatabase? = null
 
-        fun getInstance(context: Context): SentimentVaccinationDatabase =
+        fun getInstance(context: Context): SAVDatabase =
             INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    SentimentVaccinationDatabase::class.java,
+                    SAVDatabase::class.java,
                     "sav_database.db"
                 ).build().apply {
                     INSTANCE = this

@@ -9,7 +9,7 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.ItemTwitterPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>(){
+class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
 
     private var listTweet = ArrayList<TweetEntity>()
 
@@ -43,12 +43,12 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 usernameTwitter.text = tweet.username
 
                 Glide.with(itemView.context)
-                        .load(tweet.imageUrl)
-                        .apply(
-                                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error)
-                        )
-                        .into(twitterPhoto)
+                    .load(tweet.imageUrl)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(twitterPhoto)
             }
 
         }

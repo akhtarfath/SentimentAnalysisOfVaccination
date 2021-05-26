@@ -2,7 +2,10 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 
 @Dao
@@ -45,7 +48,13 @@ interface SentimentDao {
     fun getTweetById(id: String): LiveData<DataItemTweetEntity>
 
     @Query("UPDATE tweetPost SET likeCount = :likeCount, replyCount = :replyCount, quoteCount = :quoteCount, retweetCount = :retweetCount WHERE id = :id")
-    fun updatePostByMetrics(likeCount: Int, replyCount: Int, quoteCount: Int, retweetCount: Int, id: String)
+    fun updatePostByMetrics(
+        likeCount: Int,
+        replyCount: Int,
+        quoteCount: Int,
+        retweetCount: Int,
+        id: String
+    )
 
     @Query("SELECT * FROM tweetProfile")
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>>

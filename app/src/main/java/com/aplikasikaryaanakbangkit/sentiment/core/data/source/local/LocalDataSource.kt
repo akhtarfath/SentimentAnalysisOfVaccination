@@ -13,7 +13,7 @@ class LocalDataSource private constructor(
         private var instance: LocalDataSource? = null
 
         fun getInstance(
-                sentimentDao: SentimentDao
+            sentimentDao: SentimentDao
         ): LocalDataSource =
             instance ?: synchronized(this) {
                 instance ?: LocalDataSource(sentimentDao)
@@ -45,19 +45,25 @@ class LocalDataSource private constructor(
     fun insertTweet(tweet: List<DataItemTweetEntity>) = sentimentDao.insertTweets(tweet)
 
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>> =
-            sentimentDao.getAllTweetProfile()
+        sentimentDao.getAllTweetProfile()
 
     fun insertTweetProfile(profile: List<UserItemsTweetEntity>) =
-            sentimentDao.insertTweetProfile(profile)
+        sentimentDao.insertTweetProfile(profile)
 
-    fun updatePostByMetrics(likeCount: Int, replyCount: Int, quoteCount: Int, retweetCount: Int, id: String) =
-            sentimentDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
+    fun updatePostByMetrics(
+        likeCount: Int,
+        replyCount: Int,
+        quoteCount: Int,
+        retweetCount: Int,
+        id: String
+    ) =
+        sentimentDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
 
     fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>> =
-            sentimentDao.getTweetWithProfile(authorId)
+        sentimentDao.getTweetWithProfile(authorId)
 
     fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
-            sentimentDao.getTweetById(id)
+        sentimentDao.getTweetById(id)
 
     fun getAllTweets(): LiveData<List<TweetEntity>> = sentimentDao.getAllTweets()
 }

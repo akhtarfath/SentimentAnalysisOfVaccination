@@ -6,7 +6,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 
 class SentimentAnalysisViewModel(
-        private val _repository: SentimentRepository
+    private val _repository: SentimentRepository
 ) : ViewModel() {
 
     fun getTweet(): LiveData<List<TweetEntity>> = _repository.getAllTweet()

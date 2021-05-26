@@ -60,11 +60,11 @@ class TeamFragment : Fragment() {
                         false.loading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }

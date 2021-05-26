@@ -39,20 +39,21 @@ class SentimentAnalysisFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         val factory = ViewModelFactory.getInstance(requireContext())
-        _sentimentAnalysisViewModel = ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+        _sentimentAnalysisViewModel =
+            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         val tweetAdapter = SentimentAnalysisAdapter()
 
         _sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             false.loading()
-                Log.d("Tweet Fragment", tweet.toString())
+            Log.d("Tweet Fragment", tweet.toString())
             tweetAdapter.setTweet(tweet)
             tweetAdapter.notifyDataSetChanged()
         })
 
         with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
             val layoutManagerVertical =
-                    LinearLayoutManager(context)
+                LinearLayoutManager(context)
             this?.layoutManager = layoutManagerVertical
             this?.setHasFixedSize(true)
             this?.adapter = tweetAdapter
