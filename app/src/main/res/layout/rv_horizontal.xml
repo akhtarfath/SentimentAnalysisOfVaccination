@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="25dp"
+    android:paddingStart="20dp"
     tools:ignore="RtlSymmetry">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -17,8 +17,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/mini_item_horizontal">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/mini_item_horizontal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

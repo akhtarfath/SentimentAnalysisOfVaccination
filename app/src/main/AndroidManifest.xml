@@ -28,12 +28,10 @@
             android:name=".MainActivity" />
         <activity
             android:name=".news.detail.DetailNewsActivity"
-            android:theme="@style/DetailTheme"
-            android:parentActivityName=".MainActivity" />
+            android:theme="@style/DetailTheme" />
         <activity
             android:name=".news.detail.DetailVaccineNewsActivity"
-            android:theme="@style/DetailTheme"
-            android:parentActivityName=".MainActivity"/>
+            android:theme="@style/DetailTheme"/>
     </application>
 
 </manifest>

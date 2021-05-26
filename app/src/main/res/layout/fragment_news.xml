@@ -10,8 +10,27 @@
     android:paddingBottom="60dp"
     tools:context=".news.NewsFragment">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/covidNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/item_covid_news" />
+
+    </ScrollView>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
+        android:elevation="1dp"
         android:layout_width="115dp"
         android:layout_height="115dp"
         app:lottie_autoPlay="true"
@@ -24,12 +43,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/animation_loading_paper_plane"
         app:lottie_enableMergePathsForKitKatAndAbove="true" />
-
-    <include
-        android:id="@+id/covidNews"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/item_covid_news" />
 
     <include
         android:id="@+id/viewError"

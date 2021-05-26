@@ -9,20 +9,6 @@
     android:paddingBottom="60dp"
     tools:context=".MainActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progressBar"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/animation_loading_paper_plane"
-        app:lottie_enableMergePathsForKitKatAndAbove="true" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,6 +57,21 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:elevation="1dp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/animation_loading_paper_plane"
+        app:lottie_enableMergePathsForKitKatAndAbove="true" />
 
     <include
         android:id="@+id/viewError"
