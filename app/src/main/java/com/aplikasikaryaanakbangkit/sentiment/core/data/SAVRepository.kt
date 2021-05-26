@@ -12,24 +12,24 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
-class SentimentRepository private constructor(
+class SAVRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) : SentimentDataSource {
+) : SAVDataSource {
 
     companion object {
         @Volatile
-        private var instance: SentimentRepository? = null
+        private var instance: SAVRepository? = null
 
         fun getInstance(
             remoteData: RemoteDataSource,
             localData: LocalDataSource,
             appExecutors: AppExecutors
-        ): SentimentRepository =
+        ): SAVRepository =
             instance ?: synchronized(this) {
                 instance
-                    ?: SentimentRepository(remoteData, localData, appExecutors).apply {
+                    ?: SAVRepository(remoteData, localData, appExecutors).apply {
                         instance = this
                     }
             }
@@ -150,7 +150,6 @@ class SentimentRepository private constructor(
                 }
                 localDataSource.insertCovidArticles(listOf(article))
             }
-
         }.asLiveData()
     }
 
@@ -184,7 +183,6 @@ class SentimentRepository private constructor(
                 }
                 localDataSource.insertVaccineArticles(listOf(article))
             }
-
         }.asLiveData()
     }
 

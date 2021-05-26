@@ -3,52 +3,52 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SentimentDao
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SAVDao
 
 class LocalDataSource private constructor(
-    private val sentimentDao: SentimentDao
+    private val SAVDao: SAVDao
 ) {
 
     companion object {
         private var instance: LocalDataSource? = null
 
         fun getInstance(
-            sentimentDao: SentimentDao
+            SAVDao: SAVDao
         ): LocalDataSource =
             instance ?: synchronized(this) {
-                instance ?: LocalDataSource(sentimentDao)
+                instance ?: LocalDataSource(SAVDao)
             }
     }
 
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity> =
-        sentimentDao.getCovidArticles()
+        SAVDao.getCovidArticles()
 
     fun insertCovidArticles(article: List<ArticleCovidEntity>) =
-        sentimentDao.insertCovidArticles(article)
+        SAVDao.insertCovidArticles(article)
 
     fun getCovidArticleByUrl(url: String): LiveData<ArticleCovidEntity> =
-        sentimentDao.getCovidArticleByUrl(url)
+        SAVDao.getCovidArticleByUrl(url)
 
     fun getVaccineArticles(): DataSource.Factory<Int, ArticleVaccinesEntity> =
-        sentimentDao.getVaccineArticles()
+        SAVDao.getVaccineArticles()
 
     fun insertVaccineArticles(article: List<ArticleVaccinesEntity>) =
-        sentimentDao.insertVaccineArticles(article)
+        SAVDao.insertVaccineArticles(article)
 
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity> =
-        sentimentDao.getVaccineArticleByUrl(url)
+        SAVDao.getVaccineArticleByUrl(url)
 
-    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = sentimentDao.getAllTeams()
+    fun getAllTeams(): DataSource.Factory<Int, TeamsEntity> = SAVDao.getAllTeams()
 
-    fun insertTeams(teams: List<TeamsEntity>) = sentimentDao.insertTeams(teams)
+    fun insertTeams(teams: List<TeamsEntity>) = SAVDao.insertTeams(teams)
 
-    fun insertTweet(tweet: List<DataItemTweetEntity>) = sentimentDao.insertTweets(tweet)
+    fun insertTweet(tweet: List<DataItemTweetEntity>) = SAVDao.insertTweets(tweet)
 
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>> =
-        sentimentDao.getAllTweetProfile()
+        SAVDao.getAllTweetProfile()
 
     fun insertTweetProfile(profile: List<UserItemsTweetEntity>) =
-        sentimentDao.insertTweetProfile(profile)
+        SAVDao.insertTweetProfile(profile)
 
     fun updatePostByMetrics(
         likeCount: Int,
@@ -57,13 +57,13 @@ class LocalDataSource private constructor(
         retweetCount: Int,
         id: String
     ) =
-        sentimentDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
+        SAVDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
 
     fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>> =
-        sentimentDao.getTweetWithProfile(authorId)
+        SAVDao.getTweetWithProfile(authorId)
 
     fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
-        sentimentDao.getTweetById(id)
+        SAVDao.getTweetById(id)
 
-    fun getAllTweets(): LiveData<List<TweetEntity>> = sentimentDao.getAllTweets()
+    fun getAllTweets(): LiveData<List<TweetEntity>> = SAVDao.getAllTweets()
 }

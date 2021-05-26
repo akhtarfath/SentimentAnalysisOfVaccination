@@ -19,22 +19,21 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 )
 abstract class SAVDatabase : RoomDatabase() {
 
-    abstract fun sentimentDao(): SentimentDao
+    abstract fun sentimentDao(): SAVDao
 
     companion object {
 
         @Volatile
         private var INSTANCE: SAVDatabase? = null
 
-        fun getInstance(context: Context): SAVDatabase =
-            INSTANCE ?: synchronized(this) {
-                Room.databaseBuilder(
-                    context.applicationContext,
-                    SAVDatabase::class.java,
-                    "sav_database.db"
-                ).build().apply {
-                    INSTANCE = this
-                }
+        fun getInstance(context: Context): SAVDatabase = INSTANCE ?: synchronized(this) {
+            Room.databaseBuilder(
+                context.applicationContext,
+                SAVDatabase::class.java,
+                "sav_database.db"
+            ).build().apply {
+                INSTANCE = this
             }
+        }
     }
 }

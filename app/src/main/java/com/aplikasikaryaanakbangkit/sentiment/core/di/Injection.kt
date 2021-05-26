@@ -1,7 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.di
 
 import android.content.Context
-import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SAVDatabase
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
@@ -10,7 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 
 object Injection {
 
-    fun newsRepository(context: Context): SentimentRepository {
+    fun newsRepository(context: Context): SAVRepository {
         val database = SAVDatabase.getInstance(context)
         val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
         val localDataSource =
@@ -18,6 +18,6 @@ object Injection {
 
         val appExecutors = AppExecutors()
 
-        return SentimentRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
+        return SAVRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
     }
 }

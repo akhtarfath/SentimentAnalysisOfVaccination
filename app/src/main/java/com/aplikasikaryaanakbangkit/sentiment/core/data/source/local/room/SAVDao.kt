@@ -9,7 +9,7 @@ import androidx.room.Query
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 
 @Dao
-interface SentimentDao {
+interface SAVDao {
 
     @Query("SELECT * FROM articleCovid ORDER BY publishedAt DESC")
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity>
