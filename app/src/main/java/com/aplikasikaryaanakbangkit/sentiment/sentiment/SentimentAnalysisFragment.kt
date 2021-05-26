@@ -1,17 +1,15 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
-import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
 
 class SentimentAnalysisFragment : Fragment() {
@@ -45,26 +43,11 @@ class SentimentAnalysisFragment : Fragment() {
 
         val tweetAdapter = SentimentAnalysisAdapter()
 
-        _sentimentAnalysisViewModel.allTweets.observe(viewLifecycleOwner, { tweet ->
-            if (tweet != null) {
-                when (tweet.status) {
-                    Status.LOADING -> true.loading()
-                    Status.SUCCESS -> {
-                        false.loading()
-                        tweetAdapter.submitList(tweet.data)
-                    }
-                    Status.ERROR -> {
-                        false.loading()
-                        _binding.viewError.viewError.visibility = View.VISIBLE
-                        Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
-                        )
-                                .show()
-                    }
-                }
-            }
+        _sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
+            false.loading()
+                Log.d("Tweet Fragment", tweet.toString())
+            tweetAdapter.setTweet(tweet)
+            tweetAdapter.notifyDataSetChanged()
         })
 
         with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {

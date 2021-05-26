@@ -2,10 +2,7 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SentimentDao
 
 class LocalDataSource private constructor(
@@ -45,7 +42,22 @@ class LocalDataSource private constructor(
 
     fun insertTeams(teams: List<TeamsEntity>) = sentimentDao.insertTeams(teams)
 
-    fun getAllTweet(): DataSource.Factory<Int, DataItemTweetEntity> = sentimentDao.getAllTweet()
-
     fun insertTweet(tweet: List<DataItemTweetEntity>) = sentimentDao.insertTweets(tweet)
+
+    fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>> =
+            sentimentDao.getAllTweetProfile()
+
+    fun insertTweetProfile(profile: List<UserItemsTweetEntity>) =
+            sentimentDao.insertTweetProfile(profile)
+
+    fun updatePostByMetrics(likeCount: Int, replyCount: Int, quoteCount: Int, retweetCount: Int, id: String) =
+            sentimentDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
+
+    fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>> =
+            sentimentDao.getTweetWithProfile(authorId)
+
+    fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
+            sentimentDao.getTweetById(id)
+
+    fun getAllTweets(): LiveData<List<TweetEntity>> = sentimentDao.getAllTweets()
 }

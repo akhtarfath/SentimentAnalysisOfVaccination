@@ -11,7 +11,7 @@ import retrofit2.http.Headers
 
 interface TweetService {
 
-    @Headers("authorization: OAuth oauth_consumer_key=\"TR3VIB4yHxkGUBkyjzpdpNjmn\", oauth_token=\"296643374-xgcSBExlhLxvq579FOH9911qNmm85tFMkUumnA7G\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1621937136\", oauth_nonce=\"xElSRIQhUqO\", oauth_version=\"1.0\", oauth_signature=\"wGYkaDPWf8Pzrv5fQ3Iy9DJ8Lgs%3D\"")
+    @Headers("Authorization: OAuth oauth_consumer_key=\"TR3VIB4yHxkGUBkyjzpdpNjmn\", oauth_token=\"296643374-xgcSBExlhLxvq579FOH9911qNmm85tFMkUumnA7G\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1621937136\", oauth_nonce=\"xElSRIQhUqO\", oauth_version=\"1.0\", oauth_signature=\"wGYkaDPWf8Pzrv5fQ3Iy9DJ8Lgs%3D\"")
     @GET("search/recent?max_results=10&expansions=author_id,geo.place_id&place.fields=geo&tweet.fields=created_at,text,public_metrics,geo&query=vaksin sinovac astrazeneca covid-19&user.fields=username,profile_image_url")
     fun getAllTweet(): Call<TweetResponse>
 

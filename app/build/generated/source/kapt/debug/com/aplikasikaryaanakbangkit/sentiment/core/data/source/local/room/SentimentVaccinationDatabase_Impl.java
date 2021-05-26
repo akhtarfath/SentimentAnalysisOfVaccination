@@ -18,6 +18,7 @@ import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -30,15 +31,18 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(3) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `articleCovid` (`url` TEXT NOT NULL, `author` TEXT, `urlToImage` TEXT, `description` TEXT, `title` TEXT, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY(`url`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `articleVaccine` (`url` TEXT NOT NULL, `author` TEXT, `urlToImage` TEXT, `description` TEXT, `title` TEXT, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY(`url`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `teams` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `urlPicture` TEXT NOT NULL, PRIMARY KEY(`id`))");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `tweetPost` (`id` TEXT NOT NULL, `created_at` TEXT NOT NULL, `text` TEXT NOT NULL, `author_id` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `tweetPost` (`id` TEXT NOT NULL, `created_at` TEXT NOT NULL, `text` TEXT NOT NULL, `authorId` TEXT NOT NULL, `likeCount` INTEGER, `replyCount` INTEGER, `quoteCount` INTEGER, `retweetCount` INTEGER, PRIMARY KEY(`id`, `authorId`), FOREIGN KEY(`authorId`) REFERENCES `tweetProfile`(`authorId`) ON UPDATE NO ACTION ON DELETE NO ACTION )");
+        _db.execSQL("CREATE INDEX IF NOT EXISTS `index_tweetPost_id` ON `tweetPost` (`id`)");
+        _db.execSQL("CREATE INDEX IF NOT EXISTS `index_tweetPost_authorId` ON `tweetPost` (`authorId`)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `tweetProfile` (`authorId` TEXT NOT NULL, `name` TEXT NOT NULL, `profile_image_url` TEXT NOT NULL, `username` TEXT NOT NULL, PRIMARY KEY(`authorId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c9c054ff310064440c8d8322775dd506')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4d86075213a3b299bfd32865482dd067')");
       }
 
       @Override
@@ -47,6 +51,7 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
         _db.execSQL("DROP TABLE IF EXISTS `articleVaccine`");
         _db.execSQL("DROP TABLE IF EXISTS `teams`");
         _db.execSQL("DROP TABLE IF EXISTS `tweetPost`");
+        _db.execSQL("DROP TABLE IF EXISTS `tweetProfile`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -66,6 +71,7 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
       @Override
       public void onOpen(SupportSQLiteDatabase _db) {
         mDatabase = _db;
+        _db.execSQL("PRAGMA foreign_keys = ON");
         internalInitInvalidationTracker(_db);
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
@@ -132,13 +138,20 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
                   + " Expected:\n" + _infoTeams + "\n"
                   + " Found:\n" + _existingTeams);
         }
-        final HashMap<String, TableInfo.Column> _columnsTweetPost = new HashMap<String, TableInfo.Column>(4);
+        final HashMap<String, TableInfo.Column> _columnsTweetPost = new HashMap<String, TableInfo.Column>(8);
         _columnsTweetPost.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTweetPost.put("created_at", new TableInfo.Column("created_at", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTweetPost.put("text", new TableInfo.Column("text", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsTweetPost.put("author_id", new TableInfo.Column("author_id", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        final HashSet<TableInfo.ForeignKey> _foreignKeysTweetPost = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesTweetPost = new HashSet<TableInfo.Index>(0);
+        _columnsTweetPost.put("authorId", new TableInfo.Column("authorId", "TEXT", true, 2, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetPost.put("likeCount", new TableInfo.Column("likeCount", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetPost.put("replyCount", new TableInfo.Column("replyCount", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetPost.put("quoteCount", new TableInfo.Column("quoteCount", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetPost.put("retweetCount", new TableInfo.Column("retweetCount", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysTweetPost = new HashSet<TableInfo.ForeignKey>(1);
+        _foreignKeysTweetPost.add(new TableInfo.ForeignKey("tweetProfile", "NO ACTION", "NO ACTION",Arrays.asList("authorId"), Arrays.asList("authorId")));
+        final HashSet<TableInfo.Index> _indicesTweetPost = new HashSet<TableInfo.Index>(2);
+        _indicesTweetPost.add(new TableInfo.Index("index_tweetPost_id", false, Arrays.asList("id")));
+        _indicesTweetPost.add(new TableInfo.Index("index_tweetPost_authorId", false, Arrays.asList("authorId")));
         final TableInfo _infoTweetPost = new TableInfo("tweetPost", _columnsTweetPost, _foreignKeysTweetPost, _indicesTweetPost);
         final TableInfo _existingTweetPost = TableInfo.read(_db, "tweetPost");
         if (! _infoTweetPost.equals(_existingTweetPost)) {
@@ -146,9 +159,23 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
                   + " Expected:\n" + _infoTweetPost + "\n"
                   + " Found:\n" + _existingTweetPost);
         }
+        final HashMap<String, TableInfo.Column> _columnsTweetProfile = new HashMap<String, TableInfo.Column>(4);
+        _columnsTweetProfile.put("authorId", new TableInfo.Column("authorId", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetProfile.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetProfile.put("profile_image_url", new TableInfo.Column("profile_image_url", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTweetProfile.put("username", new TableInfo.Column("username", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysTweetProfile = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesTweetProfile = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoTweetProfile = new TableInfo("tweetProfile", _columnsTweetProfile, _foreignKeysTweetProfile, _indicesTweetProfile);
+        final TableInfo _existingTweetProfile = TableInfo.read(_db, "tweetProfile");
+        if (! _infoTweetProfile.equals(_existingTweetProfile)) {
+          return new RoomOpenHelper.ValidationResult(false, "tweetProfile(com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.UserItemsTweetEntity).\n"
+                  + " Expected:\n" + _infoTweetProfile + "\n"
+                  + " Found:\n" + _existingTweetProfile);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "c9c054ff310064440c8d8322775dd506", "ed30cb19f2371ee8211a4136f592a888");
+    }, "4d86075213a3b299bfd32865482dd067", "fb966efad534c7e6c32b6621f4d8118c");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -161,22 +188,33 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "articleCovid","articleVaccine","teams","tweetPost");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "articleCovid","articleVaccine","teams","tweetPost","tweetProfile");
   }
 
   @Override
   public void clearAllTables() {
     super.assertNotMainThread();
     final SupportSQLiteDatabase _db = super.getOpenHelper().getWritableDatabase();
+    boolean _supportsDeferForeignKeys = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP;
     try {
+      if (!_supportsDeferForeignKeys) {
+        _db.execSQL("PRAGMA foreign_keys = FALSE");
+      }
       super.beginTransaction();
+      if (_supportsDeferForeignKeys) {
+        _db.execSQL("PRAGMA defer_foreign_keys = TRUE");
+      }
       _db.execSQL("DELETE FROM `articleCovid`");
       _db.execSQL("DELETE FROM `articleVaccine`");
       _db.execSQL("DELETE FROM `teams`");
       _db.execSQL("DELETE FROM `tweetPost`");
+      _db.execSQL("DELETE FROM `tweetProfile`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
+      if (!_supportsDeferForeignKeys) {
+        _db.execSQL("PRAGMA foreign_keys = TRUE");
+      }
       _db.query("PRAGMA wal_checkpoint(FULL)").close();
       if (!_db.inTransaction()) {
         _db.execSQL("VACUUM");
@@ -192,7 +230,7 @@ public final class SentimentVaccinationDatabase_Impl extends SentimentVaccinatio
   }
 
   @Override
-  public SentimentDao newsDao() {
+  public SentimentDao sentimentDao() {
     if (_sentimentDao != null) {
       return _sentimentDao;
     } else {

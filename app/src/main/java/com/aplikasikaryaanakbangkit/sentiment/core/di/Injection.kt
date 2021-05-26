@@ -14,7 +14,7 @@ object Injection {
         val database = SentimentVaccinationDatabase.getInstance(context)
         val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
         val localDataSource =
-            LocalDataSource.getInstance(database.newsDao())
+            LocalDataSource.getInstance(database.sentimentDao())
 
         val appExecutors = AppExecutors()
 

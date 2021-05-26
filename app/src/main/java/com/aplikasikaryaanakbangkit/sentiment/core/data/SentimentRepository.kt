@@ -5,15 +5,10 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.DataItemTweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.ArticlesItemResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.DataItemTweetResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
@@ -230,44 +225,87 @@ class SentimentRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getAllTweet(): LiveData<Resource<PagedList<DataItemTweetEntity>>> {
+    override fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>> {
         return object :
-                NetworkBoundResource<PagedList<DataItemTweetEntity>, List<DataItemTweetResponse>>(
+                NetworkBoundResource<List<UserItemsTweetEntity>, List<UserItemsTweetResponse>>(
                         appExecutors
                 ) {
+            override fun loadFromDB(): LiveData<List<UserItemsTweetEntity>> =
+                localDataSource.getAllTweetProfile()
 
-            override fun loadFromDB(): LiveData<PagedList<DataItemTweetEntity>> {
-                val config = PagedList.Config.Builder()
-                        .setEnablePlaceholders(false)
-                        .setInitialLoadSizeHint(4)
-                        .setPageSize(4)
-                        .build()
+            override fun shouldFetch(data: List<UserItemsTweetEntity>?): Boolean =
+                    true
 
-                val data: DataSource.Factory<Int, DataItemTweetEntity> =
-                        localDataSource.getAllTweet()
+            override fun createCall(): LiveData<ApiResponse<List<UserItemsTweetResponse>>> =
+                    remoteDataSource.getAllProfile()
 
-                return LivePagedListBuilder(data, config).build()
+            override fun saveCallResult(data: List<UserItemsTweetResponse>) {
+                val tweetList = ArrayList<UserItemsTweetEntity>()
+                for (response in data) {
+                    val tweet = UserItemsTweetEntity(
+                            response.id.toString(),
+                            response.name.toString(),
+                            response.profileImageUrl.toString(),
+                            response.username.toString()
+                    )
+                    tweetList.add(tweet)
+                }
+                localDataSource.insertTweetProfile(tweetList)
             }
+        }.asLiveData()
+    }
 
-            override fun shouldFetch(data: PagedList<DataItemTweetEntity>?): Boolean =
+    override fun getAllPostByProfile(authorId: String): LiveData<Resource<List<DataItemTweetEntity>>> {
+        return object :
+                NetworkBoundResource<List<DataItemTweetEntity>, List<DataItemTweetResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<List<DataItemTweetEntity>> =
+                localDataSource.getTweetWithProfile(authorId)
+
+            override fun shouldFetch(data: List<DataItemTweetEntity>?): Boolean =
                     data == null || data.isEmpty()
 
-            public override fun createCall(): LiveData<ApiResponse<List<DataItemTweetResponse>>> =
-                    remoteDataSource.getAllTweet()
+            override fun createCall(): LiveData<ApiResponse<List<DataItemTweetResponse>>> =
+                    remoteDataSource.getProfileWithPost()
 
-            public override fun saveCallResult(data: List<DataItemTweetResponse>) {
+            override fun saveCallResult(data: List<DataItemTweetResponse>) {
                 val tweetList = ArrayList<DataItemTweetEntity>()
                 for (response in data) {
-                    val tweets = DataItemTweetEntity(
-                            response.id.toString(),
+                    val tweet = DataItemTweetEntity(
+                            response.authorId.toString(),
                             response.createdAt.toString(),
                             response.text.toString(),
                             response.authorId.toString()
                     )
-                    tweetList.add(tweets)
+                    tweetList.add(tweet)
                 }
                 localDataSource.insertTweet(tweetList)
             }
         }.asLiveData()
     }
+
+    override fun getPublicMetrics(id: String): LiveData<Resource<DataItemTweetEntity>> {
+        return object :
+                NetworkBoundResource<DataItemTweetEntity, PublicMetricsTweetResponse>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<DataItemTweetEntity> =
+                localDataSource.getTweetWithMetrics(id)
+
+            override fun shouldFetch(data: DataItemTweetEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<PublicMetricsTweetResponse>> =
+                    remoteDataSource.getPublicMetrics()
+
+            override fun saveCallResult(data: PublicMetricsTweetResponse) {
+                localDataSource.updatePostByMetrics(data.likeCount!!, data.replyCount!!, data.quoteCount!!,
+                        data.retweetCount!!, id)
+            }
+        }.asLiveData()
+    }
+
+    override fun getAllTweet() : LiveData<List<TweetEntity>> =
+            localDataSource.getAllTweets()
 }

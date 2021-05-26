@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.team
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,10 @@ class TeamFragment : Fragment() {
         _teamViewModel.getDataTeams.observe(viewLifecycleOwner, { teams ->
             if (teams != null) {
                 when (teams.status) {
-                    Status.LOADING -> true.loading()
+                    Status.LOADING -> {
+                        true.loading()
+                        Log.d("Team Fragment", teams.data.toString())
+                    }
                     Status.SUCCESS -> {
                         false.loading()
                         teamAdapter.submitList(teams.data)
