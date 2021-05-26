@@ -1,7 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.team
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -17,7 +17,6 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
 
 class TeamFragment : Fragment() {
 
-    private lateinit var _teamViewModel: TeamViewModel
     private var _fragmentTeamBinding: FragmentTeamBinding? = null
 
     // This property is only valid between onCreateView and
@@ -41,11 +40,9 @@ class TeamFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         val factory = ViewModelFactory.getInstance(requireContext())
-        _teamViewModel = ViewModelProvider(this, factory)[TeamViewModel::class.java]
+        val teamViewModel = ViewModelProvider(this, factory)[TeamViewModel::class.java]
 
-        val teamAdapter = TeamAdapter()
-
-        _teamViewModel.getDataTeams.observe(viewLifecycleOwner, { teams ->
+        teamViewModel.getDataTeams.observe(viewLifecycleOwner, { teams ->
             if (teams != null) {
                 when (teams.status) {
                     Status.LOADING -> {
@@ -53,8 +50,17 @@ class TeamFragment : Fragment() {
                     }
                     Status.SUCCESS -> {
                         false.loading()
-                        teamAdapter.submitList(teams.data)
-                        Log.d("Team Fragment", teams.data.toString())
+                        _fragmentTeamBinding?.layoutRvDevelopersName?.let {
+                            with(it.rvDeveloperName) {
+                                val layoutManagerVertical = LinearLayoutManager(context)
+                                this.layoutManager = layoutManagerVertical
+                                this.setHasFixedSize(false)
+
+                                val teamAdapter = TeamAdapter()
+                                this.adapter = teamAdapter
+                                teamAdapter.submitList(teams.data)
+                            }
+                        }
                     }
                     Status.ERROR -> {
                         false.loading()
@@ -69,15 +75,6 @@ class TeamFragment : Fragment() {
                 }
             }
         })
-
-        _fragmentTeamBinding?.layoutRvDevelopersName?.let {
-            with(it.rvDeveloperName) {
-                val layoutManagerVertical = LinearLayoutManager(context)
-                this.layoutManager = layoutManagerVertical
-                this.setHasFixedSize(false)
-                this.adapter = teamAdapter
-            }
-        }
     }
 
     override fun onDestroyView() {
@@ -86,10 +83,12 @@ class TeamFragment : Fragment() {
     }
 
     private fun Boolean.loading() {
+        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
+
         if (this) {
-            _fragmentTeamBinding?.progressBar?.visibility ?: View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            _fragmentTeamBinding?.progressBar?.visibility ?: View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieAnimationView
+import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
 
 class SentimentAnalysisFragment : Fragment() {
 
-    private lateinit var _sentimentAnalysisViewModel: SentimentAnalysisViewModel
     private var _sentimentAnalysisBinding: FragmentSentimentAnalysisBinding? = null
 
     // This property is only valid between onCreateView and
@@ -39,25 +39,24 @@ class SentimentAnalysisFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         val factory = ViewModelFactory.getInstance(requireContext())
-        _sentimentAnalysisViewModel =
+        val sentimentAnalysisViewModel =
             ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
-        val tweetAdapter = SentimentAnalysisAdapter()
-
-        _sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
+        sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             false.loading()
-            Log.d("Tweet Fragment", tweet.toString())
-            tweetAdapter.setTweet(tweet)
-            tweetAdapter.notifyDataSetChanged()
-        })
+            with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
+                val layoutManagerVertical =
+                    LinearLayoutManager(context)
+                this?.layoutManager = layoutManagerVertical
+                this?.setHasFixedSize(true)
 
-        with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
-            val layoutManagerVertical =
-                LinearLayoutManager(context)
-            this?.layoutManager = layoutManagerVertical
-            this?.setHasFixedSize(true)
-            this?.adapter = tweetAdapter
-        }
+                val tweetAdapter = SentimentAnalysisAdapter()
+                this?.adapter = tweetAdapter
+
+                tweetAdapter.setTweet(tweet)
+                tweetAdapter.notifyDataSetChanged()
+            }
+        })
     }
 
     override fun onDestroyView() {
@@ -66,10 +65,12 @@ class SentimentAnalysisFragment : Fragment() {
     }
 
     private fun Boolean.loading() {
+        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
+
         if (this) {
-            _sentimentAnalysisBinding?.progressBar?.visibility ?: View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            _sentimentAnalysisBinding?.progressBar?.visibility ?: View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 }

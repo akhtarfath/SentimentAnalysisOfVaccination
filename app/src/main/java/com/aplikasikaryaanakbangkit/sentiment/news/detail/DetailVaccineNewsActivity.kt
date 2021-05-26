@@ -72,8 +72,8 @@ class DetailVaccineNewsActivity : AppCompatActivity() {
         }
     }
 
-    override fun onNavigateUp(): Boolean {
-        super.onBackPressed()
-        return true
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

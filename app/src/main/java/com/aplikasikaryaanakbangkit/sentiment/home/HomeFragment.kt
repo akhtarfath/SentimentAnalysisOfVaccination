@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -123,10 +124,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun Boolean.loading() {
+        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
+
         if (this) {
-            _binding?.progressBar?.visibility ?: View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            _binding?.progressBar?.visibility ?: View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 }
