@@ -50,11 +50,11 @@ class TeamFragment : Fragment() {
                 when (teams.status) {
                     Status.LOADING -> {
                         true.loading()
-                        Log.d("Team Fragment", teams.data.toString())
                     }
                     Status.SUCCESS -> {
                         false.loading()
                         teamAdapter.submitList(teams.data)
+                        Log.d("Team Fragment", teams.data.toString())
                     }
                     Status.ERROR -> {
                         false.loading()
@@ -74,7 +74,7 @@ class TeamFragment : Fragment() {
             with(it.rvDeveloperName) {
                 val layoutManagerVertical = LinearLayoutManager(context)
                 this.layoutManager = layoutManagerVertical
-                this.setHasFixedSize(true)
+                this.setHasFixedSize(false)
                 this.adapter = teamAdapter
             }
         }
