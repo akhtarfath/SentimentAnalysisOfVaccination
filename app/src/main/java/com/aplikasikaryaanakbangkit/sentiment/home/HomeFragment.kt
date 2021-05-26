@@ -45,9 +45,6 @@ class HomeFragment : Fragment() {
     private fun loadNews(factory: ViewModelFactory) {
         val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
-        val newsCovidAdapter = NewsCovidAdapter()
-        val newsVaccineAdapter = NewsVaccineAdapter()
-
         true.loading()
         newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
@@ -55,7 +52,23 @@ class HomeFragment : Fragment() {
                     Status.LOADING -> true.loading()
                     Status.SUCCESS -> {
                         false.loading()
-                        newsCovidAdapter.submitList(newsCovid.data)
+                        _binding?.covidNews?.newsActivityHorizontal?.let {
+                            with(it.rvHorizontal) {
+                                val layoutManagerHorizontal =
+                                    LinearLayoutManager(
+                                        context,
+                                        LinearLayoutManager.HORIZONTAL,
+                                        false
+                                    )
+                                this.layoutManager = layoutManagerHorizontal
+                                this.setHasFixedSize(true)
+
+                                val newsCovidAdapter = NewsCovidAdapter()
+                                this.adapter = newsCovidAdapter
+
+                                newsCovidAdapter.submitList(newsCovid.data)
+                            }
+                        }
                     }
                     Status.ERROR -> {
                         false.loading()
@@ -69,16 +82,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        _binding?.covidNews?.newsActivityHorizontal?.let {
-            with(it.rvHorizontal) {
-                val layoutManagerHorizontal =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-                this.layoutManager = layoutManagerHorizontal
-                this.setHasFixedSize(true)
-                this.adapter = newsCovidAdapter
-            }
-        }
 
         newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
@@ -86,7 +89,18 @@ class HomeFragment : Fragment() {
                     Status.LOADING -> true.loading()
                     Status.SUCCESS -> {
                         false.loading()
-                        newsVaccineAdapter.submitList(newsVaccine.data)
+                        _binding?.covidNews?.newsActivityVertical?.let {
+                            with(it.rvVertical) {
+                                val layoutManagerVertical = LinearLayoutManager(context)
+
+                                this.layoutManager = layoutManagerVertical
+                                this.setHasFixedSize(true)
+
+                                val newsVaccineAdapter = NewsVaccineAdapter()
+                                this.adapter = newsVaccineAdapter
+                                newsVaccineAdapter.submitList(newsVaccine.data)
+                            }
+                        }
                     }
                     Status.ERROR -> {
                         false.loading()
@@ -101,15 +115,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        _binding?.covidNews?.newsActivityVertical?.let {
-            with(it.rvVertical) {
-                val layoutManagerVertical = LinearLayoutManager(context)
-
-                this.layoutManager = layoutManagerVertical
-                this.setHasFixedSize(true)
-                this.adapter = newsVaccineAdapter
-            }
-        }
     }
 
     override fun onDestroyView() {
