@@ -18,13 +18,13 @@
     <ImageView
         android:id="@+id/localConditionShare"
         style="@style/ContentTitleText"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
+        android:layout_width="18dp"
+        android:layout_height="21dp"
         android:contentDescription="@string/share_world_condition"
         android:paddingTop="3dp"
         android:src="@drawable/ic_share2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/numberOfCases"
