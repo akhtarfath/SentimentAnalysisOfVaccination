@@ -29,7 +29,9 @@ class SentimentRepository private constructor(
         ): SentimentRepository =
             instance ?: synchronized(this) {
                 instance
-                    ?: SentimentRepository(remoteData, localData, appExecutors).apply { instance = this }
+                    ?: SentimentRepository(remoteData, localData, appExecutors).apply {
+                        instance = this
+                    }
             }
     }
 
@@ -193,19 +195,19 @@ class SentimentRepository private constructor(
             ) {
             override fun loadFromDB(): LiveData<PagedList<TeamsEntity>> {
                 val config = PagedList.Config.Builder()
-                        .setEnablePlaceholders(false)
-                        .setInitialLoadSizeHint(6)
-                        .setPageSize(6)
-                        .build()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(6)
+                    .setPageSize(6)
+                    .build()
 
                 val data: DataSource.Factory<Int, TeamsEntity> =
-                        localDataSource.getAllTeams()
+                    localDataSource.getAllTeams()
 
                 return LivePagedListBuilder(data, config).build()
             }
 
             override fun shouldFetch(data: PagedList<TeamsEntity>?): Boolean =
-                    data == null || data.isEmpty()
+                data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<TeamsResponse>>> =
                 remoteDataSource.getAllTeams()
@@ -213,11 +215,11 @@ class SentimentRepository private constructor(
             override fun saveCallResult(data: List<TeamsResponse>) {
                 val teamsList = ArrayList<TeamsEntity>()
                 for (response in data) {
-                        val teams = TeamsEntity(
-                            response.id,
-                            response.name,
-                            response.urlPicture
-                        )
+                    val teams = TeamsEntity(
+                        response.id,
+                        response.name,
+                        response.urlPicture
+                    )
                     teamsList.add(teams)
                 }
                 localDataSource.insertTeams(teamsList)
@@ -227,26 +229,26 @@ class SentimentRepository private constructor(
 
     override fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>> {
         return object :
-                NetworkBoundResource<List<UserItemsTweetEntity>, List<UserItemsTweetResponse>>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<List<UserItemsTweetEntity>, List<UserItemsTweetResponse>>(
+                appExecutors
+            ) {
             override fun loadFromDB(): LiveData<List<UserItemsTweetEntity>> =
                 localDataSource.getAllTweetProfile()
 
             override fun shouldFetch(data: List<UserItemsTweetEntity>?): Boolean =
-                    true
+                true
 
             override fun createCall(): LiveData<ApiResponse<List<UserItemsTweetResponse>>> =
-                    remoteDataSource.getAllProfile()
+                remoteDataSource.getAllProfile()
 
             override fun saveCallResult(data: List<UserItemsTweetResponse>) {
                 val tweetList = ArrayList<UserItemsTweetEntity>()
                 for (response in data) {
                     val tweet = UserItemsTweetEntity(
-                            response.id.toString(),
-                            response.name.toString(),
-                            response.profileImageUrl.toString(),
-                            response.username.toString()
+                        response.id.toString(),
+                        response.name.toString(),
+                        response.profileImageUrl.toString(),
+                        response.username.toString()
                     )
                     tweetList.add(tweet)
                 }
@@ -257,26 +259,26 @@ class SentimentRepository private constructor(
 
     override fun getAllPostByProfile(authorId: String): LiveData<Resource<List<DataItemTweetEntity>>> {
         return object :
-                NetworkBoundResource<List<DataItemTweetEntity>, List<DataItemTweetResponse>>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<List<DataItemTweetEntity>, List<DataItemTweetResponse>>(
+                appExecutors
+            ) {
             override fun loadFromDB(): LiveData<List<DataItemTweetEntity>> =
                 localDataSource.getTweetWithProfile(authorId)
 
             override fun shouldFetch(data: List<DataItemTweetEntity>?): Boolean =
-                    data == null || data.isEmpty()
+                data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<DataItemTweetResponse>>> =
-                    remoteDataSource.getProfileWithPost()
+                remoteDataSource.getProfileWithPost()
 
             override fun saveCallResult(data: List<DataItemTweetResponse>) {
                 val tweetList = ArrayList<DataItemTweetEntity>()
                 for (response in data) {
                     val tweet = DataItemTweetEntity(
-                            response.authorId.toString(),
-                            response.createdAt.toString(),
-                            response.text.toString(),
-                            response.authorId.toString()
+                        response.authorId.toString(),
+                        response.createdAt.toString(),
+                        response.text.toString(),
+                        response.authorId.toString()
                     )
                     tweetList.add(tweet)
                 }
@@ -287,25 +289,27 @@ class SentimentRepository private constructor(
 
     override fun getPublicMetrics(id: String): LiveData<Resource<DataItemTweetEntity>> {
         return object :
-                NetworkBoundResource<DataItemTweetEntity, PublicMetricsTweetResponse>(
-                        appExecutors
-                ) {
+            NetworkBoundResource<DataItemTweetEntity, PublicMetricsTweetResponse>(
+                appExecutors
+            ) {
             override fun loadFromDB(): LiveData<DataItemTweetEntity> =
                 localDataSource.getTweetWithMetrics(id)
 
             override fun shouldFetch(data: DataItemTweetEntity?): Boolean =
-                    data == null
+                data == null
 
             override fun createCall(): LiveData<ApiResponse<PublicMetricsTweetResponse>> =
-                    remoteDataSource.getPublicMetrics()
+                remoteDataSource.getPublicMetrics()
 
             override fun saveCallResult(data: PublicMetricsTweetResponse) {
-                localDataSource.updatePostByMetrics(data.likeCount!!, data.replyCount!!, data.quoteCount!!,
-                        data.retweetCount!!, id)
+                localDataSource.updatePostByMetrics(
+                    data.likeCount!!, data.replyCount!!, data.quoteCount!!,
+                    data.retweetCount!!, id
+                )
             }
         }.asLiveData()
     }
 
-    override fun getAllTweet() : LiveData<List<TweetEntity>> =
-            localDataSource.getAllTweets()
+    override fun getAllTweet(): LiveData<List<TweetEntity>> =
+        localDataSource.getAllTweets()
 }
