@@ -3,7 +3,7 @@ package com.aplikasikaryaanakbangkit.sentiment.core.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aplikasikaryaanakbangkit.sentiment.core.data.SentimentRepository
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 import com.aplikasikaryaanakbangkit.sentiment.core.di.Injection
 import com.aplikasikaryaanakbangkit.sentiment.home.HomeViewModel
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
@@ -12,7 +12,7 @@ import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewMod
 import com.aplikasikaryaanakbangkit.sentiment.team.TeamViewModel
 
 class ViewModelFactory private constructor(
-    private val _repository: SentimentRepository
+    private val _repository: SAVRepository
 ) :
     ViewModelProvider.NewInstanceFactory() {
 
