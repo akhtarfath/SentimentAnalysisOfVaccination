@@ -5,14 +5,14 @@ import androidx.room.ColumnInfo
 data class PublicMetricsTweetEntity(
 
         @ColumnInfo(name ="likeCount")
-        var likeCount: Int? = null,
+        val likeCount: Int? = null,
 
         @ColumnInfo(name ="replyCount")
-        var replyCount: Int? = null,
+        val replyCount: Int? = null,
 
         @ColumnInfo(name ="quoteCount")
-        var quoteCount: Int? = null,
+        val quoteCount: Int? = null,
 
         @ColumnInfo(name ="retweetCount")
-        var retweetCount: Int? = null
+        val retweetCount: Int? = null
 )

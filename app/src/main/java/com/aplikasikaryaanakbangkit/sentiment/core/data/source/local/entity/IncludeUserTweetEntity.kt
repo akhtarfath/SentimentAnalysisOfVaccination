@@ -4,5 +4,5 @@ import androidx.room.Embedded
 
 data class IncludeUserTweetEntity(
         @Embedded
-        var users: List<UserItemsTweetEntity?>? = null
+        val users: List<UserItemsTweetEntity?>? = null
 )

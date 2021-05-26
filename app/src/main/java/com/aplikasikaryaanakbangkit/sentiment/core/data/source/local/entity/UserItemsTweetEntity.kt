@@ -9,14 +9,14 @@ data class UserItemsTweetEntity(
 
         @PrimaryKey
         @ColumnInfo(name ="authorId")
-        var authorId: String,
+        val authorId: String,
 
         @ColumnInfo(name ="name")
-        var name: String,
+        val name: String,
 
         @ColumnInfo(name ="profile_image_url")
-        var profileImageUrl: String,
+        val profileImageUrl: String,
 
         @ColumnInfo(name ="username")
-        var username: String
+        val username: String
 )

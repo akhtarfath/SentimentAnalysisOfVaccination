@@ -13,16 +13,16 @@ import androidx.room.*
 data class DataItemTweetEntity(
 
         @ColumnInfo(name ="id")
-        var id: String,
+        val id: String,
 
         @ColumnInfo(name ="created_at")
-        var createdAt: String,
+        val createdAt: String,
 
         @ColumnInfo(name ="text")
-        var text: String,
+        val text: String,
 
         @ColumnInfo(name ="authorId")
-        var authorId: String
+        val authorId: String
 ){
         @Embedded
         var publicMetrics: PublicMetricsTweetEntity? = null
