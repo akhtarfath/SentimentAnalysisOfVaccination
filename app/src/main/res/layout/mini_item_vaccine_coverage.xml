@@ -74,7 +74,7 @@
             <TextView
                 android:id="@+id/numberVaccine1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -96,7 +96,7 @@
             <TextView
                 android:id="@+id/numberVaccine2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -125,7 +125,7 @@
             <TextView
                 android:id="@+id/numberDelayedVaccine1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -147,7 +147,7 @@
             <TextView
                 android:id="@+id/numberDelayedVaccine2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -176,7 +176,7 @@
             <TextView
                 android:id="@+id/numberTheElder1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -198,7 +198,7 @@
             <TextView
                 android:id="@+id/numberTheElder2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
+                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
