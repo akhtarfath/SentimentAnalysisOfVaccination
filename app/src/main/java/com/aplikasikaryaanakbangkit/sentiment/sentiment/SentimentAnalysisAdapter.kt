@@ -2,8 +2,6 @@ package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
@@ -11,25 +9,15 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.ItemTwitterPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class SentimentAnalysisAdapter :
-    PagedListAdapter<TweetEntity, SentimentAnalysisAdapter.TweetViewHolder>(DIFF_CALLBACK) {
+class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>(){
 
-    companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TweetEntity>() {
-            override fun areItemsTheSame(
-                oldItem: TweetEntity,
-                newItem: TweetEntity
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
+    private var listTweet = ArrayList<TweetEntity>()
 
-            override fun areContentsTheSame(
-                oldItem: TweetEntity,
-                newItem: TweetEntity
-            ): Boolean {
-                return oldItem == newItem
-            }
-        }
+    fun setTweet(tweet: List<TweetEntity>) {
+        this.listTweet.clear()
+        this.listTweet.addAll(tweet)
+
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
@@ -39,25 +27,32 @@ class SentimentAnalysisAdapter :
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
-        val article = getItem(position)
-        if (article != null) {
-            holder.bind(article)
-        }
+        val article = listTweet[position]
+        holder.bind(article)
     }
 
     class TweetViewHolder(private val binding: ItemTwitterPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(tweet: TweetEntity) {
             with(binding) {
+                twitterPost.text = tweet.text
+
+                dateTwitterPost.text = tweet.date
+                nameUserTwitter.text = tweet.name
+                usernameTwitter.text = tweet.username
 
                 Glide.with(itemView.context)
-                    .load(tweet.id)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
-                    )
-                    .into(twitterPhoto)
+                        .load(tweet.imageUrl)
+                        .apply(
+                                RequestOptions.placeholderOf(R.drawable.ic_loading)
+                                        .error(R.drawable.ic_error)
+                        )
+                        .into(twitterPhoto)
             }
+
         }
     }
+
+    override fun getItemCount(): Int = listTweet.size
 }

@@ -5,6 +5,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.TweetService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
@@ -78,17 +79,16 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         return resultVaccineNews
     }
-    
+
     fun getAllTeams(): LiveData<ApiResponse<List<TeamsResponse>>> {
         val resultData = MutableLiveData<ApiResponse<List<TeamsResponse>>>()
 
-        //get data from local json
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             try {
                 val dataArray = jsonHelper.loadDataTeams()
                 if (dataArray.isNotEmpty()) {
-                    ApiResponse.success(dataArray)
+                    resultData.postValue(ApiResponse.success(dataArray))
                 } else {
                     ApiResponse.empty("empty", mutableListOf(resultData))
                 }
@@ -100,23 +100,81 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         return resultData
     }
 
-    fun getAllTweet(): LiveData<ApiResponse<List<TweetResponse>>>{
-        val resultTweet = MutableLiveData<ApiResponse<List<TweetResponse>>>()
+    fun getAllProfile(): LiveData<ApiResponse<List<UserItemsTweetResponse>>>{
+        val resultTweet = MutableLiveData<ApiResponse<List<UserItemsTweetResponse>>>()
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             TweetService.create()
                     .getAllTweet()
-                    .enqueue(object : Callback<ListTweetResponse> {
+                    .enqueue(object : Callback<TweetResponse> {
                         override fun onResponse(
-                                call: Call<ListTweetResponse>,
-                                response: Response<ListTweetResponse>
+                                call: Call<TweetResponse>,
+                                response: Response<TweetResponse>
                         ) {
-                            resultTweet.postValue(
-                                    response.body()?.let { ApiResponse.success(it.articles) })
+                            ApiResponse.success(response.body()?.includes?.users).let {
+                                resultTweet.postValue(
+                                        it as ApiResponse<List<UserItemsTweetResponse>>)
+                            }
                         }
 
-                        override fun onFailure(call: Call<ListTweetResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
+
+                    })
+        }, 1500)
+
+        return resultTweet
+    }
+
+    fun getProfileWithPost(): LiveData<ApiResponse<List<DataItemTweetResponse>>>{
+        val resultTweet = MutableLiveData<ApiResponse<List<DataItemTweetResponse>>>()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            TweetService.create()
+                    .getAllTweet()
+                    .enqueue(object : Callback<TweetResponse> {
+                        override fun onResponse(
+                                call: Call<TweetResponse>,
+                                response: Response<TweetResponse>
+                        ) {
+                            resultTweet.postValue(
+                                    response.body()?.let { ApiResponse.success(it.data as List<DataItemTweetResponse>) })
+                        }
+
+                        override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
+
+                    })
+        }, 1500)
+
+        return resultTweet
+    }
+
+    fun getPublicMetrics(): LiveData<ApiResponse<PublicMetricsTweetResponse>>{
+        val resultTweet = MutableLiveData<ApiResponse<PublicMetricsTweetResponse>>()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            TweetService.create()
+                    .getAllTweet()
+                    .enqueue(object : Callback<TweetResponse> {
+                        override fun onResponse(
+                                call: Call<TweetResponse>,
+                                response: Response<TweetResponse>
+                        ) {
+                            ApiResponse.success(response.body()?.data?.get(0)?.publicMetrics).let {
+                                resultTweet.postValue(
+                                        it as ApiResponse<PublicMetricsTweetResponse>)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
                             ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
                             Log.e("RemoteDataSource", t.message.toString())
                         }

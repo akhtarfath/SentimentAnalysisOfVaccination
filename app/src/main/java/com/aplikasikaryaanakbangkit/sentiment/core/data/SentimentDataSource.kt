@@ -2,10 +2,7 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TeamsEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
 interface SentimentDataSource {
@@ -16,5 +13,9 @@ interface SentimentDataSource {
 
     fun getAllTeams(): LiveData<Resource<PagedList<TeamsEntity>>>
 
-    fun getAllTweet(): LiveData<Resource<PagedList<TweetEntity>>>
+    fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
+    fun getAllPostByProfile(authorId: String): LiveData<Resource<List<DataItemTweetEntity>>>
+    fun getPublicMetrics(id: String):LiveData<Resource<DataItemTweetEntity>>
+
+    fun getAllTweet(): LiveData<List<TweetEntity>>
 }
