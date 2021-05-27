@@ -8,113 +8,130 @@
     android:paddingBottom="60dp"
     tools:context=".sentiment.SentimentAnalysisFragment">
 
-    <TextView
-        android:id="@+id/sentiment_tv"
-        style="@style/SubTitleText"
-        android:paddingStart="25dp"
-        tools:ignore="RtlSymmetry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sentiment_text1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/sentiment2_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="25dp"
-        tools:ignore="RtlSymmetry"
-        android:text="@string/sentiment_text2"
-        style="@style/SubTitleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sentiment_tv" />
-    <TextView
-        android:id="@+id/sentiment3_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sentiment_text3"
-        android:textStyle="bold"
-        android:layout_marginStart="3dp"
-        style="@style/SubTitleText"
-        app:layout_constraintStart_toEndOf="@id/sentiment2_tv"
-        app:layout_constraintTop_toBottomOf="@id/sentiment_tv" />
-
-    <TextView
-        android:id="@+id/sentiment4_tv"
-        style="@style/SubTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sentiment_text4"
-        android:layout_marginStart="3dp"
-        app:layout_constraintStart_toEndOf="@+id/sentiment3_tv"
-        app:layout_constraintTop_toBottomOf="@id/sentiment_tv" />
-
-    <LinearLayout
-        android:id="@+id/sentiment_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="15dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sentiment2_tv">
-
-        <include
-            android:id="@+id/item_sentiment_analysis_layout"
-            layout="@layout/item_sentiment_analysis"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tweet_tv"
-        android:paddingStart="25dp"
-        tools:ignore="RtlSymmetry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:text="@string/apa_kata_mereka"
-        style="@style/SubTitleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sentiment_layout" />
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tweet_tv">
-
-        <include
-            android:id="@+id/layout_rv_tweets_post"
-            layout="@layout/rv_tweets_post" />
-
-    </androidx.core.widget.NestedScrollView>
-
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progressBar"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_repeatMode="restart"
-        android:elevation="1dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/animation_loading_paper_plane" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <include
-        android:id="@+id/viewError"
-        layout="@layout/view_error"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/sentiment_tv"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="@string/sentiment_text1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/sentiment2_tv"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:text="@string/sentiment_text2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sentiment_tv"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/sentiment3_tv"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@string/sentiment_text3"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/sentiment2_tv"
+                app:layout_constraintTop_toBottomOf="@id/sentiment_tv" />
+
+            <TextView
+                android:id="@+id/sentiment4_tv"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="@string/sentiment_text4"
+                app:layout_constraintStart_toEndOf="@+id/sentiment3_tv"
+                app:layout_constraintTop_toBottomOf="@id/sentiment_tv" />
+
+            <LinearLayout
+                android:id="@+id/sentiment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sentiment2_tv">
+
+                <include
+                    android:id="@+id/item_sentiment_analysis_layout"
+                    layout="@layout/item_sentiment_analysis" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tweet_tv"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="25dp"
+                android:paddingTop="15dp"
+                android:text="@string/apa_kata_mereka"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sentiment_layout"
+                tools:ignore="RtlSymmetry" />
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tweet_tv">
+
+                <include
+                    android:id="@+id/layout_rv_tweets_post"
+                    layout="@layout/rv_tweets_post" />
+
+            </androidx.core.widget.NestedScrollView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/progressBar"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:elevation="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation_loading_paper_plane"
+                app:lottie_repeatMode="restart" />
+
+            <include
+                android:id="@+id/viewError"
+                layout="@layout/view_error"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

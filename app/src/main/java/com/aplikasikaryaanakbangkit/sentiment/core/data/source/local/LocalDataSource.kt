@@ -42,6 +42,8 @@ class LocalDataSource private constructor(
 
     fun insertTeams(teams: List<TeamsEntity>) = SAVDao.insertTeams(teams)
 
+    fun getAllPost(): LiveData<List<DataItemTweetEntity>> = SAVDao.getAllTweet()
+
     fun insertTweet(tweet: List<DataItemTweetEntity>) = SAVDao.insertTweets(tweet)
 
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>> =
@@ -58,9 +60,6 @@ class LocalDataSource private constructor(
         id: String
     ) =
         SAVDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
-
-    fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>> =
-        SAVDao.getTweetWithProfile(authorId)
 
     fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
         SAVDao.getTweetById(id)

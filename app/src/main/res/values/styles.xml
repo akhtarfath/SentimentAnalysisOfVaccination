@@ -19,14 +19,14 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/sf_pro_text_heavy</item>
         <item name="android:lineHeight" tools:targetApi="p">15dp</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_marginVertical">10dp</item>
     </style>
     <style name="SubTitleText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/sf_pro_text_medium</item>
         <item name="android:maxLines">2</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:layout_marginVertical">10dp</item>
     </style>
     <style name="ContentTitleText" parent="TextAppearance.AppCompat">

@@ -17,6 +17,8 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentHomeBinding
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsCovidAdapter
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsVaccineAdapter
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
+import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisAdapter
+import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewModel
 
 class HomeFragment : Fragment() {
 
@@ -39,8 +41,34 @@ class HomeFragment : Fragment() {
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
 
+            loadTweet(factory)
             loadNews(factory)
         }
+    }
+
+    private fun loadTweet(factory: ViewModelFactory) {
+        val sentimentAnalysisViewModel =
+            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+
+        sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
+            false.loading()
+            with(_binding?.tweetSentiment?.rvTweet) {
+                val layoutManagerHorizontal =
+                    LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+                this?.layoutManager = layoutManagerHorizontal
+                this?.setHasFixedSize(true)
+
+                val tweetAdapter = SentimentAnalysisAdapter()
+                this?.adapter = tweetAdapter
+
+                tweetAdapter.setTweet(tweet)
+                tweetAdapter.notifyDataSetChanged()
+            }
+        })
     }
 
     private fun loadNews(factory: ViewModelFactory) {

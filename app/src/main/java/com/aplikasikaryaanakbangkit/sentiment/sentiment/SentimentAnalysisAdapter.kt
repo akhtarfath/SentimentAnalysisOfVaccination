@@ -8,6 +8,11 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.Twee
 import com.aplikasikaryaanakbangkit.sentiment.databinding.ItemTwitterPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
 
@@ -36,11 +41,20 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
 
         fun bind(tweet: TweetEntity) {
             with(binding) {
-                twitterPost.text = tweet.text
 
-                dateTwitterPost.text = tweet.date
+                val date = LocalDateTime.parse(
+                    tweet.date,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+                ).toLocalDate()
+                    .format(
+                        DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                            .withLocale(Locale("in", "ID", "ID"))
+                    )
+
+                twitterPost.text = tweet.text
+                dateTwitterPost.text = date
                 nameUserTwitter.text = tweet.name
-                usernameTwitter.text = tweet.username
+                usernameTwitter.text = StringBuilder("@${tweet.username}")
 
                 Glide.with(itemView.context)
                     .load(tweet.imageUrl)

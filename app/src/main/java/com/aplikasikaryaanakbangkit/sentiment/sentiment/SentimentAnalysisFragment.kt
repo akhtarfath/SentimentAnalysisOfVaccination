@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,20 @@ class SentimentAnalysisFragment : Fragment() {
                 tweetAdapter.setTweet(tweet)
                 tweetAdapter.notifyDataSetChanged()
             }
+        })
+
+        sentimentAnalysisViewModel.getPost().observe(viewLifecycleOwner, { post ->
+            false.loading()
+            Log.d("Post Fragment", post.status.toString())
+            Log.d("Post Fragment", post.data.toString())
+            Log.d("Post Fragment", post.message.toString())
+        })
+
+        sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
+            false.loading()
+            Log.d("profile Fragment", profile.status.toString())
+            Log.d("profile Fragment", profile.data.toString())
+            Log.d("profile Fragment", profile.message.toString())
         })
     }
 

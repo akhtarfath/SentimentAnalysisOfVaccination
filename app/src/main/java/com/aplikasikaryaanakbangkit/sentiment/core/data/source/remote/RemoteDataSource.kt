@@ -6,8 +6,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.TweetService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.TweetUtils
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 import org.json.JSONException
@@ -104,7 +104,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetService.create()
+            TweetUtils.getApiService()
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(
@@ -120,7 +120,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
                     override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
                         ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
-                        Log.e("RemoteDataSource", t.message.toString())
+                        Log.d("RemoteDataSource", t.message.toString())
                     }
 
                 })
@@ -129,12 +129,12 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         return resultTweet
     }
 
-    fun getProfileWithPost(): LiveData<ApiResponse<List<DataItemTweetResponse>>> {
+    fun getAllPost(): LiveData<ApiResponse<List<DataItemTweetResponse>>> {
         val resultTweet = MutableLiveData<ApiResponse<List<DataItemTweetResponse>>>()
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetService.create()
+            TweetUtils.getApiService()
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(
@@ -162,7 +162,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetService.create()
+            TweetUtils.getApiService()
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(

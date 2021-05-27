@@ -41,9 +41,6 @@ interface SAVDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTweets(tweet: List<DataItemTweetEntity>)
 
-    @Query("SELECT * FROM tweetPost WHERE authorId = :authorId")
-    fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>>
-
     @Query("SELECT * FROM tweetPost WHERE id = :id")
     fun getTweetById(id: String): LiveData<DataItemTweetEntity>
 
