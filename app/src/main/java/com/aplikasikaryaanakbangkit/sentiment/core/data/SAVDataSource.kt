@@ -18,6 +18,6 @@ interface SAVDataSource {
     // tweet
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
     fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
-    fun getPublicMetrics(id: String): LiveData<Resource<DataItemTweetEntity>>
+    fun getPublicMetrics(id: String): LiveData<Resource<PublicMetricsTweetEntity>>
     fun getAllTweet(): LiveData<List<TweetEntity>>
 }

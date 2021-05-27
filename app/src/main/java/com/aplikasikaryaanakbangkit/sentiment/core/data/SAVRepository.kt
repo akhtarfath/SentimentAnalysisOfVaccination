@@ -285,15 +285,15 @@ class SAVRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getPublicMetrics(id: String): LiveData<Resource<DataItemTweetEntity>> {
+    override fun getPublicMetrics(id: String): LiveData<Resource<PublicMetricsTweetEntity>> {
         return object :
-            NetworkBoundResource<DataItemTweetEntity, PublicMetricsTweetResponse>(
+            NetworkBoundResource<PublicMetricsTweetEntity, PublicMetricsTweetResponse>(
                 appExecutors
             ) {
-            override fun loadFromDB(): LiveData<DataItemTweetEntity> =
+            override fun loadFromDB(): LiveData<PublicMetricsTweetEntity> =
                 localDataSource.getTweetWithMetrics(id)
 
-            override fun shouldFetch(data: DataItemTweetEntity?): Boolean =
+            override fun shouldFetch(data: PublicMetricsTweetEntity?): Boolean =
                 data == null
 
             override fun createCall(): LiveData<ApiResponse<PublicMetricsTweetResponse>> =
