@@ -61,8 +61,8 @@ class LocalDataSource private constructor(
     ) =
         SAVDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
 
-    fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
-        SAVDao.getTweetById(id)
+    fun getTweetWithMetrics(id: String): LiveData<PublicMetricsTweetEntity> =
+        SAVDao.getTweetMetrics(id)
 
     fun getAllTweets(): LiveData<List<TweetEntity>> = SAVDao.getAllTweets()
 }
