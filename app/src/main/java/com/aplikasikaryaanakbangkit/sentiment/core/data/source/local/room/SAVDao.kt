@@ -44,6 +44,9 @@ interface SAVDao {
     @Query("SELECT * FROM tweetPost WHERE id = :id")
     fun getTweetById(id: String): LiveData<DataItemTweetEntity>
 
+    @Query("SELECT * FROM tweetPost WHERE id = :id")
+    fun getTweetMetrics(id: String): LiveData<PublicMetricsTweetEntity>
+
     @Query("UPDATE tweetPost SET likeCount = :likeCount, replyCount = :replyCount, quoteCount = :quoteCount, retweetCount = :retweetCount WHERE id = :id")
     fun updatePostByMetrics(
         likeCount: Int,
