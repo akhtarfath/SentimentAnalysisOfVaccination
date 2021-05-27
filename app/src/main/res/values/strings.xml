@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sentiment Analysis of Vaccination</string>
+    <string name="app_name">SAV</string>
     <string name="image_description">Image</string>
     <string name="text_primary">Sample of title text</string>
     <string name="text_subtitle">Sample of subtitle text</string>
@@ -88,4 +88,5 @@
     <string name="public_officers_resources_vaccinated_2">Petugas Publik Vaksinasi 2</string>
     <string name="the_elderly_resources_vaccinated_1">Lansia Vaksinasi 1</string>
     <string name="the_elderly_resources_vaccinated_2">Lansia Vaksinasi 2</string>
+    <string name="sentiment_analysis_of_vaccination">Sentiment Analysis of Vaccination</string>
 </resources>

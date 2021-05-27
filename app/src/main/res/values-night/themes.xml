@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SentimentAnalysisOfVaccinationApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SentimentAnalysisOfVaccinationApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_navy_500</item>
-        <item name="colorPrimaryVariant">@color/blue_navy_700</item>
+        <item name="colorPrimary">@color/blue_navy_200</item>
+        <item name="colorPrimaryVariant">@color/blue_navy_500</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/cyan_200</item>
-        <item name="colorSecondaryVariant">@color/cyan_700</item>
+        <item name="colorSecondaryVariant">@color/cyan_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
