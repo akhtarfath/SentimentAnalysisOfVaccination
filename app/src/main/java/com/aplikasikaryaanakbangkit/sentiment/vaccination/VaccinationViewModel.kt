@@ -1,13 +1,10 @@
-package com.aplikasikaryaanakbangkit.sentiment.ui.statistic
+package com.aplikasikaryaanakbangkit.sentiment.vaccination
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
-class VaccinationViewModel : ViewModel() {
+class VaccinationViewModel(
+    private val _repository: SAVRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Statistic page"
-    }
-    val text: LiveData<String> = _text
 }
