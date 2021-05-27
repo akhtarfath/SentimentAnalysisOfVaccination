@@ -58,6 +58,20 @@ class SentimentAnalysisFragment : Fragment() {
             this?.setHasFixedSize(true)
             this?.adapter = tweetAdapter
         }
+
+        _sentimentAnalysisViewModel.getPost().observe(viewLifecycleOwner, { post ->
+            false.loading()
+            Log.d("Post Fragment", post.status.toString())
+            Log.d("Post Fragment", post.data.toString())
+            Log.d("Post Fragment", post.message.toString())
+        })
+
+        _sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
+            false.loading()
+            Log.d("profile Fragment", profile.status.toString())
+            Log.d("profile Fragment", profile.data.toString())
+            Log.d("profile Fragment", profile.message.toString())
+        })
     }
 
     override fun onDestroyView() {

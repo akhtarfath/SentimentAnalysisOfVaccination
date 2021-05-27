@@ -257,19 +257,19 @@ class SentimentRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getAllPostByProfile(authorId: String): LiveData<Resource<List<DataItemTweetEntity>>> {
+    override fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>> {
         return object :
             NetworkBoundResource<List<DataItemTweetEntity>, List<DataItemTweetResponse>>(
                 appExecutors
             ) {
             override fun loadFromDB(): LiveData<List<DataItemTweetEntity>> =
-                localDataSource.getTweetWithProfile(authorId)
+                localDataSource.getAllPost()
 
             override fun shouldFetch(data: List<DataItemTweetEntity>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<DataItemTweetResponse>>> =
-                remoteDataSource.getProfileWithPost()
+                remoteDataSource.getAllPost()
 
             override fun saveCallResult(data: List<DataItemTweetResponse>) {
                 val tweetList = ArrayList<DataItemTweetEntity>()

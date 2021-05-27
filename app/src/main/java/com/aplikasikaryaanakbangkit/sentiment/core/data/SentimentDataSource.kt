@@ -14,7 +14,7 @@ interface SentimentDataSource {
     fun getAllTeams(): LiveData<Resource<PagedList<TeamsEntity>>>
 
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
-    fun getAllPostByProfile(authorId: String): LiveData<Resource<List<DataItemTweetEntity>>>
+    fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
     fun getPublicMetrics(id: String): LiveData<Resource<DataItemTweetEntity>>
 
     fun getAllTweet(): LiveData<List<TweetEntity>>

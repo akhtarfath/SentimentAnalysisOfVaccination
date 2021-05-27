@@ -42,6 +42,8 @@ class LocalDataSource private constructor(
 
     fun insertTeams(teams: List<TeamsEntity>) = sentimentDao.insertTeams(teams)
 
+    fun getAllPost(): LiveData<List<DataItemTweetEntity>> = sentimentDao.getAllTweet()
+
     fun insertTweet(tweet: List<DataItemTweetEntity>) = sentimentDao.insertTweets(tweet)
 
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>> =
@@ -58,9 +60,6 @@ class LocalDataSource private constructor(
         id: String
     ) =
         sentimentDao.updatePostByMetrics(likeCount, replyCount, quoteCount, retweetCount, id)
-
-    fun getTweetWithProfile(authorId: String): LiveData<List<DataItemTweetEntity>> =
-        sentimentDao.getTweetWithProfile(authorId)
 
     fun getTweetWithMetrics(id: String): LiveData<DataItemTweetEntity> =
         sentimentDao.getTweetById(id)
