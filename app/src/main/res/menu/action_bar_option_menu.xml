@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_share4"
+        android:title="@string/share"
+        android:iconTint="@color/dark"
+        app:showAsAction="collapseActionView|ifRoom" />
+    <group android:menuCategory="container"
+        android:iconTint="@color/dark">
+        <item
+            android:id="@+id/refresh"
+            android:title="@string/refresh" />
+        <item
+            android:id="@+id/openInBrowser"
+            android:title="@string/open_in_browser" />
+    </group>
+</menu>
