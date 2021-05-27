@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.databinding.ItemTwitterPostBinding
+import com.aplikasikaryaanakbangkit.sentiment.databinding.MiniItemTwitterPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.time.LocalDateTime
@@ -26,9 +26,10 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
-        val itemTweetBinding =
-            ItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TweetViewHolder(itemTweetBinding)
+        val miniItemTweetBinding =
+            MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return TweetViewHolder(miniItemTweetBinding)
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
@@ -36,7 +37,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
         holder.bind(article)
     }
 
-    class TweetViewHolder(private val binding: ItemTwitterPostBinding) :
+    class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tweet: TweetEntity) {
@@ -55,6 +56,10 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 dateTwitterPost.text = date
                 nameUserTwitter.text = tweet.name
                 usernameTwitter.text = StringBuilder("@${tweet.username}")
+
+                replyCount.text = tweet.replyCount.toString()
+                retweetCount.text = tweet.retweetCount.toString()
+                likeCount.text = tweet.likeCount.toString()
 
                 Glide.with(itemView.context)
                     .load(tweet.imageUrl)

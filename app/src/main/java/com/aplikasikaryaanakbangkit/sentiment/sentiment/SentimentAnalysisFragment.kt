@@ -54,7 +54,7 @@ class SentimentAnalysisFragment : Fragment() {
                 val tweetAdapter = SentimentAnalysisAdapter()
                 this?.adapter = tweetAdapter
 
-                tweetAdapter.setTweet(tweet)
+                tweet.let { tweetAdapter.setTweet(it) }
                 tweetAdapter.notifyDataSetChanged()
             }
         })
