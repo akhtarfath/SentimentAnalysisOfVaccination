@@ -47,12 +47,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadTweet(factory: ViewModelFactory) {
-        val sentimentAnalysisViewModel =
+        val tweetViewModel =
             ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
-        sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
+        tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             false.loading()
-            with(_binding?.tweetSentiment?.rvTweet) {
+            with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
                     LinearLayoutManager(
                         context,
