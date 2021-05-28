@@ -1,7 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
 import com.aplikasikaryaanakbangkit.sentiment.BuildConfig
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.NewsResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.NewsResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call

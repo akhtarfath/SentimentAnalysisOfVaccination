@@ -8,6 +8,5 @@ class NewsViewModel(
 ) : ViewModel() {
 
     val newsHeadline = _newsRepository.getCovidHeadlines()
-
     val newsLatest = _newsRepository.getVaccineNews()
 }

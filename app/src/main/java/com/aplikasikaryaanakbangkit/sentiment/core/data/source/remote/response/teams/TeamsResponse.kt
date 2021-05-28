@@ -1,4 +1,4 @@
-package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response
+package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

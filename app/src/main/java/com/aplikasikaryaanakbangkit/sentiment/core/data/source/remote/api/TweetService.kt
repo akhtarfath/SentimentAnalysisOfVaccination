@@ -1,6 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TweetResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
 import retrofit2.Call
 import retrofit2.http.GET
 

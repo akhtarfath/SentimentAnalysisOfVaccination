@@ -54,7 +54,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberPositive"
+                android:id="@+id/numberPositiveID"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberOfCures"
+                android:id="@+id/numberOfCuresID"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberOfDeaths"
+                android:id="@+id/numberOfDeathsID"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity
+package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,4 +1,4 @@
-package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response
+package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet
 
 import com.google.gson.annotations.SerializedName
 

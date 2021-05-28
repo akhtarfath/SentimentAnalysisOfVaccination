@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.TweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.MiniItemTwitterPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
