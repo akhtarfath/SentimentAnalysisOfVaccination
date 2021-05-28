@@ -1,8 +1,10 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "vaccinePetugas")
 data class VaccinationPetugasPublikEntity(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name="id")

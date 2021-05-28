@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.CovidService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.VaccinationService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.TweetUtils
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.*
@@ -17,6 +18,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.t
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.PublicMetricsTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.UserItemsTweetResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 import org.json.JSONException
 import retrofit2.Call
@@ -311,6 +313,38 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                         }
 
                         override fun onFailure(call: Call<List<IDCovidItemResponse>>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
+
+                    })
+        }, 1500)
+
+        return resultData
+    }
+
+    //vaksinasi
+    fun getAllVaccination(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> {
+        val resultData = MutableLiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>>()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            VaccinationService
+                    .create()
+                    .getAllVaccination()
+                    .enqueue(object : Callback<VaccinationResponse> {
+                        override fun onResponse(
+                                call: Call<VaccinationResponse>,
+                                response: Response<VaccinationResponse>
+                        ) {
+                            ApiResponse.success(response.body()?.monitoring).let {
+                                resultData.postValue(
+                                        it as ApiResponse<List<VaccinationMonitoringItemResponse>>
+                                )
+                            }
+                        }
+
+                        override fun onFailure(call: Call<VaccinationResponse>, t: Throwable) {
                             ApiResponse.error(t.message.toString(), mutableListOf(resultData))
                             Log.e("RemoteDataSource", t.message.toString())
                         }

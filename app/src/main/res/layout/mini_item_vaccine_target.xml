@@ -47,7 +47,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberPositive"
+                android:id="@+id/numberSdmVaccinationTarget"
                 style="@style/SubTitleText"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberOfCures"
+                android:id="@+id/numberPetugasVaccinationTarget"
                 style="@style/SubTitleText"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberOfDeaths"
+                android:id="@+id/numberLansiaVaccinationTarget"
                 style="@style/SubTitleText"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberVaccine1"
+                android:id="@+id/numberVaccine1Target"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/numberVaccine2"
+                android:id="@+id/numberVaccine2Target"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

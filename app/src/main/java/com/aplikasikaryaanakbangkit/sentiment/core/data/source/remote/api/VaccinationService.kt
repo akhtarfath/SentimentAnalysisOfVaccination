@@ -1,5 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.VaccinationMonitoringItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.VaccinationResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,11 +11,11 @@ import retrofit2.http.GET
 
 interface VaccinationService {
 
-    @GET("")
+    @GET("vaksinasi")
     fun getAllVaccination(): Call<VaccinationResponse>
 
     companion object {
-        private const val BASE_URL = "https://cekdiri.id/vaksinasi/"
+        private const val BASE_URL = "https://cekdiri.id/"
 
         fun create(): VaccinationService {
             val loggingInterceptor =

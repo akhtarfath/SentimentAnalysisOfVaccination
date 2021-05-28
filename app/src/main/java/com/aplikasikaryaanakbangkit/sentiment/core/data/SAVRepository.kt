@@ -13,6 +13,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.*
@@ -21,6 +22,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.t
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.PublicMetricsTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.UserItemsTweetResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.AppExecutors
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
@@ -431,6 +433,165 @@ class SAVRepository private constructor(
                                 data.deaths
                         )
                 localDataSource.insertIDCovid(covidId)
+            }
+        }.asLiveData()
+    }
+
+    //vaksinasi
+    override fun getVaccination(): LiveData<Resource<VaccinationMonitoringItemEntity>> {
+        return object :
+                NetworkBoundResource<VaccinationMonitoringItemEntity, List<VaccinationMonitoringItemResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<VaccinationMonitoringItemEntity> =
+                    localDataSource.getVaccineMonitoring()
+
+            override fun shouldFetch(data: VaccinationMonitoringItemEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
+                    remoteDataSource.getAllVaccination()
+
+            override fun saveCallResult(data: List<VaccinationMonitoringItemResponse>) {
+                val dataSize = data.size-1
+                val vaccine =
+                        VaccinationMonitoringItemEntity(
+                                1,
+                                data[dataSize].date,
+                                data[dataSize].sasaranVaksinasiPetugasPublik,
+                                data[dataSize].vaksinasi2,
+                                data[dataSize].vaksinasi1,
+                                data[dataSize].sasaranVaksinasiSdmk,
+                                data[dataSize].sasaranVaksinasiLansia,
+                                data[dataSize].totalSasaranVaksinasi
+                        )
+                localDataSource.insertVaccineMonitoring(vaccine)
+            }
+        }.asLiveData()
+    }
+
+    override fun getTahapanSDM(): LiveData<Resource<VaccinationSdmKesehatanEntity>> {
+        return object :
+                NetworkBoundResource<VaccinationSdmKesehatanEntity, List<VaccinationMonitoringItemResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<VaccinationSdmKesehatanEntity> =
+                    localDataSource.getVaccineSDM()
+
+            override fun shouldFetch(data: VaccinationSdmKesehatanEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
+                    remoteDataSource.getAllVaccination()
+
+            override fun saveCallResult(data: List<VaccinationMonitoringItemResponse>) {
+                val dataSize = data.size-1
+                val vaccine =
+                        VaccinationSdmKesehatanEntity(
+                                1,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.sudahVaksin1,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.totalVaksinasi2,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.totalVaksinasi1,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.sudahVaksin2,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.tertundaVaksin2,
+                                data[dataSize].tahapanVaksinasi?.sdmKesehatan?.tertundaVaksin1
+                        )
+                localDataSource.insertVaccineSDM(vaccine)
+            }
+        }.asLiveData()
+    }
+
+    override fun getTahapanLansia(): LiveData<Resource<VaccinationLansiaEntity>> {
+        return object :
+                NetworkBoundResource<VaccinationLansiaEntity, List<VaccinationMonitoringItemResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<VaccinationLansiaEntity> =
+                    localDataSource.getVaccineLansia()
+
+            override fun shouldFetch(data: VaccinationLansiaEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
+                    remoteDataSource.getAllVaccination()
+
+            override fun saveCallResult(data: List<VaccinationMonitoringItemResponse>) {
+                val dataSize = data.size-1
+                val vaccine =
+                        VaccinationLansiaEntity(
+                                1,
+                                data[dataSize].tahapanVaksinasi?.lansia?.sudahVaksin1,
+                                data[dataSize].tahapanVaksinasi?.lansia?.totalVaksinasi2,
+                                data[dataSize].tahapanVaksinasi?.lansia?.totalVaksinasi1,
+                                data[dataSize].tahapanVaksinasi?.lansia?.sudahVaksin2,
+                                data[dataSize].tahapanVaksinasi?.lansia?.tertundaVaksin2,
+                                data[dataSize].tahapanVaksinasi?.lansia?.tertundaVaksin1
+                        )
+                localDataSource.insertVaccineLansia(vaccine)
+            }
+        }.asLiveData()
+    }
+
+    override fun getTahapanPetugas(): LiveData<Resource<VaccinationPetugasPublikEntity>> {
+        return object :
+                NetworkBoundResource<VaccinationPetugasPublikEntity, List<VaccinationMonitoringItemResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<VaccinationPetugasPublikEntity> =
+                    localDataSource.getVaccinePetugas()
+
+            override fun shouldFetch(data: VaccinationPetugasPublikEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
+                    remoteDataSource.getAllVaccination()
+
+            override fun saveCallResult(data: List<VaccinationMonitoringItemResponse>) {
+                val dataSize = data.size-1
+                val vaccine =
+                        VaccinationPetugasPublikEntity(
+                                1,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.sudahVaksin1,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.totalVaksinasi2,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.totalVaksinasi1,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.sudahVaksin2,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.tertundaVaksin2,
+                                data[dataSize].tahapanVaksinasi?.petugasPublik?.tertundaVaksin1
+                        )
+                localDataSource.insertVaccinePetugas(vaccine)
+            }
+        }.asLiveData()
+    }
+
+    override fun getCakupanVaccination(): LiveData<Resource<VaccinationCakupanEntity>> {
+        return object :
+                NetworkBoundResource<VaccinationCakupanEntity, List<VaccinationMonitoringItemResponse>>(
+                        appExecutors
+                ) {
+            override fun loadFromDB(): LiveData<VaccinationCakupanEntity> =
+                    localDataSource.getVaccineCakupan()
+
+            override fun shouldFetch(data: VaccinationCakupanEntity?): Boolean =
+                    data == null
+
+            override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
+                    remoteDataSource.getAllVaccination()
+
+            override fun saveCallResult(data: List<VaccinationMonitoringItemResponse>) {
+                val dataSize = data.size-1
+                val vaccine =
+                        VaccinationCakupanEntity(
+                                1,
+                                data[dataSize].cakupan?.sdmKesehatanVaksinasi2,
+                                data[dataSize].cakupan?.sdmKesehatanVaksinasi1,
+                                data[dataSize].cakupan?.lansiaVaksinasi1,
+                                data[dataSize].cakupan?.petugasPublikVaksinasi2,
+                                data[dataSize].cakupan?.petugasPublikVaksinasi1,
+                                data[dataSize].cakupan?.vaksinasi2,
+                                data[dataSize].cakupan?.vaksinasi1,
+                                data[dataSize].cakupan?.lansiaVaksinasi2
+                        )
+                localDataSource.insertVaccineCakupan(vaccine)
             }
         }.asLiveData()
     }

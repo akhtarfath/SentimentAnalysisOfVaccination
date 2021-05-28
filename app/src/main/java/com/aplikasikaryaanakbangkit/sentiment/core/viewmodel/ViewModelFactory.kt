@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
 import com.aplikasikaryaanakbangkit.sentiment.news.detail.DetailNewsViewModel
 import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewModel
 import com.aplikasikaryaanakbangkit.sentiment.team.TeamViewModel
+import com.aplikasikaryaanakbangkit.sentiment.vaccination.VaccinationViewModel
 
 class ViewModelFactory private constructor(
     private val _repository: SAVRepository
@@ -47,6 +48,9 @@ class ViewModelFactory private constructor(
             }
             modelClass.isAssignableFrom(SentimentAnalysisViewModel::class.java) -> {
                 SentimentAnalysisViewModel(_repository) as T
+            }
+            modelClass.isAssignableFrom(VaccinationViewModel::class.java) -> {
+                VaccinationViewModel(_repository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

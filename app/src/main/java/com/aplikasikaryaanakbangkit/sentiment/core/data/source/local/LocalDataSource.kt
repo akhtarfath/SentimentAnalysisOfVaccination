@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.room.SAVDao
 
 class LocalDataSource private constructor(
@@ -103,4 +104,35 @@ class LocalDataSource private constructor(
 
     fun insertIDCovid(idCovid: IDCovidItemEntity) =
             SAVDao.insertIDCOvid(idCovid)
+
+    //vaksin
+    fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity> =
+            SAVDao.getVaccineCakupan()
+
+    fun insertVaccineCakupan(vaccination: VaccinationCakupanEntity) =
+            SAVDao.insertVaccineCakupan(vaccination)
+
+    fun getVaccineLansia(): LiveData<VaccinationLansiaEntity> =
+            SAVDao.getVaccineLansia()
+
+    fun insertVaccineLansia(vaccination: VaccinationLansiaEntity) =
+            SAVDao.insertVaccineLansia(vaccination)
+
+    fun getVaccineMonitoring(): LiveData<VaccinationMonitoringItemEntity> =
+            SAVDao.getVaccineMonitoring()
+
+    fun insertVaccineMonitoring(vaccination: VaccinationMonitoringItemEntity) =
+            SAVDao.insertVaccineMonitoring(vaccination)
+
+    fun getVaccinePetugas(): LiveData<VaccinationPetugasPublikEntity> =
+            SAVDao.getVaccinePetugas()
+
+    fun insertVaccinePetugas(vaccination: VaccinationPetugasPublikEntity) =
+            SAVDao.insertVaccinePetugas(vaccination)
+
+    fun getVaccineSDM(): LiveData<VaccinationSdmKesehatanEntity> =
+            SAVDao.getVaccineSDM()
+
+    fun insertVaccineSDM(vaccination: VaccinationSdmKesehatanEntity) =
+            SAVDao.insertVaccineSDM(vaccination)
 }

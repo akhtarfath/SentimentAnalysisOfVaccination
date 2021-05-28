@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 
 @Database(
     entities = [
@@ -21,7 +22,12 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
         DeathGlobalCovidEntity::class,
         ConfirmedGlobalCovidEntity::class,
         RecoveredGlobalCovidEntity::class,
-        IDCovidItemEntity::class
+        IDCovidItemEntity::class,
+        VaccinationCakupanEntity::class,
+        VaccinationLansiaEntity::class,
+        VaccinationMonitoringItemEntity::class,
+        VaccinationPetugasPublikEntity::class,
+        VaccinationSdmKesehatanEntity::class
     ],
     version = 1,
     exportSchema = false

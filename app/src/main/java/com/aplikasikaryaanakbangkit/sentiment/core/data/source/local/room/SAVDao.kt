@@ -14,7 +14,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.VaccinationCakupanEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 
 @Dao
 interface SAVDao {
@@ -104,7 +104,33 @@ interface SAVDao {
     fun insertIDCOvid(idCovid: IDCovidItemEntity)
 
     //vaccination
-   // @Query("SELECT * FROM vaccineCakupan")
-   // fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity>
+    @Query("SELECT * FROM vaccineCakupan")
+    fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaccineCakupan(vaccination: VaccinationCakupanEntity)
+
+    @Query("SELECT * FROM vaccineLansia")
+    fun getVaccineLansia(): LiveData<VaccinationLansiaEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaccineLansia(vaccination: VaccinationLansiaEntity)
+
+    @Query("SELECT * FROM vaccineMonitoring")
+    fun getVaccineMonitoring(): LiveData<VaccinationMonitoringItemEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaccineMonitoring(vaccination: VaccinationMonitoringItemEntity)
+
+    @Query("SELECT * FROM vaccinePetugas")
+    fun getVaccinePetugas(): LiveData<VaccinationPetugasPublikEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaccinePetugas(vaccination: VaccinationPetugasPublikEntity)
+
+    @Query("SELECT * FROM vaccineSDM")
+    fun getVaccineSDM(): LiveData<VaccinationSdmKesehatanEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertVaccineSDM(vaccination: VaccinationSdmKesehatanEntity)
 }

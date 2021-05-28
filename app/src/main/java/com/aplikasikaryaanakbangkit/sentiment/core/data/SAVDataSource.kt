@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
 interface SAVDataSource {
@@ -35,4 +36,10 @@ interface SAVDataSource {
     fun getAllGlobalCovid(): LiveData<GlobalCovidEntity>
     fun getAllIDCovid(): LiveData<Resource<IDCovidItemEntity>>
 
+    //vaksinasi
+    fun getVaccination(): LiveData<Resource<VaccinationMonitoringItemEntity>>
+    fun getTahapanSDM(): LiveData<Resource<VaccinationSdmKesehatanEntity>>
+    fun getTahapanLansia(): LiveData<Resource<VaccinationLansiaEntity>>
+    fun getTahapanPetugas(): LiveData<Resource<VaccinationPetugasPublikEntity>>
+    fun getCakupanVaccination(): LiveData<Resource<VaccinationCakupanEntity>>
 }
