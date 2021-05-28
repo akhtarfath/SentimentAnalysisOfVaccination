@@ -7,7 +7,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.ArticleCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.MiniItemHorizontalBinding
 import com.aplikasikaryaanakbangkit.sentiment.news.detail.DetailNewsActivity
 import com.bumptech.glide.Glide
@@ -23,15 +23,15 @@ class NewsCovidAdapter :
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleCovidEntity>() {
             override fun areItemsTheSame(
-                oldItem: ArticleCovidEntity,
-                newItem: ArticleCovidEntity
+                    oldItem: ArticleCovidEntity,
+                    newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem.url == newItem.url
             }
 
             override fun areContentsTheSame(
-                oldItem: ArticleCovidEntity,
-                newItem: ArticleCovidEntity
+                    oldItem: ArticleCovidEntity,
+                    newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem == newItem
             }

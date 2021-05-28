@@ -4,7 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
 
 @Database(
     entities = [
@@ -12,7 +17,11 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
         ArticleVaccinesEntity::class,
         TeamsEntity::class,
         DataItemTweetEntity::class,
-        UserItemsTweetEntity::class
+        UserItemsTweetEntity::class,
+        DeathGlobalCovidEntity::class,
+        ConfirmedGlobalCovidEntity::class,
+        RecoveredGlobalCovidEntity::class,
+        IDCovidItemEntity::class
     ],
     version = 1,
     exportSchema = false

@@ -6,11 +6,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.VaccinationCakupanEntity
 
 @Dao
 interface SAVDao {
-
+    //news
     @Query("SELECT * FROM articleCovid ORDER BY publishedAt DESC")
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity>
 
@@ -29,12 +37,14 @@ interface SAVDao {
     @Query("SELECT * FROM articleVaccine WHERE url = :url")
     fun getVaccineArticleByUrl(url: String): LiveData<ArticleVaccinesEntity>
 
+    //teams
     @Query("SELECT * FROM teams")
     fun getAllTeams(): DataSource.Factory<Int, TeamsEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTeams(teams: List<TeamsEntity>)
 
+    //tweet
     @Query("SELECT * FROM tweetPost")
     fun getAllTweet(): LiveData<List<DataItemTweetEntity>>
 
@@ -64,4 +74,37 @@ interface SAVDao {
 
     @Query("SELECT tweetProfile.authorId as authorId, tweetProfile.name as name, tweetProfile.profile_image_url as imageUrl, tweetProfile.username as username, tweetPost.text as text, tweetPost.created_at as date, tweetPost.likeCount as likeCount, tweetPost.quoteCount as quoteCount, tweetPost.replyCount as replyCount, tweetPost.retweetCount as retweetCount FROM tweetProfile, tweetPost WHERE tweetProfile.authorId = tweetPost.authorId")
     fun getAllTweets(): LiveData<List<TweetEntity>>
+
+    //covid
+    @Query("SELECT * FROM confirmGlobalCovid")
+    fun getConfirmedGlobalCovid(): LiveData<ConfirmedGlobalCovidEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertConfirmedGlobalCovid(confirmedCovid: ConfirmedGlobalCovidEntity)
+
+    @Query("SELECT * FROM deathGlobalCovid")
+    fun getDeathlobalCovid(): LiveData<DeathGlobalCovidEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDeathGlobalCovid(deathCovid: DeathGlobalCovidEntity)
+
+    @Query("SELECT * FROM recoveredGlobalEntity")
+    fun getRecoveredGlobalCovid(): LiveData<RecoveredGlobalCovidEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRecoveredGlobalCovid(recoveredCovid: RecoveredGlobalCovidEntity)
+
+    @Query("SELECT death.valueDeath as deathGlobal, confirm.valueConfirmed as confirmedGlobal, recovered.valueRecovered as recoveredGlobal FROM deathGlobalCovid as death, confirmGlobalCovid as confirm, recoveredGlobalEntity as recovered")
+    fun getAllGlobalCovid(): LiveData<GlobalCovidEntity>
+
+    @Query("SELECT * FROM idCovid")
+    fun getAllIDCovid(): LiveData<IDCovidItemEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertIDCOvid(idCovid: IDCovidItemEntity)
+
+    //vaccination
+   // @Query("SELECT * FROM vaccineCakupan")
+   // fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity>
+
 }

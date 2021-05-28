@@ -1,13 +1,8 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TweetResponse
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Headers
 
 interface TweetService {
 

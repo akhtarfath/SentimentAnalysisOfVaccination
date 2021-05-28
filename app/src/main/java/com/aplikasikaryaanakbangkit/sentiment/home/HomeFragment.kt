@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,8 @@ import com.aplikasikaryaanakbangkit.sentiment.news.NewsVaccineAdapter
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
 import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisAdapter
 import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewModel
+import kotlinx.android.synthetic.main.mini_item_covid_local_condition.*
+import kotlinx.android.synthetic.main.mini_item_covid_world_condition.*
 
 class HomeFragment : Fragment() {
 
@@ -41,9 +44,67 @@ class HomeFragment : Fragment() {
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
 
+            loadCovid(factory)
             loadTweet(factory)
             loadNews(factory)
         }
+    }
+
+    private fun loadCovid(factory: ViewModelFactory){
+        val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+
+        true.loading()
+        covidViewModel.getConfirmGlobal.observe(viewLifecycleOwner, {
+            false.loading()
+            Log.d("Confirm Global Covid", it.data.toString())
+        })
+
+        covidViewModel.getDeathGlobal.observe(viewLifecycleOwner, {
+            false.loading()
+            Log.d("Death Global Covid", it.data.toString())
+        })
+
+        covidViewModel.getRecoveredGlobal.observe(viewLifecycleOwner, {
+            false.loading()
+            Log.d("Recovered Global Covid", it.data.toString())
+        })
+
+        covidViewModel.getGlobalCovid.observe(viewLifecycleOwner, { globalCovid ->
+            if (globalCovid != null) {
+                false.loading()
+                _binding?.covidStatistic?.covidWorldCondition?.let {
+                    numberPositive.text = globalCovid.confirmedGlobal
+                    numberOfDeaths.text = globalCovid.deathGlobal
+                    numberOfCures.text = globalCovid.recoveredGlobal
+                }
+            }
+        })
+
+        covidViewModel.getIDCovid.observe(viewLifecycleOwner, { idCovid ->
+            if (idCovid != null) {
+                when (idCovid.status) {
+                    Status.LOADING -> true.loading()
+                    Status.SUCCESS -> {
+                        false.loading()
+                        Log.d("ID Covid", idCovid.data.toString())
+                        _binding?.covidStatistic?.covidLocalCondition?.let {
+                            numberPositiveID.text = idCovid.data?.confirmed?.toString()
+                            numberOfDeathsID.text = idCovid.data?.deaths?.toString()
+                            numberOfCuresID.text = idCovid.data?.recovered?.toString()
+                        }
+                    }
+                    Status.ERROR -> {
+                        false.loading()
+                        Toast.makeText(
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
+                        )
+                                .show()
+                    }
+                }
+            }
+        })
     }
 
     private fun loadTweet(factory: ViewModelFactory) {

@@ -2,7 +2,7 @@ package com.aplikasikaryaanakbangkit.sentiment.core.utils
 
 import android.content.Context
 import com.aplikasikaryaanakbangkit.sentiment.R
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.TeamsResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import org.json.JSONObject
 import java.io.IOException
 
