@@ -26,7 +26,7 @@
     <string name="publishDate">Publish Date</string>
     <string name="content">Content</string>
     <string name="source">Source</string>
-    <string name="open_in_browser">Open in Browser</string>
+    <string name="open_in_browser">Buka di browser</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_sentiment_analysis">Sentiment A.</string>
@@ -89,4 +89,6 @@
     <string name="the_elderly_resources_vaccinated_1">Lansia Vaksinasi 1</string>
     <string name="the_elderly_resources_vaccinated_2">Lansia Vaksinasi 2</string>
     <string name="sentiment_analysis_of_vaccination">Sentiment Analysis of Vaccination</string>
+    <string name="share">Bagikan</string>
+    <string name="refresh">Refresh</string>
 </resources>
