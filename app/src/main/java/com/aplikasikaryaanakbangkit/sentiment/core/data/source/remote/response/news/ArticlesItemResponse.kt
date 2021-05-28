@@ -7,28 +7,28 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ArticlesItemResponse(
 
-        @field:SerializedName("publishedAt")
+    @field:SerializedName("publishedAt")
     val publishedAt: String,
 
-        @field:SerializedName("author")
+    @field:SerializedName("author")
     val author: String?,
 
-        @field:SerializedName("urlToImage")
+    @field:SerializedName("urlToImage")
     val urlToImage: String?,
 
-        @field:SerializedName("description")
+    @field:SerializedName("description")
     val description: String?,
 
-        @field:SerializedName("source")
+    @field:SerializedName("source")
     val sourceResponse: SourceResponse,
 
-        @field:SerializedName("title")
+    @field:SerializedName("title")
     val title: String?,
 
-        @field:SerializedName("url")
+    @field:SerializedName("url")
     val url: String,
 
-        @field:SerializedName("content")
+    @field:SerializedName("content")
     val content: String?
 
 ) : Parcelable

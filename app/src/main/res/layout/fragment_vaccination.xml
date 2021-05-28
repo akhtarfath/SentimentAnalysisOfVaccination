@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="25dp"
+            android:paddingBottom="15dp"
             tools:ignore="ScrollViewSize">
 
             <include

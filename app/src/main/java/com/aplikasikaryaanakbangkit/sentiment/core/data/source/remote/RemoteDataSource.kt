@@ -18,7 +18,8 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.t
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.PublicMetricsTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.UserItemsTweetResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.VaccinationMonitoringItemResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.VaccinationResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 import org.json.JSONException
 import retrofit2.Call
@@ -46,8 +47,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                 .getCovidHeadlines()
                 .enqueue(object : Callback<NewsResponse> {
                     override fun onResponse(
-                            call: Call<NewsResponse>,
-                            response: Response<NewsResponse>
+                        call: Call<NewsResponse>,
+                        response: Response<NewsResponse>
                     ) {
                         resultCovidHeadlines.postValue(
                             response.body()?.let { ApiResponse.success(it.articles) })
@@ -73,8 +74,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                 .getVaccineNews()
                 .enqueue(object : Callback<NewsResponse> {
                     override fun onResponse(
-                            call: Call<NewsResponse>,
-                            response: Response<NewsResponse>
+                        call: Call<NewsResponse>,
+                        response: Response<NewsResponse>
                     ) {
                         resultVaccineNews.postValue(
                             response.body()?.let { ApiResponse.success(it.articles) })
@@ -121,8 +122,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(
-                            call: Call<TweetResponse>,
-                            response: Response<TweetResponse>
+                        call: Call<TweetResponse>,
+                        response: Response<TweetResponse>
                     ) {
                         ApiResponse.success(response.body()?.includes?.users).let {
                             resultTweet.postValue(
@@ -151,8 +152,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(
-                            call: Call<TweetResponse>,
-                            response: Response<TweetResponse>
+                        call: Call<TweetResponse>,
+                        response: Response<TweetResponse>
                     ) {
                         resultTweet.postValue(
                             response.body()
@@ -179,8 +180,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                 .getAllTweet()
                 .enqueue(object : Callback<TweetResponse> {
                     override fun onResponse(
-                            call: Call<TweetResponse>,
-                            response: Response<TweetResponse>
+                        call: Call<TweetResponse>,
+                        response: Response<TweetResponse>
                     ) {
                         ApiResponse.success(response.body()?.data?.get(0)?.publicMetrics).let {
                             resultTweet.postValue(
@@ -207,26 +208,26 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                    .create()
-                    .getGlobalCovid()
-                    .enqueue(object : Callback<GlobalCovidResponse> {
-                        override fun onResponse(
-                                call: Call<GlobalCovidResponse>,
-                                response: Response<GlobalCovidResponse>
-                        ) {
+                .create()
+                .getGlobalCovid()
+                .enqueue(object : Callback<GlobalCovidResponse> {
+                    override fun onResponse(
+                        call: Call<GlobalCovidResponse>,
+                        response: Response<GlobalCovidResponse>
+                    ) {
 
-                            resultData.postValue(
-                                    response.body()
-                                            ?.let { ApiResponse.success(it.deaths as DeathGlobalCovidResponse) }
-                            )
-                        }
+                        resultData.postValue(
+                            response.body()
+                                ?.let { ApiResponse.success(it.deaths as DeathGlobalCovidResponse) }
+                        )
+                    }
 
-                        override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                            Log.e("RemoteDataSource", t.message.toString())
-                        }
+                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
+                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                        Log.e("RemoteDataSource", t.message.toString())
+                    }
 
-                    })
+                })
         }, 1500)
 
         return resultData
@@ -238,25 +239,25 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                    .create()
-                    .getGlobalCovid()
-                    .enqueue(object : Callback<GlobalCovidResponse> {
-                        override fun onResponse(
-                                call: Call<GlobalCovidResponse>,
-                                response: Response<GlobalCovidResponse>
-                        ) {
-                            resultData.postValue(
-                                    response.body()
-                                            ?.let { ApiResponse.success(it.recovered as RecoveredGlobalCovidResponse) }
-                            )
-                        }
+                .create()
+                .getGlobalCovid()
+                .enqueue(object : Callback<GlobalCovidResponse> {
+                    override fun onResponse(
+                        call: Call<GlobalCovidResponse>,
+                        response: Response<GlobalCovidResponse>
+                    ) {
+                        resultData.postValue(
+                            response.body()
+                                ?.let { ApiResponse.success(it.recovered as RecoveredGlobalCovidResponse) }
+                        )
+                    }
 
-                        override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                            Log.e("RemoteDataSource", t.message.toString())
-                        }
+                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
+                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                        Log.e("RemoteDataSource", t.message.toString())
+                    }
 
-                    })
+                })
         }, 1500)
 
         return resultData
@@ -268,25 +269,25 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                    .create()
-                    .getGlobalCovid()
-                    .enqueue(object : Callback<GlobalCovidResponse> {
-                        override fun onResponse(
-                                call: Call<GlobalCovidResponse>,
-                                response: Response<GlobalCovidResponse>
-                        ) {
-                            resultData.postValue(
-                                    response.body()
-                                            ?.let { ApiResponse.success(it.confirmed as ConfirmedGlobalCovidResponse) }
-                            )
-                        }
+                .create()
+                .getGlobalCovid()
+                .enqueue(object : Callback<GlobalCovidResponse> {
+                    override fun onResponse(
+                        call: Call<GlobalCovidResponse>,
+                        response: Response<GlobalCovidResponse>
+                    ) {
+                        resultData.postValue(
+                            response.body()
+                                ?.let { ApiResponse.success(it.confirmed as ConfirmedGlobalCovidResponse) }
+                        )
+                    }
 
-                        override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                            Log.e("RemoteDataSource", t.message.toString())
-                        }
+                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
+                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                        Log.e("RemoteDataSource", t.message.toString())
+                    }
 
-                    })
+                })
         }, 1500)
 
         return resultData
@@ -298,26 +299,26 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                    .create()
-                    .getIDCovid()
-                    .enqueue(object : Callback<List<IDCovidItemResponse>> {
-                        override fun onResponse(
-                                call: Call<List<IDCovidItemResponse>>,
-                                response: Response<List<IDCovidItemResponse>>
-                        ) {
-                            ApiResponse.success(response.body()?.get(0)).let {
-                                resultData.postValue(
-                                        it as ApiResponse<IDCovidItemResponse>
-                                )
-                            }
+                .create()
+                .getIDCovid()
+                .enqueue(object : Callback<List<IDCovidItemResponse>> {
+                    override fun onResponse(
+                        call: Call<List<IDCovidItemResponse>>,
+                        response: Response<List<IDCovidItemResponse>>
+                    ) {
+                        ApiResponse.success(response.body()?.get(0)).let {
+                            resultData.postValue(
+                                it as ApiResponse<IDCovidItemResponse>
+                            )
                         }
+                    }
 
-                        override fun onFailure(call: Call<List<IDCovidItemResponse>>, t: Throwable) {
-                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                            Log.e("RemoteDataSource", t.message.toString())
-                        }
+                    override fun onFailure(call: Call<List<IDCovidItemResponse>>, t: Throwable) {
+                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                        Log.e("RemoteDataSource", t.message.toString())
+                    }
 
-                    })
+                })
         }, 1500)
 
         return resultData
@@ -330,26 +331,26 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             VaccinationService
-                    .create()
-                    .getAllVaccination()
-                    .enqueue(object : Callback<VaccinationResponse> {
-                        override fun onResponse(
-                                call: Call<VaccinationResponse>,
-                                response: Response<VaccinationResponse>
-                        ) {
-                            ApiResponse.success(response.body()?.monitoring).let {
-                                resultData.postValue(
-                                        it as ApiResponse<List<VaccinationMonitoringItemResponse>>
-                                )
-                            }
+                .create()
+                .getAllVaccination()
+                .enqueue(object : Callback<VaccinationResponse> {
+                    override fun onResponse(
+                        call: Call<VaccinationResponse>,
+                        response: Response<VaccinationResponse>
+                    ) {
+                        ApiResponse.success(response.body()?.monitoring).let {
+                            resultData.postValue(
+                                it as ApiResponse<List<VaccinationMonitoringItemResponse>>
+                            )
                         }
+                    }
 
-                        override fun onFailure(call: Call<VaccinationResponse>, t: Throwable) {
-                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                            Log.e("RemoteDataSource", t.message.toString())
-                        }
+                    override fun onFailure(call: Call<VaccinationResponse>, t: Throwable) {
+                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                        Log.e("RemoteDataSource", t.message.toString())
+                    }
 
-                    })
+                })
         }, 1500)
 
         return resultData

@@ -3,10 +3,10 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.
 import com.google.gson.annotations.SerializedName
 
 data class VaccinationTahapanResponse(
-        @field:SerializedName("petugas_publik")
-        val petugasPublik: VaccinationPetugasPublikResponse? = null,
-        @field:SerializedName("lansia")
-        val lansia: VaccinationLansiaResponse? = null,
-        @field:SerializedName("sdm_kesehatan")
-        val sdmKesehatan: VaccinationSdmKesehatanResponse? = null
+    @field:SerializedName("petugas_publik")
+    val petugasPublik: VaccinationPetugasPublikResponse? = null,
+    @field:SerializedName("lansia")
+    val lansia: VaccinationLansiaResponse? = null,
+    @field:SerializedName("sdm_kesehatan")
+    val sdmKesehatan: VaccinationSdmKesehatanResponse? = null
 )

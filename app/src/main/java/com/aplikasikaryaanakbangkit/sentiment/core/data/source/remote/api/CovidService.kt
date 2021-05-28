@@ -2,7 +2,6 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.GlobalCovidResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -24,15 +23,15 @@ interface CovidService {
 
         fun create(): CovidService {
             val loggingInterceptor =
-                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
-                    .addInterceptor(loggingInterceptor)
-                    .build()
+                .addInterceptor(loggingInterceptor)
+                .build()
             val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
 
             return retrofit.create(CovidService::class.java)
         }

@@ -21,9 +21,9 @@
     <string name="author">Author</string>
     <string name="description">Description</string>
     <string name="error_msg">Error</string>
-    <string name="headlines_news">Headlines News</string>
-    <string name="latest_news">Latest News</string>
-    <string name="publishDate">Publish Date</string>
+    <string name="headlines_news">Berita COVID19 Populer</string>
+    <string name="latest_news">Berita Vaksin</string>
+    <string name="publishDate">Tanggal publis</string>
     <string name="content">Content</string>
     <string name="source">Source</string>
     <string name="open_in_browser">Buka di browser</string>
@@ -33,7 +33,7 @@
     <string name="title_news">News</string>
     <string name="title_vaccination">Vaccination</string>
     <string name="title_team">About Us</string>
-    <string name="headlines_news_see_all">see all</string>
+    <string name="headlines_news_see_all">Lebih banyak</string>
     <string name="world_conditions">Dunia</string>
     <string name="share_world_condition">Share World Condition</string>
     <string name="number_of_case">Kasus COVID-19 terkonfirmasi</string>

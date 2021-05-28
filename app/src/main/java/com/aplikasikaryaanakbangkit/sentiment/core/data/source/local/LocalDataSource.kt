@@ -79,60 +79,60 @@ class LocalDataSource private constructor(
 
     //covid
     fun getConfirmedGlobalCovid(): LiveData<ConfirmedGlobalCovidEntity> =
-            SAVDao.getConfirmedGlobalCovid()
+        SAVDao.getConfirmedGlobalCovid()
 
     fun insertConfirmedGlobalCovid(confirmedCovid: ConfirmedGlobalCovidEntity) =
-            SAVDao.insertConfirmedGlobalCovid(confirmedCovid)
+        SAVDao.insertConfirmedGlobalCovid(confirmedCovid)
 
     fun getDeathlobalCovid(): LiveData<DeathGlobalCovidEntity> =
-            SAVDao.getDeathlobalCovid()
+        SAVDao.getDeathlobalCovid()
 
     fun insertDeathGlobalCovid(deathCovid: DeathGlobalCovidEntity) =
-            SAVDao.insertDeathGlobalCovid(deathCovid)
+        SAVDao.insertDeathGlobalCovid(deathCovid)
 
     fun getRecoveredGlobalCovid(): LiveData<RecoveredGlobalCovidEntity> =
-            SAVDao.getRecoveredGlobalCovid()
+        SAVDao.getRecoveredGlobalCovid()
 
     fun insertRecoveredGlobalCovid(recoveredCovid: RecoveredGlobalCovidEntity) =
-            SAVDao.insertRecoveredGlobalCovid(recoveredCovid)
+        SAVDao.insertRecoveredGlobalCovid(recoveredCovid)
 
     fun getAllGlobalCovid(): LiveData<GlobalCovidEntity> =
-            SAVDao.getAllGlobalCovid()
+        SAVDao.getAllGlobalCovid()
 
     fun getAllIDCovid(): LiveData<IDCovidItemEntity> =
-            SAVDao.getAllIDCovid()
+        SAVDao.getAllIDCovid()
 
     fun insertIDCovid(idCovid: IDCovidItemEntity) =
-            SAVDao.insertIDCOvid(idCovid)
+        SAVDao.insertIDCOvid(idCovid)
 
     //vaksin
     fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity> =
-            SAVDao.getVaccineCakupan()
+        SAVDao.getVaccineCakupan()
 
     fun insertVaccineCakupan(vaccination: VaccinationCakupanEntity) =
-            SAVDao.insertVaccineCakupan(vaccination)
+        SAVDao.insertVaccineCakupan(vaccination)
 
     fun getVaccineLansia(): LiveData<VaccinationLansiaEntity> =
-            SAVDao.getVaccineLansia()
+        SAVDao.getVaccineLansia()
 
     fun insertVaccineLansia(vaccination: VaccinationLansiaEntity) =
-            SAVDao.insertVaccineLansia(vaccination)
+        SAVDao.insertVaccineLansia(vaccination)
 
     fun getVaccineMonitoring(): LiveData<VaccinationMonitoringItemEntity> =
-            SAVDao.getVaccineMonitoring()
+        SAVDao.getVaccineMonitoring()
 
     fun insertVaccineMonitoring(vaccination: VaccinationMonitoringItemEntity) =
-            SAVDao.insertVaccineMonitoring(vaccination)
+        SAVDao.insertVaccineMonitoring(vaccination)
 
     fun getVaccinePetugas(): LiveData<VaccinationPetugasPublikEntity> =
-            SAVDao.getVaccinePetugas()
+        SAVDao.getVaccinePetugas()
 
     fun insertVaccinePetugas(vaccination: VaccinationPetugasPublikEntity) =
-            SAVDao.insertVaccinePetugas(vaccination)
+        SAVDao.insertVaccinePetugas(vaccination)
 
     fun getVaccineSDM(): LiveData<VaccinationSdmKesehatanEntity> =
-            SAVDao.getVaccineSDM()
+        SAVDao.getVaccineSDM()
 
     fun insertVaccineSDM(vaccination: VaccinationSdmKesehatanEntity) =
-            SAVDao.insertVaccineSDM(vaccination)
+        SAVDao.insertVaccineSDM(vaccination)
 }

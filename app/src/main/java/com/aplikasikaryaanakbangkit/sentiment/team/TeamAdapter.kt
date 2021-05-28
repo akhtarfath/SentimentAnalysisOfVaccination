@@ -17,15 +17,15 @@ class TeamAdapter :
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TeamsEntity>() {
             override fun areItemsTheSame(
-                    oldItem: TeamsEntity,
-                    newItem: TeamsEntity
+                oldItem: TeamsEntity,
+                newItem: TeamsEntity
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                    oldItem: TeamsEntity,
-                    newItem: TeamsEntity
+                oldItem: TeamsEntity,
+                newItem: TeamsEntity
             ): Boolean {
                 return oldItem == newItem
             }

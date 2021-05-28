@@ -23,6 +23,10 @@
         <TextView
             android:id="@+id/numberVaccineTarget"
             style="@style/SubTitleText"
+            android:textSize="13sp"
+            android:textAlignment="center"
+            android:lineHeight="23dp"
+            tools:targetApi="p"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,7 +53,10 @@
             <TextView
                 android:id="@+id/numberSdmVaccinationTarget"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,7 +78,10 @@
             <TextView
                 android:id="@+id/numberPetugasVaccinationTarget"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -93,7 +103,10 @@
             <TextView
                 android:id="@+id/numberLansiaVaccinationTarget"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -115,13 +128,17 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/light_blue_navy_700"
+            android:backgroundTint="@color/light_red"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberVaccine1Target"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -136,13 +153,17 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/light_blue_navy_700"
+            android:backgroundTint="@color/light_red"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberVaccine2Target"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

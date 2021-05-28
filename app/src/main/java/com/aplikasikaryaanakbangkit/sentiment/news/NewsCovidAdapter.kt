@@ -23,15 +23,15 @@ class NewsCovidAdapter :
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleCovidEntity>() {
             override fun areItemsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem.url == newItem.url
             }
 
             override fun areContentsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem == newItem
             }

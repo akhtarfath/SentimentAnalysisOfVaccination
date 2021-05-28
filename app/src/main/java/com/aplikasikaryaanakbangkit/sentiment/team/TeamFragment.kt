@@ -1,7 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.team
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
@@ -17,8 +15,6 @@ import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.shimmer_placeholder_about_app.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class TeamFragment : Fragment() {
 

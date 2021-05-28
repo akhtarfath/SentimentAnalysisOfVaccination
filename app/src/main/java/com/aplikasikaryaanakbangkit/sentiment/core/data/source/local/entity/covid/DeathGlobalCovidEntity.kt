@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "deathGlobalCovid")
 data class DeathGlobalCovidEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Int,
-        @ColumnInfo(name="urlDeath")
-        val detail: String? = null,
-        @ColumnInfo(name="valueDeath")
-        val value: Int? = null
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    @ColumnInfo(name = "urlDeath")
+    val detail: String? = null,
+    @ColumnInfo(name = "valueDeath")
+    val value: Int? = null
 )

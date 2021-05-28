@@ -56,6 +56,10 @@
             <TextView
                 android:id="@+id/numberPositiveID"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -77,6 +81,10 @@
             <TextView
                 android:id="@+id/numberOfCuresID"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -98,6 +106,10 @@
             <TextView
                 android:id="@+id/numberOfDeathsID"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

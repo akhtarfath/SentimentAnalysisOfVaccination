@@ -25,6 +25,10 @@
             <TextView
                 android:id="@+id/vaccination1"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,6 +50,10 @@
             <TextView
                 android:id="@+id/vaccination2"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,7 +71,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
@@ -74,7 +82,10 @@
             <TextView
                 android:id="@+id/vaccinationSDM1"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -85,7 +96,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
@@ -96,7 +107,10 @@
             <TextView
                 android:id="@+id/vaccinationSDM2"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -114,7 +128,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
@@ -125,7 +139,10 @@
             <TextView
                 android:id="@+id/vaccinationPetugas1"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -136,7 +153,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
@@ -147,7 +164,10 @@
             <TextView
                 android:id="@+id/vaccinationPetugas2"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -176,7 +196,10 @@
             <TextView
                 android:id="@+id/numberTheElder1"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -198,7 +221,10 @@
             <TextView
                 android:id="@+id/numberTheElder2"
                 style="@style/SubTitleText"
+                android:textSize="13sp"
                 android:textAlignment="center"
+                android:lineHeight="23dp"
+                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "recoveredGlobalEntity")
 data class RecoveredGlobalCovidEntity(
-        @PrimaryKey(autoGenerate = true)
-        val id: Int,
-        @ColumnInfo(name="urlRecovered")
-        val detail: String? = null,
-        @ColumnInfo(name="valueRecovered")
-        val value: Int? = null
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    @ColumnInfo(name = "urlRecovered")
+    val detail: String? = null,
+    @ColumnInfo(name = "valueRecovered")
+    val value: Int? = null
 )
