@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/light_blue_navy_200"
+        android:backgroundTint="@color/silver"
         app:cardCornerRadius="5dp"
         tools:ignore="MissingConstraints">
 
@@ -25,6 +25,7 @@
             style="@style/SubTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/silver"
             android:layout_gravity="center"
             android:text="@string/total_vaccination_target" />
 
@@ -42,13 +43,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_yellow"
+            android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberPositive"
                 style="@style/SubTitleText"
+                android:textColor="@color/silver"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,12 +66,13 @@
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_green"
+            android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberOfCures"
+                android:textColor="@color/silver"
                 style="@style/SubTitleText"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -85,13 +88,14 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_red"
+            android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberOfDeaths"
+                android:textColor="@color/silver"
                 style="@style/SubTitleText"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
@@ -115,12 +119,13 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/light_blue_navy_700"
+            android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberVaccine1"
+                android:textColor="@color/silver"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,13 +141,14 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/light_blue_navy_700"
+            android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberVaccine2"
                 style="@style/SubTitleText"
+                android:textColor="@color/silver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

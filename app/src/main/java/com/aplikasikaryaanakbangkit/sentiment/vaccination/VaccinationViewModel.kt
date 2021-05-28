@@ -5,6 +5,4 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
 class VaccinationViewModel(
     private val _repository: SAVRepository
-) : ViewModel() {
-
-}
+) : ViewModel()

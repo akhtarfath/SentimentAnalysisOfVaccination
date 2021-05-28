@@ -52,10 +52,10 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                             .withLocale(Locale("in", "ID", "ID"))
                     )
 
-                twitterPost.text = tweet.text
-                dateTwitterPost.text = date
-                nameUserTwitter.text = tweet.name
-                usernameTwitter.text = StringBuilder("@${tweet.username}")
+                tvTwitterPost.text = tweet.text
+                tvDateTwitterPost.text = date
+                tvNameUserTwitter.text = tweet.name
+                tvUsernameTwitter.text = StringBuilder("@${tweet.username}")
 
                 replyCount.text = tweet.replyCount.toString()
                 retweetCount.text = tweet.retweetCount.toString()

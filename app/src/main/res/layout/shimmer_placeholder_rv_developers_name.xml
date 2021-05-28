@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/developers"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_width="wrap_content"
+        android:backgroundTint="@color/silver"
+        app:cardCornerRadius="15dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/SubTitleText"
+            android:textColor="@color/silver"
+            android:layout_marginVertical="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developers" />
+
+    </androidx.cardview.widget.CardView>
+
+    <include
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        layout="@layout/shimmer_placeholder_developer_name" />
+
+</LinearLayout>

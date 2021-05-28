@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/tweet_tv"
+        android:id="@+id/tvTweet"
         style="@style/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +23,6 @@
         layout="@layout/rv_tweets_post_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tweet_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTweet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
@@ -33,12 +32,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/name_user_twitter"
+                    android:id="@+id/tvNameUserTwitter"
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/nama_user_twitter"
+                    android:text="@string/name_user_twitter"
                     android:textFontWeight="700"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/twitter_photo"
@@ -46,7 +45,7 @@
                     tools:targetApi="p" />
 
                 <TextView
-                    android:id="@+id/username_twitter"
+                    android:id="@+id/tvUsernameTwitter"
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,11 +54,11 @@
                     android:textFontWeight="500"
                     android:textSize="13sp"
                     app:layout_constraintStart_toEndOf="@+id/twitter_photo"
-                    app:layout_constraintTop_toBottomOf="@+id/name_user_twitter"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNameUserTwitter"
                     tools:targetApi="p" />
 
                 <TextView
-                    android:id="@+id/date_twitter_post"
+                    android:id="@+id/tvDateTwitterPost"
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,11 +67,11 @@
                     android:textFontWeight="300"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/username_twitter"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUsernameTwitter"
                     tools:targetApi="p" />
 
                 <TextView
-                    android:id="@+id/twitter_post"
+                    android:id="@+id/tvTwitterPost"
                     style="@style/ContentTitleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,10 +81,9 @@
                     android:paddingTop="10dp"
                     android:text="@string/tweet_post"
                     android:textSize="14sp"
-
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date_twitter_post"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDateTwitterPost"
                     tools:targetApi="p" />
 
                 <LinearLayout
@@ -95,7 +93,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/twitter_post">
+                    app:layout_constraintTop_toBottomOf="@+id/tvTwitterPost">
 
                     <ImageView
                         android:layout_width="18dp"

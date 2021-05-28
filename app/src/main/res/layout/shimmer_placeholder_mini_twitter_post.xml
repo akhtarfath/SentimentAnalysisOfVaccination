@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="15dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="7dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/twitter_photo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@color/silver"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvNameUserTwitter"
+                    app:cardCornerRadius="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/silver"
+                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvNameUserTwitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ContentTitleText"
+                        android:layout_marginVertical="0dp"
+                        android:textColor="@color/silver"
+                        android:text="@string/name_user_twitter"
+                        android:textFontWeight="700"
+                        android:textSize="14sp"
+                        tools:targetApi="p" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvUsernameTwitter"
+                    app:cardCornerRadius="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/silver"
+                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/cvNameUserTwitter">
+
+                    <TextView
+                        android:id="@+id/tvUsernameTwitter"
+                        style="@style/ContentTitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="0dp"
+                        android:textColor="@color/silver"
+                        android:text="@string/username_twitter"
+                        android:textFontWeight="500"
+                        android:textSize="13sp"
+                        tools:targetApi="p" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvDateTwitterPost"
+                    app:cardCornerRadius="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvUsernameTwitter">
+
+                    <TextView
+                        android:id="@+id/tvDateTwitterPost"
+                        style="@style/ContentTitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/silver"
+                        android:layout_marginVertical="0dp"
+                        android:text="@string/long_date_example"
+                        android:textFontWeight="300"
+                        android:textSize="12sp"
+                        tools:targetApi="p" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvTwitterPost"
+                    app:cardCornerRadius="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/silver"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvDateTwitterPost">
+
+                    <TextView
+                        android:id="@+id/tvTwitterPost"
+                        style="@style/ContentTitleText"
+                        android:layout_marginVertical="0dp"
+                        android:textColor="@color/silver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:justificationMode="inter_word"
+                        android:lineHeight="23dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/tweet_post"
+                        android:textSize="14sp"
+                        tools:targetApi="p" />
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvTwitterPost">
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:backgroundTint="@color/silver"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cvDateTwitterPost"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="45dp"
+                        android:backgroundTint="@color/silver"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cvDateTwitterPost"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="45dp"
+                        android:backgroundTint="@color/silver"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cvDateTwitterPost"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="45dp"
+                        android:backgroundTint="@color/silver"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cvDateTwitterPost"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</androidx.cardview.widget.CardView>

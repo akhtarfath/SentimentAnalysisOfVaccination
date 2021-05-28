@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.team
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.lottie.LottieAnimationView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.shimmer_placeholder_about_app.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class TeamFragment : Fragment() {
 
@@ -29,7 +34,8 @@ class TeamFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _fragmentTeamBinding = FragmentTeamBinding.inflate(inflater, container, false)
+        _fragmentTeamBinding =
+            FragmentTeamBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -46,10 +52,12 @@ class TeamFragment : Fragment() {
             if (teams != null) {
                 when (teams.status) {
                     Status.LOADING -> {
-                        true.loading()
+                        true.shimmerLoading()
                     }
                     Status.SUCCESS -> {
-                        false.loading()
+                        false.shimmerLoading()
+
+                        cvAboutApp
                         _fragmentTeamBinding?.layoutRvDevelopersName?.let {
                             with(it.rvDeveloperName) {
                                 val layoutManagerVertical = LinearLayoutManager(context)
@@ -63,7 +71,7 @@ class TeamFragment : Fragment() {
                         }
                     }
                     Status.ERROR -> {
-                        false.loading()
+                        false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
                             activity?.applicationContext,
@@ -82,13 +90,16 @@ class TeamFragment : Fragment() {
         _fragmentTeamBinding = null
     }
 
-    private fun Boolean.loading() {
-        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
-
+    private fun Boolean.shimmerLoading() {
         if (this) {
-            progressBar?.visibility = View.VISIBLE
+            shimmerFrameLayout.startShimmer()
+            shimmerFrameLayout.visibility = View.VISIBLE
+            scrollViewLayout.visibility = View.GONE
         } else {
-            progressBar?.visibility = View.GONE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.GONE
+            scrollViewLayout.visibility = View.VISIBLE
+            Thread.sleep(750)
         }
     }
 }

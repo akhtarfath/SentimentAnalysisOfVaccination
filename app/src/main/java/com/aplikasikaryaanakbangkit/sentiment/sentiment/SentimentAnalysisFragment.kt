@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.lottie.LottieAnimationView
-import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SentimentAnalysisFragment : Fragment() {
 
@@ -43,8 +46,9 @@ class SentimentAnalysisFragment : Fragment() {
         val sentimentAnalysisViewModel =
             ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
+        true.shimmerLoading()
         sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
-            false.loading()
+            false.shimmerLoading()
             with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
                 val layoutManagerVertical =
                     LinearLayoutManager(context)
@@ -60,14 +64,14 @@ class SentimentAnalysisFragment : Fragment() {
         })
 
         sentimentAnalysisViewModel.getPost().observe(viewLifecycleOwner, { post ->
-            false.loading()
+            false.shimmerLoading()
             Log.d("Post Fragment", post.status.toString())
             Log.d("Post Fragment", post.data.toString())
             Log.d("Post Fragment", post.message.toString())
         })
 
         sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
-            false.loading()
+            false.shimmerLoading()
             Log.d("profile Fragment", profile.status.toString())
             Log.d("profile Fragment", profile.data.toString())
             Log.d("profile Fragment", profile.message.toString())
@@ -79,13 +83,16 @@ class SentimentAnalysisFragment : Fragment() {
         _sentimentAnalysisBinding = null
     }
 
-    private fun Boolean.loading() {
-        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
-
+    private fun Boolean.shimmerLoading() {
         if (this) {
-            progressBar?.visibility = View.VISIBLE
+            shimmerFrameLayout.startShimmer()
+            shimmerFrameLayout.visibility = View.VISIBLE
+            scrollViewLayout.visibility = View.GONE
         } else {
-            progressBar?.visibility = View.GONE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.GONE
+            scrollViewLayout.visibility = View.VISIBLE
+            Thread.sleep(750)
         }
     }
 }

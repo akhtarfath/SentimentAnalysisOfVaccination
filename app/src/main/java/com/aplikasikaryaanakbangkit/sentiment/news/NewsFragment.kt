@@ -1,20 +1,23 @@
 package com.aplikasikaryaanakbangkit.sentiment.news
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.lottie.LottieAnimationView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentNewsBinding
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class NewsFragment : Fragment() {
 
@@ -42,17 +45,21 @@ class NewsFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireContext())
         val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
-        true.loading()
+        true.shimmerLoading()
         newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
-                    Status.LOADING -> true.loading()
+                    Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.loading()
+                        false.shimmerLoading()
                         _fragmentNewsBinding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
-                                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                                    LinearLayoutManager(
+                                        context,
+                                        LinearLayoutManager.HORIZONTAL,
+                                        false
+                                    )
                                 this.layoutManager = layoutManagerHorizontal
                                 this.setHasFixedSize(true)
 
@@ -63,7 +70,7 @@ class NewsFragment : Fragment() {
                         }
                     }
                     Status.ERROR -> {
-                        false.loading()
+                        false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
                             activity?.applicationContext,
@@ -79,9 +86,9 @@ class NewsFragment : Fragment() {
         newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
-                    Status.LOADING -> true.loading()
+                    Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.loading()
+                        false.shimmerLoading()
                         _fragmentNewsBinding?.covidNews?.newsActivityVertical?.let {
                             with(it.rvVertical) {
 
@@ -96,7 +103,7 @@ class NewsFragment : Fragment() {
                         }
                     }
                     Status.ERROR -> {
-                        false.loading()
+                        false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
                             activity?.applicationContext,
@@ -115,13 +122,16 @@ class NewsFragment : Fragment() {
         _fragmentNewsBinding = null
     }
 
-    private fun Boolean.loading() {
-        val progressBar = view?.findViewById<LottieAnimationView>(R.id.progressBar)
-
+    private fun Boolean.shimmerLoading() {
         if (this) {
-            progressBar?.visibility = View.VISIBLE
+            shimmerFrameLayout.startShimmer()
+            shimmerFrameLayout.visibility = View.VISIBLE
+            scrollViewLayout.visibility = View.GONE
         } else {
-            progressBar?.visibility = View.GONE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.GONE
+            scrollViewLayout.visibility = View.VISIBLE
+            Thread.sleep(750)
         }
     }
 }

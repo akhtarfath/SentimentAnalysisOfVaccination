@@ -9,7 +9,37 @@
     android:paddingBottom="60dp"
     tools:context=".MainActivity">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessLeaf">
+
+            <include layout="@layout/shimmer_placeholder_covid_statistic"/>
+
+            <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="25dp"
+                layout="@layout/shimmer_placeholder_covid_information" />
+
+            <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                layout="@layout/shimmer_placeholder_twitter_post"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <ScrollView
+        android:id="@+id/scrollViewLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -20,14 +50,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="ScrollViewSize">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/covidStatistic"
-                layout="@layout/item_covid_statistic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                layout="@layout/item_covid_statistic" />
 
             <include
                 android:id="@+id/covidInformation"

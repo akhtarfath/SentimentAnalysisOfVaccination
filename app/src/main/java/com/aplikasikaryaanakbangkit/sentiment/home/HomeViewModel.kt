@@ -5,7 +5,5 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
 class HomeViewModel(
     private val _repository: SAVRepository
-) : ViewModel() {
-
-}
+) : ViewModel()
 

@@ -17,7 +17,7 @@
 
     <!--  mine  -->
     <string name="image_news">image news</string>
-    <string name="title">Title</string>
+    <string name="title">Judul berita paling hits</string>
     <string name="author">Author</string>
     <string name="description">Description</string>
     <string name="error_msg">Error</string>
@@ -44,8 +44,8 @@
     <string name="death">Meninggal</string>
     <string name="local_conditions">Indonesia</string>
     <string name="protokol_kesehatan">Protokol Kesehatan</string>
-    <string name="developer_name">Developer\'s Name</string>
-    <string name="percentase_sentiment_example">72,2%</string>
+    <string name="developer_name">Developer\'s Full Name</string>
+    <string name="percent_sentiment_example">72,2%</string>
     <string name="positive_sentiment">Positive</string>
     <string name="neutral_sentiment">Neutral</string>
     <string name="negative_sentiment">Negative</string>
@@ -54,11 +54,11 @@
     <string name="sentiment_text3">Percaya Vaksin</string>
     <string name="sentiment_text4">!??</string>
     <string name="apa_kata_mereka">Apa Kata Mereka?</string>
-    <string name="nama_user_twitter">Nama</string>
+    <string name="name_user_twitter">Nama Pengguna</string>
     <string name="username_twitter">\@username</string>
     <string name="dot">-</string>
-    <string name="long_date_example">2d</string>
-    <string name="tweet_post">Ini adalah isi dari post tweet pengguna</string>
+    <string name="long_date_example">11 Januari Bertemu</string>
+    <string name="tweet_post">Ini adalah isi dari post tweet pengguna isinya biasanya informatif tapi banyak ga jelasnya sih padahal.</string>
     <string name="satu">1</string>
     <string name="application_name">Application Name</string>
     <string name="about_apps">About Apps</string>
