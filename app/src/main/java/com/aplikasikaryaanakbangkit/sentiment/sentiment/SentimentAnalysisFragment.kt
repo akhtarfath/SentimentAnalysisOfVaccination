@@ -44,7 +44,7 @@ class SentimentAnalysisFragment : Fragment() {
 
         true.shimmerLoading()
         sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
-            false.shimmerLoading()
+
             with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
                 val layoutManagerVertical =
                     LinearLayoutManager(context)
@@ -57,20 +57,21 @@ class SentimentAnalysisFragment : Fragment() {
                 tweet.let { tweetAdapter.setTweet(it) }
                 tweetAdapter.notifyDataSetChanged()
             }
+            false.shimmerLoading()
         })
 
         sentimentAnalysisViewModel.getPost().observe(viewLifecycleOwner, { post ->
-            false.shimmerLoading()
             Log.d("Post Fragment", post.status.toString())
             Log.d("Post Fragment", post.data.toString())
             Log.d("Post Fragment", post.message.toString())
+            false.shimmerLoading()
         })
 
         sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
-            false.shimmerLoading()
             Log.d("profile Fragment", profile.status.toString())
             Log.d("profile Fragment", profile.data.toString())
             Log.d("profile Fragment", profile.message.toString())
+            false.shimmerLoading()
         })
     }
 

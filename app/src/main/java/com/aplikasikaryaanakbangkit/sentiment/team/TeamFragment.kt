@@ -14,7 +14,6 @@ import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentTeamBinding
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.shimmer_placeholder_about_app.*
 
 class TeamFragment : Fragment() {
 
@@ -51,9 +50,6 @@ class TeamFragment : Fragment() {
                         true.shimmerLoading()
                     }
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
-
-                        cvAboutApp
                         _fragmentTeamBinding?.layoutRvDevelopersName?.let {
                             with(it.rvDeveloperName) {
                                 val layoutManagerVertical = LinearLayoutManager(context)
@@ -65,6 +61,7 @@ class TeamFragment : Fragment() {
                                 teamAdapter.submitList(teams.data)
                             }
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()

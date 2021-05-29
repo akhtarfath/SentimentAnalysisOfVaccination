@@ -46,7 +46,6 @@ class NewsFragment : Fragment() {
                 when (newsCovid.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         _fragmentNewsBinding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
@@ -63,6 +62,7 @@ class NewsFragment : Fragment() {
                                 newsCovidAdapter.submitList(newsCovid.data)
                             }
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
@@ -83,7 +83,6 @@ class NewsFragment : Fragment() {
                 when (newsVaccine.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         _fragmentNewsBinding?.covidNews?.newsActivityVertical?.let {
                             with(it.rvVertical) {
 
@@ -96,6 +95,7 @@ class NewsFragment : Fragment() {
                                 newsVaccineAdapter.submitList(newsVaccine.data)
                             }
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()

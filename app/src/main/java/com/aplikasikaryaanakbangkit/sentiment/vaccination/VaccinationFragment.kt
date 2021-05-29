@@ -56,7 +56,6 @@ class VaccinationFragment : Fragment() {
                 when (vaccinationTarget.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         Log.d("Sasaran Vaksinasi", vaccinationTarget.data.toString())
                         _binding.vaccineTarget.targetOfVaccination.let {
                             it.numberVaccineTarget.text = StringBuilder(
@@ -99,6 +98,7 @@ class VaccinationFragment : Fragment() {
                                         )
                             )
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
@@ -115,7 +115,6 @@ class VaccinationFragment : Fragment() {
 
         vaccineViewModel.getVaccinationStepHealthHR.observe(viewLifecycleOwner) { sdm ->
             if (sdm != null) {
-                false.shimmerLoading()
                 Log.d("Tahapan SDM Covid", sdm.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.healthHumanResources.let {
@@ -162,12 +161,12 @@ class VaccinationFragment : Fragment() {
                         }"
                     )
                 }
+                false.shimmerLoading()
             }
         }
 
         vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner) { lansia ->
             if (lansia != null) {
-                false.shimmerLoading()
                 Log.d("Tahapan Lansia Covid", lansia.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.theElderly.let {
@@ -214,12 +213,12 @@ class VaccinationFragment : Fragment() {
                         }"
                     )
                 }
+                false.shimmerLoading()
             }
         }
 
         vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner) { petugas ->
             if (petugas != null) {
-                false.shimmerLoading()
                 Log.d("Tahapan Petugas Covid", petugas.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.publicOfficers.let {
@@ -266,6 +265,7 @@ class VaccinationFragment : Fragment() {
                         }"
                     )
                 }
+                false.shimmerLoading()
             }
         }
 
@@ -274,7 +274,6 @@ class VaccinationFragment : Fragment() {
                 when (cakupanVaksinasi.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         Log.d("Cakupan Vaksinasi", cakupanVaksinasi.data.toString())
 
                         _binding.vaccineCoverage.targetOfVaccination.let {
@@ -309,6 +308,7 @@ class VaccinationFragment : Fragment() {
                                         cakupanVaksinasi.data?.elderlyVaccination2.toString()
                             )
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()

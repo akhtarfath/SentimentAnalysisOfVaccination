@@ -56,7 +56,6 @@ class HomeFragment : Fragment() {
 
         covidViewModel.getGlobalCovid.observe(viewLifecycleOwner, { globalCovid ->
             if (globalCovid != null) {
-                false.shimmerLoading()
                 _binding?.covidStatistic?.covidWorldCondition?.let {
                     it.numberPositive.text = StringBuilder(
                         "Positif \n${
@@ -80,6 +79,7 @@ class HomeFragment : Fragment() {
                         }"
                     )
                 }
+                false.shimmerLoading()
             }
         })
 
@@ -88,7 +88,6 @@ class HomeFragment : Fragment() {
                 when (idCovid.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         Log.d("ID Covid", idCovid.data.toString())
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
@@ -113,6 +112,7 @@ class HomeFragment : Fragment() {
                                 }"
                             )
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
@@ -133,7 +133,6 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
-            false.shimmerLoading()
             with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
                     LinearLayoutManager(
@@ -150,6 +149,7 @@ class HomeFragment : Fragment() {
                 tweetAdapter.setTweet(tweet)
                 tweetAdapter.notifyDataSetChanged()
             }
+            false.shimmerLoading()
         })
 
         tweetViewModel.getPost().observe(viewLifecycleOwner, { post ->
@@ -157,7 +157,7 @@ class HomeFragment : Fragment() {
         })
 
         tweetViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
-            Log.d("profile Fragment", profile.data.toString())
+            Log.d("Profile Fragment", profile.data.toString())
         })
     }
 
@@ -170,7 +170,6 @@ class HomeFragment : Fragment() {
                 when (newsCovid.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        false.shimmerLoading()
                         _binding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
@@ -188,6 +187,7 @@ class HomeFragment : Fragment() {
                                 newsCovidAdapter.submitList(newsCovid.data)
                             }
                         }
+                        false.shimmerLoading()
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
