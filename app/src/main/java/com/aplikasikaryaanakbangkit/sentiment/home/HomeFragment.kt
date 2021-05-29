@@ -22,6 +22,8 @@ import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewMod
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.mini_item_covid_local_condition.*
 import kotlinx.android.synthetic.main.mini_item_covid_world_condition.*
+import java.text.NumberFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -70,13 +72,22 @@ class HomeFragment : Fragment() {
                 false.shimmerLoading()
                 _binding?.covidStatistic?.covidWorldCondition?.let {
                     numberPositive.text = StringBuilder(
-                        "Positif \n${globalCovid.confirmedGlobal}"
+                        "Positif \n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                globalCovid.confirmedGlobal.toInt()
+                            )}"
                     )
                     numberOfDeaths.text = StringBuilder(
-                        "Meninggal \n${globalCovid.deathGlobal}"
+                        "Meninggal \n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                globalCovid.deathGlobal.toInt()
+                            )}"
                     )
                     numberOfCures.text = StringBuilder(
-                        "Sembuh \n${globalCovid.recoveredGlobal}"
+                        "Sembuh \n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                globalCovid.recoveredGlobal.toInt()
+                            )}"
                     )
                 }
             }
@@ -91,13 +102,22 @@ class HomeFragment : Fragment() {
                         Log.d("ID Covid", idCovid.data.toString())
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
-                                "Positif \n${idCovid.data?.confirmed?.toString()}"
+                                "Positif \n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                        idCovid.data?.confirmed ?: 0
+                                    )}"
                             )
                             numberOfDeathsID.text = StringBuilder(
-                                "Meninggal \n${idCovid.data?.deaths?.toString()}"
+                                "Meninggal \n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                        idCovid.data?.deaths ?: 0
+                                    )}"
                             )
                             numberOfCuresID.text = StringBuilder(
-                                "Sembuh \n${idCovid.data?.recovered?.toString()}"
+                                "Sembuh \n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                        idCovid.data?.recovered ?: 0
+                                    )}"
                             )
                         }
                     }
