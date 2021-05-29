@@ -15,10 +15,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.ConfirmedGlobalCovidResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.DeathGlobalCovidResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.RecoveredGlobalCovidResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
@@ -310,87 +307,34 @@ class SAVRepository private constructor(
     override fun getAllTweet(): LiveData<List<TweetEntity>> =
         localDataSource.getAllTweets()
 
-    override fun getConfirmed(): LiveData<Resource<ConfirmedGlobalCovidEntity>> {
-        return object :
-            NetworkBoundResource<ConfirmedGlobalCovidEntity, ConfirmedGlobalCovidResponse>(
-                appExecutors
-            ) {
-            override fun loadFromDB(): LiveData<ConfirmedGlobalCovidEntity> =
-                localDataSource.getConfirmedGlobalCovid()
-
-            override fun shouldFetch(data: ConfirmedGlobalCovidEntity?): Boolean =
-                true
-
-            override fun createCall(): LiveData<ApiResponse<ConfirmedGlobalCovidResponse>> =
-                remoteDataSource.getConfirmedGlobalCovid()
-
-            override fun saveCallResult(data: ConfirmedGlobalCovidResponse) {
-                val covidGlobal =
-                    ConfirmedGlobalCovidEntity(
-                        1,
-                        data.detail,
-                        data.value
-                    )
-                localDataSource.insertConfirmedGlobalCovid(covidGlobal)
-            }
-        }.asLiveData()
-    }
-
     //covid
-    override fun getDeath(): LiveData<Resource<DeathGlobalCovidEntity>> {
+
+    override fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>> {
         return object :
-            NetworkBoundResource<DeathGlobalCovidEntity, DeathGlobalCovidResponse>(
+            NetworkBoundResource<GlobalCovidEntity, GlobalCovidResponse>(
                 appExecutors
             ) {
-            override fun loadFromDB(): LiveData<DeathGlobalCovidEntity> =
-                localDataSource.getDeathlobalCovid()
+            override fun loadFromDB(): LiveData<GlobalCovidEntity> =
+                localDataSource.getAllGlobalCovid()
 
-            override fun shouldFetch(data: DeathGlobalCovidEntity?): Boolean =
+            override fun shouldFetch(data: GlobalCovidEntity?): Boolean =
                 true
 
-            override fun createCall(): LiveData<ApiResponse<DeathGlobalCovidResponse>> =
-                remoteDataSource.getDeathGlobalCovid()
+            override fun createCall(): LiveData<ApiResponse<GlobalCovidResponse>> =
+                remoteDataSource.getAllGlobalCovid()
 
-            override fun saveCallResult(data: DeathGlobalCovidResponse) {
+            override fun saveCallResult(data: GlobalCovidResponse) {
                 val covidGlobal =
-                    DeathGlobalCovidEntity(
+                    GlobalCovidEntity(
                         1,
-                        data.detail,
-                        data.value
+                        data.deaths?.value,
+                        data.confirmed?.value,
+                        data.recovered?.value
                     )
-                localDataSource.insertDeathGlobalCovid(covidGlobal)
+                localDataSource.insertAllGlobalCovid(covidGlobal)
             }
         }.asLiveData()
     }
-
-    override fun getRecovered(): LiveData<Resource<RecoveredGlobalCovidEntity>> {
-        return object :
-            NetworkBoundResource<RecoveredGlobalCovidEntity, RecoveredGlobalCovidResponse>(
-                appExecutors
-            ) {
-            override fun loadFromDB(): LiveData<RecoveredGlobalCovidEntity> =
-                localDataSource.getRecoveredGlobalCovid()
-
-            override fun shouldFetch(data: RecoveredGlobalCovidEntity?): Boolean =
-                true
-
-            override fun createCall(): LiveData<ApiResponse<RecoveredGlobalCovidResponse>> =
-                remoteDataSource.getRecoveredGlobalCovid()
-
-            override fun saveCallResult(data: RecoveredGlobalCovidResponse) {
-                val covidGlobal =
-                    RecoveredGlobalCovidEntity(
-                        1,
-                        data.detail,
-                        data.value
-                    )
-                localDataSource.insertRecoveredGlobalCovid(covidGlobal)
-            }
-        }.asLiveData()
-    }
-
-    override fun getAllGlobalCovid(): LiveData<GlobalCovidEntity> =
-        localDataSource.getAllGlobalCovid()
 
     override fun getAllIDCovid(): LiveData<Resource<IDCovidItemEntity>> {
         return object :

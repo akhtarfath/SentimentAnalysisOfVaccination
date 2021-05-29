@@ -28,10 +28,7 @@ interface SAVDataSource {
     fun getAllTweet(): LiveData<List<TweetEntity>>
 
     //covid
-    fun getConfirmed(): LiveData<Resource<ConfirmedGlobalCovidEntity>>
-    fun getDeath(): LiveData<Resource<DeathGlobalCovidEntity>>
-    fun getRecovered(): LiveData<Resource<RecoveredGlobalCovidEntity>>
-    fun getAllGlobalCovid(): LiveData<GlobalCovidEntity>
+    fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>>
     fun getAllIDCovid(): LiveData<Resource<IDCovidItemEntity>>
 
     //vaksinasi

@@ -4,10 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.ConfirmedGlobalCovidEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.DeathGlobalCovidEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.RecoveredGlobalCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
@@ -22,9 +19,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vacc
         TeamsEntity::class,
         DataItemTweetEntity::class,
         UserItemsTweetEntity::class,
-        DeathGlobalCovidEntity::class,
-        ConfirmedGlobalCovidEntity::class,
-        RecoveredGlobalCovidEntity::class,
+        GlobalCovidEntity::class,
         IDCovidItemEntity::class,
         VaccinationCoverageEntity::class,
         VaccinationElderlyEntity::class,

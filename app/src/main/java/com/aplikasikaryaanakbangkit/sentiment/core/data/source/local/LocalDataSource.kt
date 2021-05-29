@@ -65,26 +65,12 @@ class LocalDataSource private constructor(
     fun getAllTweets(): LiveData<List<TweetEntity>> = SAVDao.getAllTweets()
 
     //covid
-    fun getConfirmedGlobalCovid(): LiveData<ConfirmedGlobalCovidEntity> =
-            SAVDao.getConfirmedGlobalCovid()
-
-    fun insertConfirmedGlobalCovid(confirmedCovid: ConfirmedGlobalCovidEntity) =
-            SAVDao.insertConfirmedGlobalCovid(confirmedCovid)
-
-    fun getDeathlobalCovid(): LiveData<DeathGlobalCovidEntity> =
-            SAVDao.getGlobalDeathCovid()
-
-    fun insertDeathGlobalCovid(deathCovid: DeathGlobalCovidEntity) =
-            SAVDao.insertDeathGlobalCovid(deathCovid)
-
-    fun getRecoveredGlobalCovid(): LiveData<RecoveredGlobalCovidEntity> =
-            SAVDao.getRecoveredGlobalCovid()
-
-    fun insertRecoveredGlobalCovid(recoveredCovid: RecoveredGlobalCovidEntity) =
-            SAVDao.insertRecoveredGlobalCovid(recoveredCovid)
 
     fun getAllGlobalCovid(): LiveData<GlobalCovidEntity> =
             SAVDao.getAllGlobalCovid()
+
+    fun insertAllGlobalCovid(globalCovid: GlobalCovidEntity) =
+        SAVDao.insertAllGlobalCovid(globalCovid)
 
     fun getAllIDCovid(): LiveData<IDCovidItemEntity> =
             SAVDao.getAllIDCovid()

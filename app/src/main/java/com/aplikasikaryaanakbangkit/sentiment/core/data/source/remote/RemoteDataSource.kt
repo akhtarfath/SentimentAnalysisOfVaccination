@@ -171,39 +171,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     //covid
-    fun getDeathGlobalCovid(): LiveData<ApiResponse<DeathGlobalCovidResponse>> {
-        val resultData = MutableLiveData<ApiResponse<DeathGlobalCovidResponse>>()
-
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            CovidService
-                .create()
-                .getGlobalCovid()
-                .enqueue(object : Callback<GlobalCovidResponse> {
-                    override fun onResponse(
-                        call: Call<GlobalCovidResponse>,
-                        response: Response<GlobalCovidResponse>
-                    ) {
-
-                        resultData.postValue(
-                            response.body()
-                                ?.let { ApiResponse.success(it.deaths as DeathGlobalCovidResponse) }
-                        )
-                    }
-
-                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
-
-                })
-        }, 1500)
-
-        return resultData
-    }
-
-    fun getRecoveredGlobalCovid(): LiveData<ApiResponse<RecoveredGlobalCovidResponse>> {
-        val resultData = MutableLiveData<ApiResponse<RecoveredGlobalCovidResponse>>()
+    fun getAllGlobalCovid(): LiveData<ApiResponse<GlobalCovidResponse>> {
+        val resultData = MutableLiveData<ApiResponse<GlobalCovidResponse>>()
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
@@ -217,37 +186,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                     ) {
                         resultData.postValue(
                             response.body()
-                                ?.let { ApiResponse.success(it.recovered as RecoveredGlobalCovidResponse) }
-                        )
-                    }
-
-                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
-
-                })
-        }, 1500)
-
-        return resultData
-    }
-
-    fun getConfirmedGlobalCovid(): LiveData<ApiResponse<ConfirmedGlobalCovidResponse>> {
-        val resultData = MutableLiveData<ApiResponse<ConfirmedGlobalCovidResponse>>()
-
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            CovidService
-                .create()
-                .getGlobalCovid()
-                .enqueue(object : Callback<GlobalCovidResponse> {
-                    override fun onResponse(
-                        call: Call<GlobalCovidResponse>,
-                        response: Response<GlobalCovidResponse>
-                    ) {
-                        resultData.postValue(
-                            response.body()
-                                ?.let { ApiResponse.success(it.confirmed as ConfirmedGlobalCovidResponse) }
+                                ?.let { ApiResponse.success(it) }
                         )
                     }
 

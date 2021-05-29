@@ -55,38 +55,26 @@ class HomeFragment : Fragment() {
     private fun loadCovid(factory: ViewModelFactory) {
         val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-        covidViewModel.getConfirmGlobal.observe(viewLifecycleOwner, {
-            Log.d("Confirm Global Covid", it.data.toString())
-        })
-
-        covidViewModel.getDeathGlobal.observe(viewLifecycleOwner, {
-            Log.d("Death Global Covid", it.data.toString())
-        })
-
-        covidViewModel.getRecoveredGlobal.observe(viewLifecycleOwner, {
-            Log.d("Recovered Global Covid", it.data.toString())
-        })
-
         covidViewModel.getGlobalCovid.observe(viewLifecycleOwner, { globalCovid ->
             if (globalCovid != null) {
                 false.shimmerLoading()
                 _binding?.covidStatistic?.covidWorldCondition?.let {
-                    numberPositive.text = StringBuilder(
+                    it.numberPositive.text = StringBuilder(
                         "Positif \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.confirmedGlobal.toInt()
+                                globalCovid.data?.confirmedGlobal ?: 0
                             )}"
                     )
-                    numberOfDeaths.text = StringBuilder(
+                    it.numberOfDeaths.text = StringBuilder(
                         "Meninggal \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.deathGlobal.toInt()
+                                globalCovid.data?.deathGlobal ?: 0
                             )}"
                     )
-                    numberOfCures.text = StringBuilder(
+                    it.numberOfCures.text = StringBuilder(
                         "Sembuh \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.recoveredGlobal.toInt()
+                                globalCovid.data?.recoveredGlobal ?: 0
                             )}"
                     )
                 }

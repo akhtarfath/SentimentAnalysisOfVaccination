@@ -61,26 +61,11 @@ interface SAVDao {
     fun getAllTweets(): LiveData<List<TweetEntity>>
 
     //covid
-    @Query("SELECT * FROM confirmGlobalCovid")
-    fun getConfirmedGlobalCovid(): LiveData<ConfirmedGlobalCovidEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertConfirmedGlobalCovid(confirmedCovid: ConfirmedGlobalCovidEntity)
-
-    @Query("SELECT * FROM deathGlobalCovid")
-    fun getGlobalDeathCovid(): LiveData<DeathGlobalCovidEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDeathGlobalCovid(deathCovid: DeathGlobalCovidEntity)
-
-    @Query("SELECT * FROM recoveredGlobalEntity")
-    fun getRecoveredGlobalCovid(): LiveData<RecoveredGlobalCovidEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRecoveredGlobalCovid(recoveredCovid: RecoveredGlobalCovidEntity)
-
-    @Query("SELECT death.valueDeath as deathGlobal, confirm.valueConfirmed as confirmedGlobal, recovered.valueRecovered as recoveredGlobal FROM deathGlobalCovid as death, confirmGlobalCovid as confirm, recoveredGlobalEntity as recovered")
+    @Query("SELECT * FROM globalCovid")
     fun getAllGlobalCovid(): LiveData<GlobalCovidEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllGlobalCovid(globalCovid: GlobalCovidEntity)
 
     @Query("SELECT * FROM idCovid")
     fun getAllIDCovid(): LiveData<IDCovidItemEntity>
