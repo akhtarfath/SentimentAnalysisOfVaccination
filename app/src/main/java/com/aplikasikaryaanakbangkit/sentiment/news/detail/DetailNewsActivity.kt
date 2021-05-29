@@ -69,7 +69,7 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
                         Status.ERROR -> {
                             false.loading()
                             Toast.makeText(this, getString(R.string.error_msg), Toast.LENGTH_SHORT)
-                                .show()
+                                    .show()
                         }
                     }
                 }
@@ -111,8 +111,8 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(
-                        Intent.EXTRA_TEXT,
-                        """
+                            Intent.EXTRA_TEXT,
+                            """
                             "$newsTitle".
                             
                             Kunjungi: $newsUrl

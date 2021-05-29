@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -59,25 +59,25 @@ class HomeFragment : Fragment() {
                 false.shimmerLoading()
                 _binding?.covidStatistic?.covidWorldCondition?.let {
                     it.numberPositive.text = StringBuilder(
-                        "Positif \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.confirmedGlobal ?: 0
-                            )
-                        }"
+                            "Positif \n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        globalCovid.data?.confirmedGlobal ?: 0
+                                )
+                            }"
                     )
                     it.numberOfDeaths.text = StringBuilder(
-                        "Meninggal \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.deathGlobal ?: 0
-                            )
-                        }"
+                            "Meninggal \n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        globalCovid.data?.deathGlobal ?: 0
+                                )
+                            }"
                     )
                     it.numberOfCures.text = StringBuilder(
-                        "Sembuh \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.recoveredGlobal ?: 0
-                            )
-                        }"
+                            "Sembuh \n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        globalCovid.data?.recoveredGlobal ?: 0
+                                )
+                            }"
                     )
                 }
             }
@@ -92,36 +92,36 @@ class HomeFragment : Fragment() {
                         Log.d("ID Covid", idCovid.data.toString())
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
-                                "Positif \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.confirmed ?: 0
-                                    )
-                                }"
+                                    "Positif \n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                idCovid.data?.confirmed ?: 0
+                                        )
+                                    }"
                             )
                             numberOfDeathsID.text = StringBuilder(
-                                "Meninggal \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.deaths ?: 0
-                                    )
-                                }"
+                                    "Meninggal \n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                idCovid.data?.deaths ?: 0
+                                        )
+                                    }"
                             )
                             numberOfCuresID.text = StringBuilder(
-                                "Sembuh \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.recovered ?: 0
-                                    )
-                                }"
+                                    "Sembuh \n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                idCovid.data?.recovered ?: 0
+                                        )
+                                    }"
                             )
                         }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -130,17 +130,17 @@ class HomeFragment : Fragment() {
 
     private fun loadTweet(factory: ViewModelFactory) {
         val tweetViewModel =
-            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             false.shimmerLoading()
             with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
-                    LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
+                        LinearLayoutManager(
+                                context,
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                        )
                 this?.layoutManager = layoutManagerHorizontal
                 this?.setHasFixedSize(true)
 
@@ -174,11 +174,11 @@ class HomeFragment : Fragment() {
                         _binding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
-                                    LinearLayoutManager(
-                                        context,
-                                        LinearLayoutManager.HORIZONTAL,
-                                        false
-                                    )
+                                        LinearLayoutManager(
+                                                context,
+                                                LinearLayoutManager.HORIZONTAL,
+                                                false
+                                        )
                                 this.layoutManager = layoutManagerHorizontal
                                 this.setHasFixedSize(true)
 
@@ -192,11 +192,11 @@ class HomeFragment : Fragment() {
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -225,11 +225,11 @@ class HomeFragment : Fragment() {
                         false.shimmerLoading()
                         _binding?.viewError?.viewError?.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }

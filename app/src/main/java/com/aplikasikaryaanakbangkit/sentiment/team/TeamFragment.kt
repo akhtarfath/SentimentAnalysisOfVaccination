@@ -25,13 +25,13 @@ class TeamFragment : Fragment() {
     private val _binding get() = _fragmentTeamBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _fragmentTeamBinding =
-            FragmentTeamBinding.inflate(inflater, container, false)
+                FragmentTeamBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -70,11 +70,11 @@ class TeamFragment : Fragment() {
                         false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }

@@ -22,13 +22,13 @@ class SentimentAnalysisFragment : Fragment() {
     private val _binding get() = _sentimentAnalysisBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _sentimentAnalysisBinding =
-            FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
+                FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -40,14 +40,14 @@ class SentimentAnalysisFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireContext())
         val sentimentAnalysisViewModel =
-            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         true.shimmerLoading()
         sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             false.shimmerLoading()
             with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
                 val layoutManagerVertical =
-                    LinearLayoutManager(context)
+                        LinearLayoutManager(context)
                 this?.layoutManager = layoutManagerVertical
                 this?.setHasFixedSize(true)
 

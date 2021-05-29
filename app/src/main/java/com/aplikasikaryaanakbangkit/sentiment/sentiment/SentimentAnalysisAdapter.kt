@@ -27,7 +27,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
         val miniItemTweetBinding =
-            MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return TweetViewHolder(miniItemTweetBinding)
     }
@@ -38,19 +38,19 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tweet: TweetEntity) {
             with(binding) {
 
                 val date = LocalDateTime.parse(
-                    tweet.date,
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+                        tweet.date,
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
                 ).toLocalDate()
-                    .format(
-                        DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-                            .withLocale(Locale("in", "ID", "ID"))
-                    )
+                        .format(
+                                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                                        .withLocale(Locale("in", "ID", "ID"))
+                        )
 
                 tvTwitterPost.text = tweet.text
                 tvDateTwitterPost.text = date
@@ -62,12 +62,12 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 likeCount.text = tweet.likeCount.toString()
 
                 Glide.with(itemView.context)
-                    .load(tweet.imageUrl)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
-                    )
-                    .into(twitterPhoto)
+                        .load(tweet.imageUrl)
+                        .apply(
+                                RequestOptions.placeholderOf(R.drawable.ic_loading)
+                                        .error(R.drawable.ic_error)
+                        )
+                        .into(twitterPhoto)
             }
 
         }

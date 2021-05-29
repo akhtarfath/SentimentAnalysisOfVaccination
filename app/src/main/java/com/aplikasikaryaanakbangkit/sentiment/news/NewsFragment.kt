@@ -24,9 +24,9 @@ class NewsFragment : Fragment() {
     private val _binding get() = _fragmentNewsBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _fragmentNewsBinding = FragmentNewsBinding.inflate(inflater, container, false)
 
@@ -50,11 +50,11 @@ class NewsFragment : Fragment() {
                         _fragmentNewsBinding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
-                                    LinearLayoutManager(
-                                        context,
-                                        LinearLayoutManager.HORIZONTAL,
-                                        false
-                                    )
+                                        LinearLayoutManager(
+                                                context,
+                                                LinearLayoutManager.HORIZONTAL,
+                                                false
+                                        )
                                 this.layoutManager = layoutManagerHorizontal
                                 this.setHasFixedSize(true)
 
@@ -68,11 +68,11 @@ class NewsFragment : Fragment() {
                         false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -101,11 +101,11 @@ class NewsFragment : Fragment() {
                         false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }

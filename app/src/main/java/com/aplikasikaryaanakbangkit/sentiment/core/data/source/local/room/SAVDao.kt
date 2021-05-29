@@ -10,6 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covi
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -46,7 +47,7 @@ interface SAVDao {
     fun insertTeams(teams: List<TeamsEntity>)
 
     //tweet
-    @Query("SELECT * FROM tweetPost")
+    @Query("SELECT * FROM tweetPost WHERE text NOT LIKE 'RT @%'")
     fun getAllTweet(): LiveData<List<DataItemTweetEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -58,7 +59,7 @@ interface SAVDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTweetProfile(profile: List<UserItemsTweetEntity>)
 
-    @Query("SELECT tweetProfile.authorId as authorId, tweetProfile.name as name, tweetProfile.profile_image_url as imageUrl, tweetProfile.username as username, tweetPost.text as text, tweetPost.created_at as date, tweetPost.likeCount as likeCount, tweetPost.quoteCount as quoteCount, tweetPost.replyCount as replyCount, tweetPost.retweetCount as retweetCount FROM tweetProfile, tweetPost WHERE tweetProfile.authorId = tweetPost.authorId")
+    @Query("SELECT tweetProfile.authorId as authorId, tweetProfile.name as name, tweetProfile.profile_image_url as imageUrl, tweetProfile.username as username, tweetPost.text as text, tweetPost.created_at as date, tweetPost.likeCount as likeCount, tweetPost.quoteCount as quoteCount, tweetPost.replyCount as replyCount, tweetPost.retweetCount as retweetCount FROM tweetProfile, tweetPost WHERE tweetProfile.authorId = tweetPost.authorId AND text NOT LIKE 'RT @%' ORDER BY date DESC")
     fun getAllTweets(): LiveData<List<TweetEntity>>
 
     //covid
@@ -104,4 +105,11 @@ interface SAVDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVaccineHealthHR(vaccination: VaccinationHealthHREntity)
+
+    //sentiment analysis
+    @Query("SELECT * FROM sentimentAnalysis")
+    fun getSentimentAnalysis(): LiveData<List<SentimentEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSentimentAnalysis(sentiment: SentimentEntity)
 }

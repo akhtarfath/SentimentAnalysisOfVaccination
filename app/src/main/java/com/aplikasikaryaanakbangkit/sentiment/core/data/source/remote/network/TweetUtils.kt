@@ -9,15 +9,15 @@ class TweetUtils {
 
         fun getApiService(): TweetService {
             val consumer = OkHttpOAuthConsumer(
-                "TR3VIB4yHxkGUBkyjzpdpNjmn",
-                "aSZi91nVk3bgXxqp2T9AhQt485GnuPaVOiceGUtRYPdMZklaRu"
+                    "TR3VIB4yHxkGUBkyjzpdpNjmn",
+                    "aSZi91nVk3bgXxqp2T9AhQt485GnuPaVOiceGUtRYPdMZklaRu"
             )
             consumer.setTokenWithSecret(
-                "296643374-xgcSBExlhLxvq579FOH9911qNmm85tFMkUumnA7G",
-                "7vQ9RyznRBDPlh9DG9Bb5VPbEdLz08zZK7Ugt7ErXrVUP"
+                    "296643374-xgcSBExlhLxvq579FOH9911qNmm85tFMkUumnA7G",
+                    "7vQ9RyznRBDPlh9DG9Bb5VPbEdLz08zZK7Ugt7ErXrVUP"
             )
             return TweetClient.getClient(BASE_URL_TWITTER, consumer)!!
-                .create(TweetService::class.java)
+                    .create(TweetService::class.java)
         }
     }
 }
