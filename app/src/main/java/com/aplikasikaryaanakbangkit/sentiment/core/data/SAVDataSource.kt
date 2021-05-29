@@ -7,7 +7,6 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
@@ -26,7 +25,6 @@ interface SAVDataSource {
     // tweet
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
     fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
-    fun getPublicMetrics(id: String): LiveData<Resource<PublicMetricsTweetEntity>>
     fun getAllTweet(): LiveData<List<TweetEntity>>
 
     //covid
@@ -38,8 +36,8 @@ interface SAVDataSource {
 
     //vaksinasi
     fun getVaccination(): LiveData<Resource<VaccinationMonitoringItemEntity>>
-    fun getTahapanSDM(): LiveData<Resource<VaccinationSdmKesehatanEntity>>
-    fun getTahapanLansia(): LiveData<Resource<VaccinationLansiaEntity>>
-    fun getTahapanPetugas(): LiveData<Resource<VaccinationPetugasPublikEntity>>
-    fun getCakupanVaccination(): LiveData<Resource<VaccinationCakupanEntity>>
+    fun getVaccinationStepHealthHR(): LiveData<Resource<VaccinationHealthHREntity>>
+    fun getVaccinationStepElderly(): LiveData<Resource<VaccinationElderlyEntity>>
+    fun getVaccinationStepPublicOfficer(): LiveData<Resource<VaccinationPublicOfficerEntity>>
+    fun getVaccinationCoverage(): LiveData<Resource<VaccinationCoverageEntity>>
 }

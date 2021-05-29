@@ -26,11 +26,11 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vacc
         ConfirmedGlobalCovidEntity::class,
         RecoveredGlobalCovidEntity::class,
         IDCovidItemEntity::class,
-        VaccinationCakupanEntity::class,
-        VaccinationLansiaEntity::class,
+        VaccinationCoverageEntity::class,
+        VaccinationElderlyEntity::class,
         VaccinationMonitoringItemEntity::class,
-        VaccinationPetugasPublikEntity::class,
-        VaccinationSdmKesehatanEntity::class
+        VaccinationPublicOfficerEntity::class,
+        VaccinationHealthHREntity::class
     ],
     version = 1,
     exportSchema = false

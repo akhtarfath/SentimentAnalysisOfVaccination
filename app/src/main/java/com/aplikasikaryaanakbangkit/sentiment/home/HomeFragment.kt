@@ -158,6 +158,14 @@ class HomeFragment : Fragment() {
                 tweetAdapter.notifyDataSetChanged()
             }
         })
+
+        tweetViewModel.getPost().observe(viewLifecycleOwner, { post ->
+            Log.d("Post Fragment", post.data.toString())
+        })
+
+        tweetViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
+            Log.d("profile Fragment", profile.data.toString())
+        })
     }
 
     private fun loadNews(factory: ViewModelFactory) {

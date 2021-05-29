@@ -8,8 +8,8 @@ class VaccinationViewModel(
 ) : ViewModel() {
 
     val getVaccination = _repository.getVaccination()
-    val getTahapanSdm = _repository.getTahapanSDM()
-    val getTahapanLansia = _repository.getTahapanLansia()
-    val getTahapanPetugas = _repository.getTahapanPetugas()
-    val getCakupanVaccination = _repository.getCakupanVaccination()
+    val getVaccinationStepHealthHR = _repository.getVaccinationStepHealthHR()
+    val getVaccinationStepElderly = _repository.getVaccinationStepElderly()
+    val getVaccinationStepPublicOfficer = _repository.getVaccinationStepPublicOfficer()
+    val getVaccinationCoverage = _repository.getVaccinationCoverage()
 }

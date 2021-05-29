@@ -3,30 +3,32 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twe
 import androidx.room.*
 
 @Entity(
-    tableName = "tweetPost",
-    primaryKeys = ["id", "authorId"],
-    foreignKeys = [ForeignKey(
-        entity = UserItemsTweetEntity::class,
-        parentColumns = ["authorId"],
-        childColumns = ["authorId"]
-    )],
-    indices = [Index(value = ["id"]),
-        Index(value = ["authorId"])]
+    tableName = "tweetPost"
 )
 data class DataItemTweetEntity(
 
-    @ColumnInfo(name = "id")
-    val id: String,
+        @PrimaryKey
+        @ColumnInfo(name = "id")
+        val id: String,
 
-    @ColumnInfo(name = "created_at")
-    val createdAt: String,
+        @ColumnInfo(name = "created_at")
+        val createdAt: String,
 
-    @ColumnInfo(name = "text")
-    val text: String,
+        @ColumnInfo(name = "text")
+        val text: String,
 
-    @ColumnInfo(name = "authorId")
-    val authorId: String
-) {
-    @Embedded
-    var publicMetrics: PublicMetricsTweetEntity? = null
-}
+        @ColumnInfo(name = "authorId")
+        val authorId: String,
+
+        @ColumnInfo(name = "likeCount")
+        val likeCount: Int? = null,
+
+        @ColumnInfo(name = "replyCount")
+        val replyCount: Int? = null,
+
+        @ColumnInfo(name = "quoteCount")
+        val quoteCount: Int? = null,
+
+        @ColumnInfo(name = "retweetCount")
+        val retweetCount: Int? = null
+)

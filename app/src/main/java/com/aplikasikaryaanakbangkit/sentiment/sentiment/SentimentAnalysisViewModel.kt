@@ -12,6 +12,4 @@ class SentimentAnalysisViewModel(
     fun getPost() = _repository.getAllPost()
 
     fun getProfile() = _repository.getAllProfile()
-
-    fun getMetrics(id: String) = _repository.getPublicMetrics(id)
 }

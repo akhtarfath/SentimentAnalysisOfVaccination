@@ -15,7 +15,6 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.n
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.NewsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.PublicMetricsTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.UserItemsTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.vaccination.VaccinationMonitoringItemResponse
@@ -158,36 +157,6 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                         resultTweet.postValue(
                             response.body()
                                 ?.let { ApiResponse.success(it.data as List<DataItemTweetResponse>) })
-                    }
-
-                    override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
-
-                })
-        }, 1500)
-
-        return resultTweet
-    }
-
-    fun getPublicMetrics(): LiveData<ApiResponse<PublicMetricsTweetResponse>> {
-        val resultTweet = MutableLiveData<ApiResponse<PublicMetricsTweetResponse>>()
-
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            TweetUtils.getApiService()
-                .getAllTweet()
-                .enqueue(object : Callback<TweetResponse> {
-                    override fun onResponse(
-                        call: Call<TweetResponse>,
-                        response: Response<TweetResponse>
-                    ) {
-                        ApiResponse.success(response.body()?.data?.get(0)?.publicMetrics).let {
-                            resultTweet.postValue(
-                                it as ApiResponse<PublicMetricsTweetResponse>
-                            )
-                        }
                     }
 
                     override fun onFailure(call: Call<TweetResponse>, t: Throwable) {

@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet
 
 data class TweetEntity(
+
     val authorId: String,
     val name: String,
     val imageUrl: String,

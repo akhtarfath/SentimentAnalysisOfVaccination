@@ -11,13 +11,13 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.PublicMetricsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 
 @Dao
 interface SAVDao {
+
     //news
     @Query("SELECT * FROM articleCovid ORDER BY publishedAt DESC")
     fun getCovidArticles(): DataSource.Factory<Int, ArticleCovidEntity>
@@ -51,21 +51,6 @@ interface SAVDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTweets(tweet: List<DataItemTweetEntity>)
 
-    @Query("SELECT * FROM tweetPost WHERE id = :id")
-    fun getTweetById(id: String): LiveData<DataItemTweetEntity>
-
-    @Query("SELECT * FROM tweetPost WHERE id = :id")
-    fun getTweetMetrics(id: String): LiveData<PublicMetricsTweetEntity>
-
-    @Query("UPDATE tweetPost SET likeCount = :likeCount, replyCount = :replyCount, quoteCount = :quoteCount, retweetCount = :retweetCount WHERE id = :id")
-    fun updatePostByMetrics(
-        likeCount: Int,
-        replyCount: Int,
-        quoteCount: Int,
-        retweetCount: Int,
-        id: String
-    )
-
     @Query("SELECT * FROM tweetProfile")
     fun getAllTweetProfile(): LiveData<List<UserItemsTweetEntity>>
 
@@ -83,7 +68,7 @@ interface SAVDao {
     fun insertConfirmedGlobalCovid(confirmedCovid: ConfirmedGlobalCovidEntity)
 
     @Query("SELECT * FROM deathGlobalCovid")
-    fun getDeathlobalCovid(): LiveData<DeathGlobalCovidEntity>
+    fun getGlobalDeathCovid(): LiveData<DeathGlobalCovidEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDeathGlobalCovid(deathCovid: DeathGlobalCovidEntity)
@@ -101,20 +86,20 @@ interface SAVDao {
     fun getAllIDCovid(): LiveData<IDCovidItemEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertIDCOvid(idCovid: IDCovidItemEntity)
+    fun insertIDCovid(idCovid: IDCovidItemEntity)
 
     //vaccination
-    @Query("SELECT * FROM vaccineCakupan")
-    fun getVaccineCakupan(): LiveData<VaccinationCakupanEntity>
+    @Query("SELECT * FROM vaccineCoverage")
+    fun getVaccineCoverage(): LiveData<VaccinationCoverageEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertVaccineCakupan(vaccination: VaccinationCakupanEntity)
+    fun insertVaccineCoverage(vaccination: VaccinationCoverageEntity)
 
-    @Query("SELECT * FROM vaccineLansia")
-    fun getVaccineLansia(): LiveData<VaccinationLansiaEntity>
+    @Query("SELECT * FROM vaccineElderly")
+    fun getVaccineElderly(): LiveData<VaccinationElderlyEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertVaccineLansia(vaccination: VaccinationLansiaEntity)
+    fun insertVaccineElderly(vaccination: VaccinationElderlyEntity)
 
     @Query("SELECT * FROM vaccineMonitoring")
     fun getVaccineMonitoring(): LiveData<VaccinationMonitoringItemEntity>
@@ -122,15 +107,15 @@ interface SAVDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVaccineMonitoring(vaccination: VaccinationMonitoringItemEntity)
 
-    @Query("SELECT * FROM vaccinePetugas")
-    fun getVaccinePetugas(): LiveData<VaccinationPetugasPublikEntity>
+    @Query("SELECT * FROM vaccinePublicOfficer")
+    fun getVaccinePublicOfficer(): LiveData<VaccinationPublicOfficerEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertVaccinePetugas(vaccination: VaccinationPetugasPublikEntity)
+    fun insertVaccinePublicOfficer(vaccination: VaccinationPublicOfficerEntity)
 
     @Query("SELECT * FROM vaccineSDM")
-    fun getVaccineSDM(): LiveData<VaccinationSdmKesehatanEntity>
+    fun getVaccineHealthHR(): LiveData<VaccinationHealthHREntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertVaccineSDM(vaccination: VaccinationSdmKesehatanEntity)
+    fun insertVaccineHealthHR(vaccination: VaccinationHealthHREntity)
 }

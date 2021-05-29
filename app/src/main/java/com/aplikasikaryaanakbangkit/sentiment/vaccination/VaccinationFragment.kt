@@ -51,51 +51,51 @@ class VaccinationFragment : Fragment() {
     private fun loadVaccine(factory: ViewModelFactory) {
         val vaccineViewModel = ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
 
-        vaccineViewModel.getVaccination.observe(viewLifecycleOwner, { sasaranVaksinasi ->
-            if (sasaranVaksinasi != null) {
-                when (sasaranVaksinasi.status) {
+        vaccineViewModel.getVaccination.observe(viewLifecycleOwner, { vaccinationTarget ->
+            if (vaccinationTarget != null) {
+                when (vaccinationTarget.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
                         false.shimmerLoading()
-                        Log.d("Sasaran Vaksinasi", sasaranVaksinasi.data.toString())
+                        Log.d("Sasaran Vaksinasi", vaccinationTarget.data.toString())
                         _binding.vaccineTarget.targetOfVaccination.let {
                             it.numberVaccineTarget.text = StringBuilder(
                                 "Total sasaran vaksin\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.totalSasaranVaksinasi
+                                            vaccinationTarget.data?.totalTargetVaccination
                                         )
                             )
 
                             it.numberSdmVaccinationTarget.text = StringBuilder(
                                 "SDM Kesehatan\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.sasaranVaksinasiSdmk
+                                            vaccinationTarget.data?.vaccinationTargetHealthHR
                                         )
                             )
                             it.numberPetugasVaccinationTarget.text = StringBuilder(
                                 "Petugas Publik\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.sasaranVaksinasiPetugasPublik
+                                            vaccinationTarget.data?.vaccinationTargetPublicOfficer
                                         )
                             )
 
                             it.numberLansiaVaccinationTarget.text = StringBuilder(
                                 "Lansia\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.sasaranVaksinasiLansia
+                                            vaccinationTarget.data?.vaccinationTargetElderly
                                         )
                             )
 
                             it.numberVaccine1Target.text = StringBuilder(
                                 "Vaksinasi 1\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.vaksinasi1
+                                            vaccinationTarget.data?.vaccination1
                                         )
                             )
                             it.numberVaccine2Target.text = StringBuilder(
                                 "Vaksinasi 2\n" +
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                            sasaranVaksinasi.data?.vaksinasi2
+                                            vaccinationTarget.data?.vaccination2
                                         )
                             )
                         }
@@ -113,145 +113,163 @@ class VaccinationFragment : Fragment() {
             }
         })
 
-        vaccineViewModel.getTahapanSdm.observe(viewLifecycleOwner, { sdm ->
+        vaccineViewModel.getVaccinationStepHealthHR.observe(viewLifecycleOwner) { sdm ->
             if (sdm != null) {
                 false.shimmerLoading()
                 Log.d("Tahapan SDM Covid", sdm.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.healthHumanResources.let {
                     it.totalVaccineSdm1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.totalVaksinasi1SDM ?: 0
-                            )}"
+                            "Total Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.totalVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.totalVaccineSdm2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.totalVaksinasi2SDM ?: 0
-                            )}"
+                            "Total Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.totalVaccination2 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.sudahVaksin1SDM ?: 0
-                            )}"
+                            "Sudah Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.vaccinated1 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.sudahVaksin2SDM ?: 0
-                            )}"
+                            "Sudah Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.vaccinated2 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.tertundaVaksin1SDM ?: 0
-                            )}"
+                            "Tertunda Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.delayedVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.tertundaVaksin2SDM ?: 0
-                            )}"
+                            "Tertunda Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.delayedVaccination2 ?: 0
+                                )
+                            }"
                     )
                 }
             }
-        })
+        }
 
-        vaccineViewModel.getTahapanLansia.observe(viewLifecycleOwner, { lansia ->
+        vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner) { lansia ->
             if (lansia != null) {
                 false.shimmerLoading()
                 Log.d("Tahapan Lansia Covid", lansia.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.theElderly.let {
                     it.totalVaccine1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.totalVaksinasi1 ?: 0
-                            )}"
+                            "Total Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.totalVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.totalVaccine2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.totalVaksinasi2 ?: 0
-                            )}"
+                            "Total Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.totalVaccination2 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.sudahVaksin1 ?: 0
-                            )}"
+                            "Sudah Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.vaccinated1 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.sudahVaksin2 ?: 0
-                            )}"
+                            "Sudah Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.vaccinated2 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.tertundaVaksin1 ?: 0
-                            )}"
+                            "Tertunda Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.delayedVaccine1 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.tertundaVaksin2 ?: 0
-                            )}"
+                            "Tertunda Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        lansia.data?.delayedVaccine2 ?: 0
+                                )
+                            }"
                     )
                 }
             }
-        })
+        }
 
-        vaccineViewModel.getTahapanPetugas.observe(viewLifecycleOwner, { petugas ->
+        vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner) { petugas ->
             if (petugas != null) {
                 false.shimmerLoading()
                 Log.d("Tahapan Petugas Covid", petugas.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.publicOfficers.let {
                     it.totalVaccine1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.totalVaksinasi1PP ?: 0
-                            )}"
+                            "Total Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.totalVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.totalVaccine2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.totalVaksinasi2PP ?: 0
-                            )}"
+                            "Total Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.totalVaccination2 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.sudahVaksin1PP ?: 0
-                            )}"
+                            "Sudah Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.vaccinated1 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.sudahVaksin2PP ?: 0
-                            )}"
+                            "Sudah Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.vaccinated2 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.tertundaVaksin1PP ?: 0
-                            )}"
+                            "Tertunda Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.delayedVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.tertundaVaksin2PP ?: 0
-                            )}"
+                            "Tertunda Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        petugas.data?.delayedVaccination2 ?: 0
+                                )
+                            }"
                     )
                 }
             }
-        })
+        }
 
-        vaccineViewModel.getCakupanVaccination.observe(viewLifecycleOwner, { cakupanVaksinasi ->
+        vaccineViewModel.getVaccinationCoverage.observe(viewLifecycleOwner) { cakupanVaksinasi ->
             if (cakupanVaksinasi != null) {
                 when (cakupanVaksinasi.status) {
                     Status.LOADING -> true.shimmerLoading()
@@ -261,49 +279,49 @@ class VaccinationFragment : Fragment() {
 
                         _binding.vaccineCoverage.targetOfVaccination.let {
                             it.vaccination1.text = StringBuilder(
-                                "Vaksinasi 1\n${cakupanVaksinasi.data?.vaksinasi1.toString()}"
+                                    "Vaksinasi 1\n${cakupanVaksinasi.data?.vaccination1.toString()}"
                             )
                             it.vaccination2.text = StringBuilder(
-                                "Vaksinasi 2\n${cakupanVaksinasi.data?.vaksinasi2.toString()}"
+                                    "Vaksinasi 2\n${cakupanVaksinasi.data?.vaccination2.toString()}"
                             )
                             it.vaccinationSDM1.text = StringBuilder(
-                                "SDM Kesehatan.\nVaksinasi 1. " +
-                                        cakupanVaksinasi.data?.sdmKesehatanVaksinasi1.toString()
+                                    "SDM Kesehatan.\nVaksinasi 1. " +
+                                            cakupanVaksinasi.data?.healthHRVaccination1.toString()
                             )
                             it.vaccinationSDM2.text = StringBuilder(
-                                "SDM Kesehatan.\nVaksinasi 2. " +
-                                        cakupanVaksinasi.data?.sdmKesehatanVaksinasi2.toString()
+                                    "SDM Kesehatan.\nVaksinasi 2. " +
+                                            cakupanVaksinasi.data?.healthHRVaccination2.toString()
                             )
                             it.vaccinationPetugas1.text = StringBuilder(
-                                "Petugas Publik.\nVaksinasi 1. " +
-                                        cakupanVaksinasi.data?.petugasPublikVaksinasi1.toString()
+                                    "Petugas Publik.\nVaksinasi 1. " +
+                                            cakupanVaksinasi.data?.publicOfficerVaccination1.toString()
                             )
                             it.vaccinationPetugas2.text = StringBuilder(
-                                "Petugas Publik.\nVaksinasi 2. " +
-                                        cakupanVaksinasi.data?.petugasPublikVaksinasi2.toString()
+                                    "Petugas Publik.\nVaksinasi 2. " +
+                                            cakupanVaksinasi.data?.publicOfficerVaccination2.toString()
                             )
                             it.numberTheElder1.text = StringBuilder(
-                                "Lansia. Vaksinasi 1\n" +
-                                        cakupanVaksinasi.data?.lansiaVaksinasi1.toString()
+                                    "Lansia. Vaksinasi 1\n" +
+                                            cakupanVaksinasi.data?.elderlyVaccination1.toString()
                             )
                             it.numberTheElder2.text = StringBuilder(
-                                "Lansia. Vaksinasi 2\n" +
-                                        cakupanVaksinasi.data?.lansiaVaksinasi2.toString()
+                                    "Lansia. Vaksinasi 2\n" +
+                                            cakupanVaksinasi.data?.elderlyVaccination2.toString()
                             )
                         }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
