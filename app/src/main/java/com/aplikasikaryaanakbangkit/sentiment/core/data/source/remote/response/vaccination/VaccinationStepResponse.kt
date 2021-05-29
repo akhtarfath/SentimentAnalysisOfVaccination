@@ -2,7 +2,7 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.
 
 import com.google.gson.annotations.SerializedName
 
-data class VaccinationSteoResponse(
+data class VaccinationStepResponse(
     @field:SerializedName("petugas_publik")
     val publicOfficer: VaccinationPublicOfficerResponse? = null,
     @field:SerializedName("lansia")

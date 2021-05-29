@@ -11,7 +11,7 @@ data class VaccinationMonitoringItemResponse(
     val vaccinationTargetPublicOfficer: Int? = null,
 
     @field:SerializedName("tahapan_vaksinasi")
-    val vaccinationStep: VaccinationSteoResponse? = null,
+    val vaccinationStep: VaccinationStepResponse? = null,
 
     @field:SerializedName("vaksinasi2")
     val vaccination2: Int? = null,
