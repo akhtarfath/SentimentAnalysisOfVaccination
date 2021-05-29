@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TeamsResponse(
-    val id: String,
-    val name: String,
-    val urlPicture: String
+        val id: String,
+        val name: String,
+        val urlPicture: String
 ) : Parcelable

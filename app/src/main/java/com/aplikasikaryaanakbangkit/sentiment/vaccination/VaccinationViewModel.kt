@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
 class VaccinationViewModel(
-    _repository: SAVRepository
+        private val _repository: SAVRepository
 ) : ViewModel() {
 
     val getVaccination = _repository.getVaccination()

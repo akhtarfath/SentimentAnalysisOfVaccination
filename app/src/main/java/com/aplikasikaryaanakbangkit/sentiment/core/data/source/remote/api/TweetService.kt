@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface TweetService {
 
-    @GET("search/recent?max_results=25&expansions=author_id,geo.place_id&place.fields=geo&tweet.fields=created_at,text,public_metrics,geo&query=vaksin sinovac astrazeneca covid-19&user.fields=username,profile_image_url")
+    @GET("search/recent?max_results=100&expansions=author_id,geo.place_id&place.fields=geo&tweet.fields=created_at,text,public_metrics,geo,referenced_tweets&query=covid vaksin&user.fields=username,profile_image_url")
     fun getAllTweet(): Call<TweetResponse>
 }
