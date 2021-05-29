@@ -2,7 +2,8 @@ package com.aplikasikaryaanakbangkit.sentiment.core.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.GlobalCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity

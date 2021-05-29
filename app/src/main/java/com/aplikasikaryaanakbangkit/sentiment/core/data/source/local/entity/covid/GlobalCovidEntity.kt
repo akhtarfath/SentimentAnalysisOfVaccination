@@ -4,20 +4,20 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName="globalCovid")
+@Entity(tableName = "globalCovid")
 data class GlobalCovidEntity(
 
         @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name="id")
+        @ColumnInfo(name = "id")
         val id: Int,
 
-        @ColumnInfo(name="deathGlobal")
+        @ColumnInfo(name = "deathGlobal")
         val deathGlobal: Int? = null,
 
-        @ColumnInfo(name="confirmedGlobal")
+        @ColumnInfo(name = "confirmedGlobal")
         val confirmedGlobal: Int? = null,
 
-        @ColumnInfo(name="recoveredGlobal")
+        @ColumnInfo(name = "recoveredGlobal")
         val recoveredGlobal: Int? = null
 )
 

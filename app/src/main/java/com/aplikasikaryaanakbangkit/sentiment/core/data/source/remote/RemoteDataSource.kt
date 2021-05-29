@@ -10,7 +10,8 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsSe
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.VaccinationService
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.TweetUtils
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.GlobalCovidResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.NewsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse

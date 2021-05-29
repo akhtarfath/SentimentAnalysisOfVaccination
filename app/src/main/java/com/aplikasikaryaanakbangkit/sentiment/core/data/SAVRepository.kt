@@ -5,7 +5,8 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.LocalDataSource
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.GlobalCovidEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
@@ -15,7 +16,8 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.RemoteDataSource
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.GlobalCovidResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
@@ -110,7 +112,7 @@ class SAVRepository private constructor(
             }
 
             override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean =
-               true
+                true
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
                 remoteDataSource.getResultVaccineNews()
@@ -292,10 +294,10 @@ class SAVRepository private constructor(
                         response.createdAt.toString(),
                         response.text.toString(),
                         response.authorId.toString(),
-                            response.publicMetrics?.likeCount,
-                            response.publicMetrics?.replyCount,
-                            response.publicMetrics?.quoteCount,
-                            response.publicMetrics?.retweetCount
+                        response.publicMetrics?.likeCount,
+                        response.publicMetrics?.replyCount,
+                        response.publicMetrics?.quoteCount,
+                        response.publicMetrics?.retweetCount
                     )
                     tweetList.add(tweet)
                 }
@@ -308,7 +310,6 @@ class SAVRepository private constructor(
         localDataSource.getAllTweets()
 
     //covid
-
     override fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>> {
         return object :
             NetworkBoundResource<GlobalCovidEntity, GlobalCovidResponse>(

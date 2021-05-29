@@ -21,7 +21,6 @@ import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisAdapter
 import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.mini_item_covid_local_condition.*
-import kotlinx.android.synthetic.main.mini_item_covid_world_condition.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -63,19 +62,22 @@ class HomeFragment : Fragment() {
                         "Positif \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
                                 globalCovid.data?.confirmedGlobal ?: 0
-                            )}"
+                            )
+                        }"
                     )
                     it.numberOfDeaths.text = StringBuilder(
                         "Meninggal \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
                                 globalCovid.data?.deathGlobal ?: 0
-                            )}"
+                            )
+                        }"
                     )
                     it.numberOfCures.text = StringBuilder(
                         "Sembuh \n${
                             NumberFormat.getNumberInstance(Locale.US).format(
                                 globalCovid.data?.recoveredGlobal ?: 0
-                            )}"
+                            )
+                        }"
                     )
                 }
             }
@@ -93,19 +95,22 @@ class HomeFragment : Fragment() {
                                 "Positif \n${
                                     NumberFormat.getNumberInstance(Locale.US).format(
                                         idCovid.data?.confirmed ?: 0
-                                    )}"
+                                    )
+                                }"
                             )
                             numberOfDeathsID.text = StringBuilder(
                                 "Meninggal \n${
                                     NumberFormat.getNumberInstance(Locale.US).format(
                                         idCovid.data?.deaths ?: 0
-                                    )}"
+                                    )
+                                }"
                             )
                             numberOfCuresID.text = StringBuilder(
                                 "Sembuh \n${
                                     NumberFormat.getNumberInstance(Locale.US).format(
                                         idCovid.data?.recovered ?: 0
-                                    )}"
+                                    )
+                                }"
                             )
                         }
                     }
