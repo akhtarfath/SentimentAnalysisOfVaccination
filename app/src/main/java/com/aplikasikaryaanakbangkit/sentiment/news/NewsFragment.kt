@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.news
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -24,9 +26,9 @@ class NewsFragment : Fragment() {
     private val _binding get() = _fragmentNewsBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _fragmentNewsBinding = FragmentNewsBinding.inflate(inflater, container, false)
 
@@ -38,46 +40,40 @@ class NewsFragment : Fragment() {
 
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
-        val factory = ViewModelFactory.getInstance(requireContext())
-        val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+        if (activity != null) {
+            val factory = ViewModelFactory.getInstance(requireContext())
+            val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
-        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
-            if (newsCovid != null) {
-                when (newsCovid.status) {
-                    Status.LOADING -> true.shimmerLoading()
-                    Status.SUCCESS -> {
-                        _fragmentNewsBinding?.covidNews?.newsActivityHorizontal?.let {
-                            with(it.rvHorizontal) {
-                                val layoutManagerHorizontal =
-                                        LinearLayoutManager(
-                                                context,
-                                                LinearLayoutManager.HORIZONTAL,
-                                                false
-                                        )
-                                this.layoutManager = layoutManagerHorizontal
-                                this.setHasFixedSize(true)
+            loadCovidNews(newsViewModel)
+            loadVaccineNews(newsViewModel)
 
-                                val newsCovidAdapter = NewsCovidAdapter()
-                                this.adapter = newsCovidAdapter
-                                newsCovidAdapter.submitList(newsCovid.data)
-                            }
-                        }
-                        false.shimmerLoading()
-                    }
-                    Status.ERROR -> {
-                        false.shimmerLoading()
-                        _binding.viewError.viewError.visibility = View.VISIBLE
-                        Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
-                        )
-                                .show()
-                    }
+            val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+            /*event ketika widget dijalankan*/
+            swipeRefreshLayout.setOnRefreshListener(object :
+                SwipeRefreshLayout.OnRefreshListener {
+                override fun onRefresh() {
+                    refreshItem()
                 }
-            }
-        })
 
+                fun refreshItem() {
+                    true.shimmerLoading()
+                    Handler(requireActivity().mainLooper).postDelayed({
+                        swipeRefreshLayout.isRefreshing = false
+
+                        loadCovidNews(newsViewModel)
+                        loadVaccineNews(newsViewModel)
+                    }, 750)
+                    onItemLoad()
+                }
+
+                fun onItemLoad() {
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            })
+        }
+    }
+
+    private fun loadVaccineNews(newsViewModel: NewsViewModel) {
         newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
@@ -101,11 +97,50 @@ class NewsFragment : Fragment() {
                         false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun loadCovidNews(newsViewModel: NewsViewModel) {
+        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
+            if (newsCovid != null) {
+                when (newsCovid.status) {
+                    Status.LOADING -> true.shimmerLoading()
+                    Status.SUCCESS -> {
+                        _fragmentNewsBinding?.covidNews?.newsActivityHorizontal?.let {
+                            with(it.rvHorizontal) {
+                                val layoutManagerHorizontal =
+                                    LinearLayoutManager(
+                                        context,
+                                        LinearLayoutManager.HORIZONTAL,
+                                        false
+                                    )
+                                this.layoutManager = layoutManagerHorizontal
+                                this.setHasFixedSize(true)
+
+                                val newsCovidAdapter = NewsCovidAdapter()
+                                this.adapter = newsCovidAdapter
+                                newsCovidAdapter.submitList(newsCovid.data)
+                            }
+                        }
+                        false.shimmerLoading()
+                    }
+                    Status.ERROR -> {
+                        false.shimmerLoading()
+                        _binding.viewError.viewError.visibility = View.VISIBLE
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
                     }
                 }
             }

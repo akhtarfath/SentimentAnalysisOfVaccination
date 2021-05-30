@@ -27,7 +27,12 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
         android:id="@+id/scrollViewLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,6 +49,8 @@
             layout="@layout/item_covid_news" />
 
     </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"

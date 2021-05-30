@@ -46,9 +46,9 @@
     <string name="protokol_kesehatan">Protokol Kesehatan</string>
     <string name="developer_name">Developer\'s Full Name</string>
     <string name="percent_sentiment_example">72,2%</string>
-    <string name="positive_sentiment">Positif</string>
+    <string name="positive_sentiment">Pro</string>
     <string name="neutral_sentiment">Netral</string>
-    <string name="negative_sentiment">Negatif</string>
+    <string name="negative_sentiment">Kontra</string>
     <string name="sentiment_text1">Seberapa banyak</string>
     <string name="sentiment_text2">masyarakat</string>
     <string name="sentiment_text3">Percaya Vaksin</string>

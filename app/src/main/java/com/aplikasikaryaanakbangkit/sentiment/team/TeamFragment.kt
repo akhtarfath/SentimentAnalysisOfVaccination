@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.team
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -43,6 +45,32 @@ class TeamFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireContext())
         val teamViewModel = ViewModelProvider(this, factory)[TeamViewModel::class.java]
 
+        loadTeams(teamViewModel)
+
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+        /*event ketika widget dijalankan*/
+        swipeRefreshLayout.setOnRefreshListener(object :
+            SwipeRefreshLayout.OnRefreshListener {
+            override fun onRefresh() {
+                refreshItem()
+            }
+
+            fun refreshItem() {
+                true.shimmerLoading()
+                Handler(requireActivity().mainLooper).postDelayed({
+
+                    loadTeams(teamViewModel)
+                }, 750)
+                onItemLoad()
+            }
+
+            fun onItemLoad() {
+                swipeRefreshLayout.isRefreshing = false
+            }
+        })
+    }
+
+    private fun loadTeams(teamViewModel: TeamViewModel) {
         teamViewModel.getDataTeams.observe(viewLifecycleOwner, { teams ->
             if (teams != null) {
                 when (teams.status) {
@@ -67,11 +95,11 @@ class TeamFragment : Fragment() {
                         false.shimmerLoading()
                         _binding.viewError.viewError.visibility = View.VISIBLE
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }

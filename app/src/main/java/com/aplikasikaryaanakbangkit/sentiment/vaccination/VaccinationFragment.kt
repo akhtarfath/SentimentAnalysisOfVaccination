@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.vaccination
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -43,14 +46,35 @@ class VaccinationFragment : Fragment() {
 
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
+            val vaccineViewModel = ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
 
-            loadVaccine(factory)
+            loadVaccine(vaccineViewModel)
+
+            val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+            /*event ketika widget dijalankan*/
+            swipeRefreshLayout.setOnRefreshListener(object :
+                SwipeRefreshLayout.OnRefreshListener {
+                override fun onRefresh() {
+                    refreshItem()
+                }
+
+                fun refreshItem() {
+                    true.shimmerLoading()
+                    Handler(requireActivity().mainLooper).postDelayed({
+
+                        loadVaccine(vaccineViewModel)
+                    }, 750)
+                    onItemLoad()
+                }
+
+                fun onItemLoad() {
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            })
         }
     }
 
-    private fun loadVaccine(factory: ViewModelFactory) {
-        val vaccineViewModel = ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
-
+    private fun loadVaccine(vaccineViewModel: VaccinationViewModel) {
         vaccineViewModel.getVaccination.observe(viewLifecycleOwner, { vaccinationTarget ->
             if (vaccinationTarget != null) {
                 when (vaccinationTarget.status) {

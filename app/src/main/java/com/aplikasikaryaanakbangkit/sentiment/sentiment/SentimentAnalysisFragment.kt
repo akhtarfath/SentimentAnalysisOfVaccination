@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -22,13 +25,13 @@ class SentimentAnalysisFragment : Fragment() {
     private val _binding get() = _sentimentAnalysisBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _sentimentAnalysisBinding =
-                FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
+            FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -40,14 +43,39 @@ class SentimentAnalysisFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireContext())
         val sentimentAnalysisViewModel =
-                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
-        true.shimmerLoading()
+        loadTweet(sentimentAnalysisViewModel)
+
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+        /*event ketika widget dijalankan*/
+        swipeRefreshLayout.setOnRefreshListener(object :
+            SwipeRefreshLayout.OnRefreshListener {
+            override fun onRefresh() {
+                refreshItem()
+            }
+
+            fun refreshItem() {
+                true.shimmerLoading()
+                Handler(requireActivity().mainLooper).postDelayed({
+
+                    loadTweet(sentimentAnalysisViewModel)
+                }, 750)
+                onItemLoad()
+            }
+
+            fun onItemLoad() {
+                swipeRefreshLayout.isRefreshing = false
+            }
+        })
+    }
+
+    private fun loadTweet(sentimentAnalysisViewModel: SentimentAnalysisViewModel) {
         sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
 
             with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
                 val layoutManagerVertical =
-                        LinearLayoutManager(context)
+                    LinearLayoutManager(context)
                 this?.layoutManager = layoutManagerVertical
                 this?.setHasFixedSize(true)
 
