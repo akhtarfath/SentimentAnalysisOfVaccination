@@ -106,8 +106,10 @@
                     android:layout_marginTop="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTwitterPost">
+                    app:layout_constraintTop_toBottomOf="@+id/tvTwitterPost"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <ImageView
                         android:layout_width="18dp"
@@ -115,7 +117,7 @@
                         android:layout_marginVertical="5dp"
                         android:contentDescription="@string/icon_reply"
                         android:src="@drawable/ic_message_circle"
-                        app:tint="@color/dark" />
+                        app:tint="@color/silver" />
 
                     <TextView
                         android:id="@+id/reply_count"
@@ -123,6 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="3dp"
+                        android:textColor="@color/silver"
                         android:text="@string/satu" />
 
                     <ImageView
@@ -132,7 +135,7 @@
                         android:layout_marginStart="45dp"
                         android:contentDescription="@string/icon_retweet"
                         android:src="@drawable/ic_retweet"
-                        app:tint="@color/dark" />
+                        app:tint="@color/silver" />
 
                     <TextView
                         android:id="@+id/retweet_count"
@@ -140,6 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="3dp"
+                        android:textColor="@color/silver"
                         android:text="@string/satu" />
 
                     <ImageView
@@ -148,7 +152,8 @@
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="45dp"
                         android:contentDescription="@string/icon_favorite"
-                        android:src="@drawable/ic_heart" />
+                        android:src="@drawable/ic_heart"
+                        app:tint="@color/silver" />
 
                     <TextView
                         android:id="@+id/like_count"
@@ -156,6 +161,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="3dp"
+                        android:textColor="@color/silver"
                         android:text="@string/satu" />
 
                     <ImageView
@@ -164,7 +170,8 @@
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="45dp"
                         android:contentDescription="@string/icon_share"
-                        android:src="@drawable/ic_share2" />
+                        android:src="@drawable/ic_share2"
+                        app:tint="@color/silver" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

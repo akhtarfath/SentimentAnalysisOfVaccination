@@ -61,7 +61,7 @@
     <string name="tweet_post">Ini adalah isi dari post tweet pengguna isinya biasanya informatif tapi banyak ga jelasnya sih padahal.</string>
     <string name="satu">1</string>
     <string name="application_name">Application Name</string>
-    <string name="about_apps">About Apps</string>
+    <string name="about_apps">Mengapa kami hadir?</string>
     <string name="developers">Developers</string>
     <string name="icon_reply">icon reply</string>
     <string name="icon_retweet">icon retweet</string>
@@ -98,4 +98,7 @@
     <string name="death_title">Meninggal</string>
     <string name="death_num">45,000</string>
     <string name="recovered_num">450,000</string>
+    <string name="about_app">Sekitar 51% masyarakat Indonesia menolak dan bingung dengan vaksinasi COVID-19. Ini Hal ini dikarenakan minimnya pengetahuan masyarakat tentang pentingnya vaksinasi COVID-19. Mereka ingin mengetahui opini masyarakat tentang vaksin COVID-19 di Indonesia dan bagaimana perkembangannya kemajuan vaksinasi. Sekitar 54% responden memilih untuk menggunakan media sosial mengakses informasi tentang vaksinasi COVID-19, dengan media sosial ini a patokan bagi masyarakat Indonesia dalam mengambil keputusan terkait vaksinasi COVID-19. Oleh karena itu, penggunaan media sosial sebagai acuan analisis sentimen dapat menciptakan a platform seluler sebagai solusi untuk masalah terkait.</string>
+    <string name="developer_student_id">MD-CC-ML</string>
+    <string name="visit_linkedin">Visit LinkedIn</string>
 </resources>
