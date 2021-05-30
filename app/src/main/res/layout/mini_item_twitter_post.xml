@@ -32,6 +32,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tvSentimentResult"
+                    style="@style/SubTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/sentiment_res"
+                    android:textColor="@color/google_green"
+                    android:textFontWeight="300"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="p" />
+
+                <TextView
                     android:id="@+id/tvNameUserTwitter"
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
