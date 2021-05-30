@@ -91,5 +91,5 @@
     <string name="sentiment_analysis_of_vaccination">Sentiment Analysis of Vaccination</string>
     <string name="share">Bagikan</string>
     <string name="refresh">Refresh</string>
-    <string name="sentiment_res">Positif</string>
+    <string name="sentiment_res">Pro</string>
 </resources>
