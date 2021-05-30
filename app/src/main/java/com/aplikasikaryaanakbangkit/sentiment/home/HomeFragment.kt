@@ -1,5 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -49,12 +50,14 @@ class HomeFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
 
             val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-            val tweetViewModel =
-                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
-            val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
-
             loadCovid(covidViewModel)
+
+            val tweetViewModel = ViewModelProvider(
+                this, factory
+            )[SentimentAnalysisViewModel::class.java]
             loadTweet(tweetViewModel)
+
+            val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
             loadNews(newsViewModel)
 
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
@@ -103,6 +106,28 @@ class HomeFragment : Fragment() {
                     )
                 }
                 false.shimmerLoading()
+
+                //share
+                _binding?.covidStatistic?.covidWorldCondition?.worldConditionShare?.setOnClickListener {
+                    startActivity(
+                        Intent.createChooser(
+                            Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    """
+                                        Kasus COVID-19 terkonfirmasi di seluruh Dunia.
+                                        
+                                        Positif     :   ${globalCovid.data?.confirmedGlobal ?: 0}
+                                        Sembuh      :   ${globalCovid.data?.recoveredGlobal ?: 0}
+                                        Meninggal   :   ${globalCovid.data?.deathGlobal ?: 0}
+                                    """.trimIndent()
+                                )
+                                type = "text/plain"
+                            }, null
+                        )
+                    )
+                }
             }
         })
 
@@ -112,7 +137,6 @@ class HomeFragment : Fragment() {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
                         Log.d("ID Covid", idCovid.data.toString())
-
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
                                 NumberFormat.getNumberInstance(Locale.US).format(
@@ -131,6 +155,28 @@ class HomeFragment : Fragment() {
                             )
                         }
                         false.shimmerLoading()
+
+                        //share
+                        _binding?.covidStatistic?.covidLocalCondition?.localConditionShare?.setOnClickListener {
+                            startActivity(
+                                Intent.createChooser(
+                                    Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(
+                                            Intent.EXTRA_TEXT,
+                                            """
+                                                Kasus COVID-19 terkonfirmasi di Indonesia.
+                                                
+                                                Positif     :   ${idCovid.data?.confirmed ?: 0}
+                                                Sembuh      :   ${idCovid.data?.recovered ?: 0}
+                                                Meninggal   :   ${idCovid.data?.deaths ?: 0}
+                                            """.trimIndent()
+                                        )
+                                        type = "text/plain"
+                                    }, null
+                                )
+                            )
+                        }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
