@@ -7,11 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -32,6 +31,7 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
     private var newsUrl = ""
 
     private var webView: WebView? = null
+    private var progressBar: LottieAnimationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,43 +47,34 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
 
         val extras = intent.extras
         if (extras != null) {
-            true.loading()
             _url = extras.getString(EXTRA_SHOW).toString()
             newsViewModel.setSelectedDetailNews(_url)
 
             newsViewModel.getDataDetailCovidHeadlines.observe(this, { news ->
                 if (news != null) {
                     when (news.status) {
-                        Status.LOADING -> true.loading()
+                        Status.LOADING -> {
+
+                        }
                         Status.SUCCESS -> if (news.data != null) {
-                            false.loading()
                             newsTitle = news.data.title.toString()
                             newsUrl = news.data.url
 
                             // web view
                             webView = findViewById(R.id.newsDetailWebView)
+                            progressBar = findViewById(R.id.progressBar)
+
                             webView?.scrollBarStyle = View.SCROLLBARS_OUTSIDE_OVERLAY
                             webView?.webViewClient = WebViewClient()
                             webView?.loadUrl(newsUrl)
                         }
                         Status.ERROR -> {
-                            false.loading()
                             Toast.makeText(this, getString(R.string.error_msg), Toast.LENGTH_SHORT)
-                                    .show()
+                                .show()
                         }
                     }
                 }
             })
-        }
-    }
-
-    private fun Boolean.loading() {
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-
-        if (this) {
-            progressBar.visibility = View.VISIBLE
-        } else {
-            progressBar.visibility = View.GONE
         }
     }
 
@@ -111,8 +102,8 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(
-                            Intent.EXTRA_TEXT,
-                            """
+                        Intent.EXTRA_TEXT,
+                        """
                             "$newsTitle".
                             
                             Kunjungi: $newsUrl
@@ -123,9 +114,6 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
                 val shareIntent = Intent.createChooser(sendIntent, null)
                 startActivity(shareIntent)
             }
-            R.id.refresh -> {
-                webView?.reload()
-            }
             R.id.openInBrowser -> {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl)))
             }
@@ -133,4 +121,15 @@ class DetailNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener
         return true
     }
 
+    inner class WebViewClient : android.webkit.WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            view.loadUrl(url)
+            return false
+        }
+
+        override fun onPageFinished(view: WebView, url: String) {
+            super.onPageFinished(view, url)
+            progressBar?.visibility = View.GONE
+        }
+    }
 }

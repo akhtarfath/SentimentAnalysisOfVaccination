@@ -24,14 +24,16 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <ProgressBar
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
         android:elevation="1dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
+        app:lottie_autoPlay="true"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:visibility="invisible" />
+        app:lottie_loop="true"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/animation_loading_paper_plane"
+        app:lottie_enableMergePathsForKitKatAndAbove="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
