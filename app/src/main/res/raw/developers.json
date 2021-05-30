@@ -1,34 +1,40 @@
 {
   "members": [
     {
-      "id": "1",
+      "id": "A2622440",
       "name": "Muhammad Fathan Aulia",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/jf7m8S7/fathan.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/muhammadfathana/"
     },
     {
-      "id": "2",
+      "id": "A3142820",
       "name": "Shobrina Fathoniah",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/L9pC531/fanny.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/shobrina-fathoniah-b9273b156/"
     },
     {
-      "id": "3",
+      "id": "C2622442",
       "name": "Yustika Ramadhani",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/s150TfG/yustika.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/yustikaramadhani/"
     },
     {
-      "id": "4",
+      "id": "C2622434",
       "name": "Muhammad Rifqi Maulatur Rahman",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/yhrFFWD/rifqi.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/muhammad-rifqi-maulatur-rahman-814890192/"
     },
     {
-      "id": "5",
+      "id": "M0020085",
       "name": "Muhammad Nadhif Farizi",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/rvzhy9Z/nadhif.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/nadhiffarizi/"
     },
     {
-      "id": "6",
+      "id": "M0020082",
       "name": "Khalifah Lazuardi Firmansyah",
-      "urlPicture": ""
+      "urlPicture": "https://i.ibb.co/8crYtJ1/khalifah.jpg",
+      "urlLinkedIn": "https://www.linkedin.com/in/aliflazuardi/"
     }
   ]
 }
