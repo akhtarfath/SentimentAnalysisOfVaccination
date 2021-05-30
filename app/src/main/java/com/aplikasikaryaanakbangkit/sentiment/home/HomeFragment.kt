@@ -47,9 +47,15 @@ class HomeFragment : Fragment() {
 
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
-            loadCovid(factory)
-            loadTweet(factory)
-            loadNews(factory)
+
+            val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+            val tweetViewModel =
+                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+            val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+
+            loadCovid(covidViewModel)
+            loadTweet(tweetViewModel)
+            loadNews(newsViewModel)
 
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
@@ -62,9 +68,9 @@ class HomeFragment : Fragment() {
                 fun refreshItem() {
                     true.shimmerLoading()
                     Handler(requireActivity().mainLooper).postDelayed({
-                        loadCovid(factory)
-                        loadTweet(factory)
-                        loadNews(factory)
+                        loadCovid(covidViewModel)
+                        loadTweet(tweetViewModel)
+                        loadNews(newsViewModel)
                     }, 750)
                     onItemLoad()
                 }
@@ -76,32 +82,24 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun loadCovid(factory: ViewModelFactory) {
-        val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-
+    private fun loadCovid(covidViewModel: HomeViewModel) {
         covidViewModel.getGlobalCovid.observe(viewLifecycleOwner, { globalCovid ->
             if (globalCovid != null) {
                 _binding?.covidStatistic?.covidWorldCondition?.let {
                     it.numberPositive.text = StringBuilder(
-                        "Positif \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.confirmedGlobal ?: 0
-                            )
-                        }"
+                        NumberFormat.getNumberInstance(Locale.US).format(
+                            globalCovid.data?.confirmedGlobal ?: 0
+                        )
                     )
                     it.numberOfDeaths.text = StringBuilder(
-                        "Meninggal \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.deathGlobal ?: 0
-                            )
-                        }"
+                        NumberFormat.getNumberInstance(Locale.US).format(
+                            globalCovid.data?.deathGlobal ?: 0
+                        )
                     )
                     it.numberOfCures.text = StringBuilder(
-                        "Sembuh \n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                globalCovid.data?.recoveredGlobal ?: 0
-                            )
-                        }"
+                        NumberFormat.getNumberInstance(Locale.US).format(
+                            globalCovid.data?.recoveredGlobal ?: 0
+                        )
                     )
                 }
                 false.shimmerLoading()
@@ -114,27 +112,22 @@ class HomeFragment : Fragment() {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
                         Log.d("ID Covid", idCovid.data.toString())
+
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
-                                "Positif \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.confirmed ?: 0
-                                    )
-                                }"
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    idCovid.data?.confirmed ?: 0
+                                )
                             )
                             numberOfDeathsID.text = StringBuilder(
-                                "Meninggal \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.deaths ?: 0
-                                    )
-                                }"
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    idCovid.data?.deaths ?: 0
+                                )
                             )
                             numberOfCuresID.text = StringBuilder(
-                                "Sembuh \n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                        idCovid.data?.recovered ?: 0
-                                    )
-                                }"
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    idCovid.data?.recovered ?: 0
+                                )
                             )
                         }
                         false.shimmerLoading()
@@ -153,10 +146,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun loadTweet(factory: ViewModelFactory) {
-        val tweetViewModel =
-            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
-
+    private fun loadTweet(tweetViewModel: SentimentAnalysisViewModel) {
         tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
@@ -186,9 +176,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun loadNews(factory: ViewModelFactory) {
-        val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
-
+    private fun loadNews(newsViewModel: NewsViewModel) {
         true.shimmerLoading()
         newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {

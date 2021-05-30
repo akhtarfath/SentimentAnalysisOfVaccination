@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_centerHorizontal="true"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="15dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_vertical"

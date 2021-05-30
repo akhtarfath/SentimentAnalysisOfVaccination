@@ -92,4 +92,10 @@
     <string name="share">Bagikan</string>
     <string name="refresh">Refresh</string>
     <string name="sentiment_res">Pro</string>
+    <string name="positive_title">Positif</string>
+    <string name="positive_num">1,000,000</string>
+    <string name="recovered_title">Sembuh</string>
+    <string name="death_title">Meninggal</string>
+    <string name="death_num">45,000</string>
+    <string name="recovered_num">450,000</string>
 </resources>

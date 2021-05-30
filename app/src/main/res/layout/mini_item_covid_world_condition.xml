@@ -46,24 +46,62 @@
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_yellow"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/numberPositive"
-                style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/positive" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/titleNumberPositive"
+                    style="@style/SubTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/positive_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark"
+                    android:textFontWeight="900"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="5dp"
+                    tools:targetApi="p" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="@string/positive_title"
+                    android:src="@drawable/ic_covid_positive"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/numberPositive"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/positive_num"
+                    android:textAlignment="center"
+                    android:textColor="@color/google_yellow"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                    tools:targetApi="p" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -71,49 +109,125 @@
             android:id="@+id/cardView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_green"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/numberOfCures"
-                style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/recovered" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/titleNumberOfCures"
+                    style="@style/SubTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/recovered_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark"
+                    android:textFontWeight="900"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="5dp"
+                    tools:targetApi="p" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="@string/recovered_title"
+                    android:src="@drawable/ic_syringe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/numberOfCures"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/recovered_num"
+                    android:textAlignment="center"
+                    android:textColor="@color/google_green"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                    tools:targetApi="p" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_red"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/numberOfDeaths"
-                style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/death" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/titleNumberOfDeaths"
+                    style="@style/SubTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/death_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark"
+                    android:textFontWeight="900"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/numberOfDeaths"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:targetApi="p" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="@string/death_title"
+                    android:src="@drawable/ic_dead"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/numberOfDeaths"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineHeight="23dp"
+                    android:text="@string/death_num"
+                    android:textAlignment="center"
+                    android:textColor="@color/google_red"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                    tools:targetApi="p" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 

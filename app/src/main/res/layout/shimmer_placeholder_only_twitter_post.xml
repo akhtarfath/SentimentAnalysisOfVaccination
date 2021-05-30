@@ -10,7 +10,7 @@
         android:id="@+id/cvIncludeTweet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
+        android:layout_marginHorizontal="10dp"
         android:backgroundTint="@color/silver"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -22,9 +22,9 @@
     <color name="cream">#F7F1E6</color>
     <color name="silver">#C4C4C4</color>
 
-    <color name="google_red">#e4a3a3</color>
-    <color name="google_green">#9ac1ba</color>
-    <color name="google_yellow">#f1d4a0</color>
+    <color name="google_red">#E33F3D</color>
+    <color name="google_green">#258774</color>
+    <color name="google_yellow">#F9B234</color>
 
     <color name="light_red">#FFE1DB</color>
 </resources>

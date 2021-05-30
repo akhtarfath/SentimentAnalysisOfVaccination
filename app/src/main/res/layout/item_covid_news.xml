@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/headline_text"
         style="@style/TitleText"
-        android:paddingHorizontal="25dp"
+        android:paddingHorizontal="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/headlines_news"
@@ -19,7 +19,7 @@
         android:id="@+id/headline_text_see_all"
         style="@style/ContentTitleText"
         android:paddingTop="3dp"
-        android:paddingHorizontal="25dp"
+        android:paddingHorizontal="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/headlines_news_see_all"
@@ -44,7 +44,7 @@
     <TextView
         android:id="@+id/latest_text"
         style="@style/TitleText"
-        android:paddingHorizontal="25dp"
+        android:paddingHorizontal="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="3dp"
@@ -55,7 +55,7 @@
     <TextView
         android:id="@+id/latest_text_see_all"
         style="@style/ContentTitleText"
-        android:paddingHorizontal="25dp"
+        android:paddingHorizontal="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="3dp"

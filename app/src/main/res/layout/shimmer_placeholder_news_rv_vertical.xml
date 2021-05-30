@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_centerHorizontal="true"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="15dp">
 
     <include
         android:layout_marginTop="10dp"

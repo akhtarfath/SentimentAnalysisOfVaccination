@@ -28,7 +28,7 @@
                 style="@style/NewsImage"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="210dp"
                 android:contentDescription="@string/image_news"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

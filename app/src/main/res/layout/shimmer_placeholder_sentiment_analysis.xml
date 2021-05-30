@@ -14,7 +14,10 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/shimmer_placeholder_title_sentiment_analysis" />
+        android:layout_marginStart="5dp"
+        layout="@layout/shimmer_placeholder_title_sentiment_analysis"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 
     <LinearLayout
         android:layout_marginTop="20dp"
