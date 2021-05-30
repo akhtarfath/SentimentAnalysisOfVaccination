@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:scrollbars="none"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/mini_item_vertical"/>

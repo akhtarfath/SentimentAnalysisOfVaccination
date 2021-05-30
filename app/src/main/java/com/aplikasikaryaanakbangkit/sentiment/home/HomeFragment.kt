@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
@@ -224,7 +225,7 @@ class HomeFragment : Fragment() {
 
     private fun loadNews(newsViewModel: NewsViewModel) {
         true.shimmerLoading()
-        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
+        newsViewModel.newsCovidHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
                     Status.LOADING -> true.shimmerLoading()
@@ -261,7 +262,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
+        newsViewModel.newsVaccine.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
                     Status.LOADING -> true.shimmerLoading()
@@ -269,7 +270,7 @@ class HomeFragment : Fragment() {
                         false.shimmerLoading()
                         _binding?.covidNews?.newsActivityVertical?.let {
                             with(it.rvVertical) {
-                                val layoutManagerVertical = LinearLayoutManager(context)
+                                val layoutManagerVertical = GridLayoutManager(context, 2)
 
                                 this.layoutManager = layoutManagerVertical
                                 this.setHasFixedSize(true)

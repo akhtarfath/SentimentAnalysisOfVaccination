@@ -9,10 +9,12 @@
     tools:ignore="RtlSymmetry">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/cardView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginHorizontal="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -52,9 +54,9 @@
                 style="@style/SubTitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:maxLines="2"
                 android:layout_marginTop="13dp"
+                android:maxLines="2"
+                android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_item"
@@ -77,5 +79,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

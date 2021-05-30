@@ -39,10 +39,11 @@
                     android:layout_marginEnd="10dp"
                     android:text="@string/sentiment_res"
                     android:textColor="@color/google_green"
-                    android:textFontWeight="300"
-                    android:textSize="12sp"
+                    android:textFontWeight="700"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/twitter_photo"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/twitter_photo"
                     tools:targetApi="p" />
 
                 <TextView
@@ -50,12 +51,12 @@
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/name_user_twitter"
+                    android:layout_marginStart="10dp"
                     android:textFontWeight="700"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/twitter_photo"
                     tools:targetApi="p" />
 
                 <TextView
@@ -63,11 +64,11 @@
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/username_twitter"
                     android:textFontWeight="500"
+                    android:layout_marginStart="10dp"
                     android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvNameUserTwitter"
                     tools:targetApi="p" />
 
@@ -76,10 +77,11 @@
                     style="@style/ContentTitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:paddingTop="20dp"
                     android:text="@string/long_date_example"
                     android:textFontWeight="300"
                     android:textSize="12sp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvUsernameTwitter"
                     tools:targetApi="p" />
@@ -103,6 +105,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -112,8 +115,8 @@
                     app:layout_constraintVertical_bias="0.0">
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginVertical="5dp"
                         android:contentDescription="@string/icon_reply"
                         android:src="@drawable/ic_message_circle"
@@ -123,16 +126,16 @@
                         android:id="@+id/reply_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
+                        android:layout_marginVertical="3dp"
                         android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
+                        android:text="@string/satu"
+                        android:textColor="@color/silver" />
 
                     <ImageView
-                        android:layout_width="29dp"
-                        android:layout_height="19dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginStart="15dp"
                         android:contentDescription="@string/icon_retweet"
                         android:src="@drawable/ic_retweet"
                         app:tint="@color/silver" />
@@ -141,16 +144,16 @@
                         android:id="@+id/retweet_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
+                        android:layout_marginVertical="3dp"
                         android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
+                        android:text="@string/satu"
+                        android:textColor="@color/silver" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginStart="15dp"
                         android:contentDescription="@string/icon_favorite"
                         android:src="@drawable/ic_heart"
                         app:tint="@color/silver" />
@@ -159,16 +162,16 @@
                         android:id="@+id/like_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
+                        android:layout_marginVertical="3dp"
                         android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
+                        android:text="@string/satu"
+                        android:textColor="@color/silver" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginStart="15dp"
                         android:contentDescription="@string/icon_share"
                         android:src="@drawable/ic_share2"
                         app:tint="@color/silver" />

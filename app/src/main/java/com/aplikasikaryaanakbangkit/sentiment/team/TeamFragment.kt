@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
@@ -80,7 +81,7 @@ class TeamFragment : Fragment() {
                     Status.SUCCESS -> {
                         _fragmentTeamBinding?.layoutRvDevelopersName?.let {
                             with(it.rvDeveloperName) {
-                                val layoutManagerVertical = LinearLayoutManager(context)
+                                val layoutManagerVertical = GridLayoutManager(context, 2)
                                 this.layoutManager = layoutManagerVertical
                                 this.setHasFixedSize(false)
 

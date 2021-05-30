@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
@@ -74,7 +75,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun loadVaccineNews(newsViewModel: NewsViewModel) {
-        newsViewModel.newsLatest.observe(viewLifecycleOwner, { newsVaccine ->
+        newsViewModel.newsVaccine.observe(viewLifecycleOwner, { newsVaccine ->
             if (newsVaccine != null) {
                 when (newsVaccine.status) {
                     Status.LOADING -> true.shimmerLoading()
@@ -82,7 +83,7 @@ class NewsFragment : Fragment() {
                         _fragmentNewsBinding?.covidNews?.newsActivityVertical?.let {
                             with(it.rvVertical) {
 
-                                val layoutManagerVertical = LinearLayoutManager(context)
+                                val layoutManagerVertical = GridLayoutManager(context, 2)
                                 this.layoutManager = layoutManagerVertical
                                 this.setHasFixedSize(true)
 
@@ -109,7 +110,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun loadCovidNews(newsViewModel: NewsViewModel) {
-        newsViewModel.newsHeadline.observe(viewLifecycleOwner, { newsCovid ->
+        newsViewModel.newsCovidHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {
                     Status.LOADING -> true.shimmerLoading()

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="15dp"
     android:layout_marginHorizontal="5dp"
     android:layout_marginBottom="20dp">
 
@@ -28,7 +28,7 @@
                 style="@style/NewsImage"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="210dp"
+                android:layout_height="125dp"
                 android:contentDescription="@string/image_news"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

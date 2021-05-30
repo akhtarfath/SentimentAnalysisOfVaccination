@@ -4,77 +4,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/logo_circle"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@color/silver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logo_circle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@color/silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/application_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/app_name"
-            style="@style/TitleText"
-            android:textSize="19sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo_circle" />
+    <TextView
+        android:id="@+id/application_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/app_name"
+        style="@style/TitleText"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_circle" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/about_app_cv"
-            android:layout_marginHorizontal="20dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/about_app_cv"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:elevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/application_name_tv"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:elevation="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/application_name_tv"
-            app:cardCornerRadius="15dp">
+            android:layout_height="match_parent"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="10dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/about_app_tv"
+                style="@style/SubTitleText"
+                android:layout_marginVertical="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_apps"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/ContentTitleText"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="10dp">
+                android:justificationMode="inter_word"
+                android:lineHeight="23dp"
+                android:paddingTop="7dp"
+                android:text="@string/about_app"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_app_tv"
+                app:layout_constraintVertical_bias="0.483"
+                tools:targetApi="p" />
 
-                <TextView
-                    android:id="@+id/about_app_tv"
-                    style="@style/SubTitleText"
-                    android:layout_marginVertical="13dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_apps"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    style="@style/ContentTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:justificationMode="inter_word"
-                    android:lineHeight="23dp"
-                    android:paddingTop="7dp"
-                    android:text="@string/about_app"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/about_app_tv"
-                    tools:targetApi="p" />
+    </androidx.cardview.widget.CardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_app_cv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

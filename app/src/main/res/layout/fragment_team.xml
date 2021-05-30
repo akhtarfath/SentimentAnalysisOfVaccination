@@ -56,6 +56,7 @@
                     android:id="@+id/includeAboutApp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
                     layout="@layout/item_about_app"/>
 
                 <include
