@@ -15,5 +15,8 @@ data class TeamsEntity(
         val name: String,
 
         @ColumnInfo(name = "urlPicture")
-        val urlPicture: String
+        val urlPicture: String,
+
+        @ColumnInfo(name = "urlLinkedIn")
+        val urlLinkedIn: String
 )

@@ -234,7 +234,8 @@ class SAVRepository private constructor(
                     val teams = TeamsEntity(
                             response.id,
                             response.name,
-                            response.urlPicture
+                            response.urlPicture,
+                            response.urlLinkedIn,
                     )
                     teamsList.add(teams)
                 }
