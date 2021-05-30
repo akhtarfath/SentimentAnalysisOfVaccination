@@ -197,7 +197,6 @@
                     android:textColor="@color/dark"
                     android:textFontWeight="900"
                     android:textSize="13sp"
-                    app:layout_constraintBottom_toTopOf="@+id/numberOfDeaths"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:targetApi="p" />
 
