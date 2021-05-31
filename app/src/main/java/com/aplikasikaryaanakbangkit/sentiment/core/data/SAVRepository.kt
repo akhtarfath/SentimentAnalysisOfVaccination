@@ -21,6 +21,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.c
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.SentimentResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.UserItemsTweetResponse
@@ -314,7 +315,10 @@ class SAVRepository private constructor(
     override fun getAllTweet(): LiveData<List<TweetEntity>> =
             localDataSource.getAllTweets()
 
-    //covid
+    //override fun updateTweets(result: String, tweet: String): LiveData<TweetEntity> =
+          //  localDataSource.updateTweets(result, tweet)
+
+    //covid//
     override fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>> {
         return object :
                 NetworkBoundResource<GlobalCovidEntity, GlobalCovidResponse>(
@@ -529,17 +533,15 @@ class SAVRepository private constructor(
     }
 
     //sentiment
-    override fun insertTweetToAnalysis(tweet: String) = remoteDataSource.insertTweetToAnalysis(tweet)
-
-    override fun getAnalysis(tweet: String): LiveData<Resource<List<SentimentEntity>>> {
+    override fun getAnalysis(tweet: TextTweet): LiveData<Resource<SentimentEntity>> {
         return object :
-                NetworkBoundResource<List<SentimentEntity>, SentimentResponse>(
+                NetworkBoundResource<SentimentEntity, SentimentResponse>(
                         appExecutors
                 ) {
-            override fun loadFromDB(): LiveData<List<SentimentEntity>> =
+            override fun loadFromDB(): LiveData<SentimentEntity> =
                     localDataSource.getSentimentAnalysis()
 
-            override fun shouldFetch(data: List<SentimentEntity>?): Boolean =
+            override fun shouldFetch(data: SentimentEntity?): Boolean =
                     true
 
             override fun createCall(): LiveData<ApiResponse<SentimentResponse>> =
@@ -548,9 +550,8 @@ class SAVRepository private constructor(
             override fun saveCallResult(data: SentimentResponse) {
                 val sentiment =
                         SentimentEntity(
-                                data.id,
-                                data.textTweet,
-                                data.result
+                                textTweet = tweet.text_twitter,
+                                result = data.result
                         )
                 localDataSource.insertSentimentAnalysis(sentiment)
             }

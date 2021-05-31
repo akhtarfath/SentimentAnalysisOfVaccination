@@ -16,6 +16,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.c
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.NewsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.SentimentResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
@@ -268,42 +269,25 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     //sentiment
-    fun insertTweetToAnalysis(tweet: String) {
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            SentimentService
-                    .create()
-                    .insertTweetToAnalysis(tweet)
-                    .enqueue(object : Callback<SentimentResponse> {
-                        override fun onResponse(
-                                call: Call<SentimentResponse>,
-                                response: Response<SentimentResponse>
-                        ) {
-                            Log.e("RemoteDataSource Insert Tweet", response.body().toString())
-                        }
-
-                        override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {
-                            Log.e("RemoteDataSource Insert Tweet", t.message.toString())
-                        }
-
-                    })
-        }, 1500)
-    }
-
-    fun getAnalysis(tweet: String): LiveData<ApiResponse<SentimentResponse>> {
+    fun getAnalysis(text_twitter: TextTweet): LiveData<ApiResponse<SentimentResponse>> {
         val resultData = MutableLiveData<ApiResponse<SentimentResponse>>()
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             SentimentService
                     .create()
-                    .insertTweetToAnalysis(tweet)
+                    .insertTweetToAnalysis(text_twitter)
                     .enqueue(object : Callback<SentimentResponse> {
                         override fun onResponse(
                                 call: Call<SentimentResponse>,
                                 response: Response<SentimentResponse>
                         ) {
-                            ApiResponse.success(resultData.postValue(
-                                    response.body() as ApiResponse<SentimentResponse>))
+                            ApiResponse.success(response.body()).let {
+                                resultData.postValue(
+                                        it as ApiResponse<SentimentResponse>
+                                )
+                            }
+                            Log.d("remote analysis", response.body()?.result.toString())
+
                         }
 
                         override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {

@@ -11,6 +11,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 

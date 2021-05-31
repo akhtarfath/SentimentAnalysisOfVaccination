@@ -56,6 +56,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 tvDateTwitterPost.text = date
                 tvNameUserTwitter.text = tweet.name
                 tvUsernameTwitter.text = StringBuilder("@${tweet.username}")
+                tvSentimentResult.text = tweet.analysis
 
                 replyCount.text = tweet.replyCount.toString()
                 retweetCount.text = tweet.retweetCount.toString()

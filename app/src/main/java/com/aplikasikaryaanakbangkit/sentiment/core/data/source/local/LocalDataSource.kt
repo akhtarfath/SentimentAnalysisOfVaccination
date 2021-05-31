@@ -66,6 +66,9 @@ class LocalDataSource private constructor(
 
     fun getAllTweets(): LiveData<List<TweetEntity>> = SAVDao.getAllTweets()
 
+  //  fun updateTweets(result: String, textTweet: String): LiveData<TweetEntity> =
+    //        SAVDao.updateTweets(result, textTweet)
+
     //covid
     fun getAllGlobalCovid(): LiveData<GlobalCovidEntity> =
             SAVDao.getAllGlobalCovid()
@@ -111,7 +114,7 @@ class LocalDataSource private constructor(
             SAVDao.insertVaccineHealthHR(vaccination)
 
     //sentiment
-    fun getSentimentAnalysis(): LiveData<List<SentimentEntity>> =
+    fun getSentimentAnalysis(): LiveData<SentimentEntity> =
             SAVDao.getSentimentAnalysis()
 
     fun insertSentimentAnalysis(sentiment: SentimentEntity) =

@@ -12,6 +12,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.UserItemsTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Resource
 
 interface SAVDataSource {
@@ -28,6 +29,7 @@ interface SAVDataSource {
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
     fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
     fun getAllTweet(): LiveData<List<TweetEntity>>
+    //fun updateTweets(result: String, tweet: String): LiveData<TweetEntity>
 
     //covid
     fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>>
@@ -41,6 +43,5 @@ interface SAVDataSource {
     fun getVaccinationCoverage(): LiveData<Resource<VaccinationCoverageEntity>>
 
     //sentiment
-    fun insertTweetToAnalysis(tweet: String)
-    fun getAnalysis(tweet: String): LiveData<Resource<List<SentimentEntity>>>
+    fun getAnalysis(tweet: TextTweet): LiveData<Resource<SentimentEntity>>
 }

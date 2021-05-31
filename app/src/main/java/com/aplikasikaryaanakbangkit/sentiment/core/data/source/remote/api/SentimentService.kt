@@ -1,25 +1,23 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api
 
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.SentimentResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface SentimentService {
 
     @POST("predict")
-    fun insertTweetToAnalysis(@Body tweet: String): Call<SentimentResponse>
-
-    @GET("predict")
-    fun getAnalysis(): Call<SentimentResponse>
+    fun insertTweetToAnalysis(@Body text_twitter: TextTweet): Call<SentimentResponse>
 
     companion object {
-        private const val BASE_URL = "http://127.0.0.1:8000/"
+        private const val BASE_URL = "http://34.126.130.172:9000/"
 
         fun create(): SentimentService {
             val loggingInterceptor =
@@ -29,10 +27,6 @@ interface SentimentService {
                     .addInterceptor { chain ->
                         val request = chain.request()
                         val requestBuilder = request.newBuilder()
-                                .header(
-                                        "accept",
-                                        "application/json"
-                                )
                                 .header(
                                         "Content-Type",
                                         "application/json"

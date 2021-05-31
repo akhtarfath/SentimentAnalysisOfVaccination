@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.aplikasikaryaanakbangkit.sentiment.R
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentHomeBinding
@@ -33,6 +34,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var _setTweet: String? = null
+    private var _getTweet: TextTweet? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -216,6 +219,18 @@ class HomeFragment : Fragment() {
 
         tweetViewModel.getPost().observe(viewLifecycleOwner, { post ->
             Log.d("Post Fragment", post.data.toString())
+            for(i in 0 until (post.data?.size?.minus(1) ?: 0)){
+                val tweet = post.data?.get(i)?.text
+                _setTweet = tweet
+                _getTweet = TextTweet(_setTweet.toString())
+                Log.d("post frag tweet", _setTweet.toString())
+
+                _getTweet?.let {
+                    tweetViewModel.getAnalysis(it).observe(viewLifecycleOwner, { sentiment ->
+                        Log.d("sentiment tweet", sentiment.data?.result.toString())
+                    })
+                }
+            }
         })
 
         tweetViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
