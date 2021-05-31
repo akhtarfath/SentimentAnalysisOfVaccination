@@ -29,7 +29,6 @@ interface SAVDataSource {
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
     fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
     fun getAllTweet(): LiveData<List<TweetEntity>>
-    //fun updateTweets(result: String, tweet: String): LiveData<TweetEntity>
 
     //covid
     fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>>

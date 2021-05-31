@@ -61,7 +61,6 @@ class SentimentAnalysisFragment : Fragment() {
             fun refreshItem() {
                 true.shimmerLoading()
                 Handler(requireActivity().mainLooper).postDelayed({
-
                     loadTweet(sentimentAnalysisViewModel)
                 }, 750)
                 onItemLoad()

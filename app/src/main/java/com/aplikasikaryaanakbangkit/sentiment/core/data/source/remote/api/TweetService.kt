@@ -12,7 +12,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor
 
 interface TweetService {
 
-    @GET("search/recent?max_results=100&expansions=author_id,geo.place_id&place.fields=geo&tweet.fields=created_at,text,public_metrics,geo,referenced_tweets&query=covid vaksin sinovac astrazeneca&user.fields=username,profile_image_url")
+    @GET("search/recent?max_results=100&expansions=author_id,geo.place_id&place.fields=geo&tweet.fields=created_at,text,public_metrics,geo,referenced_tweets&query=covid vaksin&user.fields=username,profile_image_url")
     fun getAllTweet(): Call<TweetResponse>
 
     companion object {
@@ -48,7 +48,7 @@ interface TweetService {
             return retrofit
         }
 
-        fun getApiService(): TweetService {
+        fun create(): TweetService {
             val consumer = OkHttpOAuthConsumer(
                     "TR3VIB4yHxkGUBkyjzpdpNjmn",
                     "aSZi91nVk3bgXxqp2T9AhQt485GnuPaVOiceGUtRYPdMZklaRu"

@@ -315,10 +315,7 @@ class SAVRepository private constructor(
     override fun getAllTweet(): LiveData<List<TweetEntity>> =
             localDataSource.getAllTweets()
 
-    //override fun updateTweets(result: String, tweet: String): LiveData<TweetEntity> =
-    //  localDataSource.updateTweets(result, tweet)
-
-    //covid//
+    //covid
     override fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>> {
         return object :
                 NetworkBoundResource<GlobalCovidEntity, GlobalCovidResponse>(
@@ -550,8 +547,8 @@ class SAVRepository private constructor(
             override fun saveCallResult(data: SentimentResponse) {
                 val sentiment =
                         SentimentEntity(
-                                textTweet = tweet.text_twitter,
-                                result = data.result
+                                tweet.text_twitter,
+                                data.result
                         )
                 localDataSource.insertSentimentAnalysis(sentiment)
             }

@@ -118,7 +118,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             TweetService
-                    .getApiService()
+                    .create()
                     .getAllTweet()
                     .enqueue(object : Callback<TweetResponse> {
                         override fun onResponse(
@@ -149,7 +149,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             TweetService
-                    .getApiService()
+                    .create()
                     .getAllTweet()
                     .enqueue(object : Callback<TweetResponse> {
                         override fun onResponse(
@@ -284,8 +284,6 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
                                         it as ApiResponse<SentimentResponse>
                                 )
                             }
-                            Log.d("remote analysis", response.body()?.result.toString())
-
                         }
 
                         override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {
@@ -295,6 +293,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
                     })
         }, 1500)
+
         return resultData
     }
 
