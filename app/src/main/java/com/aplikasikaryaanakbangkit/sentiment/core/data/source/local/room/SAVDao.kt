@@ -59,7 +59,7 @@ interface SAVDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTweetProfile(profile: List<UserItemsTweetEntity>)
 
-    @Query("SELECT tweetProfile.authorId as authorId, tweetProfile.name as name, tweetProfile.profile_image_url as imageUrl, tweetProfile.username as username, tweetPost.text as text, tweetPost.created_at as date, tweetPost.likeCount as likeCount, tweetPost.quoteCount as quoteCount, tweetPost.replyCount as replyCount, tweetPost.retweetCount as retweetCount FROM tweetProfile, tweetPost WHERE tweetProfile.authorId = tweetPost.authorId AND text NOT LIKE 'RT @%' ORDER BY date DESC")
+    @Query("SELECT tweetProfile.authorId as authorId, tweetProfile.name as name, tweetProfile.profile_image_url as imageUrl, tweetProfile.username as username, tweetPost.text as text, tweetPost.created_at as date, tweetPost.likeCount as likeCount, tweetPost.quoteCount as quoteCount, tweetPost.replyCount as replyCount, tweetPost.retweetCount as retweetCount, sentimentAnalysis.result as analysis FROM tweetProfile, tweetPost, sentimentAnalysis WHERE tweetProfile.authorId = tweetPost.authorId AND tweetPost.text = sentimentAnalysis.textTweet ORDER BY date DESC")
     fun getAllTweets(): LiveData<List<TweetEntity>>
 
     //covid
@@ -108,7 +108,7 @@ interface SAVDao {
 
     //sentiment analysis
     @Query("SELECT * FROM sentimentAnalysis")
-    fun getSentimentAnalysis(): LiveData<List<SentimentEntity>>
+    fun getSentimentAnalysis(): LiveData<SentimentEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSentimentAnalysis(sentiment: SentimentEntity)

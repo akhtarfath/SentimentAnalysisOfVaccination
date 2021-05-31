@@ -42,6 +42,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
 
         fun bind(tweet: TweetEntity) {
             with(binding) {
+                var sentimentAnalysis = ""
 
                 val date = LocalDateTime.parse(
                     tweet.date,
@@ -52,10 +53,23 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                             .withLocale(Locale("in", "ID", "ID"))
                     )
 
+                when (tweet.analysis) {
+                    "Positive" -> {
+                        sentimentAnalysis = "Pro"
+                    }
+                    "Negative" -> {
+                        sentimentAnalysis = "Kontra"
+                    }
+                    "Neutral" -> {
+                        sentimentAnalysis = "Netral"
+                    }
+                }
+
                 tvTwitterPost.text = tweet.text
                 tvDateTwitterPost.text = date
                 tvNameUserTwitter.text = tweet.name
                 tvUsernameTwitter.text = StringBuilder("@${tweet.username}")
+                tvSentimentResult.text = sentimentAnalysis
 
                 replyCount.text = tweet.replyCount.toString()
                 retweetCount.text = tweet.retweetCount.toString()

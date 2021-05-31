@@ -53,7 +53,7 @@ class VaccinationFragment : Fragment() {
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
             swipeRefreshLayout.setOnRefreshListener(object :
-                SwipeRefreshLayout.OnRefreshListener {
+                    SwipeRefreshLayout.OnRefreshListener {
                 override fun onRefresh() {
                     refreshItem()
                 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,15 +24,17 @@ class SentimentAnalysisFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val _binding get() = _sentimentAnalysisBinding!!
+    private var _setTweet: String? = null
+    private var _getTweet: TextTweet? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _sentimentAnalysisBinding =
-            FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
+                FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -43,14 +46,14 @@ class SentimentAnalysisFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireContext())
         val sentimentAnalysisViewModel =
-            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         loadTweet(sentimentAnalysisViewModel)
 
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         /*event ketika widget dijalankan*/
         swipeRefreshLayout.setOnRefreshListener(object :
-            SwipeRefreshLayout.OnRefreshListener {
+                SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
                 refreshItem()
             }
@@ -74,7 +77,7 @@ class SentimentAnalysisFragment : Fragment() {
         sentimentAnalysisViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             with(_sentimentAnalysisBinding?.layoutRvTweetsPost?.rvTweet) {
                 val layoutManagerVertical =
-                    LinearLayoutManager(context)
+                        LinearLayoutManager(context)
                 this?.layoutManager = layoutManagerVertical
                 this?.setHasFixedSize(true)
 
@@ -88,17 +91,23 @@ class SentimentAnalysisFragment : Fragment() {
         })
 
         sentimentAnalysisViewModel.getPost().observe(viewLifecycleOwner, { post ->
-            Log.d("Post Fragment", post.status.toString())
             Log.d("Post Fragment", post.data.toString())
-            Log.d("Post Fragment", post.message.toString())
-            false.shimmerLoading()
+            for (i in 0 until (post.data?.size?.minus(1) ?: 0)) {
+                val tweet = post.data?.get(i)?.text
+                _setTweet = tweet
+                _getTweet = TextTweet(_setTweet.toString())
+                Log.d("post frag tweet", _setTweet.toString())
+
+                _getTweet?.let {
+                    sentimentAnalysisViewModel.getAnalysis(it).observe(viewLifecycleOwner, { sentiment ->
+                        Log.d("sentiment tweet", sentiment.data?.result.toString())
+                    })
+                }
+            }
         })
 
         sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
-            Log.d("profile Fragment", profile.status.toString())
             Log.d("profile Fragment", profile.data.toString())
-            Log.d("profile Fragment", profile.message.toString())
-            false.shimmerLoading()
         })
     }
 

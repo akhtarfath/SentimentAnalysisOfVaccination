@@ -5,17 +5,14 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.CovidService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.SentimentService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.VaccinationService
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.TweetUtils
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.GlobalCovidResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.NewsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.SentimentResponse
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.teams.TeamsResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.DataItemTweetResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.tweet.TweetResponse
@@ -34,9 +31,9 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         private var instance: RemoteDataSource? = null
 
         fun getInstance(helper: JsonHelper): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(helper)
-            }
+                instance ?: synchronized(this) {
+                    instance ?: RemoteDataSource(helper)
+                }
     }
 
     //news
@@ -46,22 +43,22 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             NewsService.create()
-                .getCovidHeadlines()
-                .enqueue(object : Callback<NewsResponse> {
-                    override fun onResponse(
-                        call: Call<NewsResponse>,
-                        response: Response<NewsResponse>
-                    ) {
-                        resultCovidHeadlines.postValue(
-                            response.body()?.let { ApiResponse.success(it.articles) })
-                    }
+                    .getCovidHeadlines()
+                    .enqueue(object : Callback<NewsResponse> {
+                        override fun onResponse(
+                                call: Call<NewsResponse>,
+                                response: Response<NewsResponse>
+                        ) {
+                            resultCovidHeadlines.postValue(
+                                    response.body()?.let { ApiResponse.success(it.articles) })
+                        }
 
-                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultCovidHeadlines))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultCovidHeadlines))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultCovidHeadlines
@@ -73,21 +70,21 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             NewsService.create()
-                .getVaccineNews()
-                .enqueue(object : Callback<NewsResponse> {
-                    override fun onResponse(
-                        call: Call<NewsResponse>,
-                        response: Response<NewsResponse>
-                    ) {
-                        resultVaccineNews.postValue(
-                            response.body()?.let { ApiResponse.success(it.articles) })
-                    }
+                    .getVaccineNews()
+                    .enqueue(object : Callback<NewsResponse> {
+                        override fun onResponse(
+                                call: Call<NewsResponse>,
+                                response: Response<NewsResponse>
+                        ) {
+                            resultVaccineNews.postValue(
+                                    response.body()?.let { ApiResponse.success(it.articles) })
+                        }
 
-                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultVaccineNews))
-                    }
+                        override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultVaccineNews))
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultVaccineNews
@@ -120,26 +117,27 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetUtils.getApiService()
-                .getAllTweet()
-                .enqueue(object : Callback<TweetResponse> {
-                    override fun onResponse(
-                        call: Call<TweetResponse>,
-                        response: Response<TweetResponse>
-                    ) {
-                        ApiResponse.success(response.body()?.includes?.users).let {
-                            resultTweet.postValue(
-                                it as ApiResponse<List<UserItemsTweetResponse>>
-                            )
+            TweetService
+                    .getApiService()
+                    .getAllTweet()
+                    .enqueue(object : Callback<TweetResponse> {
+                        override fun onResponse(
+                                call: Call<TweetResponse>,
+                                response: Response<TweetResponse>
+                        ) {
+                            ApiResponse.success(response.body()?.includes?.users).let {
+                                resultTweet.postValue(
+                                        it as ApiResponse<List<UserItemsTweetResponse>>
+                                )
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
-                        Log.d("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
+                            Log.d("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultTweet
@@ -150,24 +148,25 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetUtils.getApiService()
-                .getAllTweet()
-                .enqueue(object : Callback<TweetResponse> {
-                    override fun onResponse(
-                        call: Call<TweetResponse>,
-                        response: Response<TweetResponse>
-                    ) {
-                        resultTweet.postValue(
-                            response.body()
-                                ?.let { ApiResponse.success(it.data as List<DataItemTweetResponse>) })
-                    }
+            TweetService
+                    .getApiService()
+                    .getAllTweet()
+                    .enqueue(object : Callback<TweetResponse> {
+                        override fun onResponse(
+                                call: Call<TweetResponse>,
+                                response: Response<TweetResponse>
+                        ) {
+                            resultTweet.postValue(
+                                    response.body()
+                                            ?.let { ApiResponse.success(it.data as List<DataItemTweetResponse>) })
+                        }
 
-                    override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<TweetResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultTweet))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultTweet
@@ -180,25 +179,25 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                .create()
-                .getGlobalCovid()
-                .enqueue(object : Callback<GlobalCovidResponse> {
-                    override fun onResponse(
-                        call: Call<GlobalCovidResponse>,
-                        response: Response<GlobalCovidResponse>
-                    ) {
-                        resultData.postValue(
-                            response.body()
-                                ?.let { ApiResponse.success(it) }
-                        )
-                    }
+                    .create()
+                    .getGlobalCovid()
+                    .enqueue(object : Callback<GlobalCovidResponse> {
+                        override fun onResponse(
+                                call: Call<GlobalCovidResponse>,
+                                response: Response<GlobalCovidResponse>
+                        ) {
+                            resultData.postValue(
+                                    response.body()
+                                            ?.let { ApiResponse.success(it) }
+                            )
+                        }
 
-                    override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<GlobalCovidResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultData
@@ -210,26 +209,26 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             CovidService
-                .create()
-                .getIDCovid()
-                .enqueue(object : Callback<List<IDCovidItemResponse>> {
-                    override fun onResponse(
-                        call: Call<List<IDCovidItemResponse>>,
-                        response: Response<List<IDCovidItemResponse>>
-                    ) {
-                        ApiResponse.success(response.body()?.get(0)).let {
-                            resultData.postValue(
-                                it as ApiResponse<IDCovidItemResponse>
-                            )
+                    .create()
+                    .getIDCovid()
+                    .enqueue(object : Callback<List<IDCovidItemResponse>> {
+                        override fun onResponse(
+                                call: Call<List<IDCovidItemResponse>>,
+                                response: Response<List<IDCovidItemResponse>>
+                        ) {
+                            ApiResponse.success(response.body()?.get(0)).let {
+                                resultData.postValue(
+                                        it as ApiResponse<IDCovidItemResponse>
+                                )
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<List<IDCovidItemResponse>>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<List<IDCovidItemResponse>>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultData
@@ -242,79 +241,59 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             VaccinationService
-                .create()
-                .getAllVaccination()
-                .enqueue(object : Callback<VaccinationResponse> {
-                    override fun onResponse(
-                        call: Call<VaccinationResponse>,
-                        response: Response<VaccinationResponse>
-                    ) {
-                        ApiResponse.success(response.body()?.monitoring).let {
-                            resultData.postValue(
-                                it as ApiResponse<List<VaccinationMonitoringItemResponse>>
-                            )
+                    .create()
+                    .getAllVaccination()
+                    .enqueue(object : Callback<VaccinationResponse> {
+                        override fun onResponse(
+                                call: Call<VaccinationResponse>,
+                                response: Response<VaccinationResponse>
+                        ) {
+                            ApiResponse.success(response.body()?.monitoring).let {
+                                resultData.postValue(
+                                        it as ApiResponse<List<VaccinationMonitoringItemResponse>>
+                                )
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<VaccinationResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        override fun onFailure(call: Call<VaccinationResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
 
-                })
+                    })
         }, 1500)
 
         return resultData
     }
 
     //sentiment
-    fun insertTweetToAnalysis(tweet: String) {
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            SentimentService
-                .create()
-                .insertTweetToAnalysis(tweet)
-                .enqueue(object : Callback<SentimentResponse> {
-                    override fun onResponse(
-                        call: Call<SentimentResponse>,
-                        response: Response<SentimentResponse>
-                    ) {
-                        Log.e("RemoteDataSource Insert Tweet", response.body().toString())
-                    }
-
-                    override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {
-                        Log.e("RemoteDataSource Insert Tweet", t.message.toString())
-                    }
-
-                })
-        }, 1500)
-    }
-
-    fun getAnalysis(tweet: String): LiveData<ApiResponse<SentimentResponse>> {
+    fun getAnalysis(text_twitter: TextTweet): LiveData<ApiResponse<SentimentResponse>> {
         val resultData = MutableLiveData<ApiResponse<SentimentResponse>>()
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             SentimentService
-                .create()
-                .insertTweetToAnalysis(tweet)
-                .enqueue(object : Callback<SentimentResponse> {
-                    override fun onResponse(
-                        call: Call<SentimentResponse>,
-                        response: Response<SentimentResponse>
-                    ) {
-                        ApiResponse.success(
-                            resultData.postValue(
-                                response.body() as ApiResponse<SentimentResponse>
-                            )
-                        )
-                    }
+                    .create()
+                    .insertTweetToAnalysis(text_twitter)
+                    .enqueue(object : Callback<SentimentResponse> {
+                        override fun onResponse(
+                                call: Call<SentimentResponse>,
+                                response: Response<SentimentResponse>
+                        ) {
+                            ApiResponse.success(response.body()).let {
+                                resultData.postValue(
+                                        it as ApiResponse<SentimentResponse>
+                                )
+                            }
+                            Log.d("remote analysis", response.body()?.result.toString())
 
-                    override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {
-                        ApiResponse.error(t.message.toString(), mutableListOf(resultData))
-                        Log.e("RemoteDataSource", t.message.toString())
-                    }
+                        }
 
-                })
+                        override fun onFailure(call: Call<SentimentResponse>, t: Throwable) {
+                            ApiResponse.error(t.message.toString(), mutableListOf(resultData))
+                            Log.e("RemoteDataSource", t.message.toString())
+                        }
+
+                    })
         }, 1500)
         return resultData
     }

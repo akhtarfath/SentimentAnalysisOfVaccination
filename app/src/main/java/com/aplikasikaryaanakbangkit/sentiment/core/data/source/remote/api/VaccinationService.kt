@@ -18,15 +18,16 @@ interface VaccinationService {
 
         fun create(): VaccinationService {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build()
+                    .retryOnConnectionFailure(true)
+                    .addInterceptor(loggingInterceptor)
+                    .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build()
 
             return retrofit.create(VaccinationService::class.java)
         }
