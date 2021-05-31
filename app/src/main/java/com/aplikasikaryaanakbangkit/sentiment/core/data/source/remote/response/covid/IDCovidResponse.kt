@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class IDCovidResponse(
 
-        @field:SerializedName("")
-        val iDCovidResponse: List<IDCovidItemResponse?>? = null
+    @field:SerializedName("")
+    val iDCovidResponse: List<IDCovidItemResponse?>? = null
 )

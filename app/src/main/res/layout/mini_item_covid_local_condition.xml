@@ -50,7 +50,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +70,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark"
                     android:textFontWeight="900"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="5dp"
                     tools:targetApi="p" />
@@ -113,7 +113,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -133,7 +133,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark"
                     android:textFontWeight="900"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="5dp"
                     tools:targetApi="p" />
@@ -176,7 +176,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -196,7 +196,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark"
                     android:textFontWeight="900"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="5dp"
                     tools:targetApi="p" />

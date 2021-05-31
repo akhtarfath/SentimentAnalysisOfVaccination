@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
 class NewsViewModel(
-        _newsRepository: SAVRepository
+    _newsRepository: SAVRepository
 ) : ViewModel() {
 
     val newsCovidHeadline = _newsRepository.getCovidHeadlines()

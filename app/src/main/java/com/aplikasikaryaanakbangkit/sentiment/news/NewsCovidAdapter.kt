@@ -18,20 +18,20 @@ import java.time.format.FormatStyle
 import java.util.*
 
 class NewsCovidAdapter :
-        PagedListAdapter<ArticleCovidEntity, NewsCovidAdapter.NewsViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<ArticleCovidEntity, NewsCovidAdapter.NewsViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleCovidEntity>() {
             override fun areItemsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem.url == newItem.url
             }
 
             override fun areContentsTheSame(
-                    oldItem: ArticleCovidEntity,
-                    newItem: ArticleCovidEntity
+                oldItem: ArticleCovidEntity,
+                newItem: ArticleCovidEntity
             ): Boolean {
                 return oldItem == newItem
             }
@@ -40,7 +40,7 @@ class NewsCovidAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val miniItemBinding =
-                MiniItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MiniItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(miniItemBinding)
     }
 
@@ -52,35 +52,35 @@ class NewsCovidAdapter :
     }
 
     class NewsViewHolder(private val binding: MiniItemHorizontalBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(article: ArticleCovidEntity) {
             with(binding) {
 
                 val publishedAt = LocalDateTime
-                        // Represent a date with time-of-day but lacking offset-from-UTC or time zone.
-                        // As such, this does *not* represent a moment, is *not* a point on the timeline.
-                        .parse(
-                                article.publishedAt,
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                        )
-                        // Parse an input string in standard ISO 8601 format. Returns a `LocalDateTime` object.
-                        .toLocalDate()
-                        // Extract the date-only portion without the time-of-day.
-                        // Still no time zone or offset-from-UTC. Returns a `LocalDate` object.
-                        .format(
-                                // Generate text representing the value of that `LocalDate` object.
-                                DateTimeFormatter
-                                        // Define a pattern to use in generating text.
-                                        .ofLocalizedDate(FormatStyle.FULL)
-                                        // Automatically localize, specifying how long/abbreviated…
-                                        .withLocale(
-                                                Locale(
-                                                        "in",
-                                                        "ID",
-                                                        "ID"
-                                                )
-                                        ) // … and what human language and cultural norms to use in localizing.
-                        )
+                    // Represent a date with time-of-day but lacking offset-from-UTC or time zone.
+                    // As such, this does *not* represent a moment, is *not* a point on the timeline.
+                    .parse(
+                        article.publishedAt,
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                    )
+                    // Parse an input string in standard ISO 8601 format. Returns a `LocalDateTime` object.
+                    .toLocalDate()
+                    // Extract the date-only portion without the time-of-day.
+                    // Still no time zone or offset-from-UTC. Returns a `LocalDate` object.
+                    .format(
+                        // Generate text representing the value of that `LocalDate` object.
+                        DateTimeFormatter
+                            // Define a pattern to use in generating text.
+                            .ofLocalizedDate(FormatStyle.FULL)
+                            // Automatically localize, specifying how long/abbreviated…
+                            .withLocale(
+                                Locale(
+                                    "in",
+                                    "ID",
+                                    "ID"
+                                )
+                            ) // … and what human language and cultural norms to use in localizing.
+                    )
 
                 tvItemTitle.text = article.title
                 tvPublishedAt.text = publishedAt
@@ -91,12 +91,12 @@ class NewsCovidAdapter :
                     itemView.context.startActivity(intent)
                 }
                 Glide.with(itemView.context)
-                        .load(article.urlToImage)
-                        .apply(
-                                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error)
-                        )
-                        .into(imageNews)
+                    .load(article.urlToImage)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(imageNews)
             }
         }
     }

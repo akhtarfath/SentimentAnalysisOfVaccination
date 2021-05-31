@@ -14,8 +14,8 @@ class TweetClient {
     companion object {
         private var retrofit: Retrofit? = null
         private val gSon = GsonBuilder()
-                .setLenient()
-                .create()
+            .setLenient()
+            .create()
 
         fun getClient(baseUrl: String, consumer: OkHttpOAuthConsumer): Retrofit? {
             val loggingInterceptor = HttpLoggingInterceptor()
@@ -26,30 +26,30 @@ class TweetClient {
             }
 
             val client = OkHttpClient.Builder()
-                    .connectTimeout(6000, TimeUnit.SECONDS)
-                    .writeTimeout(120000, TimeUnit.SECONDS)
-                    .readTimeout(120000, TimeUnit.SECONDS)
-                    .retryOnConnectionFailure(true)
-                    .addInterceptor(SigningInterceptor(consumer))
-                    .addInterceptor { chain ->
-                        val request = chain.request()
-                        val requestBuilder = request.newBuilder()
-                                .header(
-                                        "Cookie",
-                                        "guest_id=v1%3A162193671981972958; personalization_id=\"v1_i1siNpmTg+1Ao8ZnadTsWQ==\""
-                                )
-                        val modifiedRequest = requestBuilder.build()
-                        chain.proceed(modifiedRequest)
-                    }
+                .connectTimeout(6000, TimeUnit.SECONDS)
+                .writeTimeout(120000, TimeUnit.SECONDS)
+                .readTimeout(120000, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .addInterceptor(SigningInterceptor(consumer))
+                .addInterceptor { chain ->
+                    val request = chain.request()
+                    val requestBuilder = request.newBuilder()
+                        .header(
+                            "Cookie",
+                            "guest_id=v1%3A162193671981972958; personalization_id=\"v1_i1siNpmTg+1Ao8ZnadTsWQ==\""
+                        )
+                    val modifiedRequest = requestBuilder.build()
+                    chain.proceed(modifiedRequest)
+                }
 
             client.addNetworkInterceptor(loggingInterceptor)
 
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
-                        .baseUrl(baseUrl)
-                        .addConverterFactory(GsonConverterFactory.create(gSon))
-                        .client(client.build())
-                        .build()
+                    .baseUrl(baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create(gSon))
+                    .client(client.build())
+                    .build()
             }
             return retrofit
         }

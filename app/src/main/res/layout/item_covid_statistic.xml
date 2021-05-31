@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp">
 
-    <include
+        <include
         android:id="@+id/covidWorldCondition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

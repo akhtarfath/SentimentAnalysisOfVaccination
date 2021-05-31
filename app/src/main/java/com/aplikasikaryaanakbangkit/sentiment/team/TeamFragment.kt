@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
@@ -27,13 +26,13 @@ class TeamFragment : Fragment() {
     private val _binding get() = _fragmentTeamBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _fragmentTeamBinding =
-                FragmentTeamBinding.inflate(inflater, container, false)
+            FragmentTeamBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
