@@ -17,7 +17,6 @@ interface CovidService {
     @GET("api/countries/id/confirmed")
     fun getIDCovid(): Call<List<IDCovidItemResponse>>
 
-
     companion object {
         private const val BASE_URL = "https://covid19.mathdro.id/"
 
