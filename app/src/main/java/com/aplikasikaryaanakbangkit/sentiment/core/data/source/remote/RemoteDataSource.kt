@@ -5,12 +5,8 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.CovidService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.NewsService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.SentimentService
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.VaccinationService
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.api.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.ApiResponse
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.network.TweetUtils
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.GlobalCovidResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.covid.IDCovidItemResponse
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.news.ArticlesItemResponse
@@ -121,7 +117,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetUtils.getApiService()
+            TweetService
+                    .getApiService()
                     .getAllTweet()
                     .enqueue(object : Callback<TweetResponse> {
                         override fun onResponse(
@@ -151,7 +148,8 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            TweetUtils.getApiService()
+            TweetService
+                    .getApiService()
                     .getAllTweet()
                     .enqueue(object : Callback<TweetResponse> {
                         override fun onResponse(
