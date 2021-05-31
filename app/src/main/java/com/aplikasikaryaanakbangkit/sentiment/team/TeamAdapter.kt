@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,20 +14,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 class TeamAdapter :
-    PagedListAdapter<TeamsEntity, TeamAdapter.TeamViewHolder>(DIFF_CALLBACK) {
+        PagedListAdapter<TeamsEntity, TeamAdapter.TeamViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TeamsEntity>() {
             override fun areItemsTheSame(
-                oldItem: TeamsEntity,
-                newItem: TeamsEntity
+                    oldItem: TeamsEntity,
+                    newItem: TeamsEntity
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: TeamsEntity,
-                newItem: TeamsEntity
+                    oldItem: TeamsEntity,
+                    newItem: TeamsEntity
             ): Boolean {
                 return oldItem == newItem
             }
@@ -37,7 +36,7 @@ class TeamAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val itemDeveloperNameBinding =
-            ItemDeveloperNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ItemDeveloperNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TeamViewHolder(itemDeveloperNameBinding)
     }
 
@@ -49,7 +48,7 @@ class TeamAdapter :
     }
 
     class TeamViewHolder(private val binding: ItemDeveloperNameBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
         fun bind(team: TeamsEntity) {
             with(binding) {
                 developerNameTv.text = team.name
@@ -57,17 +56,17 @@ class TeamAdapter :
 
                 developerLinkedin.setOnClickListener {
                     itemView.context.startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse(team.urlLinkedIn))
+                            Intent(Intent.ACTION_VIEW, Uri.parse(team.urlLinkedIn))
                     )
                 }
 
                 Glide.with(itemView.context)
-                    .load(team.urlPicture)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_person)
-                    )
-                    .into(developerImage)
+                        .load(team.urlPicture)
+                        .apply(
+                                RequestOptions.placeholderOf(R.drawable.ic_loading)
+                                        .error(R.drawable.ic_person)
+                        )
+                        .into(developerImage)
             }
         }
     }

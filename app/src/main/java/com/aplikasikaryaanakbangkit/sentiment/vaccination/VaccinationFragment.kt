@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
@@ -53,7 +52,7 @@ class VaccinationFragment : Fragment() {
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
             swipeRefreshLayout.setOnRefreshListener(object :
-                SwipeRefreshLayout.OnRefreshListener {
+                    SwipeRefreshLayout.OnRefreshListener {
                 override fun onRefresh() {
                     refreshItem()
                 }

@@ -316,7 +316,7 @@ class SAVRepository private constructor(
             localDataSource.getAllTweets()
 
     //override fun updateTweets(result: String, tweet: String): LiveData<TweetEntity> =
-          //  localDataSource.updateTweets(result, tweet)
+    //  localDataSource.updateTweets(result, tweet)
 
     //covid//
     override fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>> {

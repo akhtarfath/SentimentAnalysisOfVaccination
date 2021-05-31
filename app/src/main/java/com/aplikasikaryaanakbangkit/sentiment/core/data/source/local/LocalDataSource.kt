@@ -66,7 +66,7 @@ class LocalDataSource private constructor(
 
     fun getAllTweets(): LiveData<List<TweetEntity>> = SAVDao.getAllTweets()
 
-  //  fun updateTweets(result: String, textTweet: String): LiveData<TweetEntity> =
+    //  fun updateTweets(result: String, textTweet: String): LiveData<TweetEntity> =
     //        SAVDao.updateTweets(result, textTweet)
 
     //covid

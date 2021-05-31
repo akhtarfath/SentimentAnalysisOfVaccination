@@ -38,8 +38,8 @@ class HomeFragment : Fragment() {
     private var _getTweet: TextTweet? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
             loadCovid(covidViewModel)
 
             val tweetViewModel = ViewModelProvider(
-                this, factory
+                    this, factory
             )[SentimentAnalysisViewModel::class.java]
             loadTweet(tweetViewModel)
 
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
             swipeRefreshLayout.setOnRefreshListener(object :
-                OnRefreshListener {
+                    OnRefreshListener {
                 override fun onRefresh() {
                     refreshItem()
                 }
@@ -94,19 +94,19 @@ class HomeFragment : Fragment() {
             if (globalCovid != null) {
                 _binding?.covidStatistic?.covidWorldCondition?.let {
                     it.numberPositive.text = StringBuilder(
-                        NumberFormat.getNumberInstance(Locale.US).format(
-                            globalCovid.data?.confirmedGlobal ?: 0
-                        )
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                    globalCovid.data?.confirmedGlobal ?: 0
+                            )
                     )
                     it.numberOfDeaths.text = StringBuilder(
-                        NumberFormat.getNumberInstance(Locale.US).format(
-                            globalCovid.data?.deathGlobal ?: 0
-                        )
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                    globalCovid.data?.deathGlobal ?: 0
+                            )
                     )
                     it.numberOfCures.text = StringBuilder(
-                        NumberFormat.getNumberInstance(Locale.US).format(
-                            globalCovid.data?.recoveredGlobal ?: 0
-                        )
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                    globalCovid.data?.recoveredGlobal ?: 0
+                            )
                     )
                 }
                 false.shimmerLoading()
@@ -114,22 +114,22 @@ class HomeFragment : Fragment() {
                 //share
                 _binding?.covidStatistic?.covidWorldCondition?.worldConditionShare?.setOnClickListener {
                     startActivity(
-                        Intent.createChooser(
-                            Intent().apply {
-                                action = Intent.ACTION_SEND
-                                putExtra(
-                                    Intent.EXTRA_TEXT,
-                                    """
+                            Intent.createChooser(
+                                    Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(
+                                                Intent.EXTRA_TEXT,
+                                                """
                                         Kasus COVID-19 terkonfirmasi di seluruh Dunia.
                                         
                                         Positif     :   ${globalCovid.data?.confirmedGlobal ?: 0}
                                         Sembuh      :   ${globalCovid.data?.recoveredGlobal ?: 0}
                                         Meninggal   :   ${globalCovid.data?.deathGlobal ?: 0}
                                     """.trimIndent()
-                                )
-                                type = "text/plain"
-                            }, null
-                        )
+                                        )
+                                        type = "text/plain"
+                                    }, null
+                            )
                     )
                 }
             }
@@ -143,19 +143,19 @@ class HomeFragment : Fragment() {
                         Log.d("ID Covid", idCovid.data.toString())
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                    idCovid.data?.confirmed ?: 0
-                                )
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            idCovid.data?.confirmed ?: 0
+                                    )
                             )
                             numberOfDeathsID.text = StringBuilder(
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                    idCovid.data?.deaths ?: 0
-                                )
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            idCovid.data?.deaths ?: 0
+                                    )
                             )
                             numberOfCuresID.text = StringBuilder(
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                    idCovid.data?.recovered ?: 0
-                                )
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            idCovid.data?.recovered ?: 0
+                                    )
                             )
                         }
                         false.shimmerLoading()
@@ -163,33 +163,33 @@ class HomeFragment : Fragment() {
                         //share
                         _binding?.covidStatistic?.covidLocalCondition?.localConditionShare?.setOnClickListener {
                             startActivity(
-                                Intent.createChooser(
-                                    Intent().apply {
-                                        action = Intent.ACTION_SEND
-                                        putExtra(
-                                            Intent.EXTRA_TEXT,
-                                            """
+                                    Intent.createChooser(
+                                            Intent().apply {
+                                                action = Intent.ACTION_SEND
+                                                putExtra(
+                                                        Intent.EXTRA_TEXT,
+                                                        """
                                                 Kasus COVID-19 terkonfirmasi di Indonesia.
                                                 
                                                 Positif     :   ${idCovid.data?.confirmed ?: 0}
                                                 Sembuh      :   ${idCovid.data?.recovered ?: 0}
                                                 Meninggal   :   ${idCovid.data?.deaths ?: 0}
                                             """.trimIndent()
-                                        )
-                                        type = "text/plain"
-                                    }, null
-                                )
+                                                )
+                                                type = "text/plain"
+                                            }, null
+                                    )
                             )
                         }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -200,11 +200,11 @@ class HomeFragment : Fragment() {
         tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
             with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
-                    LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
+                        LinearLayoutManager(
+                                context,
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                        )
                 this?.layoutManager = layoutManagerHorizontal
                 this?.setHasFixedSize(true)
 
@@ -219,7 +219,7 @@ class HomeFragment : Fragment() {
 
         tweetViewModel.getPost().observe(viewLifecycleOwner, { post ->
             Log.d("Post Fragment", post.data.toString())
-            for(i in 0 until (post.data?.size?.minus(1) ?: 0)){
+            for (i in 0 until (post.data?.size?.minus(1) ?: 0)) {
                 val tweet = post.data?.get(i)?.text
                 _setTweet = tweet
                 _getTweet = TextTweet(_setTweet.toString())
@@ -248,11 +248,11 @@ class HomeFragment : Fragment() {
                         _binding?.covidNews?.newsActivityHorizontal?.let {
                             with(it.rvHorizontal) {
                                 val layoutManagerHorizontal =
-                                    LinearLayoutManager(
-                                        context,
-                                        LinearLayoutManager.HORIZONTAL,
-                                        false
-                                    )
+                                        LinearLayoutManager(
+                                                context,
+                                                LinearLayoutManager.HORIZONTAL,
+                                                false
+                                        )
                                 this.layoutManager = layoutManagerHorizontal
                                 this.setHasFixedSize(true)
 
@@ -267,11 +267,11 @@ class HomeFragment : Fragment() {
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -300,11 +300,11 @@ class HomeFragment : Fragment() {
                         false.shimmerLoading()
                         _binding?.viewError?.viewError?.visibility = View.VISIBLE
                         Toast.makeText(
-                            activity?.applicationContext,
-                            getString(R.string.error_msg),
-                            Toast.LENGTH_SHORT
+                                activity?.applicationContext,
+                                getString(R.string.error_msg),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
                 }
             }
