@@ -15,4 +15,11 @@ class SentimentAnalysisViewModel(
 
     //sentiment
     fun getAnalysis(tweet: TextTweet) = _repository.getAnalysis(tweet)
+
+    val neutralCount = _repository.getNeutralAnalysis()
+    val positiveCount = _repository.getPositiveAnalysis()
+    val negativeCount = _repository.getNegativeAnalysis()
+    val allSentimentCount = _repository.getAllAnalysis()
+
+
 }

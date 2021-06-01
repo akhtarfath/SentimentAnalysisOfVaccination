@@ -51,7 +51,7 @@ interface TweetService {
             return retrofit
         }
 
-        fun getApiService(): TweetService {
+        fun create(): TweetService {
             val consumer = OkHttpOAuthConsumer(
                 BuildConfig.TWITTER_CONSUMER_KEY,
                 BuildConfig.TWITTER_CONSUMER_SECRET

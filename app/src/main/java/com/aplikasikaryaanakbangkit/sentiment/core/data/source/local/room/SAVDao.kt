@@ -10,7 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covi
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -112,4 +112,16 @@ interface SAVDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSentimentAnalysis(sentiment: SentimentEntity)
+
+    @Query("SELECT COUNT(*) as pro from sentimentAnalysis WHERE result = 'Positive'")
+    fun getPositiveAnalysis(): LiveData<ProAnalysisResultEntity>
+
+    @Query("SELECT COUNT(*) as contra from sentimentAnalysis WHERE result = 'Negative'")
+    fun getNegativeAnalysis(): LiveData<ContraAnalysisResultEntity>
+
+    @Query("SELECT COUNT(*) as neutral from sentimentAnalysis WHERE result = 'Neutral'")
+    fun getNeutralAnalysis(): LiveData<NeutralAnalysisResultEntity>
+
+    @Query("Select Distinct count(result) as allResult from sentimentAnalysis")
+    fun getAllAnalysis(): LiveData<AllAnalysisResultEntity>
 }

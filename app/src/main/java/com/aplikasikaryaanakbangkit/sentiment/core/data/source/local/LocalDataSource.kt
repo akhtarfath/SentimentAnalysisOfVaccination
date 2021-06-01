@@ -6,7 +6,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covi
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -119,4 +119,16 @@ class LocalDataSource private constructor(
 
     fun insertSentimentAnalysis(sentiment: SentimentEntity) =
             SAVDao.insertSentimentAnalysis(sentiment)
+
+    fun getPositiveAnalysis(): LiveData<ProAnalysisResultEntity> =
+            SAVDao.getPositiveAnalysis()
+
+    fun getNegativeAnalysis(): LiveData<ContraAnalysisResultEntity> =
+            SAVDao.getNegativeAnalysis()
+
+    fun getNeutralAnalysis(): LiveData<NeutralAnalysisResultEntity> =
+            SAVDao.getNeutralAnalysis()
+
+    fun getAllAnalysis(): LiveData<AllAnalysisResultEntity> =
+            SAVDao.getAllAnalysis()
 }

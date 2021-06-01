@@ -6,7 +6,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covi
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -29,7 +29,6 @@ interface SAVDataSource {
     fun getAllProfile(): LiveData<Resource<List<UserItemsTweetEntity>>>
     fun getAllPost(): LiveData<Resource<List<DataItemTweetEntity>>>
     fun getAllTweet(): LiveData<List<TweetEntity>>
-    //fun updateTweets(result: String, tweet: String): LiveData<TweetEntity>
 
     //covid
     fun getAllGlobalCovid(): LiveData<Resource<GlobalCovidEntity>>
@@ -44,4 +43,8 @@ interface SAVDataSource {
 
     //sentiment
     fun getAnalysis(tweet: TextTweet): LiveData<Resource<SentimentEntity>>
+    fun getNeutralAnalysis(): LiveData<NeutralAnalysisResultEntity>
+    fun getPositiveAnalysis(): LiveData<ProAnalysisResultEntity>
+    fun getNegativeAnalysis(): LiveData<ContraAnalysisResultEntity>
+    fun getAllAnalysis(): LiveData<AllAnalysisResultEntity>
 }
