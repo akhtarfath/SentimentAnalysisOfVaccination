@@ -49,6 +49,8 @@ class SentimentAnalysisFragment : Fragment() {
                 ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         loadTweet(sentimentAnalysisViewModel)
+        loadPercentage(sentimentAnalysisViewModel)
+        true.shimmerLoading()
 
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         /*event ketika widget dijalankan*/
@@ -62,6 +64,7 @@ class SentimentAnalysisFragment : Fragment() {
                 true.shimmerLoading()
                 Handler(requireActivity().mainLooper).postDelayed({
                     loadTweet(sentimentAnalysisViewModel)
+                    loadPercentage(sentimentAnalysisViewModel)
                 }, 750)
                 onItemLoad()
             }
@@ -107,6 +110,46 @@ class SentimentAnalysisFragment : Fragment() {
 
         sentimentAnalysisViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
             Log.d("profile Fragment", profile.data.toString())
+        })
+
+
+    }
+
+    private fun loadPercentage(sentimentAnalysisViewModel: SentimentAnalysisViewModel){
+        sentimentAnalysisViewModel.neutralCount.observe(viewLifecycleOwner, {neutral ->
+            val neutral = neutral.neutral.toDouble()
+            sentimentAnalysisViewModel.allSentimentCount.observe(viewLifecycleOwner, { total ->
+                val total = total.allResult.toDouble()
+                val neutral1 = (neutral.div(total))
+                val persent = String.format("%.2f", (neutral1*100))
+                with(_binding.itemSentimentAnalysisLayout){
+                    percentNeutralSentiment.text = StringBuilder("${persent}%")
+                }
+            })
+        })
+
+        sentimentAnalysisViewModel.positiveCount.observe(viewLifecycleOwner, {pro ->
+            val pro = pro.pro.toDouble()
+            sentimentAnalysisViewModel.allSentimentCount.observe(viewLifecycleOwner, { total ->
+                val total = total.allResult.toDouble()
+                val pro1 = (pro.div(total))
+                val persent = String.format("%.2f", (pro1*100))
+                with(_binding.itemSentimentAnalysisLayout){
+                    percentPositiveSentiment.text = StringBuilder("${persent}%")
+                }
+            })
+        })
+
+        sentimentAnalysisViewModel.negativeCount.observe(viewLifecycleOwner, {contra ->
+            val contra = contra.contra.toDouble()
+            sentimentAnalysisViewModel.allSentimentCount.observe(viewLifecycleOwner, { total ->
+                val total = total.allResult.toDouble()
+                with(_binding.itemSentimentAnalysisLayout){
+                    val contra1 = (contra.div(total))
+                    val persent = String.format("%.2f", (contra1*100))
+                    percentNegativeSentiment.text = StringBuilder("${persent}%")
+                }
+            })
         })
     }
 

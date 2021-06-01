@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/percent_sentiment_example"
-                    android:textSize="23sp"
+                    android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/percent_sentiment_example"
-                    android:textSize="23sp"
+                    android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/percent_sentiment_example"
-                    android:textSize="23sp"
+                    android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />

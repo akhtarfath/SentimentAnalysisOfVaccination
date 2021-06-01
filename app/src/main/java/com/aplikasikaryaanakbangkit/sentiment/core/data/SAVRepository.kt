@@ -9,7 +9,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covi
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.covid.IDCovidItemEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleCovidEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.news.ArticleVaccinesEntity
-import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.SentimentEntity
+import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.sentiment.*
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.teams.TeamsEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.DataItemTweetEntity
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -554,4 +554,16 @@ class SAVRepository private constructor(
             }
         }.asLiveData()
     }
+
+    override fun getNeutralAnalysis(): LiveData<NeutralAnalysisResultEntity> =
+            localDataSource.getNeutralAnalysis()
+
+    override fun getPositiveAnalysis(): LiveData<ProAnalysisResultEntity> =
+            localDataSource.getPositiveAnalysis()
+
+    override fun getNegativeAnalysis(): LiveData<ContraAnalysisResultEntity> =
+            localDataSource.getNegativeAnalysis()
+
+    override fun getAllAnalysis(): LiveData<AllAnalysisResultEntity> =
+            localDataSource.getAllAnalysis()
 }
