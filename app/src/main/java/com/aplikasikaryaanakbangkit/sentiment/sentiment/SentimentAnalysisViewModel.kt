@@ -5,7 +5,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.sentiment.TextTweet
 
 class SentimentAnalysisViewModel(
-    private val _repository: SAVRepository
+        private val _repository: SAVRepository
 ) : ViewModel() {
 
     //tweet

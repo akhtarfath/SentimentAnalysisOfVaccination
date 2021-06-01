@@ -26,13 +26,13 @@ class TeamFragment : Fragment() {
     private val _binding get() = _fragmentTeamBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _fragmentTeamBinding =
-            FragmentTeamBinding.inflate(inflater, container, false)
+                FragmentTeamBinding.inflate(inflater, container, false)
 
         return _binding.root
     }

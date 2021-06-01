@@ -73,8 +73,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
                         }
                     }
                 }
-            }
-            catch(e: Exception) {
+            } catch (e: Exception) {
                 Log.d("Exception", e.message.toString())
             }
         }
