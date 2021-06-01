@@ -13,45 +13,45 @@ import com.aplikasikaryaanakbangkit.sentiment.team.TeamViewModel
 import com.aplikasikaryaanakbangkit.sentiment.vaccination.VaccinationViewModel
 
 class ViewModelFactory private constructor(
-    private val _repository: SAVRepository
+        private val _repository: SAVRepository
 ) :
-    ViewModelProvider.NewInstanceFactory() {
+        ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
 
         fun getInstance(context: Context): ViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(
-                    Injection.newsRepository(context)
-                ).apply {
-                    instance = this
+                instance ?: synchronized(this) {
+                    instance ?: ViewModelFactory(
+                            Injection.newsRepository(context)
+                    ).apply {
+                        instance = this
+                    }
                 }
-            }
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(_repository) as T
+            when {
+                modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                    HomeViewModel(_repository) as T
+                }
+                modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
+                    NewsViewModel(_repository) as T
+                }
+                modelClass.isAssignableFrom(DetailNewsViewModel::class.java) -> {
+                    DetailNewsViewModel(_repository) as T
+                }
+                modelClass.isAssignableFrom(TeamViewModel::class.java) -> {
+                    TeamViewModel(_repository) as T
+                }
+                modelClass.isAssignableFrom(SentimentAnalysisViewModel::class.java) -> {
+                    SentimentAnalysisViewModel(_repository) as T
+                }
+                modelClass.isAssignableFrom(VaccinationViewModel::class.java) -> {
+                    VaccinationViewModel(_repository) as T
+                }
+                else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
             }
-            modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
-                NewsViewModel(_repository) as T
-            }
-            modelClass.isAssignableFrom(DetailNewsViewModel::class.java) -> {
-                DetailNewsViewModel(_repository) as T
-            }
-            modelClass.isAssignableFrom(TeamViewModel::class.java) -> {
-                TeamViewModel(_repository) as T
-            }
-            modelClass.isAssignableFrom(SentimentAnalysisViewModel::class.java) -> {
-                SentimentAnalysisViewModel(_repository) as T
-            }
-            modelClass.isAssignableFrom(VaccinationViewModel::class.java) -> {
-                VaccinationViewModel(_repository) as T
-            }
-            else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
-        }
 }

@@ -21,47 +21,47 @@ interface TweetService {
         private var retrofit: Retrofit? = null
 
         private fun String.getClient(
-            consumer: OkHttpOAuthConsumer
+                consumer: OkHttpOAuthConsumer
         ): Retrofit? {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
             val client = OkHttpClient.Builder()
-                .retryOnConnectionFailure(true)
-                .addInterceptor(SigningInterceptor(consumer))
-                .addInterceptor { chain ->
-                    val request = chain.request()
-                    val requestBuilder = request.newBuilder()
-                        .header(
-                            "Cookie",
-                            "guest_id=v1%3A162193671981972958; personalization_id=\"v1_i1siNpmTg+1Ao8ZnadTsWQ==\""
-                        )
-                    val modifiedRequest = requestBuilder.build()
-                    chain.proceed(modifiedRequest)
-                }
-                .addNetworkInterceptor(loggingInterceptor)
+                    .retryOnConnectionFailure(true)
+                    .addInterceptor(SigningInterceptor(consumer))
+                    .addInterceptor { chain ->
+                        val request = chain.request()
+                        val requestBuilder = request.newBuilder()
+                                .header(
+                                        "Cookie",
+                                        "guest_id=v1%3A162193671981972958; personalization_id=\"v1_i1siNpmTg+1Ao8ZnadTsWQ==\""
+                                )
+                        val modifiedRequest = requestBuilder.build()
+                        chain.proceed(modifiedRequest)
+                    }
+                    .addNetworkInterceptor(loggingInterceptor)
 
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
-                    .baseUrl(this)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client.build())
-                    .build()
+                        .baseUrl(this)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(client.build())
+                        .build()
             }
             return retrofit
         }
 
         fun create(): TweetService {
             val consumer = OkHttpOAuthConsumer(
-                BuildConfig.TWITTER_CONSUMER_KEY,
-                BuildConfig.TWITTER_CONSUMER_SECRET
+                    BuildConfig.TWITTER_CONSUMER_KEY,
+                    BuildConfig.TWITTER_CONSUMER_SECRET
             )
             consumer.setTokenWithSecret(
-                BuildConfig.TWITTER_TOKEN,
-                BuildConfig.TWITTER_TOKEN_SECRET
+                    BuildConfig.TWITTER_TOKEN,
+                    BuildConfig.TWITTER_TOKEN_SECRET
             )
             return BASE_URL_TWITTER.getClient(consumer)!!
-                .create(TweetService::class.java)
+                    .create(TweetService::class.java)
         }
     }
 }

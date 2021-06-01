@@ -1,7 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.welcome
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.aplikasikaryaanakbangkit.sentiment.R
 
 class WelcomeActivity : AppCompatActivity() {

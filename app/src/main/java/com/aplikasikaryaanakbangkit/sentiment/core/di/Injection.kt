@@ -14,7 +14,7 @@ object Injection {
         val database = SAVDatabase.getInstance(context)
         val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
         val localDataSource =
-            LocalDataSource.getInstance(database.sentimentDao())
+                LocalDataSource.getInstance(database.sentimentDao())
 
         val appExecutors = AppExecutors()
 
