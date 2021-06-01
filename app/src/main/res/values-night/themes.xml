@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.SentimentAnalysisOfVaccinationApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_navy_200</item>
-        <item name="colorPrimaryVariant">@color/blue_navy_500</item>
+        <item name="colorPrimary">@color/sky_light</item>
+        <item name="colorPrimaryVariant">@color/sky_light</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_navy_500"
+    android:background="@color/sky_light"
     android:paddingTop="10dp"
     android:paddingBottom="60dp"
     tools:context=".sentiment.SentimentAnalysisFragment">
@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="35dp"
             tools:ignore="UselessLeaf">
 
             <include layout="@layout/shimmer_placeholder_vaccine_target" />
@@ -44,7 +43,6 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:overScrollMode="never"
-            android:paddingTop="35dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

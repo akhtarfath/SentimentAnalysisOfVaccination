@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="10dp"
-    android:elevation="10dp"
-    app:cardCornerRadius="15dp">
+    android:elevation="10dp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -119,7 +123,7 @@
                     android:layout_marginVertical="5dp"
                     android:contentDescription="@string/icon_reply"
                     android:src="@drawable/ic_message_circle"
-                    app:tint="@color/silver" />
+                    app:tint="@color/grey" />
 
                 <TextView
                     android:id="@+id/reply_count"
@@ -128,7 +132,7 @@
                     android:layout_marginVertical="5dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/satu"
-                    android:textColor="@color/silver" />
+                    android:textColor="@color/grey" />
 
                 <ImageView
                     android:layout_width="29dp"
@@ -137,7 +141,7 @@
                     android:layout_marginStart="45dp"
                     android:contentDescription="@string/icon_retweet"
                     android:src="@drawable/ic_retweet"
-                    app:tint="@color/silver" />
+                    app:tint="@color/grey" />
 
                 <TextView
                     android:id="@+id/retweet_count"
@@ -146,7 +150,7 @@
                     android:layout_marginVertical="5dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/satu"
-                    android:textColor="@color/silver" />
+                    android:textColor="@color/grey" />
 
                 <ImageView
                     android:layout_width="18dp"
@@ -155,7 +159,7 @@
                     android:layout_marginStart="45dp"
                     android:contentDescription="@string/icon_favorite"
                     android:src="@drawable/ic_heart"
-                    app:tint="@color/silver" />
+                    app:tint="@color/grey" />
 
                 <TextView
                     android:id="@+id/like_count"
@@ -164,7 +168,7 @@
                     android:layout_marginVertical="5dp"
                     android:layout_marginStart="3dp"
                     android:text="@string/satu"
-                    android:textColor="@color/silver" />
+                    android:textColor="@color/grey" />
 
                 <ImageView
                     android:layout_width="18dp"
@@ -173,11 +177,11 @@
                     android:layout_marginStart="45dp"
                     android:contentDescription="@string/icon_share"
                     android:src="@drawable/ic_share2"
-                    app:tint="@color/silver" />
+                    app:tint="@color/grey" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

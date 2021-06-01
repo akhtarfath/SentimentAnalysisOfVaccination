@@ -4,7 +4,7 @@
     <color name="light_blue_navy_500">#A4BBCC</color>
     <color name="light_blue_navy_700">#91A5B3</color>
 
-    <color name="sky_light">#CAE5EA</color>
+    <color name="sky_light">#1DA1F2</color>
 
     <color name="blue_navy_200">#4368D5</color>
     <color name="blue_navy_500">#3858B5</color>
@@ -24,7 +24,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cream">#F7F1E6</color>
-    <color name="silver">#C4C4C4</color>
+    <color name="silver">#EEE</color>
+    <color name="grey">#C4C4C4</color>
 
     <color name="google_red">#E33F3D</color>
     <color name="google_green">#258774</color>
