@@ -208,7 +208,7 @@ class HomeFragment : Fragment() {
                 this?.layoutManager = layoutManagerHorizontal
                 this?.setHasFixedSize(true)
 
-                val tweetAdapter = SentimentAnalysisAdapter()
+                val tweetAdapter = HomeTweetAdapter()
                 this?.adapter = tweetAdapter
 
                 tweetAdapter.setTweet(tweet)
