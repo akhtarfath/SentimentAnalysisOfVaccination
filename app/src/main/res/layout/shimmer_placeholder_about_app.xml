@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".team.TeamFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="25dp"
-        tools:context=".team.TeamFragment">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logo_circle"
+        android:layout_marginTop="25dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@color/silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/logo_circle"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@color/silver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvApplicationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/silver"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_circle">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvApplicationName"
+        <TextView
+            android:id="@+id/application_name_tv"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="0dp"
+            android:text="@string/application_name"
+            android:textColor="@color/silver" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/about_app_cv"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="15dp"
+        android:elevation="1dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvApplicationName">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvAboutApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/silver"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,52 +61,17 @@
             app:layout_constraintTop_toBottomOf="@+id/logo_circle">
 
             <TextView
-                android:id="@+id/application_name_tv"
-                style="@style/TitleText"
-                android:layout_width="wrap_content"
+                android:id="@+id/about_app_tv"
+                style="@style/SubTitleText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
-                android:text="@string/application_name"
+                android:text="@string/about_apps"
+                android:textAlignment="center"
                 android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/about_app_cv"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="15dp"
-            android:elevation="1dp"
-            app:cardCornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvApplicationName">
+    </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvAboutApp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/silver"
-                app:cardCornerRadius="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logo_circle">
-
-                <TextView
-                    android:id="@+id/about_app_tv"
-                    style="@style/SubTitleText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="0dp"
-                    android:text="@string/about_apps"
-                    android:textAlignment="center"
-                    android:textColor="@color/silver" />
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
