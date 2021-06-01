@@ -63,7 +63,7 @@ class VaccinationFragment : Fragment() {
                     Handler(requireActivity().mainLooper).postDelayed({
 
                         loadVaccine(vaccineViewModel)
-                    }, 750)
+                    }, 500)
                     onItemLoad()
                 }
 

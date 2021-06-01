@@ -7,9 +7,9 @@ class VaccinationViewModel(
         _repository: SAVRepository
 ) : ViewModel() {
 
-    val getVaccination = _repository.getVaccination()
-    val getVaccinationStepHealthHR = _repository.getVaccinationStepHealthHR()
-    val getVaccinationStepElderly = _repository.getVaccinationStepElderly()
-    val getVaccinationStepPublicOfficer = _repository.getVaccinationStepPublicOfficer()
-    val getVaccinationCoverage = _repository.getVaccinationCoverage()
+    val getVaccination by lazy { _repository.getVaccination() }
+    val getVaccinationStepHealthHR by lazy { _repository.getVaccinationStepHealthHR() }
+    val getVaccinationStepElderly by lazy { _repository.getVaccinationStepElderly() }
+    val getVaccinationStepPublicOfficer by lazy { _repository.getVaccinationStepPublicOfficer() }
+    val getVaccinationCoverage by lazy { _repository.getVaccinationCoverage() }
 }

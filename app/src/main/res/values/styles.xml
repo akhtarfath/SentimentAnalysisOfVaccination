@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="DetailTheme" parent="Theme.SentimentAnalysisOfVaccinationApp">
         <item name="actionBarSize">47dip</item>
-        <item name="colorPrimary">@color/blue_navy_500</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
         <item name="iconTint">@color/white</item>
         <item name="colorSecondary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>

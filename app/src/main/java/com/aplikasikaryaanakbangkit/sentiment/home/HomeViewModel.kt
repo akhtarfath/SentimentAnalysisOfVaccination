@@ -7,7 +7,7 @@ class HomeViewModel(
         _repository: SAVRepository
 ) : ViewModel() {
 
-    val getGlobalCovid = _repository.getAllGlobalCovid()
-    val getIDCovid = _repository.getAllIDCovid()
+    val getGlobalCovid by lazy { _repository.getAllGlobalCovid() }
+    val getIDCovid by lazy { _repository.getAllIDCovid() }
 }
 

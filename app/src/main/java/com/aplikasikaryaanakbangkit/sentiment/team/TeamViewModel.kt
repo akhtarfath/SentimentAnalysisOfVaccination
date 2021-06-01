@@ -7,5 +7,5 @@ class TeamViewModel(
     _repository: SAVRepository
 ) : ViewModel() {
 
-    val getDataTeams = _repository.getAllTeams()
+    val getDataTeams by lazy { _repository.getAllTeams() }
 }

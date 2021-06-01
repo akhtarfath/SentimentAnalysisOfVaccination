@@ -9,17 +9,17 @@ class SentimentAnalysisViewModel(
 ) : ViewModel() {
 
     //tweet
-    fun getTweet() = _repository.getAllTweet()
-    fun getPost() = _repository.getAllPost()
-    fun getProfile() = _repository.getAllProfile()
+    val tweet by lazy { _repository.getAllTweet() }
+    val post by lazy { _repository.getAllPost() }
+    val profile by lazy { _repository.getAllProfile() }
 
     //sentiment
     fun getAnalysis(tweet: TextTweet) = _repository.getAnalysis(tweet)
 
-    val neutralCount = _repository.getNeutralAnalysis()
-    val positiveCount = _repository.getPositiveAnalysis()
-    val negativeCount = _repository.getNegativeAnalysis()
-    val allSentimentCount = _repository.getAllAnalysis()
+    val neutralCount by lazy { _repository.getNeutralAnalysis() }
+    val positiveCount by lazy { _repository.getPositiveAnalysis() }
+    val negativeCount by lazy { _repository.getNegativeAnalysis() }
+    val allSentimentCount by lazy { _repository.getAllAnalysis() }
 
 
 }

@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
                         loadCovid(covidViewModel)
                         loadTweet(tweetViewModel)
                         loadNews(newsViewModel)
-                    }, 750)
+                    }, 500)
                     onItemLoad()
                 }
 
@@ -197,7 +197,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadTweet(tweetViewModel: SentimentAnalysisViewModel) {
-        tweetViewModel.getTweet().observe(viewLifecycleOwner, { tweet ->
+        tweetViewModel.tweet.observe(viewLifecycleOwner, { tweet ->
             with(_binding?.tweetSentiment?.includeTweet?.rvTweet) {
                 val layoutManagerHorizontal =
                     LinearLayoutManager(
@@ -217,7 +217,7 @@ class HomeFragment : Fragment() {
             false.shimmerLoading()
         })
 
-        tweetViewModel.getPost().observe(viewLifecycleOwner, { post ->
+        tweetViewModel.post.observe(viewLifecycleOwner, { post ->
             Log.d("Post Fragment", post.data.toString())
             for (i in 0 until (post.data?.size?.minus(1) ?: 0)) {
                 val tweet = post.data?.get(i)?.text
@@ -233,13 +233,12 @@ class HomeFragment : Fragment() {
             }
         })
 
-        tweetViewModel.getProfile().observe(viewLifecycleOwner, { profile ->
+        tweetViewModel.profile.observe(viewLifecycleOwner, { profile ->
             Log.d("Profile Fragment", profile.data.toString())
         })
     }
 
     private fun loadNews(newsViewModel: NewsViewModel) {
-        true.shimmerLoading()
         newsViewModel.newsCovidHeadline.observe(viewLifecycleOwner, { newsCovid ->
             if (newsCovid != null) {
                 when (newsCovid.status) {

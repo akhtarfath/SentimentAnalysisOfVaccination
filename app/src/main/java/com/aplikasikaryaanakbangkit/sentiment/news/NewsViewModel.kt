@@ -7,6 +7,6 @@ class NewsViewModel(
     _newsRepository: SAVRepository
 ) : ViewModel() {
 
-    val newsCovidHeadline = _newsRepository.getCovidHeadlines()
-    val newsVaccine = _newsRepository.getVaccineNews()
+    val newsCovidHeadline by lazy { _newsRepository.getCovidHeadlines() }
+    val newsVaccine by lazy { _newsRepository.getVaccineNews() }
 }

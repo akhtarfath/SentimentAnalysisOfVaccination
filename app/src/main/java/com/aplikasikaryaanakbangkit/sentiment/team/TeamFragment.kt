@@ -60,7 +60,7 @@ class TeamFragment : Fragment() {
                 Handler(requireActivity().mainLooper).postDelayed({
 
                     loadTeams(teamViewModel)
-                }, 750)
+                }, 500)
                 onItemLoad()
             }
 

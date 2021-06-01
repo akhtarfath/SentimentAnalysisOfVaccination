@@ -43,7 +43,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -64,7 +64,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints">
 
@@ -96,7 +96,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -118,7 +118,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -149,7 +149,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -171,7 +171,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/silver"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView

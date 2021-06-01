@@ -63,7 +63,7 @@ class NewsFragment : Fragment() {
 
                         loadCovidNews(newsViewModel)
                         loadVaccineNews(newsViewModel)
-                    }, 750)
+                    }, 500)
                     onItemLoad()
                 }
 

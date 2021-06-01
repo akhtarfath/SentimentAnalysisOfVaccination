@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sky_light"
+    android:background="?attr/colorPrimary"
     android:paddingTop="10dp"
     android:paddingBottom="60dp"
     tools:context=".sentiment.SentimentAnalysisFragment">
@@ -43,7 +43,6 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:overScrollMode="never"
-            android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
