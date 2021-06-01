@@ -16,6 +16,7 @@
         android:theme="@style/Theme.SentimentAnalysisOfVaccinationApp"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
+        <activity android:name=".welcome.WelcomeActivity"></activity>
         <activity
             android:name=".splashscreen.SplashScreenActivity"
             android:theme="@style/Theme.SentimentAnalysisOfVaccinationApp.NoActionBar">
@@ -25,14 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".news.detail.DetailNewsActivity"
             android:theme="@style/DetailTheme" />
         <activity
             android:name=".news.detail.DetailVaccineNewsActivity"
-            android:theme="@style/DetailTheme"/>
+            android:theme="@style/DetailTheme" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.core.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.StatusResponse
@@ -49,27 +50,32 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
-            when (response.status) {
-                StatusResponse.SUCCESS ->
-                    mExecutors.diskIO().execute {
-                        saveCallResult(response.body)
-                        mExecutors.mainThread().execute {
-                            result.addSource(loadFromDB()) { newData ->
-                                result.value = Resource.success(newData)
+            try {
+                when (response.status) {
+                    StatusResponse.SUCCESS ->
+                        mExecutors.diskIO().execute {
+                            saveCallResult(response.body)
+                            mExecutors.mainThread().execute {
+                                result.addSource(loadFromDB()) { newData ->
+                                    result.value = Resource.success(newData)
+                                }
                             }
                         }
+                    StatusResponse.EMPTY -> mExecutors.mainThread().execute {
+                        result.addSource(loadFromDB()) { newData ->
+                            result.value = Resource.success(newData)
+                        }
                     }
-                StatusResponse.EMPTY -> mExecutors.mainThread().execute {
-                    result.addSource(loadFromDB()) { newData ->
-                        result.value = Resource.success(newData)
+                    StatusResponse.ERROR -> {
+                        onFetchFailed()
+                        result.addSource(dbSource) { newData ->
+                            result.value = Resource.error(response.message, newData)
+                        }
                     }
                 }
-                StatusResponse.ERROR -> {
-                    onFetchFailed()
-                    result.addSource(dbSource) { newData ->
-                        result.value = Resource.error(response.message, newData)
-                    }
-                }
+            }
+            catch(e: Exception) {
+                Log.d("Exception", e.message.toString())
             }
         }
     }

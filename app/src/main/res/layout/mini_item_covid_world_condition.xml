@@ -65,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
                     android:lineHeight="23dp"
                     android:text="@string/positive_title"
                     android:textAlignment="center"
@@ -72,7 +73,7 @@
                     android:textFontWeight="900"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="5dp"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:targetApi="p" />
 
                 <ImageView
@@ -128,6 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
                     android:lineHeight="23dp"
                     android:text="@string/recovered_title"
                     android:textAlignment="center"
@@ -135,7 +137,7 @@
                     android:textFontWeight="900"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="5dp"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:targetApi="p" />
 
                 <ImageView
@@ -191,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
                     android:lineHeight="23dp"
                     android:text="@string/death_title"
                     android:textAlignment="center"
@@ -198,7 +201,7 @@
                     android:textFontWeight="900"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="5dp"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:targetApi="p" />
 
                 <ImageView

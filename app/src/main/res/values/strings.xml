@@ -101,4 +101,6 @@
     <string name="about_app">Sekitar 51% masyarakat Indonesia menolak dan bingung dengan vaksinasi COVID-19. Ini Hal ini dikarenakan minimnya pengetahuan masyarakat tentang pentingnya vaksinasi COVID-19. Mereka ingin mengetahui opini masyarakat tentang vaksin COVID-19 di Indonesia dan bagaimana perkembangannya kemajuan vaksinasi. Sekitar 54% responden memilih untuk menggunakan media sosial mengakses informasi tentang vaksinasi COVID-19, dengan media sosial ini a patokan bagi masyarakat Indonesia dalam mengambil keputusan terkait vaksinasi COVID-19. Oleh karena itu, penggunaan media sosial sebagai acuan analisis sentimen dapat menciptakan a platform seluler sebagai solusi untuk masalah terkait.</string>
     <string name="developer_student_id">MD-CC-ML</string>
     <string name="visit_linkedin">Visit LinkedIn</string>
+    <string name="swipe_right">Geser ke kanan</string>
+    <string name="lets_to_vaccine">Ayo Vaksin</string>
 </resources>

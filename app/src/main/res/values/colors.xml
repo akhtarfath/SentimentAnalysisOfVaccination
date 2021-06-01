@@ -4,9 +4,13 @@
     <color name="light_blue_navy_500">#A4BBCC</color>
     <color name="light_blue_navy_700">#91A5B3</color>
 
+    <color name="sky_light">#CAE5EA</color>
+
     <color name="blue_navy_200">#4368D5</color>
     <color name="blue_navy_500">#3858B5</color>
     <color name="blue_navy_700">#2A438C</color>
+
+    <color name="dark_blue">#2A438C</color>
 
     <color name="cyan_200">#80CED7</color>
     <color name="cyan_500">#6CADB5</color>

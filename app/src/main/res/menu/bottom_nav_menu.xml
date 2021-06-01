@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/navigation_team"
-        android:icon="@drawable/ic_paper_plane"
+        android:icon="@drawable/ic_info"
         android:title="@string/title_team" />
 
 </menu>

@@ -14,10 +14,10 @@
         android:id="@+id/cardView1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginVertical="10dp"
         android:layout_weight="1"
         android:backgroundTint="@color/light_blue_navy_200"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="15dp"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -37,17 +37,17 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_yellow"
-            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/light_blue_navy_200"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -69,10 +69,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_green"
-            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/light_blue_navy_200"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -93,10 +92,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/google_red"
-            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/light_blue_navy_200"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints">
 
@@ -119,17 +117,17 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/light_red"
-            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/light_blue_navy_200"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -151,10 +149,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/light_red"
-            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/light_blue_navy_200"
+            app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
 
             <TextView

@@ -18,5 +18,5 @@ data class UserItemsTweetEntity(
     val profileImageUrl: String,
 
     @ColumnInfo(name = "username")
-    val username: String
+    val username: String,
 )

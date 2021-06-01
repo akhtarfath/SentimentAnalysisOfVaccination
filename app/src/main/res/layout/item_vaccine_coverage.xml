@@ -16,14 +16,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:contentDescription="@string/vaccine_target_title"
+                android:src="@drawable/ic_health_care"
+                app:layout_constraintBottom_toBottomOf="@+id/titleVaccineCoverage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/titleVaccineCoverage" />
+
             <TextView
                 android:id="@+id/titleVaccineCoverage"
                 style="@style/TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:text="@string/vaccine_coverage"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vaccineTargetShare"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView

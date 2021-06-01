@@ -48,6 +48,7 @@ class SentimentAnalysisFragment : Fragment() {
         val sentimentAnalysisViewModel =
                 ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
+        true.shimmerLoading()
         loadTweet(sentimentAnalysisViewModel)
 
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)

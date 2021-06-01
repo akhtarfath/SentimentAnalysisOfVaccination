@@ -1,7 +1,10 @@
 package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.tweet.TweetEntity
@@ -32,6 +35,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
         return TweetViewHolder(miniItemTweetBinding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
         val article = listTweet[position]
         holder.bind(article)
@@ -40,6 +44,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(tweet: TweetEntity) {
             with(binding) {
                 var sentimentAnalysis = ""
@@ -56,12 +61,21 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 when (tweet.analysis) {
                     "Positive" -> {
                         sentimentAnalysis = "Pro"
+                        tvSentimentResult.setTextColor(
+                            ContextCompat.getColor(itemView.context, R.color.google_green)
+                        )
                     }
                     "Negative" -> {
                         sentimentAnalysis = "Kontra"
+                        tvSentimentResult.setTextColor(
+                            ContextCompat.getColor(itemView.context, R.color.google_red)
+                        )
                     }
                     "Neutral" -> {
                         sentimentAnalysis = "Netral"
+                        tvSentimentResult.setTextColor(
+                            ContextCompat.getColor(itemView.context, R.color.google_yellow)
+                        )
                     }
                 }
 
