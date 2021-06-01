@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="25dp"
+    android:background="@color/blue_navy_500"
+    android:paddingTop="10dp"
     android:paddingBottom="60dp"
     tools:context=".team.TeamFragment">
 
@@ -17,14 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingTop="25dp"
             tools:ignore="UselessLeaf">
 
-            <include layout="@layout/shimmer_placeholder_about_app"/>
+            <include layout="@layout/shimmer_placeholder_about_app" />
 
-            <include android:layout_marginTop="10dp"
+            <include
                 layout="@layout/shimmer_placeholder_rv_developers_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 
@@ -40,6 +43,9 @@
             android:id="@+id/scrollViewLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            android:paddingTop="25dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,10 +60,10 @@
 
                 <include
                     android:id="@+id/includeAboutApp"
+                    layout="@layout/item_about_app"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
-                    layout="@layout/item_about_app"/>
+                    android:paddingBottom="5dp" />
 
                 <include
                     android:id="@+id/layout_rv_developers_name"

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -23,14 +22,14 @@
         <TextView
             android:id="@+id/numberVaccineTarget"
             style="@style/SubTitleText"
-            android:textSize="13sp"
-            android:textAlignment="center"
-            android:lineHeight="23dp"
-            tools:targetApi="p"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/total_vaccination_target" />
+            android:lineHeight="23dp"
+            android:text="@string/total_vaccination_target"
+            android:textAlignment="center"
+            android:textSize="13sp"
+            tools:targetApi="p" />
 
     </androidx.cardview.widget.CardView>
 
@@ -53,14 +52,14 @@
             <TextView
                 android:id="@+id/numberSdmVaccinationTarget"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/health_human_resources" />
+                android:lineHeight="23dp"
+                android:text="@string/health_human_resources"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -77,14 +76,14 @@
             <TextView
                 android:id="@+id/numberPetugasVaccinationTarget"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/public_officers" />
+                android:lineHeight="23dp"
+                android:text="@string/public_officers"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -101,14 +100,14 @@
             <TextView
                 android:id="@+id/numberLansiaVaccinationTarget"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/the_elderly" />
+                android:lineHeight="23dp"
+                android:text="@string/the_elderly"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -124,8 +123,8 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/light_blue_navy_200"
             app:cardCornerRadius="15dp"
             tools:ignore="MissingConstraints">
@@ -133,14 +132,14 @@
             <TextView
                 android:id="@+id/numberVaccine1Target"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccination_1" />
+                android:lineHeight="23dp"
+                android:text="@string/vaccination_1"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -157,14 +156,14 @@
             <TextView
                 android:id="@+id/numberVaccine2Target"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccination_2" />
+                android:lineHeight="23dp"
+                android:text="@string/vaccination_2"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 

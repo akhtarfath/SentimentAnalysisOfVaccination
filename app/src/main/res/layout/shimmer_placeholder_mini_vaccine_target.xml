@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -25,9 +24,9 @@
             style="@style/SubTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/silver"
             android:layout_gravity="center"
-            android:text="@string/total_vaccination_target" />
+            android:text="@string/total_vaccination_target"
+            android:textColor="@color/silver" />
 
     </androidx.cardview.widget.CardView>
 
@@ -50,12 +49,12 @@
             <TextView
                 android:id="@+id/numberPositive"
                 style="@style/SubTitleText"
-                android:textColor="@color/silver"
-                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/health_human_resources" />
+                android:text="@string/health_human_resources"
+                android:textAlignment="center"
+                android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 
@@ -72,13 +71,13 @@
 
             <TextView
                 android:id="@+id/numberOfCures"
-                android:textColor="@color/silver"
                 style="@style/SubTitleText"
-                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/public_officers" />
+                android:text="@string/public_officers"
+                android:textAlignment="center"
+                android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 
@@ -95,13 +94,13 @@
 
             <TextView
                 android:id="@+id/numberOfDeaths"
-                android:textColor="@color/silver"
                 style="@style/SubTitleText"
-                android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/the_elderly" />
+                android:text="@string/the_elderly"
+                android:textAlignment="center"
+                android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 
@@ -117,20 +116,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/silver"
             app:cardCornerRadius="5dp"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/numberVaccine1"
-                android:textColor="@color/silver"
                 style="@style/SubTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccination_1" />
+                android:text="@string/vaccination_1"
+                android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 
@@ -148,11 +147,11 @@
             <TextView
                 android:id="@+id/numberVaccine2"
                 style="@style/SubTitleText"
-                android:textColor="@color/silver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccination_2" />
+                android:text="@string/vaccination_2"
+                android:textColor="@color/silver" />
 
         </androidx.cardview.widget.CardView>
 

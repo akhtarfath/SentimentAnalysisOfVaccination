@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,12 +9,12 @@
     <WebView
         android:id="@+id/newsDetailWebView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <androidx.core.widget.NestedScrollView
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include
@@ -26,14 +25,14 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
-        android:elevation="1dp"
         android:layout_width="145dp"
         android:layout_height="145dp"
-        app:lottie_autoPlay="true"
         android:layout_gravity="center"
-        app:lottie_loop="true"
+        android:elevation="1dp"
         android:visibility="invisible"
-        app:lottie_rawRes="@raw/animation_loading_paper_plane"
-        app:lottie_enableMergePathsForKitKatAndAbove="true" />
+        app:lottie_autoPlay="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation_loading_paper_plane" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

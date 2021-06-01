@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/healthHumanResourcesTitle"
@@ -24,16 +23,16 @@
         android:paddingTop="3dp"
         android:src="@drawable/ic_share2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/numberOfCases"
         style="@style/SubTitleText"
         android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:layout_gravity="center"
         android:gravity="start|center"
         android:paddingTop="5dp"
-        android:layout_gravity="center"
         android:text="@string/number_of_case"
         app:layout_constraintTop_toBottomOf="@+id/healthHumanResourcesTitle" />
 
@@ -46,8 +45,8 @@
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="15dp"
@@ -56,8 +55,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
-                android:paddingHorizontal="10dp">
+                android:paddingHorizontal="10dp"
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/titleNumberPositive"
@@ -110,8 +109,8 @@
             android:id="@+id/cardView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="15dp"
@@ -120,8 +119,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
-                android:paddingHorizontal="10dp">
+                android:paddingHorizontal="10dp"
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/titleNumberOfCures"
@@ -174,8 +173,8 @@
             android:id="@+id/cardView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             app:cardCornerRadius="15dp"
@@ -184,8 +183,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
-                android:paddingHorizontal="10dp">
+                android:paddingHorizontal="10dp"
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/titleNumberOfDeaths"

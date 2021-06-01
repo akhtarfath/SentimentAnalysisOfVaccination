@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/newsFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="25dp"
+    android:background="@color/blue_navy_500"
+    android:paddingTop="10dp"
     android:paddingBottom="60dp"
     tools:context=".news.NewsFragment">
 
@@ -19,9 +19,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingTop="25dp"
             tools:ignore="UselessLeaf">
 
-            <include layout="@layout/shimmer_placeholder_covid_news"/>
+            <include layout="@layout/shimmer_placeholder_covid_news" />
 
         </LinearLayout>
 
@@ -33,40 +34,43 @@
         android:layout_height="match_parent">
 
         <ScrollView
-        android:id="@+id/scrollViewLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include
-            android:id="@+id/covidNews"
+            android:id="@+id/scrollViewLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/item_covid_news" />
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            android:paddingTop="25dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </ScrollView>
+            <include
+                android:id="@+id/covidNews"
+                layout="@layout/item_covid_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
-        android:elevation="1dp"
         android:layout_width="115dp"
         android:layout_height="115dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_repeatMode="restart"
+        android:elevation="1dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
+        app:lottie_loop="true"
         app:lottie_rawRes="@raw/animation_loading_paper_plane"
-        app:lottie_enableMergePathsForKitKatAndAbove="true" />
+        app:lottie_repeatMode="restart" />
 
     <include
         android:id="@+id/viewError"

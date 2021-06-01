@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/theElderlyTitle"
@@ -37,14 +36,14 @@
             <TextView
                 android:id="@+id/totalVaccine1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/total_vaccination_1" />
+                android:lineHeight="23dp"
+                android:text="@string/total_vaccination_1"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -62,14 +61,14 @@
             <TextView
                 android:id="@+id/totalVaccine2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/total_vaccination_2" />
+                android:lineHeight="23dp"
+                android:text="@string/total_vaccination_2"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -96,14 +95,14 @@
             <TextView
                 android:id="@+id/numberVaccine1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccinated_1" />
+                android:lineHeight="23dp"
+                android:text="@string/vaccinated_1"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -121,14 +120,14 @@
             <TextView
                 android:id="@+id/numberVaccine2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/vaccinated_2" />
+                android:lineHeight="23dp"
+                android:text="@string/vaccinated_2"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -154,14 +153,14 @@
             <TextView
                 android:id="@+id/numberDelayedVaccine1"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/delayed_vaccine_1" />
+                android:lineHeight="23dp"
+                android:text="@string/delayed_vaccine_1"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 
@@ -179,14 +178,14 @@
             <TextView
                 android:id="@+id/numberDelayedVaccine2"
                 style="@style/SubTitleText"
-                android:textSize="13sp"
-                android:textAlignment="center"
-                android:lineHeight="23dp"
-                tools:targetApi="p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/delayed_vaccine_2" />
+                android:lineHeight="23dp"
+                android:text="@string/delayed_vaccine_2"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                tools:targetApi="p" />
 
         </androidx.cardview.widget.CardView>
 

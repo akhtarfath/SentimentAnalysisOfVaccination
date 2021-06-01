@@ -1,68 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="25dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingHorizontal="25dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView7"
-        android:layout_width="match_parent"
+        android:id="@+id/titleVaccineStep"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/silver"
+        app:cardCornerRadius="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="0dp"
+            android:text="@string/vaccine_target_title"
+            android:textColor="@color/silver" />
 
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="15dp"
-                android:id="@+id/titleVaccineStep"
-                android:backgroundTint="@color/silver"
-                android:layout_marginVertical="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+    </androidx.cardview.widget.CardView>
 
-                <TextView
-                    style="@style/TitleText"
-                    android:textColor="@color/silver"
-                    android:layout_marginVertical="0dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vaccine_target_title"/>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="15dp"
-                android:id="@+id/vaccineStepShare"
-                android:backgroundTint="@color/silver"
-                android:layout_marginVertical="10dp"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"  >
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vaccineStepShare"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/silver"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/titleVaccineStep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleVaccineStep">
 
     </androidx.cardview.widget.CardView>
 
     <include
         android:id="@+id/healthHumanResources"
-        android:layout_marginTop="10dp"
         layout="@layout/shimmer_placeholder_mini_vaccine_step"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+        app:layout_constraintTop_toBottomOf="@+id/titleVaccineStep" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

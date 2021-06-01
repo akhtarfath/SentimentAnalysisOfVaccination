@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_centerHorizontal="true"
+    android:orientation="vertical"
     android:paddingHorizontal="15dp">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:overScrollMode="never"
         android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/mini_item_vertical"/>
+        app:spanCount="2"
+        tools:listitem="@layout/mini_item_vertical" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

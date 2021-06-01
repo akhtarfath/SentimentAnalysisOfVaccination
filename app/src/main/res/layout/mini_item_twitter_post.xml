@@ -1,183 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="10dp"
     android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
     android:elevation="10dp"
     app:cardCornerRadius="15dp">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="7dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/twitter_photo"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@color/silver"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSentimentResult"
+                style="@style/SubTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/sentiment_res"
+                android:textColor="@color/google_green"
+                android:textFontWeight="700"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/twitter_photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/twitter_photo"
+                tools:targetApi="p" />
+
+            <TextView
+                android:id="@+id/tvNameUserTwitter"
+                style="@style/ContentTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="@string/name_user_twitter"
+                android:textFontWeight="700"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/twitter_photo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="p" />
+
+            <TextView
+                android:id="@+id/tvUsernameTwitter"
+                style="@style/ContentTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="@string/username_twitter"
+                android:textFontWeight="500"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/twitter_photo"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameUserTwitter"
+                tools:targetApi="p" />
+
+            <TextView
+                android:id="@+id/tvDateTwitterPost"
+                style="@style/ContentTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:paddingTop="20dp"
+                android:text="@string/long_date_example"
+                android:textFontWeight="300"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUsernameTwitter"
+                tools:targetApi="p" />
+
+            <TextView
+                android:id="@+id/tvTwitterPost"
+                style="@style/ContentTitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="7dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="10dp">
+                android:layout_marginHorizontal="10dp"
+                android:justificationMode="inter_word"
+                android:lineHeight="23dp"
+                android:paddingTop="10dp"
+                android:text="@string/tweet_post"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateTwitterPost"
+                tools:targetApi="p" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/twitter_photo"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@color/silver"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTwitterPost"
+                app:layout_constraintVertical_bias="0.0">
 
-                <TextView
-                    android:id="@+id/tvSentimentResult"
-                    style="@style/SubTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/sentiment_res"
-                    android:textColor="@color/google_green"
-                    android:textFontWeight="700"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/twitter_photo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/twitter_photo"
-                    tools:targetApi="p" />
-
-                <TextView
-                    android:id="@+id/tvNameUserTwitter"
-                    style="@style/ContentTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_user_twitter"
-                    android:textFontWeight="700"
-                    android:layout_marginHorizontal="10dp"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:targetApi="p" />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginVertical="5dp"
+                    android:contentDescription="@string/icon_reply"
+                    android:src="@drawable/ic_message_circle"
+                    app:tint="@color/silver" />
 
                 <TextView
-                    android:id="@+id/tvUsernameTwitter"
-                    style="@style/ContentTitleText"
+                    android:id="@+id/reply_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/username_twitter"
-                    android:layout_marginHorizontal="10dp"
-                    android:textFontWeight="500"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@+id/twitter_photo"
-                    app:layout_constraintTop_toBottomOf="@+id/tvNameUserTwitter"
-                    tools:targetApi="p" />
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="3dp"
+                    android:text="@string/satu"
+                    android:textColor="@color/silver" />
+
+                <ImageView
+                    android:layout_width="29dp"
+                    android:layout_height="19dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="45dp"
+                    android:contentDescription="@string/icon_retweet"
+                    android:src="@drawable/ic_retweet"
+                    app:tint="@color/silver" />
 
                 <TextView
-                    android:id="@+id/tvDateTwitterPost"
-                    style="@style/ContentTitleText"
+                    android:id="@+id/retweet_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:text="@string/long_date_example"
-                    android:textFontWeight="300"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvUsernameTwitter"
-                    tools:targetApi="p" />
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="3dp"
+                    android:text="@string/satu"
+                    android:textColor="@color/silver" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="45dp"
+                    android:contentDescription="@string/icon_favorite"
+                    android:src="@drawable/ic_heart"
+                    app:tint="@color/silver" />
 
                 <TextView
-                    android:id="@+id/tvTwitterPost"
-                    style="@style/ContentTitleText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:justificationMode="inter_word"
-                    android:lineHeight="23dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/tweet_post"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDateTwitterPost"
-                    tools:targetApi="p" />
-
-                <LinearLayout
+                    android:id="@+id/like_count"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.503"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTwitterPost"
-                    app:layout_constraintVertical_bias="0.0">
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="3dp"
+                    android:text="@string/satu"
+                    android:textColor="@color/silver" />
 
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginVertical="5dp"
-                        android:contentDescription="@string/icon_reply"
-                        android:src="@drawable/ic_message_circle"
-                        app:tint="@color/silver" />
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="45dp"
+                    android:contentDescription="@string/icon_share"
+                    android:src="@drawable/ic_share2"
+                    app:tint="@color/silver" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/reply_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:layout_width="29dp"
-                        android:layout_height="19dp"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
-                        android:contentDescription="@string/icon_retweet"
-                        android:src="@drawable/ic_retweet"
-                        app:tint="@color/silver" />
-
-                    <TextView
-                        android:id="@+id/retweet_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
-                        android:contentDescription="@string/icon_favorite"
-                        android:src="@drawable/ic_heart"
-                        app:tint="@color/silver" />
-
-                    <TextView
-                        android:id="@+id/like_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="3dp"
-                        android:textColor="@color/silver"
-                        android:text="@string/satu" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginStart="45dp"
-                        android:contentDescription="@string/icon_share"
-                        android:src="@drawable/ic_share2"
-                        app:tint="@color/silver" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.cardview.widget.CardView>
