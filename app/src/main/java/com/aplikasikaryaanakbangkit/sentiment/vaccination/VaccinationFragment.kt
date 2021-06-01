@@ -1,5 +1,6 @@
 package com.aplikasikaryaanakbangkit.sentiment.vaccination
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -123,6 +124,31 @@ class VaccinationFragment : Fragment() {
                             )
                         }
                         false.shimmerLoading()
+
+                        //share
+                        _binding.vaccineTarget.vaccineTargetShare.setOnClickListener {
+                            startActivity(
+                                    Intent.createChooser(
+                                            Intent().apply {
+                                                action = Intent.ACTION_SEND
+                                                putExtra(
+                                                        Intent.EXTRA_TEXT,
+                                                        """
+                                                Sasaran Vaksinasi terkonfirmasi di Indonesia.
+                                                
+                                                Total Sasaran Vaksin     :   ${vaccinationTarget.data?.totalTargetVaccination ?: 0} Jiwa
+                                                Vaksinasi 1              :   ${vaccinationTarget.data?.vaccination1 ?: 0} Jiwa
+                                                Vaksinasi 2              :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
+                                                Vaksinasi SDM Kesehatan  :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
+                                                Vaksinasi Petugas Publik :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
+                                                Vaksinasi Lansia         :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
+                                            """.trimIndent()
+                                                )
+                                                type = "text/plain"
+                                            }, null
+                                    )
+                            )
+                        }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
@@ -143,153 +169,194 @@ class VaccinationFragment : Fragment() {
 
                 _binding.vaccineStep.healthHumanResources.healthHumanResources.let {
                     it.totalVaccineSdm1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.totalVaccination1 ?: 0
-                            )
-                        }"
+                            "Total Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.totalVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.totalVaccineSdm2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.totalVaccination2 ?: 0
-                            )
-                        }"
+                            "Total Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.totalVaccination2 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.vaccinated1 ?: 0
-                            )
-                        }"
+                            "Sudah Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.vaccinated1 ?: 0
+                                )
+                            }"
                     )
                     it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.vaccinated2 ?: 0
-                            )
-                        }"
+                            "Sudah Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.vaccinated2 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.delayedVaccination1 ?: 0
-                            )
-                        }"
+                            "Tertunda Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.delayedVaccination1 ?: 0
+                                )
+                            }"
                     )
                     it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                sdm.data?.delayedVaccination2 ?: 0
-                            )
-                        }"
+                            "Tertunda Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                        sdm.data?.delayedVaccination2 ?: 0
+                                )
+                            }"
                     )
                 }
                 false.shimmerLoading()
             }
-        }
 
-        vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner) { lansia ->
-            if (lansia != null) {
-                Log.d("Tahapan Lansia Covid", lansia.data.toString())
 
-                _binding.vaccineStep.healthHumanResources.theElderly.let {
-                    it.totalVaccine1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.totalVaccination1 ?: 0
-                            )
-                        }"
-                    )
-                    it.totalVaccine2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.totalVaccination2 ?: 0
-                            )
-                        }"
-                    )
-                    it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.vaccinated1 ?: 0
-                            )
-                        }"
-                    )
-                    it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.vaccinated2 ?: 0
-                            )
-                        }"
-                    )
-                    it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.delayedVaccine1 ?: 0
-                            )
-                        }"
-                    )
-                    it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                lansia.data?.delayedVaccine2 ?: 0
-                            )
-                        }"
-                    )
+            vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner) { lansia ->
+                if (lansia != null) {
+                    Log.d("Tahapan Lansia Covid", lansia.data.toString())
+
+                    _binding.vaccineStep.healthHumanResources.theElderly.let {
+                        it.totalVaccine1.text = StringBuilder(
+                                "Total Vaksin 1\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.totalVaccination1 ?: 0
+                                    )
+                                }"
+                        )
+                        it.totalVaccine2.text = StringBuilder(
+                                "Total Vaksin 2\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.totalVaccination2 ?: 0
+                                    )
+                                }"
+                        )
+                        it.numberVaccine1.text = StringBuilder(
+                                "Sudah Vaksin 1\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.vaccinated1 ?: 0
+                                    )
+                                }"
+                        )
+                        it.numberVaccine2.text = StringBuilder(
+                                "Sudah Vaksin 2\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.vaccinated2 ?: 0
+                                    )
+                                }"
+                        )
+                        it.numberDelayedVaccine1.text = StringBuilder(
+                                "Tertunda Vaksin 1\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.delayedVaccine1 ?: 0
+                                    )
+                                }"
+                        )
+                        it.numberDelayedVaccine2.text = StringBuilder(
+                                "Tertunda Vaksin 2\n${
+                                    NumberFormat.getNumberInstance(Locale.US).format(
+                                            lansia.data?.delayedVaccine2 ?: 0
+                                    )
+                                }"
+                        )
+                    }
+                    false.shimmerLoading()
                 }
-                false.shimmerLoading()
-            }
-        }
 
-        vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner) { petugas ->
-            if (petugas != null) {
-                Log.d("Tahapan Petugas Covid", petugas.data.toString())
 
-                _binding.vaccineStep.healthHumanResources.publicOfficers.let {
-                    it.totalVaccine1.text = StringBuilder(
-                        "Total Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.totalVaccination1 ?: 0
+                vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner) { petugas ->
+                    if (petugas != null) {
+                        Log.d("Tahapan Petugas Covid", petugas.data.toString())
+
+                        _binding.vaccineStep.healthHumanResources.publicOfficers.let {
+                            it.totalVaccine1.text = StringBuilder(
+                                    "Total Vaksin 1\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.totalVaccination1 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
-                    it.totalVaccine2.text = StringBuilder(
-                        "Total Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.totalVaccination2 ?: 0
+                            it.totalVaccine2.text = StringBuilder(
+                                    "Total Vaksin 2\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.totalVaccination2 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
-                    it.numberVaccine1.text = StringBuilder(
-                        "Sudah Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.vaccinated1 ?: 0
+                            it.numberVaccine1.text = StringBuilder(
+                                    "Sudah Vaksin 1\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.vaccinated1 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
-                    it.numberVaccine2.text = StringBuilder(
-                        "Sudah Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.vaccinated2 ?: 0
+                            it.numberVaccine2.text = StringBuilder(
+                                    "Sudah Vaksin 2\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.vaccinated2 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
-                    it.numberDelayedVaccine1.text = StringBuilder(
-                        "Tertunda Vaksin 1\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.delayedVaccination1 ?: 0
+                            it.numberDelayedVaccine1.text = StringBuilder(
+                                    "Tertunda Vaksin 1\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.delayedVaccination1 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
-                    it.numberDelayedVaccine2.text = StringBuilder(
-                        "Tertunda Vaksin 2\n${
-                            NumberFormat.getNumberInstance(Locale.US).format(
-                                petugas.data?.delayedVaccination2 ?: 0
+                            it.numberDelayedVaccine2.text = StringBuilder(
+                                    "Tertunda Vaksin 2\n${
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                                petugas.data?.delayedVaccination2 ?: 0
+                                        )
+                                    }"
                             )
-                        }"
-                    )
+                        }
+                        false.shimmerLoading()
+                    }
+
+                    _binding.vaccineStep.vaccineStepShare.setOnClickListener {
+                        startActivity(
+                                Intent.createChooser(
+                                        Intent().apply {
+                                            action = Intent.ACTION_SEND
+                                            putExtra(
+                                                    Intent.EXTRA_TEXT,
+                                                    """
+                                                Tahapan Vaksinasi untuk SDM Kesehatan di Indonesia.
+                                                Total Vaksinasi 1    :   ${sdm.data?.totalVaccination1 ?: 0} Jiwa
+                                                Total Vaksinasi 2    :   ${sdm.data?.totalVaccination2 ?: 0} Jiwa
+                                                Sudah Vaksinasi 1    :   ${sdm.data?.vaccinated1 ?: 0} Jiwa
+                                                Sudah Vaksinasi 2    :   ${sdm.data?.vaccinated2 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 1 :   ${sdm.data?.delayedVaccination1 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 2 :   ${sdm.data?.delayedVaccination2 ?: 0} Jiwa
+                                                
+                                                Tahapan Vaksinasi untuk Lansia di Indonesia.
+                                                Total Vaksinasi 1    :   ${lansia.data?.totalVaccination1 ?: 0} Jiwa
+                                                Total Vaksinasi 2    :   ${lansia.data?.totalVaccination2 ?: 0} Jiwa
+                                                Sudah Vaksinasi 1    :   ${lansia.data?.vaccinated1 ?: 0} Jiwa
+                                                Sudah Vaksinasi 2    :   ${lansia.data?.vaccinated2 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 1 :   ${lansia.data?.delayedVaccine1 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 2 :   ${lansia.data?.delayedVaccine2 ?: 0} Jiwa
+                                                
+                                                Tahapan Vaksinasi untuk Petugas Publik di Indonesia.
+                                                Total Vaksinasi 1    :   ${petugas.data?.totalVaccination1 ?: 0} Jiwa
+                                                Total Vaksinasi 2    :   ${petugas.data?.totalVaccination2 ?: 0} Jiwa
+                                                Sudah Vaksinasi 1    :   ${petugas.data?.vaccinated1 ?: 0} Jiwa
+                                                Sudah Vaksinasi 2    :   ${petugas.data?.vaccinated2 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 1 :   ${petugas.data?.delayedVaccination1 ?: 0} Jiwa
+                                                Tertunda Vaksinasi 2 :   ${petugas.data?.delayedVaccination2 ?: 0} Jiwa
+                                            """.trimIndent()
+                                            )
+                                            type = "text/plain"
+                                        }, null
+                                )
+                        )
+                    }
                 }
-                false.shimmerLoading()
             }
         }
 
@@ -308,31 +375,57 @@ class VaccinationFragment : Fragment() {
                                 "Vaksinasi 2\n${cakupanVaksinasi.data?.vaccination2.toString()}"
                             )
                             it.vaccinationSDM1.text = StringBuilder(
-                                "SDM Kesehatan.\nVaksinasi 1. " +
+                                "SDM Kesehatan\nVaksinasi 1 " +
                                         cakupanVaksinasi.data?.healthHRVaccination1.toString()
                             )
                             it.vaccinationSDM2.text = StringBuilder(
-                                "SDM Kesehatan.\nVaksinasi 2. " +
+                                "SDM Kesehatan\nVaksinasi 2 " +
                                         cakupanVaksinasi.data?.healthHRVaccination2.toString()
                             )
                             it.vaccinationPetugas1.text = StringBuilder(
-                                "Petugas Publik.\nVaksinasi 1. " +
+                                "Petugas Publik\nVaksinasi 1 " +
                                         cakupanVaksinasi.data?.publicOfficerVaccination1.toString()
                             )
                             it.vaccinationPetugas2.text = StringBuilder(
-                                "Petugas Publik.\nVaksinasi 2. " +
+                                "Petugas Publik\nVaksinasi 2 " +
                                         cakupanVaksinasi.data?.publicOfficerVaccination2.toString()
                             )
                             it.numberTheElder1.text = StringBuilder(
-                                "Lansia. Vaksinasi 1\n" +
+                                "Lansia Vaksinasi 1\n" +
                                         cakupanVaksinasi.data?.elderlyVaccination1.toString()
                             )
                             it.numberTheElder2.text = StringBuilder(
-                                "Lansia. Vaksinasi 2\n" +
+                                "Lansia Vaksinasi 2\n" +
                                         cakupanVaksinasi.data?.elderlyVaccination2.toString()
                             )
                         }
                         false.shimmerLoading()
+
+                        _binding.vaccineCoverage.vaccineTargetShare.setOnClickListener {
+                            startActivity(
+                                    Intent.createChooser(
+                                            Intent().apply {
+                                                action = Intent.ACTION_SEND
+                                                putExtra(
+                                                        Intent.EXTRA_TEXT,
+                                                        """
+                                                Persentase Cakupan Pelaksanaan Vaksinasi di Indonesia.
+                                                
+                                                Vaksinasi 1                :   ${cakupanVaksinasi.data?.vaccination1 ?: 0}
+                                                Vaksinasi 2                :   ${cakupanVaksinasi.data?.vaccination2 ?: 0}
+                                                SDM Kesehatan Vaksinasi 1  :   ${cakupanVaksinasi.data?.healthHRVaccination1 ?: 0}
+                                                SDM Kesehatan Vaksinasi 2  :   ${cakupanVaksinasi.data?.healthHRVaccination2 ?: 0}
+                                                Petugas Publik Vaksinasi 1 :   ${cakupanVaksinasi.data?.publicOfficerVaccination1 ?: 0}
+                                                Petugas Publik Vaksinasi 2 :   ${cakupanVaksinasi.data?.publicOfficerVaccination2 ?: 0}
+                                                Lansia Vaksinasi 1         :   ${cakupanVaksinasi.data?.elderlyVaccination1 ?: 0}
+                                                Lansia Vaksinasi 2         :   ${cakupanVaksinasi.data?.elderlyVaccination2 ?: 0}
+                                            """.trimIndent()
+                                                )
+                                                type = "text/plain"
+                                            }, null
+                                    )
+                            )
+                        }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
