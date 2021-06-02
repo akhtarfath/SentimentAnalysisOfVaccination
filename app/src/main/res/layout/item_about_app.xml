@@ -25,10 +25,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/app_name"
-        android:textSize="27sp"
+        android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_circle" />
+
+    <TextView
+        android:id="@+id/application_full_name_tv"
+        style="@style/SubTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="75dp"
+        android:textAlignment="center"
+        android:lineHeight="27dp"
+        android:text="@string/sentiment_analysis_of_vaccination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/application_name_tv"
+        tools:targetApi="p" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/about_app_cv"
@@ -40,7 +54,7 @@
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/application_name_tv">
+        app:layout_constraintTop_toBottomOf="@+id/application_full_name_tv">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

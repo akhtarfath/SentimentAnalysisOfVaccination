@@ -16,6 +16,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/skip"
+        style="@style/SubTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:paddingTop="15dp"
+        android:scrollIndicators="none"
+        android:text="@string/organizer"
+        android:textColor="@color/grey"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/developers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/developers" />
+
+    <TextView
+        android:id="@+id/skip2"
+        style="@style/SubTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:scrollIndicators="none"
+        android:text="@string/team_id"
+        android:textColor="@color/grey"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skip" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_developer_name"
         android:layout_width="match_parent"
@@ -25,7 +53,7 @@
         android:overScrollMode="never"
         android:paddingHorizontal="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/developers"
+        app:layout_constraintTop_toBottomOf="@+id/skip2"
         app:spanCount="2"
         tools:listitem="@layout/item_developer_name" />
 
