@@ -1,14 +1,11 @@
 package com.aplikasikaryaanakbangkit.sentiment.welcome
 
-import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.aplikasikaryaanakbangkit.sentiment.MainActivity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentWelcome1Binding
 
 class WelcomeFragment1 : Fragment() {
@@ -18,12 +15,12 @@ class WelcomeFragment1 : Fragment() {
     private val _binding get() = _fragmentWelcomeBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _fragmentWelcomeBinding =
-                FragmentWelcome1Binding.inflate(inflater, container, false)
+            FragmentWelcome1Binding.inflate(inflater, container, false)
 
         return _binding.root
     }

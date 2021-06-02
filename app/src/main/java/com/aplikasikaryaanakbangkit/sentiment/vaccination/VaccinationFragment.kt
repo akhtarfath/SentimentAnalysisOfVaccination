@@ -31,12 +31,12 @@ class VaccinationFragment : Fragment() {
     private val _binding get() = _fragmentVaccinationBinding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _fragmentVaccinationBinding =
-                FragmentVaccinationBinding.inflate(inflater, container, false)
+            FragmentVaccinationBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -49,7 +49,7 @@ class VaccinationFragment : Fragment() {
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val vaccineViewModel =
-                    ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
+                ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
 
             runBlocking {
                 launch {
@@ -63,7 +63,7 @@ class VaccinationFragment : Fragment() {
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
             swipeRefreshLayout.setOnRefreshListener(object :
-                    SwipeRefreshLayout.OnRefreshListener {
+                SwipeRefreshLayout.OnRefreshListener {
                 override fun onRefresh() {
                     refreshItem()
                 }
@@ -94,43 +94,43 @@ class VaccinationFragment : Fragment() {
                     Status.SUCCESS -> {
                         _binding.vaccineTarget.targetOfVaccination.let {
                             it.numberVaccineTarget.text = StringBuilder(
-                                    "Total sasaran vaksin\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.totalTargetVaccination
-                                            )
+                                "Total sasaran vaksin\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.totalTargetVaccination
+                                        )
                             )
 
                             it.numberSdmVaccinationTarget.text = StringBuilder(
-                                    "SDM Kesehatan\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.vaccinationTargetHealthHR
-                                            )
+                                "SDM Kesehatan\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.vaccinationTargetHealthHR
+                                        )
                             )
                             it.numberPetugasVaccinationTarget.text = StringBuilder(
-                                    "Petugas Publik\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.vaccinationTargetPublicOfficer
-                                            )
+                                "Petugas Publik\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.vaccinationTargetPublicOfficer
+                                        )
                             )
 
                             it.numberLansiaVaccinationTarget.text = StringBuilder(
-                                    "Lansia\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.vaccinationTargetElderly
-                                            )
+                                "Lansia\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.vaccinationTargetElderly
+                                        )
                             )
 
                             it.numberVaccine1Target.text = StringBuilder(
-                                    "Vaksinasi 1\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.vaccination1
-                                            )
+                                "Vaksinasi 1\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.vaccination1
+                                        )
                             )
                             it.numberVaccine2Target.text = StringBuilder(
-                                    "Vaksinasi 2\n" +
-                                            NumberFormat.getNumberInstance(Locale.US).format(
-                                                    vaccinationTarget.data?.vaccination2
-                                            )
+                                "Vaksinasi 2\n" +
+                                        NumberFormat.getNumberInstance(Locale.US).format(
+                                            vaccinationTarget.data?.vaccination2
+                                        )
                             )
                         }
                         false.shimmerLoading()
@@ -138,12 +138,12 @@ class VaccinationFragment : Fragment() {
                         //share
                         _binding.vaccineTarget.vaccineTargetShare.setOnClickListener {
                             startActivity(
-                                    Intent.createChooser(
-                                            Intent().apply {
-                                                action = Intent.ACTION_SEND
-                                                putExtra(
-                                                        Intent.EXTRA_TEXT,
-                                                        """
+                                Intent.createChooser(
+                                    Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(
+                                            Intent.EXTRA_TEXT,
+                                            """
                                                 Sasaran Vaksinasi terkonfirmasi di Indonesia.
                                                 
                                                 Total Sasaran Vaksin     :   ${vaccinationTarget.data?.totalTargetVaccination ?: 0} Jiwa
@@ -153,21 +153,21 @@ class VaccinationFragment : Fragment() {
                                                 Vaksinasi Petugas Publik :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
                                                 Vaksinasi Lansia         :   ${vaccinationTarget.data?.vaccination2 ?: 0} Jiwa
                                             """.trimIndent()
-                                                )
-                                                type = "text/plain"
-                                            }, null
-                                    )
+                                        )
+                                        type = "text/plain"
+                                    }, null
+                                )
                             )
                         }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }
@@ -180,46 +180,46 @@ class VaccinationFragment : Fragment() {
 
                 _binding.vaccineStep.healthHumanResources.healthHumanResources.let {
                     it.totalVaccineSdm1.text = StringBuilder(
-                            "Total Vaksin 1\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.totalVaccination1 ?: 0
-                                )
-                            }"
+                        "Total Vaksin 1\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.totalVaccination1 ?: 0
+                            )
+                        }"
                     )
                     it.totalVaccineSdm2.text = StringBuilder(
-                            "Total Vaksin 2\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.totalVaccination2 ?: 0
-                                )
-                            }"
+                        "Total Vaksin 2\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.totalVaccination2 ?: 0
+                            )
+                        }"
                     )
                     it.numberVaccine1.text = StringBuilder(
-                            "Sudah Vaksin 1\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.vaccinated1 ?: 0
-                                )
-                            }"
+                        "Sudah Vaksin 1\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.vaccinated1 ?: 0
+                            )
+                        }"
                     )
                     it.numberVaccine2.text = StringBuilder(
-                            "Sudah Vaksin 2\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.vaccinated2 ?: 0
-                                )
-                            }"
+                        "Sudah Vaksin 2\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.vaccinated2 ?: 0
+                            )
+                        }"
                     )
                     it.numberDelayedVaccine1.text = StringBuilder(
-                            "Tertunda Vaksin 1\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.delayedVaccination1 ?: 0
-                                )
-                            }"
+                        "Tertunda Vaksin 1\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.delayedVaccination1 ?: 0
+                            )
+                        }"
                     )
                     it.numberDelayedVaccine2.text = StringBuilder(
-                            "Tertunda Vaksin 2\n${
-                                NumberFormat.getNumberInstance(Locale.US).format(
-                                        sdm.data?.delayedVaccination2 ?: 0
-                                )
-                            }"
+                        "Tertunda Vaksin 2\n${
+                            NumberFormat.getNumberInstance(Locale.US).format(
+                                sdm.data?.delayedVaccination2 ?: 0
+                            )
+                        }"
                     )
                 }
             }
@@ -230,108 +230,110 @@ class VaccinationFragment : Fragment() {
 
                     _binding.vaccineStep.healthHumanResources.theElderly.let {
                         it.totalVaccine1.text = StringBuilder(
-                                "Total Vaksin 1\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.totalVaccination1 ?: 0
-                                    )
-                                }"
+                            "Total Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.totalVaccination1 ?: 0
+                                )
+                            }"
                         )
                         it.totalVaccine2.text = StringBuilder(
-                                "Total Vaksin 2\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.totalVaccination2 ?: 0
-                                    )
-                                }"
+                            "Total Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.totalVaccination2 ?: 0
+                                )
+                            }"
                         )
                         it.numberVaccine1.text = StringBuilder(
-                                "Sudah Vaksin 1\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.vaccinated1 ?: 0
-                                    )
-                                }"
+                            "Sudah Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.vaccinated1 ?: 0
+                                )
+                            }"
                         )
                         it.numberVaccine2.text = StringBuilder(
-                                "Sudah Vaksin 2\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.vaccinated2 ?: 0
-                                    )
-                                }"
+                            "Sudah Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.vaccinated2 ?: 0
+                                )
+                            }"
                         )
                         it.numberDelayedVaccine1.text = StringBuilder(
-                                "Tertunda Vaksin 1\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.delayedVaccine1 ?: 0
-                                    )
-                                }"
+                            "Tertunda Vaksin 1\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.delayedVaccine1 ?: 0
+                                )
+                            }"
                         )
                         it.numberDelayedVaccine2.text = StringBuilder(
-                                "Tertunda Vaksin 2\n${
-                                    NumberFormat.getNumberInstance(Locale.US).format(
-                                            lansia.data?.delayedVaccine2 ?: 0
-                                    )
-                                }"
+                            "Tertunda Vaksin 2\n${
+                                NumberFormat.getNumberInstance(Locale.US).format(
+                                    lansia.data?.delayedVaccine2 ?: 0
+                                )
+                            }"
                         )
                     }
                 }
 
-                vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner, { petugas ->
-                    if (petugas != null) {
+                vaccineViewModel.getVaccinationStepPublicOfficer.observe(
+                    viewLifecycleOwner,
+                    { petugas ->
+                        if (petugas != null) {
 
-                        _binding.vaccineStep.healthHumanResources.publicOfficers.let {
-                            it.totalVaccine1.text = StringBuilder(
+                            _binding.vaccineStep.healthHumanResources.publicOfficers.let {
+                                it.totalVaccine1.text = StringBuilder(
                                     "Total Vaksin 1\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.totalVaccination1 ?: 0
+                                            petugas.data?.totalVaccination1 ?: 0
                                         )
                                     }"
-                            )
-                            it.totalVaccine2.text = StringBuilder(
+                                )
+                                it.totalVaccine2.text = StringBuilder(
                                     "Total Vaksin 2\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.totalVaccination2 ?: 0
+                                            petugas.data?.totalVaccination2 ?: 0
                                         )
                                     }"
-                            )
-                            it.numberVaccine1.text = StringBuilder(
+                                )
+                                it.numberVaccine1.text = StringBuilder(
                                     "Sudah Vaksin 1\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.vaccinated1 ?: 0
+                                            petugas.data?.vaccinated1 ?: 0
                                         )
                                     }"
-                            )
-                            it.numberVaccine2.text = StringBuilder(
+                                )
+                                it.numberVaccine2.text = StringBuilder(
                                     "Sudah Vaksin 2\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.vaccinated2 ?: 0
+                                            petugas.data?.vaccinated2 ?: 0
                                         )
                                     }"
-                            )
-                            it.numberDelayedVaccine1.text = StringBuilder(
+                                )
+                                it.numberDelayedVaccine1.text = StringBuilder(
                                     "Tertunda Vaksin 1\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.delayedVaccination1 ?: 0
+                                            petugas.data?.delayedVaccination1 ?: 0
                                         )
                                     }"
-                            )
-                            it.numberDelayedVaccine2.text = StringBuilder(
+                                )
+                                it.numberDelayedVaccine2.text = StringBuilder(
                                     "Tertunda Vaksin 2\n${
                                         NumberFormat.getNumberInstance(Locale.US).format(
-                                                petugas.data?.delayedVaccination2 ?: 0
+                                            petugas.data?.delayedVaccination2 ?: 0
                                         )
                                     }"
-                            )
+                                )
+                            }
                         }
-                    }
 
-                    //share
-                    _binding.vaccineStep.vaccineStepShare.setOnClickListener {
-                        startActivity(
+                        //share
+                        _binding.vaccineStep.vaccineStepShare.setOnClickListener {
+                            startActivity(
                                 Intent.createChooser(
-                                        Intent().apply {
-                                            action = Intent.ACTION_SEND
-                                            putExtra(
-                                                    Intent.EXTRA_TEXT,
-                                                    """
+                                    Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(
+                                            Intent.EXTRA_TEXT,
+                                            """
                                                 Tahapan Vaksinasi untuk SDM Kesehatan di Indonesia.
                                                 Total Vaksinasi 1    :   ${sdm.data?.totalVaccination1 ?: 0} Jiwa
                                                 Total Vaksinasi 2    :   ${sdm.data?.totalVaccination2 ?: 0} Jiwa
@@ -356,14 +358,14 @@ class VaccinationFragment : Fragment() {
                                                 Tertunda Vaksinasi 1 :   ${petugas.data?.delayedVaccination1 ?: 0} Jiwa
                                                 Tertunda Vaksinasi 2 :   ${petugas.data?.delayedVaccination2 ?: 0} Jiwa
                                             """.trimIndent()
-                                            )
-                                            type = "text/plain"
-                                        }, null
+                                        )
+                                        type = "text/plain"
+                                    }, null
                                 )
-                        )
-                    }
+                            )
+                        }
 
-                })
+                    })
 
             })
         })
@@ -378,46 +380,46 @@ class VaccinationFragment : Fragment() {
 
                         _binding.vaccineCoverage.targetOfVaccination.let {
                             it.vaccination1.text = StringBuilder(
-                                    "Vaksinasi 1\n${cakupanVaksinasi.data?.vaccination1.toString()}"
+                                "Vaksinasi 1\n${cakupanVaksinasi.data?.vaccination1.toString()}"
                             )
                             it.vaccination2.text = StringBuilder(
-                                    "Vaksinasi 2\n${cakupanVaksinasi.data?.vaccination2.toString()}"
+                                "Vaksinasi 2\n${cakupanVaksinasi.data?.vaccination2.toString()}"
                             )
                             it.vaccinationSDM1.text = StringBuilder(
-                                    "SDM Kesehatan\nVaksinasi 1 " +
-                                            cakupanVaksinasi.data?.healthHRVaccination1.toString()
+                                "SDM Kesehatan\nVaksinasi 1 " +
+                                        cakupanVaksinasi.data?.healthHRVaccination1.toString()
                             )
                             it.vaccinationSDM2.text = StringBuilder(
-                                    "SDM Kesehatan\nVaksinasi 2 " +
-                                            cakupanVaksinasi.data?.healthHRVaccination2.toString()
+                                "SDM Kesehatan\nVaksinasi 2 " +
+                                        cakupanVaksinasi.data?.healthHRVaccination2.toString()
                             )
                             it.vaccinationPetugas1.text = StringBuilder(
-                                    "Petugas Publik\nVaksinasi 1 " +
-                                            cakupanVaksinasi.data?.publicOfficerVaccination1.toString()
+                                "Petugas Publik\nVaksinasi 1 " +
+                                        cakupanVaksinasi.data?.publicOfficerVaccination1.toString()
                             )
                             it.vaccinationPetugas2.text = StringBuilder(
-                                    "Petugas Publik\nVaksinasi 2 " +
-                                            cakupanVaksinasi.data?.publicOfficerVaccination2.toString()
+                                "Petugas Publik\nVaksinasi 2 " +
+                                        cakupanVaksinasi.data?.publicOfficerVaccination2.toString()
                             )
                             it.numberTheElder1.text = StringBuilder(
-                                    "Lansia Vaksinasi 1\n" +
-                                            cakupanVaksinasi.data?.elderlyVaccination1.toString()
+                                "Lansia Vaksinasi 1\n" +
+                                        cakupanVaksinasi.data?.elderlyVaccination1.toString()
                             )
                             it.numberTheElder2.text = StringBuilder(
-                                    "Lansia Vaksinasi 2\n" +
-                                            cakupanVaksinasi.data?.elderlyVaccination2.toString()
+                                "Lansia Vaksinasi 2\n" +
+                                        cakupanVaksinasi.data?.elderlyVaccination2.toString()
                             )
                         }
                         false.shimmerLoading()
 
                         _binding.vaccineCoverage.vaccineTargetShare.setOnClickListener {
                             startActivity(
-                                    Intent.createChooser(
-                                            Intent().apply {
-                                                action = Intent.ACTION_SEND
-                                                putExtra(
-                                                        Intent.EXTRA_TEXT,
-                                                        """
+                                Intent.createChooser(
+                                    Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(
+                                            Intent.EXTRA_TEXT,
+                                            """
                                                 Persentase Cakupan Pelaksanaan Vaksinasi di Indonesia.
                                                 
                                                 Vaksinasi 1                :   ${cakupanVaksinasi.data?.vaccination1 ?: 0}
@@ -429,21 +431,21 @@ class VaccinationFragment : Fragment() {
                                                 Lansia Vaksinasi 1         :   ${cakupanVaksinasi.data?.elderlyVaccination1 ?: 0}
                                                 Lansia Vaksinasi 2         :   ${cakupanVaksinasi.data?.elderlyVaccination2 ?: 0}
                                             """.trimIndent()
-                                                )
-                                                type = "text/plain"
-                                            }, null
-                                    )
+                                        )
+                                        type = "text/plain"
+                                    }, null
+                                )
                             )
                         }
                     }
                     Status.ERROR -> {
                         false.shimmerLoading()
                         Toast.makeText(
-                                activity?.applicationContext,
-                                getString(R.string.error_msg),
-                                Toast.LENGTH_SHORT
+                            activity?.applicationContext,
+                            getString(R.string.error_msg),
+                            Toast.LENGTH_SHORT
                         )
-                                .show()
+                            .show()
                     }
                 }
             }

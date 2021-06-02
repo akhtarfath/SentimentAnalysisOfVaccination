@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "idCovid")
 data class IDCovidItemEntity(
 
-        @PrimaryKey
-        @ColumnInfo(name = "lastUpdate")
-        val lastUpdate: Long? = null,
+    @PrimaryKey
+    @ColumnInfo(name = "lastUpdate")
+    val lastUpdate: Long? = null,
 
-        @ColumnInfo(name = "confirmed")
-        val confirmed: Int? = null,
+    @ColumnInfo(name = "confirmed")
+    val confirmed: Int? = null,
 
-        @ColumnInfo(name = "recovered")
-        val recovered: Int? = null,
+    @ColumnInfo(name = "recovered")
+    val recovered: Int? = null,
 
-        @ColumnInfo(name = "deaths")
-        val deaths: Int? = null
+    @ColumnInfo(name = "deaths")
+    val deaths: Int? = null
 )

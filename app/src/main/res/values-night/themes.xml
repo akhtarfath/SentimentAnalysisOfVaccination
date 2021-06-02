@@ -21,5 +21,6 @@
     </style>
 
     <style name="Theme.SentimentAnalysisOfVaccinationApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.SentimentAnalysisOfVaccinationApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

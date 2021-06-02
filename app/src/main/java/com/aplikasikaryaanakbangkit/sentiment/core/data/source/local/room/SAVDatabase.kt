@@ -15,23 +15,23 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.twee
 import com.aplikasikaryaanakbangkit.sentiment.core.data.source.local.entity.vaccination.*
 
 @Database(
-        entities = [
-            ArticleCovidEntity::class,
-            ArticleVaccinesEntity::class,
-            TeamsEntity::class,
-            DataItemTweetEntity::class,
-            UserItemsTweetEntity::class,
-            GlobalCovidEntity::class,
-            IDCovidItemEntity::class,
-            VaccinationCoverageEntity::class,
-            VaccinationElderlyEntity::class,
-            VaccinationMonitoringItemEntity::class,
-            VaccinationPublicOfficerEntity::class,
-            VaccinationHealthHREntity::class,
-            SentimentEntity::class
-        ],
-        version = 1,
-        exportSchema = false
+    entities = [
+        ArticleCovidEntity::class,
+        ArticleVaccinesEntity::class,
+        TeamsEntity::class,
+        DataItemTweetEntity::class,
+        UserItemsTweetEntity::class,
+        GlobalCovidEntity::class,
+        IDCovidItemEntity::class,
+        VaccinationCoverageEntity::class,
+        VaccinationElderlyEntity::class,
+        VaccinationMonitoringItemEntity::class,
+        VaccinationPublicOfficerEntity::class,
+        VaccinationHealthHREntity::class,
+        SentimentEntity::class
+    ],
+    version = 1,
+    exportSchema = false
 )
 abstract class SAVDatabase : RoomDatabase() {
 
@@ -44,9 +44,9 @@ abstract class SAVDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): SAVDatabase = INSTANCE ?: synchronized(this) {
             Room.databaseBuilder(
-                    context.applicationContext,
-                    SAVDatabase::class.java,
-                    "sav_database.db"
+                context.applicationContext,
+                SAVDatabase::class.java,
+                "sav_database.db"
             ).build().apply {
                 INSTANCE = this
             }

@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "teams")
 data class TeamsEntity(
 
-        @PrimaryKey
-        @ColumnInfo(name = "id")
-        val id: String,
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    val id: String,
 
-        @ColumnInfo(name = "name")
-        val name: String,
+    @ColumnInfo(name = "name")
+    val name: String,
 
-        @ColumnInfo(name = "urlPicture")
-        val urlPicture: String,
+    @ColumnInfo(name = "urlPicture")
+    val urlPicture: String,
 
-        @ColumnInfo(name = "urlLinkedIn")
-        val urlLinkedIn: String
+    @ColumnInfo(name = "urlLinkedIn")
+    val urlLinkedIn: String
 )

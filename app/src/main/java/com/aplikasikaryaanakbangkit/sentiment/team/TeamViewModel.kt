@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.aplikasikaryaanakbangkit.sentiment.core.data.SAVRepository
 
 class TeamViewModel(
-        _repository: SAVRepository
+    _repository: SAVRepository
 ) : ViewModel() {
 
     val getDataTeams by lazy { _repository.getAllTeams() }

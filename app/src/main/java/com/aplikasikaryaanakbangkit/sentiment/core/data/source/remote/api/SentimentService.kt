@@ -20,26 +20,26 @@ interface SentimentService {
 
         fun create(): SentimentService {
             val loggingInterceptor =
-                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
-                    .retryOnConnectionFailure(true)
-                    .addInterceptor(loggingInterceptor)
-                    .addInterceptor { chain ->
-                        val request = chain.request()
-                        val requestBuilder = request.newBuilder()
-                                .header(
-                                        "Content-Type",
-                                        "application/json"
-                                )
-                        val modifiedRequest = requestBuilder.build()
-                        chain.proceed(modifiedRequest)
-                    }
-                    .build()
+                .retryOnConnectionFailure(true)
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor { chain ->
+                    val request = chain.request()
+                    val requestBuilder = request.newBuilder()
+                        .header(
+                            "Content-Type",
+                            "application/json"
+                        )
+                    val modifiedRequest = requestBuilder.build()
+                    chain.proceed(modifiedRequest)
+                }
+                .build()
             val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
 
             return retrofit.create(SentimentService::class.java)
         }

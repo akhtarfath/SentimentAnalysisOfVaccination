@@ -12,7 +12,7 @@ class JsonHelper(private val context: Context) {
         val jsonString: String
         try {
             jsonString = context.resources.openRawResource(R.raw.developers).bufferedReader()
-                    .use { it.readText() }
+                .use { it.readText() }
         } catch (ioException: IOException) {
             ioException.printStackTrace()
             return null
@@ -33,10 +33,10 @@ class JsonHelper(private val context: Context) {
             val urlLinkedIn = teams.getString("urlLinkedIn")
 
             val teamsResponse = TeamsResponse(
-                    id,
-                    name,
-                    urlPicture,
-                    urlLinkedIn
+                id,
+                name,
+                urlPicture,
+                urlLinkedIn
             )
             list.add(teamsResponse)
         }

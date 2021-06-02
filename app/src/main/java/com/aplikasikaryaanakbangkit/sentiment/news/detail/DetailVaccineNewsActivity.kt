@@ -67,7 +67,7 @@ class DetailVaccineNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickL
                         }
                         Status.ERROR -> {
                             Toast.makeText(this, getString(R.string.error_msg), Toast.LENGTH_SHORT)
-                                    .show()
+                                .show()
                         }
                     }
                 }
@@ -99,8 +99,8 @@ class DetailVaccineNewsActivity : AppCompatActivity(), MenuItem.OnMenuItemClickL
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(
-                            Intent.EXTRA_TEXT,
-                            """
+                        Intent.EXTRA_TEXT,
+                        """
                             "$newsTitle".
                             
                             Kunjungi: $newsUrl

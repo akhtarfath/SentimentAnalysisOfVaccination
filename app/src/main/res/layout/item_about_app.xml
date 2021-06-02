@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingTop="25dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="25dp">
 
     <ImageView
         android:id="@+id/logo_circle"
@@ -35,11 +35,11 @@
         style="@style/SubTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="75dp"
-        android:textAlignment="center"
         android:lineHeight="27dp"
-        android:textColor="@color/grey"
+        android:paddingHorizontal="75dp"
         android:text="@string/sentiment_analysis_of_vaccination"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/application_name_tv"

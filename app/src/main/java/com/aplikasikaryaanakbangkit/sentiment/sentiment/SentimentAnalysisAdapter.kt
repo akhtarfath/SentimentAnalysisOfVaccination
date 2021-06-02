@@ -30,7 +30,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
         val miniItemTweetBinding =
-                MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return TweetViewHolder(miniItemTweetBinding)
     }
@@ -42,7 +42,7 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(tweet: TweetEntity) {
@@ -50,31 +50,31 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 var sentimentAnalysis = ""
 
                 val date = LocalDateTime.parse(
-                        tweet.date,
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+                    tweet.date,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
                 ).toLocalDate()
-                        .format(
-                                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-                                        .withLocale(Locale("in", "ID", "ID"))
-                        )
+                    .format(
+                        DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                            .withLocale(Locale("in", "ID", "ID"))
+                    )
 
                 when (tweet.analysis) {
                     "Positive" -> {
                         sentimentAnalysis = "Pro"
                         tvSentimentResult.setTextColor(
-                                ContextCompat.getColor(itemView.context, R.color.google_green)
+                            ContextCompat.getColor(itemView.context, R.color.google_green)
                         )
                     }
                     "Negative" -> {
                         sentimentAnalysis = "Kontra"
                         tvSentimentResult.setTextColor(
-                                ContextCompat.getColor(itemView.context, R.color.google_red)
+                            ContextCompat.getColor(itemView.context, R.color.google_red)
                         )
                     }
                     "Neutral" -> {
                         sentimentAnalysis = "Netral"
                         tvSentimentResult.setTextColor(
-                                ContextCompat.getColor(itemView.context, R.color.google_yellow)
+                            ContextCompat.getColor(itemView.context, R.color.google_yellow)
                         )
                     }
                 }
@@ -90,12 +90,12 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
                 likeCount.text = tweet.likeCount.toString()
 
                 Glide.with(itemView.context)
-                        .load(tweet.imageUrl)
-                        .apply(
-                                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error)
-                        )
-                        .into(twitterPhoto)
+                    .load(tweet.imageUrl)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(twitterPhoto)
             }
 
         }
