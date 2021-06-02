@@ -29,8 +29,8 @@
                 android:layout_height="125dp"
                 android:contentDescription="@string/image_news"
                 android:scaleType="matrix"
-                android:background="@color/grey"
-                android:backgroundTint="@color/grey"
+                android:background="@color/silver"
+                android:backgroundTint="@color/silver"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
