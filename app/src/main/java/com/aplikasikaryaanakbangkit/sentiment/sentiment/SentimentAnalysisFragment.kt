@@ -16,6 +16,9 @@ import com.aplikasikaryaanakbangkit.sentiment.core.data.source.remote.response.s
 import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentSentimentAnalysisBinding
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class SentimentAnalysisFragment : Fragment() {
 
@@ -49,10 +52,13 @@ class SentimentAnalysisFragment : Fragment() {
             ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         true.shimmerLoading()
-        loadTweet(sentimentAnalysisViewModel)
-        loadPercentage(sentimentAnalysisViewModel)
-        true.shimmerLoading()
-
+        runBlocking {
+            launch {
+                delay(2500L)
+                loadTweet(sentimentAnalysisViewModel)
+            }
+            loadPercentage(sentimentAnalysisViewModel)
+        }
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         /*event ketika widget dijalankan*/
         swipeRefreshLayout.setOnRefreshListener(object :

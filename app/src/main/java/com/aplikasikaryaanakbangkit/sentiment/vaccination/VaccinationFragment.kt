@@ -17,6 +17,9 @@ import com.aplikasikaryaanakbangkit.sentiment.core.viewmodel.ViewModelFactory
 import com.aplikasikaryaanakbangkit.sentiment.core.vo.Status
 import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentVaccinationBinding
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.text.NumberFormat
 import java.util.*
 
@@ -49,7 +52,14 @@ class VaccinationFragment : Fragment() {
             val vaccineViewModel =
                     ViewModelProvider(this, factory)[VaccinationViewModel::class.java]
 
-            loadVaccine(vaccineViewModel)
+            runBlocking {
+                launch {
+                    delay(2000L)
+                    loadVaccinationStep(vaccineViewModel)
+                    loadVaccinationCoverage(vaccineViewModel)
+                }
+                loadVaccine(vaccineViewModel)
+            }
 
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
@@ -64,6 +74,8 @@ class VaccinationFragment : Fragment() {
                     Handler(requireActivity().mainLooper).postDelayed({
 
                         loadVaccine(vaccineViewModel)
+                        loadVaccinationStep(vaccineViewModel)
+                        loadVaccinationCoverage(vaccineViewModel)
                     }, 500)
                     onItemLoad()
                 }
@@ -162,8 +174,10 @@ class VaccinationFragment : Fragment() {
                 }
             }
         })
+    }
 
-        vaccineViewModel.getVaccinationStepHealthHR.observe(viewLifecycleOwner) { sdm ->
+    fun loadVaccinationStep(vaccineViewModel: VaccinationViewModel) {
+        vaccineViewModel.getVaccinationStepHealthHR.observe(viewLifecycleOwner, { sdm ->
             if (sdm != null) {
                 Log.d("Tahapan SDM Covid", sdm.data.toString())
 
@@ -211,11 +225,10 @@ class VaccinationFragment : Fragment() {
                             }"
                     )
                 }
-                false.shimmerLoading()
             }
+            false.shimmerLoading()
 
-
-            vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner) { lansia ->
+            vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner, { lansia ->
                 if (lansia != null) {
                     Log.d("Tahapan Lansia Covid", lansia.data.toString())
 
@@ -263,11 +276,9 @@ class VaccinationFragment : Fragment() {
                                 }"
                         )
                     }
-                    false.shimmerLoading()
                 }
 
-
-                vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner) { petugas ->
+                vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner, { petugas ->
                     if (petugas != null) {
                         Log.d("Tahapan Petugas Covid", petugas.data.toString())
 
@@ -315,9 +326,9 @@ class VaccinationFragment : Fragment() {
                                     }"
                             )
                         }
-                        false.shimmerLoading()
                     }
 
+                    //share
                     _binding.vaccineStep.vaccineStepShare.setOnClickListener {
                         startActivity(
                                 Intent.createChooser(
@@ -356,11 +367,15 @@ class VaccinationFragment : Fragment() {
                                 )
                         )
                     }
-                }
-            }
-        }
 
-        vaccineViewModel.getVaccinationCoverage.observe(viewLifecycleOwner) { cakupanVaksinasi ->
+                })
+
+            })
+        })
+    }
+
+    fun loadVaccinationCoverage(vaccineViewModel: VaccinationViewModel) {
+        vaccineViewModel.getVaccinationCoverage.observe(viewLifecycleOwner, { cakupanVaksinasi ->
             if (cakupanVaksinasi != null) {
                 when (cakupanVaksinasi.status) {
                     Status.LOADING -> true.shimmerLoading()
@@ -438,7 +453,7 @@ class VaccinationFragment : Fragment() {
                     }
                 }
             }
-        }
+        })
     }
 
     override fun onDestroyView() {

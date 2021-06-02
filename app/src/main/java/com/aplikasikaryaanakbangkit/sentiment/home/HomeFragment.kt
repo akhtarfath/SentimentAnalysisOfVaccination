@@ -23,10 +23,12 @@ import com.aplikasikaryaanakbangkit.sentiment.databinding.FragmentHomeBinding
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsCovidAdapter
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsVaccineAdapter
 import com.aplikasikaryaanakbangkit.sentiment.news.NewsViewModel
-import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisAdapter
 import com.aplikasikaryaanakbangkit.sentiment.sentiment.SentimentAnalysisViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.mini_item_covid_local_condition.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.text.NumberFormat
 import java.util.*
 
@@ -54,15 +56,21 @@ class HomeFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
 
             val covidViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-            loadCovid(covidViewModel)
 
             val tweetViewModel = ViewModelProvider(
                     this, factory
             )[SentimentAnalysisViewModel::class.java]
-            loadTweet(tweetViewModel)
 
             val newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
-            loadNews(newsViewModel)
+
+            runBlocking {
+                launch {
+                    delay(2000L)
+                    loadTweet(tweetViewModel)
+                    loadNews(newsViewModel)
+                }
+                loadCovid(covidViewModel)
+            }
 
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
             /*event ketika widget dijalankan*/
