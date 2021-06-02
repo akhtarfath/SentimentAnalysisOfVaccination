@@ -3,7 +3,6 @@ package com.aplikasikaryaanakbangkit.sentiment.vaccination
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,9 +55,9 @@ class VaccinationFragment : Fragment() {
                 launch {
                     delay(2000L)
                     loadVaccinationStep(vaccineViewModel)
-                    loadVaccinationCoverage(vaccineViewModel)
                 }
                 loadVaccine(vaccineViewModel)
+                loadVaccinationCoverage(vaccineViewModel)
             }
 
             val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
@@ -93,7 +92,6 @@ class VaccinationFragment : Fragment() {
                 when (vaccinationTarget.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        Log.d("Sasaran Vaksinasi", vaccinationTarget.data.toString())
                         _binding.vaccineTarget.targetOfVaccination.let {
                             it.numberVaccineTarget.text = StringBuilder(
                                     "Total sasaran vaksin\n" +
@@ -179,7 +177,6 @@ class VaccinationFragment : Fragment() {
     fun loadVaccinationStep(vaccineViewModel: VaccinationViewModel) {
         vaccineViewModel.getVaccinationStepHealthHR.observe(viewLifecycleOwner, { sdm ->
             if (sdm != null) {
-                Log.d("Tahapan SDM Covid", sdm.data.toString())
 
                 _binding.vaccineStep.healthHumanResources.healthHumanResources.let {
                     it.totalVaccineSdm1.text = StringBuilder(
@@ -230,7 +227,6 @@ class VaccinationFragment : Fragment() {
 
             vaccineViewModel.getVaccinationStepElderly.observe(viewLifecycleOwner, { lansia ->
                 if (lansia != null) {
-                    Log.d("Tahapan Lansia Covid", lansia.data.toString())
 
                     _binding.vaccineStep.healthHumanResources.theElderly.let {
                         it.totalVaccine1.text = StringBuilder(
@@ -280,7 +276,6 @@ class VaccinationFragment : Fragment() {
 
                 vaccineViewModel.getVaccinationStepPublicOfficer.observe(viewLifecycleOwner, { petugas ->
                     if (petugas != null) {
-                        Log.d("Tahapan Petugas Covid", petugas.data.toString())
 
                         _binding.vaccineStep.healthHumanResources.publicOfficers.let {
                             it.totalVaccine1.text = StringBuilder(
@@ -380,7 +375,6 @@ class VaccinationFragment : Fragment() {
                 when (cakupanVaksinasi.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        Log.d("Cakupan Vaksinasi", cakupanVaksinasi.data.toString())
 
                         _binding.vaccineCoverage.targetOfVaccination.let {
                             it.vaccination1.text = StringBuilder(

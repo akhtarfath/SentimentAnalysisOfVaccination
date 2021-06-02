@@ -72,8 +72,14 @@ class SAVRepository private constructor(
                 return LivePagedListBuilder(data, config).build()
             }
 
-            override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean =
+            override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean {
+                val dataResponse = ArrayList<ArticlesItemResponse>()
+                return if(data?.size != dataResponse.size){
                     true
+                }else{
+                    data.isEmpty()
+                }
+            }
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
                     remoteDataSource.getResultCovidHeadlines()
@@ -114,8 +120,14 @@ class SAVRepository private constructor(
                 return LivePagedListBuilder(data, config).build()
             }
 
-            override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean =
+            override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean {
+                val dataResponse = ArrayList<ArticlesItemResponse>()
+                return if (data?.size != dataResponse.size) {
                     true
+                } else {
+                    data.isEmpty()
+                }
+            }
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
                     remoteDataSource.getResultVaccineNews()
@@ -324,8 +336,10 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<GlobalCovidEntity> =
                     localDataSource.getAllGlobalCovid()
 
-            override fun shouldFetch(data: GlobalCovidEntity?): Boolean =
-                    true
+            override fun shouldFetch(data: GlobalCovidEntity?): Boolean {
+                val dataResponse = GlobalCovidResponse()
+                return data?.confirmedGlobal?.equals(dataResponse.confirmed) != true
+            }
 
             override fun createCall(): LiveData<ApiResponse<GlobalCovidResponse>> =
                     remoteDataSource.getAllGlobalCovid()
@@ -351,8 +365,10 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<IDCovidItemEntity> =
                     localDataSource.getAllIDCovid()
 
-            override fun shouldFetch(data: IDCovidItemEntity?): Boolean =
-                    true
+            override fun shouldFetch(data: IDCovidItemEntity?): Boolean {
+                val dataResponse = IDCovidItemResponse()
+                return data?.confirmed?.equals(dataResponse.confirmed) != true
+            }
 
             override fun createCall(): LiveData<ApiResponse<IDCovidItemResponse>> =
                     remoteDataSource.getAllIDCovid()
@@ -379,8 +395,7 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<VaccinationMonitoringItemEntity> =
                     localDataSource.getVaccineMonitoring()
 
-            override fun shouldFetch(data: VaccinationMonitoringItemEntity?): Boolean =
-                    true
+            override fun shouldFetch(data: VaccinationMonitoringItemEntity?): Boolean = true
 
             override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
                     remoteDataSource.getAllVaccination()
@@ -411,8 +426,7 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<VaccinationHealthHREntity> =
                     localDataSource.getVaccineSDM()
 
-            override fun shouldFetch(data: VaccinationHealthHREntity?): Boolean =
-                    true
+            override fun shouldFetch(data: VaccinationHealthHREntity?): Boolean = true
 
             override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
                     remoteDataSource.getAllVaccination()
@@ -442,8 +456,7 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<VaccinationElderlyEntity> =
                     localDataSource.getVaccineElderly()
 
-            override fun shouldFetch(data: VaccinationElderlyEntity?): Boolean =
-                    true
+            override fun shouldFetch(data: VaccinationElderlyEntity?): Boolean = true
 
             override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
                     remoteDataSource.getAllVaccination()
@@ -473,8 +486,7 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<VaccinationPublicOfficerEntity> =
                     localDataSource.getVaccinePublicOfficer()
 
-            override fun shouldFetch(data: VaccinationPublicOfficerEntity?): Boolean =
-                    true
+            override fun shouldFetch(data: VaccinationPublicOfficerEntity?): Boolean = true
 
             override fun createCall(): LiveData<ApiResponse<List<VaccinationMonitoringItemResponse>>> =
                     remoteDataSource.getAllVaccination()

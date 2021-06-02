@@ -108,6 +108,5 @@ class HomeTweetAdapter : RecyclerView.Adapter<HomeTweetAdapter.TweetViewHolder>(
         }else{
             listTweet.size
         }
-
     }
 }
