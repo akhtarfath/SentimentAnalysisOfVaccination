@@ -168,7 +168,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:contentDescription="@string/neutral_sentiment"
-                        android:src="@drawable/ic_neutral"
+                        android:src="@drawable/ic_expressionless"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,7 +224,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:contentDescription="@string/positive"
-                        android:src="@drawable/ic_sad"
+                        android:src="@drawable/ic_angry"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
