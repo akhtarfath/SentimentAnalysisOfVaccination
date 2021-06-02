@@ -42,6 +42,9 @@
                     style="@style/NewsImage"
                     android:layout_height="190dp"
                     android:contentDescription="@string/image_news"
+                    android:scaleType="matrix"
+                    android:background="@color/grey"
+                    android:backgroundTint="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

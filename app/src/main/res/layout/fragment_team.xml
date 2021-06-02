@@ -59,7 +59,9 @@
                     layout="@layout/item_about_app"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5dp"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
 
                 <include
                     android:id="@+id/layout_rv_developers_name"

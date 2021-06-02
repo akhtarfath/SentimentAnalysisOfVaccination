@@ -38,6 +38,7 @@
         android:paddingHorizontal="75dp"
         android:textAlignment="center"
         android:lineHeight="27dp"
+        android:textColor="@color/grey"
         android:text="@string/sentiment_analysis_of_vaccination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
