@@ -67,8 +67,8 @@ class HomeFragment : Fragment() {
                 launch {
                     delay(2000L)
                     loadTweet(tweetViewModel)
-                    loadNews(newsViewModel)
                 }
+                loadNews(newsViewModel)
                 loadCovid(covidViewModel)
             }
 
@@ -148,7 +148,6 @@ class HomeFragment : Fragment() {
                 when (idCovid.status) {
                     Status.LOADING -> true.shimmerLoading()
                     Status.SUCCESS -> {
-                        Log.d("ID Covid", idCovid.data.toString())
                         _binding?.covidStatistic?.covidLocalCondition?.let {
                             numberPositiveID.text = StringBuilder(
                                     NumberFormat.getNumberInstance(Locale.US).format(
@@ -226,23 +225,19 @@ class HomeFragment : Fragment() {
         })
 
         tweetViewModel.post.observe(viewLifecycleOwner, { post ->
-            Log.d("Post Fragment", post.data.toString())
             for (i in 0 until (post.data?.size?.minus(1) ?: 0)) {
                 val tweet = post.data?.get(i)?.text
                 _setTweet = tweet
                 _getTweet = TextTweet(_setTweet.toString())
-                Log.d("post frag tweet", _setTweet.toString())
 
                 _getTweet?.let {
                     tweetViewModel.getAnalysis(it).observe(viewLifecycleOwner, { sentiment ->
-                        Log.d("sentiment tweet", sentiment.data?.result.toString())
                     })
                 }
             }
         })
 
         tweetViewModel.profile.observe(viewLifecycleOwner, { profile ->
-            Log.d("Profile Fragment", profile.data.toString())
         })
     }
 
