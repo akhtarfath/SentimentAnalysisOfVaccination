@@ -37,8 +37,9 @@ class HomeTweetAdapter : RecyclerView.Adapter<HomeTweetAdapter.TweetViewHolder>(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
-        val article = listTweet[position]
-        holder.bind(article)
+        val tweet = listTweet[position]
+        holder.bind(tweet)
+
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
@@ -101,5 +102,12 @@ class HomeTweetAdapter : RecyclerView.Adapter<HomeTweetAdapter.TweetViewHolder>(
         }
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int {
+        return if(listTweet.size > 3){
+            3
+        }else{
+            listTweet.size
+        }
+
+    }
 }
