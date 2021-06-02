@@ -10,12 +10,28 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
-        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/start"
+        style="@style/SubTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:padding="10dp"
+        android:paddingEnd="15dp"
+        android:text="@string/start"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="RtlSymmetry" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/dotTab"
@@ -25,6 +41,7 @@
         android:scrollIndicators="none"
         android:overScrollMode="never"
         app:tabIndicatorHeight="0dp"
+        app:tabIndicatorGravity="center"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorAnimationDuration="1"
         app:tabIndicatorAnimationMode="elastic"
@@ -61,23 +78,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/skip" />
 
-
-    <Button
-        android:id="@+id/start"
-        style="@style/SubTitleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:padding="10dp"
-        android:paddingEnd="15dp"
-        android:text="@string/start"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
