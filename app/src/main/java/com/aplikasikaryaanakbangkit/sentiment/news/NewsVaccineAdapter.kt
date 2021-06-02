@@ -1,6 +1,7 @@
 package com.aplikasikaryaanakbangkit.sentiment.news
 
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -56,14 +57,18 @@ class NewsVaccineAdapter :
         fun bind(article: ArticleVaccinesEntity) {
             with(_binding) {
 
-                val publishedAt = LocalDateTime.parse(
-                    article.publishedAt,
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                ).toLocalDate()
-                    .format(
-                        DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-                            .withLocale(Locale("in", "ID", "ID"))
-                    )
+                val publishedAt = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    LocalDateTime.parse(
+                        article.publishedAt,
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                    ).toLocalDate()
+                        .format(
+                            DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                                .withLocale(Locale("in", "ID", "ID"))
+                        )
+                } else {
+                    article.publishedAt
+                }
 
                 tvItemTitle.text = article.title
                 tvItemAuthor.text = article.author

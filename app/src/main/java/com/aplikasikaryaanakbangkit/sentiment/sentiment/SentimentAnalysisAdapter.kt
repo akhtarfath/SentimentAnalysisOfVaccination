@@ -3,7 +3,6 @@ package com.aplikasikaryaanakbangkit.sentiment.sentiment
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aplikasikaryaanakbangkit.sentiment.R
@@ -35,7 +34,6 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
         return TweetViewHolder(miniItemTweetBinding)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
         val article = listTweet[position]
         holder.bind(article)
@@ -44,19 +42,22 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(tweet: TweetEntity) {
             with(binding) {
                 var sentimentAnalysis = ""
 
-                val date = LocalDateTime.parse(
-                    tweet.date,
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
-                ).toLocalDate()
-                    .format(
-                        DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-                            .withLocale(Locale("in", "ID", "ID"))
-                    )
+                val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    LocalDateTime.parse(
+                        tweet.date,
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+                    ).toLocalDate()
+                        .format(
+                            DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                                .withLocale(Locale("in", "ID", "ID"))
+                        )
+                } else {
+                    tweet.date
+                }
 
                 when (tweet.analysis) {
                     "Positive" -> {
