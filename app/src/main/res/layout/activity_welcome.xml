@@ -1,30 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="20dp"
     tools:context=".welcome.WelcomeActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/dotTab"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_margin="20dp"
+        android:scrollIndicators="none"
+        android:overScrollMode="never"
+        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorAnimationDuration="1"
+        app:tabIndicatorAnimationMode="elastic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabBackground="@drawable/ic_tab_selector"
+        app:tabGravity="center"
+        app:tabPadding="0dp" />
+
+    <TextView
+        android:id="@+id/skip"
+        style="@style/SubTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/organizer"
+        android:textColor="@color/grey"
+        android:textSize="13sp"
+        android:scrollIndicators="none"
+        app:layout_constraintBottom_toBottomOf="@+id/dotTab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dotTab" />
+
+    <TextView
+        android:id="@+id/skip2"
+        style="@style/SubTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:scrollIndicators="none"
+        android:text="@string/team_id"
+        android:textColor="@color/grey"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skip" />
+
+
+    <Button
+        android:id="@+id/start"
+        style="@style/SubTitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:paddingEnd="15dp"
+        android:text="@string/start"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabBackground="@drawable/ic_tab_selector"
-        app:tabIndicatorColor="@color/white"
-        app:tabGravity="center"
-        app:tabPadding="10dp" >
-
-    </com.google.android.material.tabs.TabLayout>
+        tools:ignore="RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

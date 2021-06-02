@@ -1,21 +1,20 @@
 package com.aplikasikaryaanakbangkit.sentiment.welcome
 
-import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
-        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(activity: WelcomeActivity) : FragmentStateAdapter(activity) {
 
-    override fun getItem(position: Int): Fragment =
-            when (position) {
-                0 -> WelcomeFragment1()
-                1 -> WelcomeFragment2()
-                2 -> WelcomeFragment3()
-                else -> Fragment()
-            }
+    override fun createFragment(position: Int): Fragment {
+        var fragment: Fragment? = null
+        when (position) {
+            0 -> fragment = WelcomeFragment1()
+            1 -> fragment = WelcomeFragment2()
+            2 -> fragment = WelcomeFragment3()
+        }
+        return fragment as Fragment
+    }
 
-    override fun getCount(): Int = 3
+    override fun getItemCount(): Int = 3
 
 }

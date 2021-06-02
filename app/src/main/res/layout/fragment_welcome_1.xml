@@ -2,40 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="20dp"
+    android:overScrollMode="never">
 
     <TextView
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/skip"
-        android:textColor="@color/grey"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/textView2"
+        style="@style/TitleText"
         android:layout_width="362dp"
-        android:layout_height="315dp"
-        android:src="@drawable/ic_white_vaccine"
+        android:layout_height="wrap_content"
+        android:lineHeight="45dp"
+        android:maxLines="10"
+        android:paddingEnd="25dp"
+        android:paddingBottom="15dp"
+        android:text="@string/sentiment_analysis_for_covid_19_vaccine_tweets"
+        android:textAlignment="textStart"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.41"
+        tools:ignore="RtlSymmetry"
+        tools:targetApi="p" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_text_1"
-        android:textAlignment="center"
-        android:padding="15dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.257" />
 </androidx.constraintlayout.widget.ConstraintLayout>

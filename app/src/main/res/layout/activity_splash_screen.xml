@@ -6,40 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".splashscreen.SplashScreenActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <ImageView
         android:id="@+id/lottieAnimationView"
-        android:layout_width="match_parent"
+        android:layout_width="245dp"
         android:layout_height="245dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.417"
-        app:lottie_autoPlay="true"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animation_covid_stay_safe"
-        app:lottie_repeatMode="restart" />
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/app_name"
-        android:textSize="21sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
-
-    <TextView
-        style="@style/SubTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sentiment_analysis_of_vaccination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:src="@drawable/ic_mascot"
+        android:contentDescription="@string/app_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

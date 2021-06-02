@@ -2,40 +2,39 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/skip"
-        android:textColor="@color/grey"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="20dp"
+    android:overScrollMode="never">
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="362dp"
-        android:layout_height="315dp"
-        android:src="@drawable/ic_sentiment"
+        android:layout_width="322dp"
+        android:layout_height="295dp"
+        android:contentDescription="@string/title_vaccination"
+        android:src="@drawable/ic_white_vaccine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.35" />
 
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/SubTitleText"
+        android:layout_width="362dp"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_text_2"
-        android:textAlignment="center"
-        android:textSize="17sp"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:lineHeight="27dp"
+        android:maxLines="10"
+        android:paddingTop="45dp"
+        android:paddingEnd="25dp"
+        android:paddingBottom="15dp"
+        android:text="@string/welcome_text_1"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.257" />
+        tools:ignore="RtlSymmetry"
+        tools:targetApi="p" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,34 +1,20 @@
 package com.aplikasikaryaanakbangkit.sentiment.welcome
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.aplikasikaryaanakbangkit.sentiment.MainActivity
-import com.aplikasikaryaanakbangkit.sentiment.R
+import com.aplikasikaryaanakbangkit.sentiment.core.prefs.WelcomePreference
+import com.aplikasikaryaanakbangkit.sentiment.core.prefs.entitiy.WelcomeEntity
 import com.aplikasikaryaanakbangkit.sentiment.databinding.ActivityWelcomeBinding
-import java.lang.Boolean.TRUE
+import com.google.android.material.tabs.TabLayoutMediator
 
 class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var _activityWelcomeBinding: ActivityWelcomeBinding
-/*
-    override fun onResume() {
-        super.onResume()
 
-        val sharedPreference: SharedPreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
-        if(sharedPreference.getBoolean("yes", false)){
-            val editor: SharedPreferences.Editor = sharedPreference.edit()
-            editor.putBoolean("yes", TRUE)
-                    .apply()
-        }else{
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-    }
-
- */
+    private lateinit var welcomeEntity: WelcomeEntity
+    private lateinit var welcomePreference: WelcomePreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,19 +22,37 @@ class WelcomeActivity : AppCompatActivity() {
         _activityWelcomeBinding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(_activityWelcomeBinding.root)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        setPager()
+        setPrefs()
+    }
+
+    private fun setPager() {
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
 
         _activityWelcomeBinding.viewPager.adapter = sectionsPagerAdapter
 
-        _activityWelcomeBinding.dotTab.setupWithViewPager(_activityWelcomeBinding.viewPager)
+        TabLayoutMediator(
+            _activityWelcomeBinding.dotTab,
+            _activityWelcomeBinding.viewPager
+        ) { tab, _ -> tab.text = "" }.attach()
 
-        val sharedPreference: SharedPreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
-        if(sharedPreference.getBoolean("yes", false)){
-            val editor: SharedPreferences.Editor = sharedPreference.edit()
-            editor.putBoolean("yes", TRUE)
-                    .apply()
-        }else{
-            startActivity(Intent(this, MainActivity::class.java))
+        supportActionBar?.elevation = 0f
+    }
+
+    private fun setPrefs() {
+        welcomePreference = WelcomePreference(this)
+        welcomeEntity = welcomePreference.getLaunchApp()
+
+        if (welcomeEntity.isActive == true) {
+            startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+        } else {
+            with(_activityWelcomeBinding) {
+                this.start.setOnClickListener {
+                    welcomeEntity.isActive = true
+                    welcomePreference.setLaunchApp(welcomeEntity)
+                    startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+                }
+            }
         }
     }
 }

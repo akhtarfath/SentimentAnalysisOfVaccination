@@ -1,6 +1,9 @@
 package com.aplikasikaryaanakbangkit.sentiment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -35,6 +38,20 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private var exit = false
+    override fun onBackPressed() {
+        if (exit) {
+            finishAffinity()
+        } else {
+            Toast.makeText(
+                this, getString(R.string.exit_verif),
+                Toast.LENGTH_SHORT
+            ).show()
+            exit = true
+            Handler(Looper.getMainLooper()).postDelayed({ exit = false }, 3 * 1000)
+        }
     }
 }
 

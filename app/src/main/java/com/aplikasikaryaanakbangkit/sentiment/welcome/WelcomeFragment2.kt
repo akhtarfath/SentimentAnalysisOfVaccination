@@ -32,13 +32,6 @@ class WelcomeFragment2 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
-
-        with(_fragmentWelcomeBinding){
-            this?.skip?.setOnClickListener {
-                startActivity(Intent(context, MainActivity::class.java))
-                activity?.finish()
-            }
-        }
     }
 
     override fun onDestroy() {

@@ -1,17 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SAV</string>
-    <string name="image_description">Image</string>
-    <string name="text_primary">Sample of title text</string>
-    <string name="text_subtitle">Sample of subtitle text</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_map">Maps</string>
-    <string name="menu_favorite">Favorite</string>
-
-    <string name="title_activity_detail_home">DetailHomeActivity</string>
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
 
@@ -21,7 +9,7 @@
     <string name="author">Author</string>
     <string name="description">Description</string>
     <string name="error_msg">Error</string>
-    <string name="headlines_news">Berita COVID19 Populer</string>
+    <string name="headlines_news" tools:ignore="Typos">Berita COVID19 Populer</string>
     <string name="latest_news">Berita Vaksin</string>
     <string name="publishDate">Tanggal publis</string>
     <string name="content">Content</string>
@@ -105,9 +93,12 @@
     <string name="lets_to_vaccine">Ayo Vaksin</string>
     <string name="skip">Skip</string>
     <string name="sentiment_analysis_for_covid_19_vaccine_tweets">Sentiment Analysis for COVID-19 Vaccine Tweets</string>
-    <string name="welcome_text_1">Selamat Datang di Aplikasi Ini, dengan Aplikasi ini Anda Akan Mendapatkan Berbagai Informasi Mengenai Sentiment terhadap Vaksinasi Berdasarkan Tweet di Twitter</string>
+    <string name="welcome_text_1">Selamat Datang di SAV. Bersama Kami, Anda Akan Mendapatkan Berbagai Informasi Mengenai Sentiment terhadap Vaksinasi Berdasarkan Tweet di Twitter</string>
     <string name="welcome_text_2">Selain Mengetahui Pendapat Mengenai Vaksin di Twitter, Anda juga Dapat Mengetahui Presentase Pendapat Mengenai Vaksinasi, untuk Pro, Kontra, dan Netral Berdasarkan Jumlah Tweet yang Tersedia Di Aplikasi Ini Saat Anda Membukanya</string>
     <string name="next">Next</string>
-    <string name="start">Start</string>
+    <string name="start">Let\'s Go!</string>
     <string name="load_more">Load More</string>
+    <string name="organizer">PT. Aplikasi Karya Anak Bangkit</string>
+    <string name="team_id">B21-CAP0267</string>
+    <string name="exit_verif">Tekan sekali lagi untuk keluar.</string>
 </resources>
