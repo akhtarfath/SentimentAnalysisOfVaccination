@@ -16,26 +16,31 @@ import java.time.format.FormatStyle
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
+class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
 
-    private var listTweet = ArrayList<TweetEntity>()
+    private var _listTweet = ArrayList<TweetEntity>()
+    private var _limit: Int = 0
+    val  maxLimit = _listTweet.size
 
     fun setTweet(tweet: List<TweetEntity>) {
-        this.listTweet.clear()
-        this.listTweet.addAll(tweet)
+        this._listTweet.clear()
+        this._listTweet.addAll(tweet)
 
         this.notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
-        val miniItemTweetBinding =
-            MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    fun limitTweet(limit: Int){
+        this._limit = limit
+    }
 
-        return TweetViewHolder(miniItemTweetBinding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : TweetViewHolder {
+                val miniItemTweetBinding =
+                        MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return TweetViewHolder(miniItemTweetBinding)
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
-        val article = listTweet[position]
+        val article = _listTweet[position]
         holder.bind(article)
     }
 
@@ -102,5 +107,5 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
         }
     }
 
-    override fun getItemCount(): Int = listTweet.size
+    override fun getItemCount(): Int = _limit
 }

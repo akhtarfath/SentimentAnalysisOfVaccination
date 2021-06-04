@@ -27,4 +27,22 @@
         app:layout_constraintTop_toBottomOf="@+id/cvTweet"
         tools:listitem="@layout/mini_item_twitter_post" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/rv_tweet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/loadMoreButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/load_more"
+        app:layout_constraintTop_toBottomOf="@+id/rv_tweet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
