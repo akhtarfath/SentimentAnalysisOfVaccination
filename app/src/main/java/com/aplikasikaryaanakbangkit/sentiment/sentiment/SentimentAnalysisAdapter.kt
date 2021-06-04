@@ -20,7 +20,7 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
 
     private var _listTweet = ArrayList<TweetEntity>()
     private var _limit: Int = 0
-    val  maxLimit = _listTweet.size
+    val maxLimit = _listTweet.size
 
     fun setTweet(tweet: List<TweetEntity>) {
         this._listTweet.clear()
@@ -29,14 +29,14 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
         this.notifyDataSetChanged()
     }
 
-    fun limitTweet(limit: Int){
+    fun limitTweet(limit: Int) {
         this._limit = limit
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : TweetViewHolder {
-                val miniItemTweetBinding =
-                        MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return TweetViewHolder(miniItemTweetBinding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
+        val miniItemTweetBinding =
+                MiniItemTwitterPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TweetViewHolder(miniItemTweetBinding)
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
@@ -45,7 +45,7 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tweet: TweetEntity) {
             with(binding) {
@@ -53,13 +53,13 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
 
                 val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     LocalDateTime.parse(
-                        tweet.date,
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+                            tweet.date,
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
                     ).toLocalDate()
-                        .format(
-                            DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-                                .withLocale(Locale("in", "ID", "ID"))
-                        )
+                            .format(
+                                    DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+                                            .withLocale(Locale("in", "ID", "ID"))
+                            )
                 } else {
                     tweet.date
                 }
@@ -68,19 +68,19 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
                     "Positive" -> {
                         sentimentAnalysis = "Pro"
                         tvSentimentResult.setTextColor(
-                            ContextCompat.getColor(itemView.context, R.color.google_green)
+                                ContextCompat.getColor(itemView.context, R.color.google_green)
                         )
                     }
                     "Negative" -> {
                         sentimentAnalysis = "Kontra"
                         tvSentimentResult.setTextColor(
-                            ContextCompat.getColor(itemView.context, R.color.google_red)
+                                ContextCompat.getColor(itemView.context, R.color.google_red)
                         )
                     }
                     "Neutral" -> {
                         sentimentAnalysis = "Netral"
                         tvSentimentResult.setTextColor(
-                            ContextCompat.getColor(itemView.context, R.color.google_yellow)
+                                ContextCompat.getColor(itemView.context, R.color.google_yellow)
                         )
                     }
                 }
@@ -96,12 +96,12 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
                 likeCount.text = tweet.likeCount.toString()
 
                 Glide.with(itemView.context)
-                    .load(tweet.imageUrl)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
-                    )
-                    .into(twitterPhoto)
+                        .load(tweet.imageUrl)
+                        .apply(
+                                RequestOptions.placeholderOf(R.drawable.ic_loading)
+                                        .error(R.drawable.ic_error)
+                        )
+                        .into(twitterPhoto)
             }
 
         }

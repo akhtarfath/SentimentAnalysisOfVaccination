@@ -32,8 +32,8 @@ class WelcomeActivity : AppCompatActivity() {
         _activityWelcomeBinding.viewPager.adapter = sectionsPagerAdapter
 
         TabLayoutMediator(
-            _activityWelcomeBinding.dotTab,
-            _activityWelcomeBinding.viewPager
+                _activityWelcomeBinding.dotTab,
+                _activityWelcomeBinding.viewPager
         ) { tab, _ -> tab.text = "" }.attach()
 
         supportActionBar?.elevation = 0f

@@ -22,16 +22,16 @@ interface NewsService {
 
         fun create(): NewsService {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
-                .retryOnConnectionFailure(true)
-                .addInterceptor(loggingInterceptor)
-                .build()
+                    .retryOnConnectionFailure(true)
+                    .addInterceptor(loggingInterceptor)
+                    .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build()
 
             return retrofit.create(NewsService::class.java)
         }

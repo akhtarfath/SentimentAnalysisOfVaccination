@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tweetProfile")
 data class UserItemsTweetEntity(
 
-    @PrimaryKey
-    @ColumnInfo(name = "authorId")
-    val authorId: String,
+        @PrimaryKey
+        @ColumnInfo(name = "authorId")
+        val authorId: String,
 
-    @ColumnInfo(name = "name")
-    val name: String,
+        @ColumnInfo(name = "name")
+        val name: String,
 
-    @ColumnInfo(name = "profile_image_url")
-    val profileImageUrl: String,
+        @ColumnInfo(name = "profile_image_url")
+        val profileImageUrl: String,
 
-    @ColumnInfo(name = "username")
-    val username: String,
+        @ColumnInfo(name = "username")
+        val username: String,
 )

@@ -5,5 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class WelcomeEntity(
-    var isActive: Boolean? = false,
+        var isActive: Boolean? = false,
 ) : Parcelable

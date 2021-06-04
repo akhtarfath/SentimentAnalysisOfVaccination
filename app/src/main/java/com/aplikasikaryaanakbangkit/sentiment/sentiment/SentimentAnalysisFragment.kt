@@ -32,13 +32,13 @@ class SentimentAnalysisFragment : Fragment() {
     private var countData: Int = 1
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _sentimentAnalysisBinding =
-            FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
+                FragmentSentimentAnalysisBinding.inflate(inflater, container, false)
 
         return _binding.root
     }
@@ -50,7 +50,7 @@ class SentimentAnalysisFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireContext())
         val sentimentAnalysisViewModel =
-            ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
+                ViewModelProvider(this, factory)[SentimentAnalysisViewModel::class.java]
 
         true.shimmerLoading()
         runBlocking {
@@ -64,7 +64,7 @@ class SentimentAnalysisFragment : Fragment() {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         /*event ketika widget dijalankan*/
         swipeRefreshLayout.setOnRefreshListener(object :
-            SwipeRefreshLayout.OnRefreshListener {
+                SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
                 refreshItem()
             }
@@ -109,20 +109,20 @@ class SentimentAnalysisFragment : Fragment() {
                     Handler(requireActivity().mainLooper).postDelayed({
                         false.loading()
 
-                        if(totalItem >= tweetAdapter.maxLimit){
-                            if(countData <= 3){
+                        if (totalItem >= tweetAdapter.maxLimit) {
+                            if (countData <= 3) {
                                 tweetAdapter.limitTweet(totalItem)
                                 tweet.let { tweetPost -> tweetAdapter.setTweet(tweetPost) }
                                 tweetAdapter.notifyDataSetChanged()
 
                                 countData++
                                 it.visibility = View.VISIBLE
-                            }else{
+                            } else {
                                 Toast.makeText(context, "Anda telah Sampai di Batas Maksimum dari List Tweet",
                                         Toast.LENGTH_SHORT).show()
                                 it.visibility = View.GONE
                             }
-                        }else{
+                        } else {
                             Toast.makeText(context, "Anda telah Sampai di Akhir dari List Tweet",
                                     Toast.LENGTH_SHORT).show()
                             it.visibility = View.GONE
@@ -142,8 +142,8 @@ class SentimentAnalysisFragment : Fragment() {
 
                 _getTweet?.let {
                     sentimentAnalysisViewModel.getAnalysis(it)
-                        .observe(viewLifecycleOwner, { sentiment ->
-                        })
+                            .observe(viewLifecycleOwner, { sentiment ->
+                            })
                 }
             }
         })
@@ -208,10 +208,10 @@ class SentimentAnalysisFragment : Fragment() {
         }
     }
 
-    private fun Boolean.loading(){
-        if(this){
+    private fun Boolean.loading() {
+        if (this) {
             _sentimentAnalysisBinding?.layoutRvTweetsPost?.progressBar?.visibility = View.VISIBLE
-        }else{
+        } else {
             _sentimentAnalysisBinding?.layoutRvTweetsPost?.progressBar?.visibility = View.GONE
         }
     }

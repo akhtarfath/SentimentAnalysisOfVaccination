@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "sentimentAnalysis")
 data class SentimentEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "textTweet")
-    val textTweet: String,
+        @PrimaryKey
+        @ColumnInfo(name = "textTweet")
+        val textTweet: String,
 
-    @ColumnInfo(name = "result")
-    val result: String? = null
+        @ColumnInfo(name = "result")
+        val result: String? = null
 )

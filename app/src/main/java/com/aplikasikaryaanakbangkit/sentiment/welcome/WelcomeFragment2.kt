@@ -15,12 +15,12 @@ class WelcomeFragment2 : Fragment() {
     private val _binding get() = _fragmentWelcomeBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _fragmentWelcomeBinding =
-            FragmentWelcome2Binding.inflate(inflater, container, false)
+                FragmentWelcome2Binding.inflate(inflater, container, false)
 
         return _binding.root
     }
