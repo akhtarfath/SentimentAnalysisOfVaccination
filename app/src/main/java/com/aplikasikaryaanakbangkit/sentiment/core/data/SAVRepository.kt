@@ -61,25 +61,16 @@ class SAVRepository private constructor(
 
             override fun loadFromDB(): LiveData<PagedList<ArticleCovidEntity>> {
                 val config = PagedList.Config.Builder()
-                    .setEnablePlaceholders(false)
-                    .setInitialLoadSizeHint(4)
-                    .setPageSize(4)
-                    .build()
-
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(10)
+                        .setPageSize(10)
+                        .build()
                 val data: DataSource.Factory<Int, ArticleCovidEntity> =
-                    localDataSource.getCovidArticles()
-
+                        localDataSource.getCovidArticles()
                 return LivePagedListBuilder(data, config).build()
             }
 
-            override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean {
-                val dataResponse = ArrayList<ArticlesItemResponse>()
-                return if (data?.size != dataResponse.size) {
-                    true
-                } else {
-                    data.isEmpty()
-                }
-            }
+            override fun shouldFetch(data: PagedList<ArticleCovidEntity>?): Boolean = true
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
                 remoteDataSource.getResultCovidHeadlines()
@@ -112,22 +103,15 @@ class SAVRepository private constructor(
             override fun loadFromDB(): LiveData<PagedList<ArticleVaccinesEntity>> {
                 val config = PagedList.Config.Builder()
                     .setEnablePlaceholders(false)
-                    .setInitialLoadSizeHint(4)
-                    .setPageSize(4)
+                    .setInitialLoadSizeHint(10)
+                    .setPageSize(10)
                     .build()
                 val data: DataSource.Factory<Int, ArticleVaccinesEntity> =
                     localDataSource.getVaccineArticles()
                 return LivePagedListBuilder(data, config).build()
             }
 
-            override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean {
-                val dataResponse = ArrayList<ArticlesItemResponse>()
-                return if (data?.size != dataResponse.size) {
-                    true
-                } else {
-                    data.isEmpty()
-                }
-            }
+            override fun shouldFetch(data: PagedList<ArticleVaccinesEntity>?): Boolean = true
 
             public override fun createCall(): LiveData<ApiResponse<List<ArticlesItemResponse>>> =
                 remoteDataSource.getResultVaccineNews()
