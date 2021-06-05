@@ -25,7 +25,6 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
     fun setTweet(tweet: List<TweetEntity>) {
         this._listTweet.clear()
         this._listTweet.addAll(tweet)
-
         this.notifyDataSetChanged()
     }
 
@@ -40,8 +39,8 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
-        val article = _listTweet[position]
-        holder.bind(article)
+        val tweets = _listTweet[position]
+        holder.bind(tweets)
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :

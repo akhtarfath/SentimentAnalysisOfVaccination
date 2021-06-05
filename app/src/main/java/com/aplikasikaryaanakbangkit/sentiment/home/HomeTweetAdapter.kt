@@ -39,7 +39,6 @@ class HomeTweetAdapter : RecyclerView.Adapter<HomeTweetAdapter.TweetViewHolder>(
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
         val tweet = listTweet[position]
         holder.bind(tweet)
-
     }
 
     class TweetViewHolder(private val binding: MiniItemTwitterPostBinding) :

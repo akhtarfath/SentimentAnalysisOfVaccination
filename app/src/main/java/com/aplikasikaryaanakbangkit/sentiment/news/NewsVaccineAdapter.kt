@@ -46,9 +46,9 @@ class NewsVaccineAdapter :
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val article = getItem(position)
-        if (article != null) {
-            holder.bind(article)
+        val news = getItem(position)
+        if (news != null) {
+            holder.bind(news)
         }
     }
 

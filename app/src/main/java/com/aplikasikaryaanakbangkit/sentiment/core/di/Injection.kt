@@ -10,7 +10,7 @@ import com.aplikasikaryaanakbangkit.sentiment.core.utils.JsonHelper
 
 object Injection {
 
-    fun newsRepository(context: Context): SAVRepository {
+    fun savRepository(context: Context): SAVRepository {
         val database = SAVDatabase.getInstance(context)
         val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
         val localDataSource =

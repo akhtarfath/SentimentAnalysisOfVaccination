@@ -24,7 +24,7 @@ class ViewModelFactory private constructor(
         fun getInstance(context: Context): ViewModelFactory =
                 instance ?: synchronized(this) {
                     instance ?: ViewModelFactory(
-                            Injection.newsRepository(context)
+                            Injection.savRepository(context)
                     ).apply {
                         instance = this
                     }
