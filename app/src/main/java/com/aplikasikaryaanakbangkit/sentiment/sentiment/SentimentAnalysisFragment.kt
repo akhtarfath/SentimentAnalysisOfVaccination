@@ -2,6 +2,7 @@ package com.aplikasikaryaanakbangkit.sentiment.sentiment
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,6 @@ class SentimentAnalysisFragment : Fragment() {
     private val _binding get() = _sentimentAnalysisBinding!!
     private var _setTweet: String? = null
     private var _getTweet: TextTweet? = null
-    private var countData: Int = 1
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -100,8 +100,7 @@ class SentimentAnalysisFragment : Fragment() {
 
                 _sentimentAnalysisBinding?.layoutRvTweetsPost?.loadMoreButton?.setOnClickListener {
                     val itemCount = tweetAdapter.itemCount
-                    val addCount = 5
-                    val totalItem = itemCount + addCount
+                    var totalItem = itemCount
 
                     it.visibility = View.GONE
                     true.loading()
@@ -109,25 +108,24 @@ class SentimentAnalysisFragment : Fragment() {
                     Handler(requireActivity().mainLooper).postDelayed({
                         false.loading()
 
-                        if (totalItem >= tweetAdapter.maxLimit) {
-                            if (countData <= 3) {
+                        when {
+                            totalItem < 150 -> {
+                                totalItem += 5
                                 tweetAdapter.limitTweet(totalItem)
                                 tweet.let { tweetPost -> tweetAdapter.setTweet(tweetPost) }
                                 tweetAdapter.notifyDataSetChanged()
 
-                                countData++
+                                totalItem += 5
+
                                 it.visibility = View.VISIBLE
-                            } else {
-                                Toast.makeText(context, "Anda telah Sampai di Batas Maksimum dari List Tweet",
+                            }
+                            else -> {
+                                Toast.makeText(context, "List Tweet yang ditampilkan telah sampai maksimum List",
                                         Toast.LENGTH_SHORT).show()
                                 it.visibility = View.GONE
                             }
-                        } else {
-                            Toast.makeText(context, "Anda telah Sampai di Akhir dari List Tweet",
-                                    Toast.LENGTH_SHORT).show()
-                            it.visibility = View.GONE
                         }
-                    }, 3000)
+                    }, 2000)
                 }
             }
 
@@ -142,13 +140,13 @@ class SentimentAnalysisFragment : Fragment() {
 
                 _getTweet?.let {
                     sentimentAnalysisViewModel.getAnalysis(it)
-                            .observe(viewLifecycleOwner, { sentiment ->
+                            .observe(viewLifecycleOwner, {
                             })
                 }
             }
         })
 
-        sentimentAnalysisViewModel.profile.observe(viewLifecycleOwner, { profile ->
+        sentimentAnalysisViewModel.profile.observe(viewLifecycleOwner, {
         })
     }
 

@@ -16,11 +16,10 @@ import java.time.format.FormatStyle
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
+class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.TweetViewHolder>() {
 
     private var _listTweet = ArrayList<TweetEntity>()
-    private var _limit: Int = 0
-    val maxLimit = _listTweet.size
+    private var _limit: Int = 10
 
     fun setTweet(tweet: List<TweetEntity>) {
         this._listTweet.clear()
@@ -106,5 +105,12 @@ class SentimentAnalysisAdapter() : RecyclerView.Adapter<SentimentAnalysisAdapter
         }
     }
 
-    override fun getItemCount(): Int = _limit
+    override fun getItemCount(): Int {
+        return if(_listTweet.size > _limit){
+            _limit
+        }
+        else{
+            _listTweet.size
+        }
+    }
 }
