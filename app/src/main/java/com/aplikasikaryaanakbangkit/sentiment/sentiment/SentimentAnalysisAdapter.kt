@@ -106,10 +106,9 @@ class SentimentAnalysisAdapter : RecyclerView.Adapter<SentimentAnalysisAdapter.T
     }
 
     override fun getItemCount(): Int {
-        return if(_listTweet.size > _limit){
+        return if (_listTweet.size > _limit) {
             _limit
-        }
-        else{
+        } else {
             _listTweet.size
         }
     }

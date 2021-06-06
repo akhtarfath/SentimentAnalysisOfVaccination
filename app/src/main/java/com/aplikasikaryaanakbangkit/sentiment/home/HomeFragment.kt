@@ -257,9 +257,7 @@ class HomeFragment : Fragment() {
 
                                 val newsCovidAdapter = NewsCovidAdapter()
                                 this.adapter = newsCovidAdapter
-
-                                newsCovid.data?.let { it1 -> newsCovidAdapter.setNews(it1) }
-                                newsCovidAdapter.notifyDataSetChanged()
+                                newsCovidAdapter.submitList(newsCovid.data)
                             }
                         }
                         false.shimmerLoading()
