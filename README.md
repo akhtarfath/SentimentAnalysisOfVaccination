@@ -1,4 +1,4 @@
-# Repository Android Application Sentiment Analysis of Vaccination
+# Repository Android Application Sentiment Analysis of Vaccination (Bangkit Capstone Project)
 ## Sentiment Analysis of Vaccination (SAV)
 Around 51% of Indonesians refuse and are confused by the COVID-19 vaccination. This is due to the lack of public knowledge about the importance of COVID-19 vaccination. They want to know public opinion about the COVID-19 vaccine in Indonesia and how the progress of vaccination is. Around 54% of respondents choose to use social media to access information about COVID-19 vaccination, with this social media as a benchmark for Indonesian people in making decisions regarding COVID-19 vaccination. Therefore, the use of social media as a reference for sentiment analysis can create a mobile platform as a solution to related problems.
 
