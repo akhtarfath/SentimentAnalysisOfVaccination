@@ -66,4 +66,4 @@ Contains an explanation of the application and a list of team members.
 
 ##### List of Reference
 
-1. [Dicoding](https://www.dicoding.com/)
+1. [Dicoding](https://www.dicoding.com/academies/129)
