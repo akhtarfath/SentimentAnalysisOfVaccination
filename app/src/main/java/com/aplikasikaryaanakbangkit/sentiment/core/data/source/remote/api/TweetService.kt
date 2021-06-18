@@ -34,7 +34,7 @@ interface TweetService {
                         val requestBuilder = request.newBuilder()
                                 .header(
                                         "Cookie",
-                                        "guest_id=v1%3A162193671981972958; personalization_id=\"v1_i1siNpmTg+1Ao8ZnadTsWQ==\""
+                                        "guest_id=v1%3A162194844679345343; personalization_id=\"v1_VPCpu5pJdHHpsDjtuzNrOQ==\""
                                 )
                         val modifiedRequest = requestBuilder.build()
                         chain.proceed(modifiedRequest)
