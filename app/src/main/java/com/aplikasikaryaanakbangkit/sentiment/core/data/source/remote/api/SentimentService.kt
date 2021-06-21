@@ -16,7 +16,7 @@ interface SentimentService {
     fun insertTweetToAnalysis(@Body text_twitter: TextTweet): Call<SentimentResponse>
 
     companion object {
-        private const val BASE_URL = "http://34.126.130.172:9000/"
+        private const val BASE_URL = "http://35.213.137.239:9000/"
 
         fun create(): SentimentService {
             val loggingInterceptor =
